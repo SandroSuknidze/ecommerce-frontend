@@ -1,7 +1,8 @@
 function Blog() {
     return (
-        <div>
-            blog
+        <div >
+            <p className="text-red-700">blog</p>
+
         </div>
     );
 }
