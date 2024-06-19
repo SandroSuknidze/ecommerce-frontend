@@ -3,7 +3,7 @@ import Collection from "@/components/Collection";
 import firstImage from "@/assets/collections/collection16.webp";
 import secondImage from "@/assets/collections/collection9.webp";
 
-function Shop() {
+function Index() {
     return (
         <div>
             <div className="py-[60px]">
@@ -17,7 +17,7 @@ function Shop() {
             </div>
 
             <div>
-                <div className="grid grid-cols-4 mx-[8.5px] px-[30px]">
+                <div className="grid grid-cols-4 max-w-[1500px] mx-auto px-[30px]">
                     <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
                     <Collection imageSrc={secondImage} title={"Winter Coat"}/>
                     <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
@@ -35,4 +35,4 @@ function Shop() {
     );
 }
 
-export default Shop;
+export default Index;

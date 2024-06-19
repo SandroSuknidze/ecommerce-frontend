@@ -7,6 +7,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+
+import first from "@/assets/first.webp";
+import Search from "@/components/Search";
 
 function Index() {
     return (
@@ -22,10 +26,10 @@ function Index() {
                             clickable: true,
                         }}
                         modules={[EffectFade, Navigation, Pagination]}
-                        className="mySwiper"
+                        className="mySwiper -z-10"
                     >
                         <SwiperSlide>
-                            <img src="../assets/firstSlide.webp" alt="slide" className="w-full h-[877px]"/>
+                            <Image src={first} alt="slide" className="w-full h-[867px] object-cover"/>
                         </SwiperSlide>
                         <SwiperSlide>
                             <img src="https://swiperjs.com/demos/images/nature-2.jpg" className="w-full h-[877px]"/>

@@ -28,3 +28,12 @@ body {
     text-wrap: balance;
   }
 }
+
+.svg-colors:hover {
+  circle {
+    stroke: black;
+  }
+  path {
+    fill: black;
+  }
+}
