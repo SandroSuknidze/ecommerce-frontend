@@ -3,21 +3,21 @@ import Link from "next/link";
 import {faStar} from "@fortawesome/free-solid-svg-icons/faStar";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
-function ProductCard({ title, imageSrc, price, sale=null}) {
+function ProductCard({ title, imageSrc, price, toggleSearch, sale=null}) {
 
     const formattedTitle = title.replace(/ /g, '-').toLowerCase();
 
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl">
             <div className="max-h-[313px] max-w-full overflow-hidden rounded-xl">
-                <Link href={`/shop/${formattedTitle}`}>
+                <Link href={`/shop/${formattedTitle}`} onClick={() => {toggleSearch()}}>
                     <Image src={imageSrc} alt="collection"
                            className="rounded-xl hover:scale-105 transition duration-300 cursor-pointer max-h-[313px] max-w-full overflow-hidden"/>
                 </Link>
             </div>
             <div className="bg-white pt-[15px]">
                 <div className="">
-                    <Link href={`/shop/${formattedTitle}`}>{title}</Link>
+                    <Link href={`/shop/${formattedTitle}`} onClick={() => toggleSearch()}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
                     <FontAwesomeIcon icon={faStar} />

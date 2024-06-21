@@ -4,10 +4,11 @@ import InstagramIcon from "@/assets/footer/InstagramIcon";
 import TiktokIcon from "@/assets/footer/TiktokIcon";
 import YoutubeIcon from "@/assets/footer/YoutubeIcon";
 import TwitterIcon from "@/assets/footer/TwitterIcon";
+import FacebookIcon from "@/assets/footer/FacebookIcon";
 
 function Footer() {
     return (
-        <footer className="border-t-[1px] border-[#ebebeb]">
+        <footer className="border-t-[1px] mt-[100px] border-[#ebebeb]">
             <div className="max-w-[1470px] px-[30px] mx-auto">
                 <div className="mt-[100px] mb-[60px] ">
                     <div className=" flex flex-row justify-between  h-[320px]">
@@ -32,7 +33,7 @@ function Footer() {
                                     <TwitterIcon />
                                 </li>
                                 <li className="cursor-pointer">
-                                    <YoutubeIcon />
+                                    <FacebookIcon />
                                 </li>
                             </ul>
                         </div>

@@ -13,10 +13,19 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "shop-banner": "url('../assets/shop-banner.webp')",
       },
+      colors: {
+        "11black": "#111111",
+        "55black": "#555555",
+        "87black": "#878787",
+      },
+      content: {
+        "correct-icon": "url('../assets/correct.svg')",
+      }
     },
     fontFamily: {
       Jost: ["Jost", 'sans-serif'],
     },
+
   },
   plugins: [],
 };
