@@ -127,28 +127,31 @@ export function Header() {
                             </div>
                             <div className="my-auto relative ml-[20px]">
                                 <Link href="/">
-                                    <WishlistIcon
-                                        className="hover:fill-red-600 transition duration-300 cursor-pointer "/>
-                                    <div
-                                        className="w-[18px] h-[18px] border border-red-600 rounded-full bg-red-600 text-white text-[10px] text-center absolute top-[-9px] left-[13px]">
-                                        0
+                                    <div className="hover-parent">
+                                        <WishlistIcon
+                                            className="hover-child cursor-pointer"/>
+                                        <div
+                                            className="w-[18px] h-[18px] border border-red-600 rounded-full bg-red-600 text-white text-[10px] text-center absolute top-[-9px] left-[13px]">
+                                            0
+                                        </div>
                                     </div>
                                 </Link>
                             </div>
                             <div className="my-auto relative ml-[20px]">
                                 <Link href="/">
-                                    <CartIcon
-                                        className="hover:fill-red-600 transition duration-300 cursor-pointer "/>
-                                    <div
-                                        className="w-[18px] h-[18px] border border-red-600 rounded-full bg-red-600 text-white text-[10px] text-center absolute top-[-9px] left-[13px]">
-                                        0
+                                    <div className="hover-parent">
+                                        <CartIcon className="hover-child cursor-pointer"/>
+                                        <div
+                                            className="w-[18px] h-[18px] border border-red-600 rounded-full bg-red-600 text-white text-[10px] text-center absolute top-[-9px] left-[13px]">
+                                            0
+                                        </div>
                                     </div>
                                 </Link>
                             </div>
                             <div className="my-auto ml-[20px]">
                                 <div className=" cursor-pointer flex flex-row border-[1px] rounded-[3px] p-[10px]"
                                      onClick={toggleDropdown}>
-                                    <Image src={language === 'en' ? en : geo} alt="" width="20" height="11"
+                                <Image src={language === 'en' ? en : geo} alt="" width="20" height="11"
                                            className="mr-2 "/>
                                     <Image src={dropdown ? arrowUp : arrowDown} alt="arrow-icon" width="10"/>
 

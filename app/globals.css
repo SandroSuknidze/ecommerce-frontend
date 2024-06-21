@@ -37,3 +37,14 @@ body {
     fill: black;
   }
 }
+
+.hover-parent:hover .hover-child {
+  transition: all 0.5s ease;
+  fill: #DC2626;
+}
+
+.hover-child {
+  transition: all 0.5s ease;
+}
+
+
