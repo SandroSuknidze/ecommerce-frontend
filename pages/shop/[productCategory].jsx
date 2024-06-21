@@ -2,7 +2,10 @@ import {useRouter} from "next/router";
 import {faMinus} from "@fortawesome/free-solid-svg-icons/faMinus";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useState} from "react";
-import {createTheme, Slider} from "@mui/material";
+import { Slider} from "@mui/material";
+import CollectionCard from "@/components/CollectionCard";
+import firstImage from "@/assets/collections/collection16.webp";
+import collection2 from "@/assets/collections/collection2.webp";
 
 function ProductCategory() {
     const router = useRouter();
@@ -34,13 +37,6 @@ function ProductCategory() {
             setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
         }
     };
-
-    const theme = createTheme({
-            '&:hover': {
-                backgroundColor: 'red', // Replace 'red' with your desired hover color
-            },
-    });
-
     
     return (
         <div>
@@ -110,7 +106,15 @@ function ProductCategory() {
                     <div>Size</div>
 
                 </div>
-                <div className="w-3/4"></div>
+                <div className="w-3/4">
+                    <div className="grid grid-cols-3">
+                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"169.00"} sale={"143.00"}/>
+                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
+                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
+                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
+                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
+                    </div>
+                </div>
             </div>
         </div>
     );

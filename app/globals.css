@@ -39,12 +39,19 @@ body {
 }
 
 .hover-parent:hover .hover-child {
-  transition: all 0.5s ease;
+  transition: all .5s ease;
   fill: #DC2626;
 }
 
 .hover-child {
-  transition: all 0.5s ease;
+  transition: all .5s ease;
 }
 
+.hover-parent-heart:hover .hover-child-heart {
+  transition: all .3s ease;
+  fill: white;
+}
 
+.hover-child-heart {
+  transition: all .3s ease;
+}

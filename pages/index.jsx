@@ -44,6 +44,9 @@ function Index() {
                         <SwiperSlide>
                             <img src="https://swiperjs.com/demos/images/nature-4.jpg" className="w-full h-[877px]"/>
                         </SwiperSlide>
+                        <div>
+                            <h2>test</h2>
+                        </div>
                     </Swiper>
                     <button className="arrow-left arrow absolute top-1/2 z-10 left-10 w-[60px] h-[60px] rounded-full bg-white border-[1px] border-[#ebebeb] transition duration-500 hover:text-white hover:bg-black hover:border-black">
                         <div>

@@ -7,7 +7,7 @@ function Collection({ imageSrc, title }) {
             <Image src={imageSrc} alt="collection" className="rounded-xl hover:scale-110 transition duration-300 cursor-pointer max-w-full overflow-hidden"/>
             <div className="absolute right-4 left-4 bottom-4 top-auto bg-white z-10 rounded p-4 overflow-hidden text-center">
                 <div className="font-medium">
-                    <Link href="/">{title}</Link>
+                    <Link href={`/shop/${title}`} className="hover:text-red-600 transition duration-300">{title}</Link>
                 </div>
                 <div className="">
                     (9 Products)
