@@ -52,7 +52,7 @@ function Reset() {
                                 <div
                                     className="mt-[16px] mb-[10px] px-[20px] py-[11px] bg-[#e3fadf] border-[1px] border-[#B2E5AD] text-[#008A00] rounded-[5px]">
                                     <p className="flex gap-2">
-                                        <Image src={correctIcon} alt="correct-icon" className="inline"/>
+                                        <Image src={correctIcon} alt="Correct Icon" className="inline"/>
                                         If this email is registered, you will receive instructions to reset your password.
                                     </p>
                                 </div>

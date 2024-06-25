@@ -48,7 +48,7 @@ function Register() {
                         {emailAlreadyExists &&
                             <div
                                 className="flex gap-4 mt-[16px] mb-[10px] px-[20px] py-[11px] bg-[#fadfdf] border-[1px] border-[#eabdbd] text-[#9d666a] rounded-[5px]">
-                                <Image src={sadEmojiIcon} alt="sad-emoji-icon"/>
+                                <Image src={sadEmojiIcon} alt="Sad Emoji"/>
                                 <p>This email address is already associated with an account.
                                     If this account is yours, you can <span className="text-black cursor-pointer">reset your password</span>
                                 </p>

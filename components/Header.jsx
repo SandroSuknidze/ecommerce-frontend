@@ -151,9 +151,9 @@ export function Header() {
                             <div className="my-auto ml-[20px]">
                                 <div className=" cursor-pointer flex flex-row border-[1px] rounded-[3px] p-[10px]"
                                      onClick={toggleDropdown}>
-                                <Image src={language === 'en' ? en : geo} alt="" width="20" height="11"
+                                <Image src={language === 'en' ? en : geo} alt="Flag Icon" width="20" height="11"
                                            className="mr-2 "/>
-                                    <Image src={dropdown ? arrowUp : arrowDown} alt="arrow-icon" width="10"/>
+                                    <Image src={dropdown ? arrowUp : arrowDown} alt="Arrow Icon" width="10"/>
 
 
                                 </div>
