@@ -3,8 +3,11 @@
     import SearchIcon from "@/assets/SearchIcon";
     import ProductCard from "@/components/ProductCard";
     import collection2 from "@/assets/collections/collection2.webp";
+    import {useLockBodyScroll} from "react-use";
 
     function Search({ toggleSearch }) {
+        useLockBodyScroll(true);
+
         return (
             <div className="fixed inset-0 flex items-center justify-center !z-[70]">
                 <div className="absolute inset-0 bg-black opacity-50"></div>

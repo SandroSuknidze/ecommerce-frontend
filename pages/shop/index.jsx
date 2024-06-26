@@ -3,6 +3,14 @@ import Collection from "@/components/Collection";
 import firstImage from "@/assets/collections/collection16.webp";
 import secondImage from "@/assets/collections/collection9.webp";
 
+export const categories =  [
+    {id: 1, name: "Woman's a Shirts"},
+    {id: 2, name: "Woman's b Shirts"},
+    {id: 3, name: "Woman's c Shirts"},
+    {id: 4, name: "Woman's d Shirts"},
+    {id: 5, name: "Woman's e Shirts"},
+]
+
 function Index() {
     return (
         <div>
@@ -18,16 +26,10 @@ function Index() {
 
             <div>
                 <div className="grid grid-cols-4 max-w-[1500px] mx-auto px-[30px]">
-                    <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
-                    <Collection imageSrc={secondImage} title={"Winter Coat"}/>
-                    <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
-                    <Collection imageSrc={secondImage} title={"Winter Coat"}/>
-                    <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
-                    <Collection imageSrc={secondImage} title={"Winter Coat"}/>
-                    <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
-                    <Collection imageSrc={secondImage} title={"Winter Coat"}/>
-                    <Collection imageSrc={firstImage} title={"Women's Shirts"}/>
-                    <Collection imageSrc={secondImage} title={"Winter Coat"}/>
+                    {categories.map((category) => (
+                        <Collection key={category.id} id={category.id} imageSrc={firstImage} title={category.name}/>
+
+                    ))}
                 </div>
 
             </div>

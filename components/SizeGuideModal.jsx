@@ -6,10 +6,10 @@ import sizeImage from "@/public/size.webp";
 function SizeGuideModal({ toggleSizeGuideModal }) {
     return (
         <>
-            <div className="fixed inset-0 bg-black opacity-50 z-[60]"></div>
+            <div className="fixed inset-0 bg-black opacity-50 z-[60] cursor-close" onClick={() => toggleSizeGuideModal()}></div>
             <div
                 className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[817px]
-                bg-white border border-gray-300 rounded-lg shadow-lg z-[61] overflow-hidden">
+                bg-white border border-gray-300 rounded-[5px] shadow-lg z-[61] overflow-hidden">
                 <div className="flex justify-center w-full p-[20px] border-b-[1px] border-[#ebebeb] leading-[20px]">
                     <h3 className="text-[20px] text-11black font-medium">Size Guide</h3>
                     <Image src={closeIcon} alt="close icon" className="absolute right-[22px] w-[20px] h-[20px] cursor-pointer"

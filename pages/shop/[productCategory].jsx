@@ -7,11 +7,19 @@ import CollectionCard from "@/components/CollectionCard";
 import firstImage from "@/assets/collections/collection16.webp";
 import collection2 from "@/assets/collections/collection2.webp";
 
+import {categories} from "@/pages/shop/index";
+
 function ProductCategory() {
     const router = useRouter();
     const { productCategory } = router.query;
 
+
     const [isBrandOpen, setIsBrandOpen] = useState(true);
+
+    function getCategoryName() {
+        return categories.find((category) => category.id === Number(productCategory))?.name
+    }
+
 
     function toggleBrand() {
         setIsBrandOpen(!isBrandOpen);
@@ -41,8 +49,8 @@ function ProductCategory() {
     return (
         <div>
             <div className="bg-shop-banner w-full h-[200px] text-center text-white flex justify-center flex-col">
-                <h1 className="mx-auto text-[45px]">{productCategory}</h1>
-                <nav className="text-[14px]">Home / {productCategory}</nav>
+                <h1 className="mx-auto text-[45px]">{getCategoryName()}</h1>
+                <nav className="text-[14px]">Home / {getCategoryName()}</nav>
             </div>
 
             <div className="flex mt-[50px] mx-auto max-w-[1410px]">

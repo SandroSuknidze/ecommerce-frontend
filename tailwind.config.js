@@ -20,6 +20,9 @@ module.exports = {
       },
       content: {
         "correct-icon": "url('../assets/correct.svg')",
+      },
+      cursor: {
+        "close": "url('../assets/cursor-close.png'), pointer",
       }
     },
     fontFamily: {

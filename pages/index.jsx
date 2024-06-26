@@ -10,12 +10,9 @@ import {faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
 import first from "@/assets/first.webp";
-import Search from "@/components/Search";
-import {useLockBodyScroll} from "react-use";
 
 function Index() {
 
-    // useLockBodyScroll(true);
 
     return (
         <div>
@@ -30,7 +27,7 @@ function Index() {
                             clickable: true,
                         }}
                         modules={[EffectFade, Navigation, Pagination]}
-                        className="mySwiper !-z-10"
+                        className="mySwiper3 !-z-10"
                     >
                         <SwiperSlide>
                             <Image src={first} alt="slide" className="w-full h-[867px] object-cover"/>
