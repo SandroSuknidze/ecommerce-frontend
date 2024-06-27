@@ -3,7 +3,11 @@ import Image from 'next/image'
 import closeIcon from '@/public/assets/close.svg'
 import sizeImage from '@/public/size.webp'
 
-function SizeGuideModal({ toggleSizeGuideModal }) {
+interface SizeGuideModalProps {
+    toggleSizeGuideModal: () => void,
+}
+
+function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
     return (
         <>
             <div

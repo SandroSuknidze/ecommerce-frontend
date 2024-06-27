@@ -1,4 +1,8 @@
-const WishlistIcon = ({className}) => {
+interface WishlistIconProps {
+    className?: string;
+}
+
+const WishlistIcon = ({className}: WishlistIconProps) => {
     return (
         <svg width="21" height="17" viewBox="0 0 14 13" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path

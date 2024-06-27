@@ -1,15 +1,27 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
 
-function CollectionCard({ imageSrc, title, sale, price }) {
-    const discount = Math.round(100 - (sale * 100) / price)
+interface CollectionCardProps {
+    imageSrc: StaticImageData,
+    title: string,
+    sale?: number | null,
+    price: number,
+}
 
-    const [hovered, setHovered] = useState(false)
+function CollectionCard({ imageSrc, title, sale, price }: CollectionCardProps) {
+    let discount: number | undefined;
+
+    if (sale) {
+        const salePrice = parseFloat(String(sale));
+        discount = Math.round(100 - (salePrice * 100) / price);
+    }
+
+    const [hovered, setHovered] = useState(false);
 
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl px-[15px]">

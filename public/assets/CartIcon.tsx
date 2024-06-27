@@ -1,4 +1,8 @@
-const CartIcon = ({className}) => {
+interface CartIconProps {
+    className?: string;
+}
+
+const CartIcon = ({className}: CartIconProps) => {
     return (
         <svg width="21" height="17" viewBox="0 0 21 17" className={className} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path

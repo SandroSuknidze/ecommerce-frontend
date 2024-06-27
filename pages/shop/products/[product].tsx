@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import { useState } from 'react'
+import { CSSProperties, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 
@@ -35,15 +35,21 @@ import collection2 from '@/public/assets/collections/collection2.webp'
 
 function Product() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
-    const [size, setSize] = useState('S')
-    const [color, setColor] = useState('blue')
+
+    type Size = 'S' | 'M' | 'L';
+    const [size, setSize] = useState<Size>('S')
+
+    type Color = 'blue' | 'beige' | 'pink';
+    const [color, setColor] = useState<Color>('blue')
     const [itemCount, setItemCount] = useState(1)
 
     const [isSizeGuidModalOpen, setIsSizeGuidModalOpen] = useState(false)
     const [isAskQuestionModalOpen, setIsAskQuestionModalOpen] = useState(false)
     const [isShareModalOpen, setIsShareModalOpen] = useState(false)
 
-    const [section, setSection] = useState(1)
+
+    type Section = 1 | 2 | 3;
+    const [section, setSection] = useState<Section>(1)
 
     const sale = '20.00'
     const price = '40.00'
@@ -69,6 +75,7 @@ function Product() {
     function toggleShareModal() {
         setIsShareModalOpen(!isShareModalOpen)
     }
+
 
     return (
         <>
@@ -97,6 +104,7 @@ function Product() {
                     <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]">
                         <div className="w-[8%] select-none">
                             <Swiper
+                                // @ts-ignore
                                 onSwiper={setThumbsSwiper}
                                 spaceBetween={10}
                                 slidesPerView={4}
@@ -122,10 +130,11 @@ function Product() {
                         </div>
                         <div className="w-[88%] select-none">
                             <Swiper
+                                // @ts-ignore
                                 style={{
                                     '--swiper-navigation-color': '#fff',
                                     '--swiper-pagination-color': '#fff',
-                                }}
+                                } as CSSProperties}
                                 spaceBetween={10}
                                 navigation={true}
                                 thumbs={{ swiper: thumbsSwiper }}
@@ -149,7 +158,8 @@ function Product() {
                     </div>
                     <div className="w-1/2 px-[15px]">
                         <div>
-                            <div className="mb-[5px] inline-block rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
+                            <div
+                                className="mb-[5px] inline-block rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
                                 -50%
                             </div>
                             <h1 className="mb-[5px] text-[30px] text-11black">
@@ -309,8 +319,10 @@ function Product() {
                                 >
                                     Add To Cart
                                 </button>
-                                <div className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
-                                    <HeartIcon className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
+                                <div
+                                    className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
+                                    <HeartIcon
+                                        className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
                                 </div>
                             </div>
 
@@ -340,7 +352,8 @@ function Product() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
+                            <div
+                                className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
                                 <label className="absolute top-[-13px] bg-white px-[20px] font-medium">
                                     Guarantee safe checkout
                                 </label>
@@ -573,32 +586,32 @@ function Product() {
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
-                        price={'169.00'}
-                        sale={'143.00'}
+                        price={169}
+                        sale={143}
                     />
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
-                        price={'300.00'}
-                        sale={'150.00'}
+                        price={300}
+                        sale={150}
                     />
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
-                        price={'300.00'}
-                        sale={'150.00'}
+                        price={300}
+                        sale={150}
                     />
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
-                        price={'300.00'}
-                        sale={'150.00'}
+                        price={300}
+                        sale={150}
                     />
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
-                        price={'300.00'}
-                        sale={'150.00'}
+                        price={300}
+                        sale={150}
                     />
                 </div>
             </section>

@@ -5,7 +5,11 @@ import ProductCard from '@/components/ProductCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
 import { useLockBodyScroll } from 'react-use'
 
-function Search({ toggleSearch }) {
+interface SearchProps {
+    toggleSearch: () => void,
+}
+
+function Search({ toggleSearch }: SearchProps) {
     useLockBodyScroll(true)
 
     return (

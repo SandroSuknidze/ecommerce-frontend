@@ -1,19 +1,23 @@
 import Image from 'next/image'
 import closeIcon from '@/public/assets/close.svg'
-import InputForm from '@/components/InputForm'
+import InputForm from './InputForm'
 import { useForm } from 'react-hook-form'
-import { TextareaInputForm } from '@/components/TextareaInputForm'
+import { TextareaInputForm } from './TextareaInputForm'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export function AskQuestionModal({ toggleAskQuestionModal }) {
+interface AskQuestionModalProps {
+    toggleAskQuestionModal: () => void,
+}
+
+export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalProps) {
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: any) => {
         console.log(data)
 
         toast.success('Form submitted successfully!', {
@@ -76,7 +80,6 @@ export function AskQuestionModal({ toggleAskQuestionModal }) {
                         <div>
                             <TextareaInputForm
                                 name="Comment"
-                                height="222"
                                 register={register('comment')}
                                 label={false}
                             />

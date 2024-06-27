@@ -9,7 +9,11 @@ import TwitterIcon from '@/public/assets/footer/TwitterIcon'
 import FacebookIcon from '@/public/assets/footer/FacebookIcon'
 import { useState } from 'react'
 
-export function ShareModal({ toggleShareModal }) {
+interface ShareModalProps {
+    toggleShareModal: () => void,
+}
+
+export function ShareModal({ toggleShareModal }: ShareModalProps) {
     const [copied, setCopied] = useState(false)
 
     const currentUrl = window.location.href

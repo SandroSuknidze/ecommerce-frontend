@@ -1,9 +1,17 @@
-import Image from 'next/image'
+import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }) {
+interface ProductCardProps {
+    title: string,
+    imageSrc: StaticImageData,
+    price: string,
+    toggleSearch: () => void,
+    sale?: string | null,
+}
+
+function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: ProductCardProps) {
 
     const formattedTitle = title.replace(/ /g, '-').toLowerCase()
 

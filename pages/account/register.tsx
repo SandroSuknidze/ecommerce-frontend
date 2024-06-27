@@ -14,7 +14,7 @@ function Register() {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: object) => {
         console.log(data)
 
         setEmailAlreadyExists(true)

@@ -1,4 +1,11 @@
-function InputForm({ name, type, register, label=true }) {
+interface InputFormProps {
+    name: string;
+    type: string;
+    register: object,
+    label?: boolean,
+}
+
+function InputForm({ name, type, register, label=true }: InputFormProps) {
     return (
         <div className="mb-[20px] flex flex-col">
             {label && <label htmlFor="" className="pb-[5px] text-11black">

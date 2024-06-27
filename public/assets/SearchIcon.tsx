@@ -1,4 +1,8 @@
-const SearchIcon = ({className}) => {
+interface SearchIconProps {
+    className?: string;
+}
+
+const SearchIcon = ({className}: SearchIconProps) => {
     return (
         <svg width="17" height="17" viewBox="0 0 17 17" className={className} fill="currentColor"
              xmlns="http://www.w3.org/2000/svg">

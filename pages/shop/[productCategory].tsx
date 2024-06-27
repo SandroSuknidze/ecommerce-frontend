@@ -24,7 +24,7 @@ function ProductCategory() {
         setIsBrandOpen(!isBrandOpen)
     }
 
-    function valuetext(value) {
+    function valuetext(value: number) {
         return `${value}°C`
     }
 
@@ -32,6 +32,7 @@ function ProductCategory() {
 
     const [value1, setValue1] = useState([20, 37])
 
+    // @ts-ignore
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
             return
@@ -139,32 +140,32 @@ function ProductCategory() {
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
-                            price={'169.00'}
-                            sale={'143.00'}
+                            price={169}
+                            sale={143}
                         />
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
-                            price={'300.00'}
-                            sale={'150.00'}
+                            price={300}
+                            sale={150}
                         />
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
-                            price={'300.00'}
-                            sale={'150.00'}
+                            price={300}
+                            sale={150}
                         />
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
-                            price={'300.00'}
-                            sale={'150.00'}
+                            price={300}
+                            sale={150}
                         />
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
-                            price={'300.00'}
-                            sale={'150.00'}
+                            price={300}
+                            sale={150}
                         />
                     </div>
                 </div>

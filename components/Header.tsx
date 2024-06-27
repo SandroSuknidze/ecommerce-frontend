@@ -12,10 +12,11 @@ import arrowUp from '@/public/assets/arrow-up-icon.svg'
 import { useEffect, useState } from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
-import { useLockBodyScroll } from 'react-use'
 
 export function Header() {
-    const [language, setLanguage] = useState('en')
+
+    type Language = 'en' | 'geo';
+    const [language, setLanguage] = useState<Language>('en')
     const [dropdown, setDropdown] = useState(false)
 
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -24,9 +25,11 @@ export function Header() {
         setDropdown(!dropdown)
     }
 
-    function selectLanguage(lang) {
-        setLanguage(lang)
-        setDropdown(false)
+    function selectLanguage(lang: string) {
+        if (lang === 'en' || lang === 'geo') {
+            setLanguage(lang as Language)
+            setDropdown(false)
+        }
     }
 
     function toggleSearch() {
@@ -60,7 +63,6 @@ export function Header() {
             {isSearchOpen && (
                 <Search
                     toggleSearch={toggleSearch}
-                    className="relative z-[70]"
                 />
             )}
 
