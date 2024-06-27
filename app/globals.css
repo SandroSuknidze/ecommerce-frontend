@@ -128,12 +128,19 @@ body {
 }
 
 .mySwiper3 {
-  height: calc(100vh - 79px);
+  height: calc(100vh - 78px);
 
-}
+  .swiper-slide {
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+  }
 
-.mySwiper3 .swiper-slide {
-  object-fit: cover;
-  background-size: cover;
-  background-position: center;
+  .swiper-pagination {
+    margin-bottom: 20px;
+
+    .swiper-pagination-bullet-active {
+      background: black;
+    }
+  }
 }

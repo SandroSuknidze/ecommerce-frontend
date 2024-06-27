@@ -12,7 +12,9 @@ module.exports = {
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
                 'shop-banner': "url('../public/assets/shop-banner.webp')",
-                'first-image': "url('../public/assets/first.webp')",
+                'first-image': "url('../public/assets/homeSlider/slide-1.webp')",
+                'second-image': "url('../public/assets/homeSlider/slide-2.webp')",
+                'third-image': "url('../public/assets/homeSlider/slide-3.webp')",
             },
             colors: {
                 '11black': '#111111',
