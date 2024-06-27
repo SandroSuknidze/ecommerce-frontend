@@ -1,75 +1,95 @@
-import {useRouter} from "next/router";
-import {faMinus} from "@fortawesome/free-solid-svg-icons/faMinus";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {useState} from "react";
-import { Slider} from "@mui/material";
-import CollectionCard from "@/components/CollectionCard";
-import firstImage from "@/assets/collections/collection16.webp";
-import collection2 from "@/assets/collections/collection2.webp";
+import { useRouter } from 'next/router'
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
+import { Slider } from '@mui/material'
+import CollectionCard from '@/components/CollectionCard'
+import collection2 from '@/public/assets/collections/collection2.webp'
 
-import {categories} from "@/pages/shop/index";
+import { categories } from '@/pages/shop/index'
 
 function ProductCategory() {
-    const router = useRouter();
-    const { productCategory } = router.query;
+    const router = useRouter()
+    const { productCategory } = router.query
 
-
-    const [isBrandOpen, setIsBrandOpen] = useState(true);
+    const [isBrandOpen, setIsBrandOpen] = useState(true)
 
     function getCategoryName() {
-        return categories.find((category) => category.id === Number(productCategory))?.name
+        return categories.find(
+            (category) => category.id === Number(productCategory)
+        )?.name
     }
-
 
     function toggleBrand() {
-        setIsBrandOpen(!isBrandOpen);
+        setIsBrandOpen(!isBrandOpen)
     }
-
 
     function valuetext(value) {
-        return `${value}°C`;
+        return `${value}°C`
     }
 
-    const minDistance = 10;
+    const minDistance = 10
 
-    const [value1, setValue1] = useState([20, 37]);
+    const [value1, setValue1] = useState([20, 37])
 
     const handleChange1 = (event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
-            return;
+            return
         }
 
         if (activeThumb === 0) {
-            setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+            setValue1([
+                Math.min(newValue[0], value1[1] - minDistance),
+                value1[1],
+            ])
         } else {
-            setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+            setValue1([
+                value1[0],
+                Math.max(newValue[1], value1[0] + minDistance),
+            ])
         }
-    };
-    
+    }
+
     return (
         <div>
-            <div className="bg-shop-banner w-full h-[200px] text-center text-white flex justify-center flex-col">
+            <div className="flex h-[200px] w-full flex-col justify-center bg-shop-banner text-center text-white">
                 <h1 className="mx-auto text-[45px]">{getCategoryName()}</h1>
                 <nav className="text-[14px]">Home / {getCategoryName()}</nav>
             </div>
 
-            <div className="flex mt-[50px] mx-auto max-w-[1410px]">
+            <div className="mx-auto mt-[50px] flex max-w-[1410px]">
                 <div className="w-1/4 px-[30px]">
                     <div>
-                        <div onClick={toggleBrand}  className="mb-[20px] flex justify-between cursor-pointer">
+                        <div
+                            onClick={toggleBrand}
+                            className="mb-[20px] flex cursor-pointer justify-between"
+                        >
                             <h4 className="text-[18px] font-medium">Brand</h4>
-                            <div className="relative ">
-                                <FontAwesomeIcon icon={faMinus} className="text-87black"/>
-                                <FontAwesomeIcon icon={faMinus} className={`${isBrandOpen ? "opacity-100" : "opacity-0"} text-87black  absolute top-[3px] left-0 transition duration-500 rotate-90`}/>
+                            <div className="relative">
+                                <FontAwesomeIcon
+                                    icon={faMinus}
+                                    className="text-87black"
+                                />
+                                <FontAwesomeIcon
+                                    icon={faMinus}
+                                    className={`${isBrandOpen ? 'opacity-100' : 'opacity-0'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                                />
                             </div>
                         </div>
-                        <ul className={`${!isBrandOpen && '-translate-y-[50px] overflow-hidden hidden '} transition duration-500 transform `}>
+                        <ul
+                            className={`${!isBrandOpen && 'hidden -translate-y-[50px] overflow-hidden'} transform transition duration-500`}
+                        >
                             <li className="mb-[7px] flex h-[18px]">
                                 <div className="flex">
                                     <div className="mr-[10px]">
-                                        <input type="checkbox" className="accent-black h-[18px] w-[18px] "/>
+                                        <input
+                                            type="checkbox"
+                                            className="h-[18px] w-[18px] accent-black"
+                                        />
                                     </div>
-                                    <p className="leading-[18px]">Adriana Papell</p>
+                                    <p className="leading-[18px]">
+                                        Adriana Papell
+                                    </p>
                                 </div>
                             </li>
                         </ul>
@@ -85,7 +105,6 @@ function ProductCategory() {
                         </ul>
                     </div>
 
-
                     <div>
                         <div>
                             <h4>Price</h4>
@@ -100,33 +119,58 @@ function ProductCategory() {
                                 disableSwap
                                 sx={{
                                     color: 'black',
-                                    '& .MuiSlider-thumb:hover' :{
-                                        boxShadow: '0 0 0 6px rgba(135, 135, 135, 0.5) !important'
+                                    '& .MuiSlider-thumb:hover': {
+                                        boxShadow:
+                                            '0 0 0 6px rgba(135, 135, 135, 0.5) !important',
                                     },
-                                    '& .MuiSlider-thumb.Mui-focusVisible' : {
-                                        boxShadow: '0 0 0 6px transparent !important'
-                                    }
+                                    '& .MuiSlider-thumb.Mui-focusVisible': {
+                                        boxShadow:
+                                            '0 0 0 6px transparent !important',
+                                    },
                                 }}
                             />
                             {value1}
                         </div>
                     </div>
                     <div>Size</div>
-
                 </div>
                 <div className="w-3/4">
                     <div className="grid grid-cols-3">
-                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"169.00"} sale={"143.00"}/>
-                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
-                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
-                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
-                        <CollectionCard title={"Square Textured Striped"} imageSrc={collection2} price={"300.00"} sale={"150.00"}/>
+                        <CollectionCard
+                            title={'Square Textured Striped'}
+                            imageSrc={collection2}
+                            price={'169.00'}
+                            sale={'143.00'}
+                        />
+                        <CollectionCard
+                            title={'Square Textured Striped'}
+                            imageSrc={collection2}
+                            price={'300.00'}
+                            sale={'150.00'}
+                        />
+                        <CollectionCard
+                            title={'Square Textured Striped'}
+                            imageSrc={collection2}
+                            price={'300.00'}
+                            sale={'150.00'}
+                        />
+                        <CollectionCard
+                            title={'Square Textured Striped'}
+                            imageSrc={collection2}
+                            price={'300.00'}
+                            sale={'150.00'}
+                        />
+                        <CollectionCard
+                            title={'Square Textured Striped'}
+                            imageSrc={collection2}
+                            price={'300.00'}
+                            sale={'150.00'}
+                        />
                     </div>
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default ProductCategory;
-
+export default ProductCategory

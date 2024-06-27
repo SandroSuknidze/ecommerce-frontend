@@ -1,68 +1,95 @@
-import Image from "next/image";
-import closeIcon from "@/assets/close.svg";
-import InputForm from "@/components/InputForm";
-import {useForm} from "react-hook-form";
-import {TextareaInputForm} from "@/components/TextareaInputForm";
-import {toast} from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
+import Image from 'next/image'
+import closeIcon from '@/public/assets/close.svg'
+import InputForm from '@/components/InputForm'
+import { useForm } from 'react-hook-form'
+import { TextareaInputForm } from '@/components/TextareaInputForm'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export function AskQuestionModal({ toggleAskQuestionModal }) {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
+        console.log(data)
 
-        toast.success("Form submitted successfully!", {
-            position: "top-center"
-        });
+        toast.success('Form submitted successfully!', {
+            position: 'top-center',
+        })
 
-        toggleAskQuestionModal();
-
-
-    };
+        toggleAskQuestionModal()
+    }
     return (
         <>
-            <div className="fixed inset-0 bg-black opacity-50 z-[60] cursor-close" onClick={() => toggleAskQuestionModal()}></div>
             <div
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[568px]
-                bg-white border border-gray-300 rounded-[5px] shadow-lg z-[61] overflow-hidden">
-                <div className="flex justify-center w-full p-[20px] border-b-[1px] border-[#ebebeb] leading-[20px]">
-                    <h3 className="text-[20px] text-11black font-medium">Ask A Question</h3>
-                    <Image src={closeIcon} alt="close icon" className="absolute right-[22px] w-[20px] h-[20px] cursor-pointer"
-                           onClick={() => toggleAskQuestionModal()}/>
+                className="fixed inset-0 z-[60] cursor-close bg-black opacity-50"
+                onClick={() => toggleAskQuestionModal()}
+            ></div>
+            <div className="fixed left-1/2 top-1/2 z-[61] h-[568px] w-[600px] -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
+                <div className="flex w-full justify-center border-b-[1px] border-[#ebebeb] p-[20px] leading-[20px]">
+                    <h3 className="text-[20px] font-medium text-11black">
+                        Ask A Question
+                    </h3>
+                    <Image
+                        src={closeIcon}
+                        alt="close icon"
+                        className="absolute right-[22px] h-[20px] w-[20px] cursor-pointer"
+                        onClick={() => toggleAskQuestionModal()}
+                    />
                 </div>
 
                 <div className="px-[40px] py-[35px]">
-                    <form onSubmit={handleSubmit(onSubmit)} method="post" className="w-full flex flex-col">
+                    <form
+                        onSubmit={handleSubmit(onSubmit)}
+                        method="post"
+                        className="flex w-full flex-col"
+                    >
                         <div className="flex w-full">
                             <div className="w-full">
-                                <InputForm name="Name" type="text" register={register("name")} label={false}/>
+                                <InputForm
+                                    name="Name"
+                                    type="text"
+                                    register={register('name')}
+                                    label={false}
+                                />
                             </div>
                             <div className="w-full">
-                                <InputForm name="Email" type="email" register={register("email")} label={false}/>
+                                <InputForm
+                                    name="Email"
+                                    type="email"
+                                    register={register('email')}
+                                    label={false}
+                                />
                             </div>
                         </div>
                         <div>
-                            <InputForm name="Phone number" type="tel" register={register("phone")} label={false}/>
+                            <InputForm
+                                name="Phone number"
+                                type="tel"
+                                register={register('phone')}
+                                label={false}
+                            />
                         </div>
                         <div>
-                            <TextareaInputForm name="Comment" height="222" register={register("comment")} label={false}/>
+                            <TextareaInputForm
+                                name="Comment"
+                                height="222"
+                                register={register('comment')}
+                                label={false}
+                            />
                         </div>
-                        <button type="submit" className="w-full px-[55px] py-[14px] border-[1px] text-[12px] bg-black
-                                        text-white font-semibold border-[#ebebeb] rounded-[30px] uppercase">Submit Now
+                        <button
+                            type="submit"
+                            className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
+                        >
+                            Submit Now
                         </button>
-
                     </form>
-
                 </div>
             </div>
-
         </>
-
     )
 }

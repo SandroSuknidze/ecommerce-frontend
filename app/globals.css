@@ -58,11 +58,6 @@ body {
 
 
 
-/*.swiper {*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*}*/
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -82,9 +77,9 @@ body {
 }
 
 
-.swiper {
+.mySwiper .swiper-wrapper {
   width: 100%;
-  height: 300px;
+  max-height: 300px;
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px !important;
@@ -132,3 +127,13 @@ body {
   object-fit: cover;
 }
 
+.mySwiper3 {
+  height: calc(100vh - 79px);
+
+}
+
+.mySwiper3 .swiper-slide {
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
