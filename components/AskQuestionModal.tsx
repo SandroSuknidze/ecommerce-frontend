@@ -56,16 +56,34 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                 <InputForm
                                     name="Name"
                                     type="text"
-                                    register={register('name')}
+                                    register={register('name', {
+                                        required: 'Name is required',
+                                        maxLength: {
+                                            value: 30,
+                                            message: 'Maximum number of characters reached',
+                                        },
+                                    })}
                                     label={false}
+                                    errorMessage={errors.name?.message}
                                 />
                             </div>
                             <div className="w-full">
                                 <InputForm
                                     name="Email"
                                     type="email"
-                                    register={register('email')}
+                                    register={register('email', {
+                                        required: 'Email is required',
+                                        pattern: {
+                                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                            message: 'Please enter a valid email address',
+                                        },
+                                        maxLength: {
+                                            value: 320,
+                                            message: 'Maximum number of characters reached',
+                                        },
+                                    })}
                                     label={false}
+                                    errorMessage={errors.email?.message}
                                 />
                             </div>
                         </div>
@@ -73,15 +91,33 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                             <InputForm
                                 name="Phone number"
                                 type="tel"
-                                register={register('phone')}
+                                register={register('phone', {
+                                    required: 'Phone number is required',
+                                    maxLength: {
+                                        value: 30,
+                                        message: 'Maximum number of characters reached',
+                                    },
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Phone number must be at least 8 characters long'
+                                    }
+                                })}
                                 label={false}
+                                errorMessage={errors.phone?.message}
                             />
                         </div>
                         <div>
                             <TextareaInputForm
                                 name="Comment"
-                                register={register('comment')}
+                                register={register('comment', {
+                                    required: 'Comment is required',
+                                    maxLength: {
+                                        value: 300,
+                                        message: 'Maximum number of characters reached',
+                                    },
+                                })}
                                 label={false}
+                                errorMessage={errors.comment?.message}
                             />
                         </div>
                         <button

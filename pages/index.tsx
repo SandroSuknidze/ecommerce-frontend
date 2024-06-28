@@ -96,12 +96,14 @@ function Index() {
                         <FontAwesomeIcon icon={faChevronRight} />
                     </div>
                 </button>
-                <button
-                    className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-[#ebebeb]
+                <Link href="/shop">
+                    <button
+                        className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-[#ebebeb]
                     bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white"
-                >
-                    Shop Now
-                </button>
+                    >
+                        Shop Now
+                    </button>
+                </Link>
             </main>
             <section className="mt-[100px] max-w-[1410px] flex flex-col justify-center m-auto">
                 <div className="flex flex-col justify-center">

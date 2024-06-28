@@ -10,7 +10,6 @@ function Login() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 
@@ -62,12 +61,30 @@ function Login() {
                             <InputForm
                                 name="Email"
                                 type="email"
-                                register={register('email')}
+                                register={register('email', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: 'Please enter a valid email address',
+                                    },
+                                    maxLength: {
+                                        value: 320,
+                                        message: 'Maximum number of characters reached',
+                                    },
+                                })}
+                                errorMessage={errors.email?.message}
                             />
                             <InputForm
                                 name="Password"
                                 type="password"
-                                register={register('password')}
+                                register={register('password', {
+                                    required: 'Password is required',
+                                    maxLength: {
+                                        value: 320,
+                                        message: 'Maximum number of characters reached',
+                                    }
+                                })}
+                                errorMessage={errors.password?.message}
                             />
                             <p className="text-55black">
                                 <Link href="/account/reset">

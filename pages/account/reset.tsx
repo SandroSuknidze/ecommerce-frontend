@@ -11,7 +11,7 @@ function Reset() {
     const {
         register,
         handleSubmit,
-        watch,
+        reset,
         formState: { errors },
     } = useForm()
 
@@ -19,6 +19,8 @@ function Reset() {
         console.log(data)
 
         setEmailSent(true)
+
+        reset()
     }
 
     const [emailSent, setEmailSent] = useState(false)
@@ -70,7 +72,14 @@ function Reset() {
                             <InputForm
                                 name="Email"
                                 type="email"
-                                register={register('email')}
+                                register={register('email', {
+                                    required: 'Email is required',
+                                    pattern: {
+                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                        message: 'Please enter a valid email address',
+                                    },
+                                })}
+                                errorMessage={errors.email?.message}
                             />
 
                             <div className="mt-[30px]">

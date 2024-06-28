@@ -5,8 +5,30 @@ import TiktokIcon from '@/public/assets/footer/TiktokIcon'
 import YoutubeIcon from '@/public/assets/footer/YoutubeIcon'
 import TwitterIcon from '@/public/assets/footer/TwitterIcon'
 import FacebookIcon from '@/public/assets/footer/FacebookIcon'
+import InputForm from '@/components/InputForm'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function Footer() {
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({
+        mode: 'onSubmit',
+    })
+
+    const onSubmit = (data: object) => {
+        console.log(data)
+
+        toast.error('You have already subscribed to our newsletter.', {
+            position: 'top-center',
+        })
+        reset();
+    }
+
     return (
         <footer className="mt-[100px] border-t-[1px] border-[#ebebeb]">
             <div className="mx-auto max-w-[1470px] px-[30px]">
@@ -110,14 +132,35 @@ function Footer() {
                                     information on Sales and Offers.
                                 </p>
                                 <div className="mt-[30px]">
-                                    <form method="post" className="flex">
-                                        <input
-                                            type="email"
-                                            placeholder="Enter your email..."
-                                            autoComplete="off"
-                                            className="mr-[10px] w-2/3 rounded-[30px] border-[1px] border-[#ebebeb] px-[20px] py-[10px] text-[14px] leading-[28px] outline-0 transition duration-300 placeholder:text-[#555555] focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300"
-                                        />
-                                        <button className="w-1/3 rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white">
+                                    <form onSubmit={handleSubmit(onSubmit)} method="post" className="flex">
+                                        {/*<input*/}
+                                        {/*    type="email"*/}
+                                        {/*    placeholder="Enter your email..."*/}
+                                        {/*    autoComplete="off"*/}
+                                        {/*    className="mr-[10px] w-2/3 rounded-[30px] border-[1px] border-[#ebebeb] px-[20px] py-[10px] text-[14px] leading-[28px] outline-0 transition duration-300 placeholder:text-[#555555] focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300"*/}
+                                        {/*/>*/}
+                                        <div className="w-2/3">
+                                            <InputForm
+                                                name="Email"
+                                                type="email"
+                                                label={false}
+                                                register={register('email', {
+                                                    required: 'Email is required',
+                                                    pattern: {
+                                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                                        message: 'Please enter a valid email address',
+                                                    },
+                                                    maxLength: {
+                                                        value: 320,
+                                                        message: 'Maximum number of characters reached',
+                                                    },
+                                                })}
+                                                errorMessage={errors.email?.message}
+                                            />
+                                        </div>
+
+                                        <button type="submit"
+                                                className="w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white">
                                             Subscribe
                                         </button>
                                     </form>

@@ -10,9 +10,10 @@ function Register() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-    } = useForm()
+    } = useForm({
+        mode: 'onSubmit',
+    })
 
     const onSubmit = (data: object) => {
         console.log(data)
@@ -68,22 +69,58 @@ function Register() {
                         <InputForm
                             name="First name"
                             type="text"
-                            register={register('first_name')}
+                            register={register('first_name', {
+                                required: 'First name is required',
+                                maxLength: {
+                                    value: 30,
+                                    message: 'Maximum number of characters reached',
+                                },
+                            })}
+                            errorMessage={errors.first_name?.message}
                         />
                         <InputForm
                             name="Last name"
                             type="text"
-                            register={register('last_name')}
+                            register={register('last_name', {
+                                required: 'Last name is required',
+                                maxLength: {
+                                    value: 30,
+                                    message: 'Maximum number of characters reached',
+                                },
+                            })}
+                            errorMessage={errors.last_name?.message}
                         />
                         <InputForm
                             name="Email"
                             type="email"
-                            register={register('email')}
+                            register={register('email', {
+                                required: 'Email is required',
+                                pattern: {
+                                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                    message: 'Please enter a valid email address',
+                                },
+                                maxLength: {
+                                    value: 320,
+                                    message: 'Maximum number of characters reached',
+                                },
+                            })}
+                            errorMessage={errors.email?.message}
                         />
                         <InputForm
                             name="Password"
                             type="password"
-                            register={register('password')}
+                            register={register('password', {
+                                required: 'Password is required',
+                                minLength: {
+                                    value: 8,
+                                    message: 'Password must be at least 8 characters long'
+                                },
+                                maxLength: {
+                                    value: 320,
+                                    message: 'Maximum number of characters reached',
+                                }
+                            })}
+                            errorMessage={errors.password?.message}
                         />
                         <p className="text-55black">
                             Your personal data will be used to support your
