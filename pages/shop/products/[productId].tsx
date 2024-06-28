@@ -100,7 +100,7 @@ function ProductId() {
                         </li>
                     </ol>
                 </nav>
-                <div className="m-auto flex justify-center">
+                <div className="m-auto flex justify-center mb-[100px]">
                     <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]">
                         <div className="w-[8%] select-none">
                             <Swiper
@@ -292,7 +292,7 @@ function ProductId() {
                             </div>
 
                             <div className="mt-[20px] flex h-[50px] select-none gap-[20px]">
-                                <div className="flex w-full rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
+                                <div className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
                                     <div
                                         className="flex w-1/4 cursor-pointer justify-center"
                                         onClick={decrementCount}
@@ -315,7 +315,7 @@ function ProductId() {
 
                                 <button
                                     type="submit"
-                                    className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
+                                    className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
                                 >
                                     Add To Cart
                                 </button>

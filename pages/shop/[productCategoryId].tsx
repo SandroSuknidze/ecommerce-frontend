@@ -5,8 +5,23 @@ import { useState } from 'react'
 import { Slider } from '@mui/material'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
+import { motion, AnimatePresence } from "framer-motion";
 
 import { categories } from '@/pages/shop/index'
+
+export const brands = [
+    { id: 1, name: 'Adriana Paella' },
+    { id: 2, name: 'Adriana Paella' },
+    { id: 3, name: 'Adriana Paella' },
+    { id: 4, name: 'Adriana Paella' },
+    { id: 5, name: 'Adriana Paella' },
+    { id: 6, name: 'Adriana Paella' },
+    { id: 7, name: 'Adriana Paella' },
+    { id: 8, name: 'Adriana Paella' },
+    { id: 9, name: 'Adriana Paella' },
+    { id: 10, name: 'Adriana Paella' },
+    { id: 11, name: 'Adriana Paella' },
+]
 
 function ProductCategoryId() {
     const router = useRouter()
@@ -33,7 +48,7 @@ function ProductCategoryId() {
     const [value1, setValue1] = useState([20, 37])
 
     // @ts-ignore
-    const handleChange1 = (event, newValue, activeThumb) => {
+    const handleChange1 = (newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
             return
         }
@@ -60,7 +75,7 @@ function ProductCategoryId() {
 
             <div className="mx-auto mt-[50px] flex max-w-[1410px]">
                 <div className="w-1/4 px-[30px]">
-                    <div>
+                    <div className="mb-[50px]">
                         <div
                             onClick={toggleBrand}
                             className="mb-[20px] flex cursor-pointer justify-between"
@@ -77,22 +92,39 @@ function ProductCategoryId() {
                                 />
                             </div>
                         </div>
-                        <ul
-                            className={`${!isBrandOpen && 'hidden -translate-y-[50px] overflow-hidden'} transform transition duration-500`}
-                        >
-                            <li className="mb-[7px] flex h-[18px]">
-                                <div className="flex">
-                                    <div className="mr-[10px]">
-                                        <input
-                                            type="checkbox"
-                                            className="h-[18px] w-[18px] accent-black"
-                                        />
-                                    </div>
-                                    <p className="leading-[18px]">
-                                        Adriana Papell
-                                    </p>
-                                </div>
-                            </li>
+                        <ul className="max-h-[240px] overflow-y-scroll">
+                            <AnimatePresence initial={false}>
+                                {isBrandOpen && (
+                                    <motion.section
+                                        initial={{ height: 0 }}
+                                        animate={{ height: 'auto' }}
+                                        exit={{ height: 0 }}
+                                        transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                                    >
+
+                                        {brands.map((brands) => {
+                                            return (
+                                                <li key={brands.id} className="mb-[7px] flex h-[18px] overflow-hidden">
+                                                    <div className="flex">
+                                                        <div className="mr-[10px]">
+                                                            <input
+                                                                type="checkbox"
+                                                                className="h-[18px] w-[18px] accent-black"
+                                                            />
+                                                        </div>
+                                                        <p className="leading-[18px]">
+                                                            {brands.name}
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            )
+                                        })}
+
+
+
+                                    </motion.section>
+                                )}
+                            </AnimatePresence>
                         </ul>
                     </div>
                     <div>
@@ -130,7 +162,11 @@ function ProductCategoryId() {
                                     },
                                 }}
                             />
-                            {value1}
+                            {value1.map((item) => (
+                                <div key={item}>
+                                    {item}
+                                </div>
+                            ))}
                         </div>
                     </div>
                     <div>Size</div>
