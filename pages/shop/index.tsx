@@ -25,7 +25,6 @@ function Index() {
                     </div>
                 </div>
             </div>
-
             <div>
                 <div className="mx-auto grid max-w-[1500px] grid-cols-4 px-[30px]">
                     {categories.map((category) => (
