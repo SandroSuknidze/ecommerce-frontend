@@ -15,6 +15,8 @@ module.exports = {
                 'first-image': "url('../public/assets/homeSlider/slide-1.webp')",
                 'second-image': "url('../public/assets/homeSlider/slide-2.webp')",
                 'third-image': "url('../public/assets/homeSlider/slide-3.webp')",
+                'first-grid-image': "url('../public/assets/homeFeatured/main-cate-1.webp')",
+                'collection2': "url('../public/assets/collections/collection2.webp')",
             },
             colors: {
                 '11black': '#111111',

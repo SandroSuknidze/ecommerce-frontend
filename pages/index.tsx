@@ -13,6 +13,23 @@ import first from '@/public/assets/homeSlider/slide-1.webp'
 import second from '@/public/assets/homeSlider/slide-2.webp'
 import third from '@/public/assets/homeSlider/slide-3.webp'
 
+import grid1 from '@/public/assets/homeFeatured/main-cate-1.webp'
+import grid2 from '@/public/assets/homeFeatured/main-cate-2.webp'
+import grid3 from '@/public/assets/homeFeatured/main-cate-3.webp'
+import grid4 from '@/public/assets/homeFeatured/main-cate-4.webp'
+import Link from 'next/link'
+import CollectionCard from '@/components/CollectionCard'
+import collection2 from '@/public/assets/collections/collection2.webp'
+import Collection from '@/components/Collection'
+
+export const collections = [
+    { id: 1, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 2, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 3, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 4, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+]
+
+
 function Index() {
     return (
         <div>
@@ -36,7 +53,8 @@ function Index() {
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
                                 <h2 className="text-[73px] leading-[84px]">Stylish</h2>
                                 <h2 className="text-[73px] leading-[84px]">Top Trending</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to take it
+                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                    take it
                                     off.</p>
                             </div>
                         </div>
@@ -47,7 +65,8 @@ function Index() {
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
                                 <h2 className="text-[73px] leading-[84px]">Hulton</h2>
                                 <h2 className="text-[73px] leading-[84px]">Perfect Simple</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to take it
+                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                    take it
                                     off.</p>
                             </div>
                         </div>
@@ -58,7 +77,8 @@ function Index() {
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
                                 <h2 className="text-[73px] leading-[84px]">Online</h2>
                                 <h2 className="text-[73px] leading-[84px]">Limited Edition</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to take it
+                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                    take it
                                     off.</p>
                             </div>
                         </div>
@@ -83,7 +103,7 @@ function Index() {
                     Shop Now
                 </button>
             </main>
-            <section className="mt-[100px]">
+            <section className="mt-[100px] max-w-[1410px] flex flex-col justify-center m-auto">
                 <div className="flex flex-col justify-center">
                     <h2 className="text-11black leading-[52px] text-[40px] text-center">
                         Featured Collections
@@ -92,16 +112,91 @@ function Index() {
                         Upgrade your style with our curated sets. Choose confidence, embrace your unique look.
                     </p>
                 </div>
-                <div className="grid grid-cols-3 gap-[20px] mt-[40px]">
-                    <div className=" row-span-2 p-20 bg-black text-white">1</div>
-                    <div className=" p-20 bg-black text-white">2</div>
-                    <div className=" row-span-2 p-20 bg-black text-white">3</div>
-                    <div className="  p-20 bg-black text-white">4</div>
+                <div className="grid grid-cols-3 gap-[30px] mt-[40px] h-[730px]">
+                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative">
+                        <Link href="/">
+                            <Image src={grid1} alt="Clothing"
+                                   className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                            <div
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                Clothing
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="rounded-xl overflow-hidden relative">
+                        <Link href="/">
+                            <Image src={grid2} alt="Sunglasses"
+                                   className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                            <div
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                Sunglasses
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative">
+                        <Link href="/">
+                            <Image src={grid4} alt="Sneaker"
+                                   className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                            <div
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                Sneaker
+                            </div>
+                        </Link>
+                    </div>
+                    <div className="text-white rounded-xl overflow-hidden relative">
+                        <Link href="/">
+                            <Image src={grid3} alt="Bags"
+                                   className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                            <div
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                Bags
+                            </div>
+                        </Link>
+                    </div>
 
                 </div>
             </section>
+            <section className="py-[100px]">
+                <div className="m-auto max-w-[1290px]">
+                    <div className="mb-[15px]">
+                        <h2 className="mb-[5px] text-center text-[40px]">
+                            Featured Products
+                        </h2>
+                        <p className="text-center text-55black">
+                            Don&apos;t forget! The products that you viewed. Add
+                            it to cart now.
+                        </p>
+                    </div>
+                </div>
+                <div className="mx-auto grid max-w-[1440px] grid-cols-4 mt-[50px]">
+                    {collections.map((collection) => (
+                        <CollectionCard key={collection.id} title={collection.title}
+                                        imageSrc={collection.imageSrc} price={collection.price}
+                                        sale={collection.sale} />
+                    ))}
+                </div>
+            </section>
+            <section>
+                <div className="m-auto max-w-[1290px]">
+                    <div className="mb-[15px]">
+                        <h2 className="mb-[5px] text-center text-[40px]">
+                            New Arrivals
+                        </h2>
+                        <p className="text-center text-55black">
+                            Find the top most popular items in Umino best sellers.
+                        </p>
+                    </div>
+                </div>
+                <div className="mx-auto grid max-w-[1440px] grid-cols-4 mt-[50px]">
+                    {collections.map((collection) => (
+                        <CollectionCard key={collection.id} title={collection.title}
+                                        imageSrc={collection.imageSrc} price={collection.price}
+                                        sale={collection.sale} />
+                    ))}
+                </div>
+            </section>
 
-            <h1 className="pb-[1000px]">hi</h1>
+
         </div>
     )
 }

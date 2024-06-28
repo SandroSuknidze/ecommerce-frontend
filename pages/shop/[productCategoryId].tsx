@@ -8,7 +8,7 @@ import collection2 from '@/public/assets/collections/collection2.webp'
 
 import { categories } from '@/pages/shop/index'
 
-function ProductCategory() {
+function ProductCategoryId() {
     const router = useRouter()
     const { productCategory } = router.query
 
@@ -174,4 +174,4 @@ function ProductCategory() {
     )
 }
 
-export default ProductCategory
+export default ProductCategoryId

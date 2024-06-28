@@ -23,6 +23,10 @@ function CollectionCard({ imageSrc, title, sale, price }: CollectionCardProps) {
 
     const [hovered, setHovered] = useState(false);
 
+    function func(){
+        console.log("hi");
+    }
+
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl px-[15px]">
             <div
@@ -30,33 +34,31 @@ function CollectionCard({ imageSrc, title, sale, price }: CollectionCardProps) {
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
             >
-                <Link href={`/shop`} className="z-10">
+                <Link href={`/shop/products/1`} className="relative" >
                     <Image
                         src={imageSrc}
                         alt="collection"
                         className={`rounded-xl ${hovered ? 'scale-105' : ''} max-h-[453px] max-w-full cursor-pointer overflow-hidden transition duration-300`}
                     />
                 </Link>
-                <div className="absolute left-[20px] top-[16px] rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
+                <div className="absolute z-10 left-[20px] top-[16px] rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
                     -{discount}%
                 </div>
-                <div
-                    className={`absolute inset-0 flex cursor-pointer select-none flex-col items-center justify-center transition-opacity duration-300 ${
-                        hovered ? 'opacity-100' : 'opacity-0'
-                    }`}
-                >
-                    <div className="hover-parent-heart ml-[75%] mt-[5%] cursor-pointer rounded-full bg-white p-4 hover:bg-black">
+                <div>
+                    <div onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
+                    top-0 right-5 absolute hover-parent-heart ml-[75%] mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black`}>
                         <HeartIcon className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
                     </div>
 
-                    <button className="mb-[7%] mt-auto w-[90%] rounded-[30px] border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase text-black transition duration-500 hover:border-black hover:bg-black hover:text-white">
+                    <button onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
+                    bottom-2 left-1/2 -translate-x-1/2 absolute mb-[7%] mt-auto w-[88%] rounded-[30px] border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase text-black transition duration-500 hover:border-black hover:bg-black hover:text-white`}>
                         Add To Card
                     </button>
                 </div>
             </div>
             <div className="bg-white pt-[15px]">
                 <div className="">
-                    <Link href={`/shop`}>{title}</Link>
+                    <Link href={`/shop/products/1`}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
                     <FontAwesomeIcon icon={faStar} />

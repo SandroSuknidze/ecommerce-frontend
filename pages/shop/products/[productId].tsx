@@ -33,7 +33,7 @@ import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
 
-function Product() {
+function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
 
     type Size = 'S' | 'M' | 'L';
@@ -93,8 +93,8 @@ function Product() {
             <div className="m-auto max-w-[1290px]">
                 <nav className="py-[25px]">
                     <ol className="text-[14px]">
-                        <li className="inline text-11black">Home /</li>
-                        <li className="inline text-11black">Winter Coat /</li>
+                        <li className="inline text-11black"><Link href="/">Home</Link> /&nbsp;</li>
+                        <li className="inline text-11black"><Link href="/">Winter Coat</Link> /&nbsp;</li>
                         <li className="inline text-55black">
                             Square Textured Striped
                         </li>
@@ -570,7 +570,7 @@ function Product() {
                     )}
                 </div>
             </section>
-            <section className="py-[100px]">
+            <section className="pt-[100px]">
                 <div className="m-auto max-w-[1290px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px]">
@@ -582,7 +582,7 @@ function Product() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1290px] grid-cols-4 px-[30px]">
+                <div className="mx-auto grid max-w-[1290px] grid-cols-4 px-[30px] mt-[50px]">
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
@@ -619,4 +619,4 @@ function Product() {
     )
 }
 
-export default Product
+export default ProductId
