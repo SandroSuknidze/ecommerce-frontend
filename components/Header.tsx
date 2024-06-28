@@ -70,7 +70,6 @@ export function Header() {
                 className={`relative z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white duration-500`}
             >
                 {/*${isVisible ? 'translate-y-0 fixed z-20 ' : ''}*/}
-
                 <div className="my-[11px] w-full px-[30px] py-[11px]">
                     <div className="flex w-full flex-row justify-between">
                         <div className="my-auto w-1/4">
