@@ -31,7 +31,7 @@ function Login() {
         <div className="flex justify-center">
             <div className="w-[1340px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[47px mb-[5px] text-4xl">Login</h1>
+                    <h1 className="leading-[47px] mb-[5px] text-4xl">Login</h1>
                     <nav>
                         <ol className="text-[14px] text-55black">
                             <li className="inline">

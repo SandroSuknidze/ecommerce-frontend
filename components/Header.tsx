@@ -100,7 +100,7 @@ export function Header() {
                                     </li>
                                     <li className="inline">
                                         <Link
-                                            href="/"
+                                            href="/brands"
                                             className="cursor-pointer px-[15px] py-[10px] transition duration-300 hover:text-red-600"
                                         >
                                             Brands
