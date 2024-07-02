@@ -63,6 +63,7 @@ function Login() {
                                 type="email"
                                 register={register('email', {
                                     required: 'Email is required',
+                                    validate: (value) => value.trim() !== "" || "Email cannot be empty",
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                                         message: 'Please enter a valid email address',
@@ -79,6 +80,7 @@ function Login() {
                                 type="password"
                                 register={register('password', {
                                     required: 'Password is required',
+                                    validate: (value) => value.trim() !== "" || "Password cannot be empty",
                                     maxLength: {
                                         value: 320,
                                         message: 'Maximum number of characters reached',

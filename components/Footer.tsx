@@ -43,12 +43,16 @@ function Footer() {
                             />
                             <div className="mb-[24px] text-[#555555]">
                                 <p className="leading-[28px]">
-                                    268 St, South New York/NY 98944, United
-                                    States.
+                                    <a href="" target="_blank">
+                                        268 St, South New York/NY 98944, United
+                                        States.
+                                    </a>
                                 </p>
-                                <p className="leading-[32px]">+222-1800-2628</p>
                                 <p className="leading-[32px]">
-                                    blueskytechcompany@gmail.com
+                                    <a href="tel:+222-1800-2628">+222-1800-2628</a>
+                                </p>
+                                <p className="leading-[32px]">
+                                    <a href="mailto:blueskytechcompany@gmail.com">blueskytechcompany@gmail.com</a>
                                 </p>
                             </div>
                             <ul className="flex flex-row gap-[12px]">
@@ -133,12 +137,6 @@ function Footer() {
                                 </p>
                                 <div className="mt-[30px]">
                                     <form onSubmit={handleSubmit(onSubmit)} method="post" className="flex">
-                                        {/*<input*/}
-                                        {/*    type="email"*/}
-                                        {/*    placeholder="Enter your email..."*/}
-                                        {/*    autoComplete="off"*/}
-                                        {/*    className="mr-[10px] w-2/3 rounded-[30px] border-[1px] border-[#ebebeb] px-[20px] py-[10px] text-[14px] leading-[28px] outline-0 transition duration-300 placeholder:text-[#555555] focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300"*/}
-                                        {/*/>*/}
                                         <div className="w-2/3">
                                             <InputForm
                                                 name="Email"
@@ -146,6 +144,7 @@ function Footer() {
                                                 label={false}
                                                 register={register('email', {
                                                     required: 'Email is required',
+                                                    validate: (value) => value.trim() !== "" || "Email cannot be empty",
                                                     pattern: {
                                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                                                         message: 'Please enter a valid email address',

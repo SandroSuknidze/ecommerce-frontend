@@ -74,6 +74,7 @@ function Reset() {
                                 type="email"
                                 register={register('email', {
                                     required: 'Email is required',
+                                    validate: (value) => value.trim() !== "" || "Email cannot be empty",
                                     pattern: {
                                         value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                                         message: 'Please enter a valid email address',

@@ -71,6 +71,7 @@ function Register() {
                             type="text"
                             register={register('first_name', {
                                 required: 'First name is required',
+                                validate: (value) => value.trim() !== "" || "First name cannot be empty",
                                 maxLength: {
                                     value: 30,
                                     message: 'Maximum number of characters reached',
@@ -83,6 +84,7 @@ function Register() {
                             type="text"
                             register={register('last_name', {
                                 required: 'Last name is required',
+                                validate: (value) => value.trim() !== "" || "Last name cannot be empty",
                                 maxLength: {
                                     value: 30,
                                     message: 'Maximum number of characters reached',
@@ -95,6 +97,7 @@ function Register() {
                             type="email"
                             register={register('email', {
                                 required: 'Email is required',
+                                validate: (value) => value.trim() !== "" || "Email cannot be empty",
                                 pattern: {
                                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                                     message: 'Please enter a valid email address',
@@ -111,6 +114,7 @@ function Register() {
                             type="password"
                             register={register('password', {
                                 required: 'Password is required',
+                                validate: (value) => value.trim() !== "" || "Password cannot be empty",
                                 minLength: {
                                     value: 8,
                                     message: 'Password must be at least 8 characters long'
