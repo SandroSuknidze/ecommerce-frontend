@@ -5,8 +5,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
-import closeIcon from '@/public/assets/xmark.svg'
-import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
 
 interface CollectionCardProps {

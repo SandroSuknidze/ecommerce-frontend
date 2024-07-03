@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {CartItem} from "@/components/CartItem";
-import { TextareaInputForm } from '@/components/TextareaInputForm'
 import { useForm } from 'react-hook-form'
 import { countries } from '@/data/countries'
 import { zipCodeFormats } from '@/data/zipCodeFormats'
@@ -12,8 +11,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules'
-import Image from 'next/image'
-import collection1 from '@/public/assets/collections/fashion.webp'
 import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem'
 
 
