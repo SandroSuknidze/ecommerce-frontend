@@ -11,12 +11,12 @@ module.exports = {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-                'shop-banner': "url('../public/assets/shop-banner.webp')",
-                'first-image': "url('../public/assets/homeSlider/slide-1.webp')",
-                'second-image': "url('../public/assets/homeSlider/slide-2.webp')",
-                'third-image': "url('../public/assets/homeSlider/slide-3.webp')",
-                'first-grid-image': "url('../public/assets/homeFeatured/main-cate-1.webp')",
-                'collection2': "url('../public/assets/collections/collection2.webp')",
+                'shop-banner': "url(/assets/shop-banner.webp')",
+                'first-image': "url('/assets/homeSlider/slide-1.webp')",
+                'second-image': "url('/assets/homeSlider/slide-2.webp')",
+                'third-image': "url('/assets/homeSlider/slide-3.webp')",
+                'first-grid-image': "url('/assets/homeFeatured/main-cate-1.webp')",
+                'collection2': "url('/assets/collections/collection2.webp')",
             },
             colors: {
                 '11black': '#111111',
