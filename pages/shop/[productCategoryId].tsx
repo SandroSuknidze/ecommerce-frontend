@@ -93,9 +93,6 @@ function ProductCategoryId() {
         }
     }
 
-    useEffect(() => {
-        console.dir(value1)
-    }, [value1])
 
     return (
         <div>

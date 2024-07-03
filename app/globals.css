@@ -145,6 +145,15 @@ body {
   }
 }
 
+.mySwiper4 {
+  height: 170px;
+  .swiper-pagination {
+    .swiper-pagination-bullet-active {
+      background: black;
+    }
+  }
+}
+
 /* width */
 .scrollbar::-webkit-scrollbar {
   width: 5px;
