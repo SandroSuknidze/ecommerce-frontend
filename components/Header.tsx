@@ -134,7 +134,7 @@ export function Header() {
                                 </Link>
                             </div>
                             <div className="relative my-auto ml-[20px]">
-                                <Link href="/">
+                                <Link href="/wishlist">
                                     <div className="hover-parent">
                                         <WishlistIcon className="hover-child cursor-pointer" />
                                         <div className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">

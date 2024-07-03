@@ -11,7 +11,7 @@ module.exports = {
                 'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
                 'gradient-conic':
                     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-                'shop-banner': "url(/assets/shop-banner.webp')",
+                'shop-banner': "url('/assets/shop-banner.webp')",
                 'first-image': "url('/assets/homeSlider/slide-1.webp')",
                 'second-image': "url('/assets/homeSlider/slide-2.webp')",
                 'third-image': "url('/assets/homeSlider/slide-3.webp')",

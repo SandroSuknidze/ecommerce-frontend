@@ -50,6 +50,10 @@ body {
 .hover-parent-heart:hover .hover-child-heart {
   transition: all .3s ease;
   fill: white;
+
+  svg {
+    fill: white;
+  }
 }
 
 .hover-child-heart {

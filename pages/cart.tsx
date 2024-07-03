@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { countries } from '@/data/countries'
 import { zipCodeFormats } from '@/data/zipCodeFormats'
 import { toast } from 'react-toastify'
-import { EmptyCart } from '@/components/EmptyCart'
+import { Empty } from '@/components/Empty'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -202,7 +202,7 @@ function Cart() {
                 </div>
 
 
-                <EmptyCart />
+                <Empty title={"Your cart is currently empty."}/>
             </div>
         </>
     );

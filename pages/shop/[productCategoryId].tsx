@@ -259,6 +259,7 @@ function ProductCategoryId() {
 
                 </div>
                 <div className="w-3/4">
+                    <div className="text-55black pl-[15px] mb-[30px]">There are 30 results in total</div>
                     <div className="grid grid-cols-3">
                         <CollectionCard
                             title={'Square Textured Striped'}

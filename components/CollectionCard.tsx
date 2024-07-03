@@ -5,15 +5,19 @@ import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
+import closeIcon from '@/public/assets/xmark.svg'
+import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark'
+import { XmarkIcon } from '@/public/assets/XmarkIcon'
 
 interface CollectionCardProps {
     imageSrc: StaticImageData,
     title: string,
     sale?: number | null,
     price: number,
+    removable?: boolean,
 }
 
-function CollectionCard({ imageSrc, title, sale, price }: CollectionCardProps) {
+function CollectionCard({ imageSrc, title, sale, price, removable = false}: CollectionCardProps) {
     let discount: number | undefined;
 
     if (sale) {
@@ -45,9 +49,15 @@ function CollectionCard({ imageSrc, title, sale, price }: CollectionCardProps) {
                     -{discount}%
                 </div>
                 <div>
-                    <div onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
+                    <div onClick={func} className={`${hovered || removable ? 'opacity-100' : 'opacity-0'} 
+                    h-[45px] w-[45px] m-auto flex
                     top-0 right-5 absolute hover-parent-heart ml-[75%] mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black`}>
-                        <HeartIcon className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
+                        {removable ? (
+                            <XmarkIcon className="transition duration-300 hover-child-heart" />
+                        ) : (
+                            <HeartIcon
+                                className="hover-child-heart border-[#ebebeb] uppercase transition duration-300" />
+                        )}
                     </div>
 
                     <button onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
