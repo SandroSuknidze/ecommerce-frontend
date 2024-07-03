@@ -67,10 +67,10 @@ function ProductCategoryId() {
     }
 
     function valuetext(value: number) {
-        return `${value}°C`
+        return `$${value}`
     }
 
-    const minDistance = 10
+    const minDistance = 20
 
     const [value1, setValue1] = useState([0, 200])
 
@@ -203,6 +203,7 @@ function ProductCategoryId() {
                                     valueLabelDisplay="auto"
                                     getAriaValueText={valuetext}
                                     disableSwap
+                                    max={200}
                                     sx={{
                                         color: 'black',
                                         width: '94%',

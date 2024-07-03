@@ -3,8 +3,27 @@ import collection1 from "@/public/assets/collections/fashion.webp";
 import Link from "next/link";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashCan} from "@fortawesome/free-solid-svg-icons/faTrashCan";
+import { useState } from 'react'
+import minusIcon from '@/public/assets/minus-icon.svg'
+import plusIcon from '@/public/assets/plus-icon.svg'
 
 export function CartItem() {
+
+    const [itemCount, setItemCount] = useState(1)
+
+    function incrementCount() {
+        setItemCount((prevItemCount) => prevItemCount + 1)
+    }
+
+    function decrementCount() {
+        if (itemCount > 1) {
+            setItemCount((prevItemCount) => prevItemCount - 1)
+        }
+    }
+
+    const price = 20;
+
+
     return (
         <>
             <tr>
@@ -22,11 +41,34 @@ export function CartItem() {
                         </div>
                     </div>
                 </td>
-                <td className="border border-[#ebebeb] p-4">1</td>
-                <td className="border border-[#ebebeb] p-4">$99.99</td>
+                <td className="border border-[#ebebeb] p-4">
+                    <div className="flex h-[47px] w-[112px] select-none rounded-[5px] border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
+                        <div
+                            className="flex w-1/3 cursor-pointer justify-center"
+                            onClick={decrementCount}
+                        >
+                            <Image
+                                src={minusIcon}
+                                alt="Minus Icon"
+                            />
+                        </div>
+                        <div className="m-auto flex w-1/3 justify-center">
+                            {itemCount}
+                        </div>
+                        <div
+                            className="flex w-1/3 cursor-pointer justify-center"
+                            onClick={incrementCount}
+                        >
+                            <Image src={plusIcon} alt="Plus Icon" />
+                        </div>
+                    </div>
+                </td>
+                <td className="border border-[#ebebeb] p-4">
+                    ${(price*itemCount).toFixed(2)}
+                </td>
                 <td className="border border-[#ebebeb] p-4 text-center">
                     <button className="text-gray-500 hover:text-gray-800">
-                        <FontAwesomeIcon icon={faTrashCan}/>
+                        <FontAwesomeIcon icon={faTrashCan} />
                     </button>
                 </td>
             </tr>

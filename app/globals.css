@@ -166,3 +166,29 @@ body {
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #686868;
 }
+
+select {
+
+  padding: 0.5em 3.5em 0.5em 1em;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+select.classic {
+  background-image:
+          linear-gradient(45deg, transparent 50%, #000000 50%),
+          linear-gradient(135deg, #000000 50%, transparent 50%);
+  background-position:
+          calc(100% - 20px) calc(1em + 4px),
+          calc(100% - 15px) calc(1em + 4px),
+          100% 0;
+  background-size:
+          5px 5px,
+          5px 5px,
+          2.5em 2.5em;
+  background-repeat: no-repeat;
+}
