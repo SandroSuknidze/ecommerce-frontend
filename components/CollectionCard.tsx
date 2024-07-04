@@ -12,10 +12,10 @@ interface CollectionCardProps {
     title: string,
     sale?: number | null,
     price: number,
-    removable?: boolean,
+    isRemovable?: boolean,
 }
 
-function CollectionCard({ imageSrc, title, sale, price, removable = false}: CollectionCardProps) {
+function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: CollectionCardProps) {
     let discount: number | undefined;
 
     if (sale) {
@@ -47,10 +47,10 @@ function CollectionCard({ imageSrc, title, sale, price, removable = false}: Coll
                     -{discount}%
                 </div>
                 <div>
-                    <div onClick={func} className={`${hovered || removable ? 'opacity-100' : 'opacity-0'} 
+                    <div onClick={func} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
                     h-[45px] w-[45px] m-auto flex
                     top-0 right-5 absolute hover-parent-heart ml-[75%] mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black`}>
-                        {removable ? (
+                        {isRemovable ? (
                             <XmarkIcon className="transition duration-300 hover-child-heart" />
                         ) : (
                             <HeartIcon

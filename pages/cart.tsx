@@ -52,7 +52,7 @@ function Cart() {
 
     return (
         <>
-            <div className="w-[1260px] m-auto">
+            <div className="max-w-[1290px] m-auto px-[30px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[59px] mb-[5px] text-[45px]">Your Cart</h1>
                     <nav>

@@ -17,7 +17,7 @@ function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: Prod
 
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl">
-            <div className="max-h-[313px] max-w-full overflow-hidden rounded-xl">
+            <div className="max-w-full overflow-hidden rounded-xl">
                 <Link href={`/shop/${formattedTitle}`} onClick={() => {
                     toggleSearch()
                 }}>

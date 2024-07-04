@@ -90,7 +90,7 @@ function ProductId() {
             {isShareModalOpen && (
                 <ShareModal toggleShareModal={toggleShareModal} />
             )}
-            <div className="m-auto max-w-[1290px]">
+            <div className="m-auto max-w-[1350px] px-[30px]">
                 <nav className="py-[25px]">
                     <ol className="text-[14px]">
                         <li className="inline text-11black"><Link href="/">Home</Link> /&nbsp;</li>
@@ -368,7 +368,7 @@ function ProductId() {
                     </div>
                 </div>
             </div>
-            <section className="border-y-[1px] border-[#ebebeb] py-[100px]">
+            <section className="border-y-[1px] border-[#ebebeb] py-[100px] px-[30px]">
                 <div className="m-auto max-w-[1290px]">
                     <ul className="mb-[45px] flex justify-center gap-[20px]">
                         <li
@@ -570,8 +570,8 @@ function ProductId() {
                     )}
                 </div>
             </section>
-            <section className="pt-[100px]">
-                <div className="m-auto max-w-[1290px]">
+            <section className="pt-[100px] px-[15px]">
+                <div className="m-auto max-w-[1350px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px]">
                             Featured Products
@@ -582,7 +582,7 @@ function ProductId() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1290px] grid-cols-4 px-[30px] mt-[50px]">
+                <div className="mx-auto grid max-w-[1320px] grid-cols-4 mt-[50px] xl:grid-cols-3">
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}

@@ -20,12 +20,17 @@
     "autoprefixer": "^10.4.19",
     "framer-motion": "^11.2.12",
     "next": "14.2.4",
+    "next-usequerystate": "^1.17.4",
+    "nuqs": "^1.17.4",
+    "query-string": "^9.0.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.52.0",
+    "react-router-use-location-state": "^3.1.2",
     "react-toastify": "^10.0.5",
     "react-use": "^17.5.0",
-    "swiper": "^11.1.4"
+    "swiper": "^11.1.4",
+    "use-location-state": "^3.1.2"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",

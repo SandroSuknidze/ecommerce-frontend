@@ -26,7 +26,7 @@ function Index() {
                 </div>
             </div>
             <div>
-                <div className="mx-auto grid max-w-[1500px] grid-cols-4 px-[30px]">
+                <div className="mx-auto grid max-w-[1500px] grid-cols-4 px-[30px] xl:grid-cols-3">
                     {categories.map((category) => (
                         <Collection
                             key={category.id}

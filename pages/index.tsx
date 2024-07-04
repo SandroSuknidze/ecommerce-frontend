@@ -105,7 +105,7 @@ function Index() {
                     </button>
                 </Link>
             </main>
-            <section className="mt-[100px] max-w-[1410px] flex flex-col justify-center m-auto">
+            <section className="mt-[100px] max-w-[1440px] flex flex-col justify-center m-auto">
                 <div className="flex flex-col justify-center">
                     <h2 className="text-11black leading-[52px] text-[40px] text-center">
                         Featured Collections
@@ -114,7 +114,7 @@ function Index() {
                         Upgrade your style with our curated sets. Choose confidence, embrace your unique look.
                     </p>
                 </div>
-                <div className="grid grid-cols-3 gap-[30px] mt-[40px] h-[730px]">
+                <div className="grid grid-cols-3 gap-[3%] px-[30px] mt-[40px]">
                     <div className="row-span-2 text-white rounded-xl overflow-hidden relative">
                         <Link href="/">
                             <Image src={grid1} alt="Clothing"
@@ -148,7 +148,7 @@ function Index() {
                     <div className="text-white rounded-xl overflow-hidden relative">
                         <Link href="/">
                             <Image src={grid3} alt="Bags"
-                                   className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                                   className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
                                 Bags
@@ -170,7 +170,7 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1440px] grid-cols-4 mt-[50px]">
+                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px]">
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} title={collection.title}
                                         imageSrc={collection.imageSrc} price={collection.price}
@@ -189,7 +189,7 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1440px] grid-cols-4 mt-[50px]">
+                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px]">
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} title={collection.title}
                                         imageSrc={collection.imageSrc} price={collection.price}

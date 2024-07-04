@@ -6,7 +6,7 @@ import { Empty } from '@/components/Empty'
 function Wishlist() {
     return (
         <>
-            <div className="w-[1260px] m-auto">
+            <div className="max-w-[1290px] m-auto px-[15px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[59px] mb-[5px] text-[45px]">Wishlist</h1>
                     <nav>
@@ -24,14 +24,14 @@ function Wishlist() {
                         imageSrc={collection2}
                         price={169}
                         sale={143}
-                        removable={true}
+                        isRemovable={true}
                     />
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
                         price={169}
                         sale={143}
-                        removable={true}
+                        isRemovable={true}
                     />
                 </div>
                 <Empty title={"No products were added to the wishlist page."}/>

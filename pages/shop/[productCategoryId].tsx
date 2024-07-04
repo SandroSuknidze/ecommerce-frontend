@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, SetStateAction, useEffect, useState } from 'react'
 import { Slider } from '@mui/material'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
@@ -11,6 +11,12 @@ import { categories } from '@/pages/shop/index'
 import { BrandListItem } from '@/components/BrandListItem'
 import { ColorListItem } from '@/components/ColorListItem'
 import { SizeListItem } from '@/components/SizeListItem'
+import { useQueryState } from 'use-location-state/next'
+// import { useSearchParams } from 'next/navigation'
+// export { getServerSideProps } from 'use-location-state/next'
+import queryString from 'query-string';
+
+// import { parseAsArrayOf, parseAsInteger, parseAsNumberLiteral, parseAsStringEnum, useQueryState } from 'nuqs'
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -50,15 +56,36 @@ export const sizes = [
     { id: 5, name: 'XL', quantity: 1 },
     { id: 6, name: 'XXL', quantity: 1 },
 ]
+
 function ProductCategoryId() {
+
     const router = useRouter()
     const { productCategory } = router.query
+
+
+    // useEffect(() => {
+    //     router.push({
+    //         pathname: `/shop/2`,
+    //         query: { productCategoryId: 2 },
+    //     });
+    // }, [])
+    //
+    // console.log(productCategory);
+
+
+    // const searchParams = useSearchParams()
+    // @ts-ignore
+    // console.log(searchParams)
+
+    // useQueryState('array', parseAsArrayOf(parseAsInteger))
+    const [selectedBrands, setSelectedBrands] = useQueryState<any>('brands',[])
+
 
     const [isBrandOpen, setIsBrandOpen] = useState(true)
 
     function getCategoryName() {
         return categories.find(
-            (category) => category.id === Number(productCategory)
+            (category) => category.id === Number(productCategory),
         )?.name
     }
 
@@ -94,6 +121,27 @@ function ProductCategoryId() {
     }
 
 
+
+    useEffect(() => {
+        const numberBrands = selectedBrands.map(Number)
+
+        console.log(numberBrands)
+
+    }, [selectedBrands])
+    const handleChange = (event: { target: { value: any; checked: any; }; }) => {
+        const value = Number(event.target.value);
+        const numberBrands = selectedBrands.map(Number);
+        const updatedBrands = event.target.checked
+            ? [...numberBrands, value]
+            : numberBrands.filter((id: number) => id !== value);
+
+        setSelectedBrands(updatedBrands);
+
+
+    };
+
+
+
     return (
         <div>
             <div className="flex h-[200px] w-full flex-col justify-center bg-shop-banner text-center text-white">
@@ -120,6 +168,11 @@ function ProductCategoryId() {
                                 />
                             </div>
                         </div>
+                        <h1>Hello, {selectedBrands || 'anonymous visitor'}!</h1>
+                        <input value={selectedBrands || ''} onChange={e => setSelectedBrands(e.target.value)} />
+                        <input value={selectedBrands || ''} onChange={e => setSelectedBrands([...selectedBrands, e.target.value])} />
+                        <button onClick={() => setSelectedBrands(1)}>Clear</button>
+                        <button onClick={() => setSelectedBrands([...selectedBrands, 3])}>Clear</button>
                         <ul className="max-h-[240px] overflow-y-scroll scrollbar">
                             <AnimatePresence initial={false}>
                                 {isBrandOpen && (
@@ -133,7 +186,13 @@ function ProductCategoryId() {
                                         {brands.map((brand) => {
                                             return (
                                                 <Fragment key={brand.id}>
-                                                    <BrandListItem name={brand.name} quantity={brand.quantity} />
+                                                    <BrandListItem
+                                                        isChecked={selectedBrands.map(Number).includes(brand.id)}
+                                                        id={brand.id}
+                                                        name={brand.name}
+                                                        quantity={brand.quantity}
+                                                        onChange={handleChange}
+                                                    />
                                                 </Fragment>
                                             )
                                         })}
@@ -260,7 +319,7 @@ function ProductCategoryId() {
                 </div>
                 <div className="w-3/4">
                     <div className="text-55black pl-[15px] mb-[30px]">There are 30 results in total</div>
-                    <div className="grid grid-cols-3">
+                    <div className="grid grid-cols-3 pr-[15px]">
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}

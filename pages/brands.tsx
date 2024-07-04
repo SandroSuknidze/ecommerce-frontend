@@ -49,7 +49,7 @@ export default function Brands() {
 
     return (
         <>
-            <div className="w-[1470px] m-auto">
+            <div className="max-w-[1440px] m-auto">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[59px] mb-[5px] text-[45px]">Brands</h1>
                     <nav>
@@ -61,7 +61,7 @@ export default function Brands() {
                         </ol>
                     </nav>
                 </div>
-                <div>
+                <div className="px-[30px]">
                     <div className="flex flex-wrap text-[12px] gap-[10px]">
                         {alphabet.map((letter) => {
                             return (
@@ -82,45 +82,15 @@ export default function Brands() {
                             </div>
                             <div className="w-[85%]">
                                 <ul className="flex flex-wrap flex-1">
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
+                                    {[...Array(10)].map((_, index) => (
+                                        <li
+                                            key={index}
+                                            style={{ width: `calc(20% - 30px)` }}
+                                            className="leading-[34px] mr-[30px] text-55black"
+                                        >
+                                            Adrianna Papell
+                                        </li>
+                                    ))}
 
 
                                 </ul>
@@ -132,45 +102,15 @@ export default function Brands() {
                             </div>
                             <div className="w-[85%]">
                                 <ul className="flex flex-wrap flex-1">
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
+                                    {[...Array(15)].map((_, index) => (
+                                        <li
+                                            key={index}
+                                            style={{ width: `calc(20% - 30px)` }}
+                                            className="leading-[34px] mr-[30px] text-55black"
+                                        >
+                                            Adrianna Papell
+                                        </li>
+                                    ))}
 
 
                                 </ul>
@@ -182,46 +122,15 @@ export default function Brands() {
                             </div>
                             <div className="w-[85%]">
                                 <ul className="flex flex-wrap flex-1">
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-
+                                    {[...Array(2)].map((_, index) => (
+                                        <li
+                                            key={index}
+                                            style={{ width: `calc(20% - 30px)` }}
+                                            className="leading-[34px] mr-[30px] text-55black"
+                                        >
+                                            Adrianna Papell
+                                        </li>
+                                    ))}
 
                                 </ul>
                             </div>
@@ -232,46 +141,15 @@ export default function Brands() {
                             </div>
                             <div className="w-[85%]">
                                 <ul className="flex flex-wrap flex-1">
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-                                    <li style={{ width: `calc(20% - 30px)` }}
-                                        className="leading-[34px] mr-[30px] text-55black">Adrianna Papell
-                                    </li>
-
+                                    {[...Array(7)].map((_, index) => (
+                                        <li
+                                            key={index}
+                                            style={{ width: `calc(20% - 30px)` }}
+                                            className="leading-[34px] mr-[30px] text-55black"
+                                        >
+                                            Adrianna Papell
+                                        </li>
+                                    ))}
 
                                 </ul>
                             </div>

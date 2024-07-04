@@ -29,6 +29,13 @@ module.exports = {
             cursor: {
                 close: "url('../public/assets/cursor-close.png'), pointer",
             },
+            screens: {
+                'xs': {'max': '480px'},
+                'sm': {'max': '576px'},
+                'md': {'max': '768px'},
+                'lg': {'max': '992px'},
+                'xl': {'max': '1200px'},
+            },
         },
         fontFamily: {
             Jost: ['Jost', 'sans-serif'],

@@ -54,7 +54,7 @@ function Search({ toggleSearch }: SearchProps) {
                             Popular Products
                         </h4>
                     </div>
-                    <div className="mt-[20px] grid w-full grid-cols-6 gap-[20px]">
+                    <div className="mt-[20px] grid w-full grid-cols-6 gap-[20px] xl:grid-cols-4 h-max">
                         <ProductCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}

@@ -44,7 +44,7 @@ export function CartItem() {
                 <td className="border border-[#ebebeb] p-4">
                     <div className="flex h-[47px] w-[112px] select-none rounded-[5px] border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
                         <div
-                            className="flex w-1/3 cursor-pointer justify-center"
+                            className={`${itemCount === 1 && 'cursor-not-allowed'} flex w-1/3 cursor-pointer justify-center`}
                             onClick={decrementCount}
                         >
                             <Image
