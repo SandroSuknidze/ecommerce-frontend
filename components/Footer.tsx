@@ -128,7 +128,7 @@ function Footer() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="w-2/3 px-[15px] xl:w-full xl:h-[200px] xl:pr-0 sm:px-0 sm:!w-full sm:!h-auto">
+                            <div className="w-2/3 pl-[15px] xl:w-full xl:h-[200px] xl:pr-0 sm:px-0 sm:!w-full sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
                                     Sign Up to Newsletter
                                 </h3>

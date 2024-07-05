@@ -118,7 +118,7 @@ function Index() {
                     </p>
                 </div>
                 <div
-                    className="grid grid-cols-3 gap-[3%] px-[30px] mt-[40px] md:grid-cols-2 md:grid-rows-3 md:px-[15px] ">
+                    className="grid grid-cols-3 gap-[3%] max-w-[1470px] px-[30px] mt-[40px] md:grid-cols-2 md:grid-rows-3 md:px-[15px] ">
                     <div className="row-span-2 text-white rounded-xl overflow-hidden relative ">
                         <Link href="/">
                             <Image src={grid1} alt="Clothing"
