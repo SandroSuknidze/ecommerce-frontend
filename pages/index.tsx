@@ -106,21 +106,23 @@ function Index() {
                 </Link>
             </main>
             <section className="mt-[100px] max-w-[1440px] flex flex-col justify-center m-auto">
-                <div className="flex flex-col justify-center">
-                    <h2 className="text-11black leading-[52px] text-[40px] text-center">
+                <div className="flex flex-col justify-center md:px-[15px]">
+                    <h2 className="text-11black leading-[52px] text-[40px] text-center md:text-[30px]">
                         Featured Collections
                     </h2>
                     <p className="text-55black text-center mt-[5px]">
                         Upgrade your style with our curated sets. Choose confidence, embrace your unique look.
                     </p>
                 </div>
-                <div className="grid grid-cols-3 gap-[3%] px-[30px] mt-[40px]">
-                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative">
+                <div
+                    className="grid grid-cols-3 gap-[3%] px-[30px] mt-[40px] md:grid-cols-2 md:grid-rows-3 md:px-[15px] ">
+                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative ">
                         <Link href="/">
                             <Image src={grid1} alt="Clothing"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
                                 Clothing
                             </div>
                         </Link>
@@ -130,32 +132,36 @@ function Index() {
                             <Image src={grid2} alt="Sunglasses"
                                    className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
                                 Sunglasses
                             </div>
                         </Link>
                     </div>
-                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative">
+                    <div className="row-span-2 text-white rounded-xl overflow-hidden relative ">
                         <Link href="/">
                             <Image src={grid4} alt="Sneaker"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
                                 Sneaker
                             </div>
                         </Link>
                     </div>
-                    <div className="text-white rounded-xl overflow-hidden relative">
+                    <div className="text-white rounded-xl overflow-hidden relative ">
                         <Link href="/">
                             <Image src={grid3} alt="Bags"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
                                 Bags
                             </div>
                         </Link>
                     </div>
                 </div>
+
             </section>
             <section className="py-[100px]">
                 <div className="m-auto max-w-[1290px]">
@@ -169,7 +175,7 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px]">
+                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px] md:px-0">
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} title={collection.title}
                                         imageSrc={collection.imageSrc} price={collection.price}
@@ -188,7 +194,7 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px]">
+                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px] md:px-0">
                     {collections.map((collection) => (
                         <CollectionCard key={collection.id} title={collection.title}
                                         imageSrc={collection.imageSrc} price={collection.price}
