@@ -41,8 +41,8 @@ function Login() {
                         </ol>
                     </nav>
                 </div>
-                <div className="flex w-full">
-                    <div className="flex w-1/2 flex-col justify-center px-[40px]">
+                <div className="flex w-full md:flex-col">
+                    <div className="flex w-1/2 flex-col justify-center px-[40px] md:w-full md:px-[15px]">
                         <h3 className="mb-[25px] text-[24px] font-medium text-11black">
                             Login
                         </h3>
@@ -103,7 +103,7 @@ function Login() {
                             </div>
                         </form>
                     </div>
-                    <div className="flex w-1/2 justify-center px-[40px]">
+                    <div className="flex w-1/2 justify-center px-[40px] md:w-full md:mt-[50px] md:px-[15px]">
                         <NewCustomer />
                     </div>
                 </div>

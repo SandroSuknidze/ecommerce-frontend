@@ -52,7 +52,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                         className="flex w-full flex-col"
                     >
                         <div className="flex w-full">
-                            <div className="w-full">
+                            <div className="w-full mr-[15px]">
                                 <InputForm
                                     name="Name"
                                     type="text"

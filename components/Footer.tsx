@@ -31,7 +31,7 @@ function Footer() {
 
     return (
         <footer className="mt-[100px] border-t-[1px] border-[#ebebeb]">
-            <div className="mx-auto max-w-[1470px] px-[30px]">
+            <div className="mx-auto max-w-[1470px] px-[30px] md:px-[15px]">
                 <div className="mb-[60px] mt-[100px]">
                     <div className="flex min-h-[320px] flex-row justify-between sm:flex-col sm:gap-[30px]">
                         <div className="flex w-3/6 xl:flex-col xl:w-1/2 xl:h-[500px] sm:!w-full sm:!h-auto sm:gap-[30px]">
@@ -98,7 +98,7 @@ function Footer() {
                             </div>
                         </div>
                         <div className="flex w-3/6 xl:flex-col xl:w-1/2 sm:!w-full sm:!h-auto sm:gap-[30px]">
-                            <div className="w-1/3 px-[15px] xl:w-full xl:h-[350px] sm:px-0 sm:!h-auto">
+                            <div className="w-1/3 px-[15px] xl:w-full xl:h-[350px] xl:pr-0 sm:px-0 sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
                                     Customer Service
                                 </h3>
@@ -128,7 +128,7 @@ function Footer() {
                                     </ul>
                                 </div>
                             </div>
-                            <div className="w-2/3 px-[15px] xl:w-full xl:h-[200px] sm:px-0 sm:!w-full sm:!h-auto">
+                            <div className="w-2/3 px-[15px] xl:w-full xl:h-[200px] xl:pr-0 sm:px-0 sm:!w-full sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
                                     Sign Up to Newsletter
                                 </h3>
@@ -140,7 +140,7 @@ function Footer() {
                                     </p>
                                     <div className="mt-[30px]">
                                         <form onSubmit={handleSubmit(onSubmit)} method="post" className="flex">
-                                            <div className="w-2/3">
+                                            <div className="w-2/3 mr-[10px]">
                                                 <InputForm
                                                     name="Email"
                                                     type="email"

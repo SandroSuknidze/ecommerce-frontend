@@ -31,9 +31,9 @@ function Register() {
 
     return (
         <div className="flex justify-center">
-            <div className="w-[1320px]">
+            <div className="max-w-[1320px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[47px mb-[5px] text-4xl">
+                    <h1 className="leading-[47px] mb-[5px] text-4xl">
                         Create account
                     </h1>
                     <nav>
@@ -50,7 +50,7 @@ function Register() {
                         onSubmit={handleSubmit(onSubmit)}
                         method="post"
                         action=""
-                        className="w-1/2"
+                        className="w-1/2 md:w-full md:px-[15px]"
                     >
                         {emailAlreadyExists && (
                             <div
