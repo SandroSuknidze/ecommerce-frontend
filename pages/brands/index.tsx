@@ -11,7 +11,7 @@ const brandsData = [
     { id: 6, name: 'Nike' },
 ];
 
-export default function Brands() {
+export default function Index() {
     const [brands, setBrands] = useState(brandsData);
 
     const [selected, setSelected] = useState('Show All');
@@ -55,7 +55,7 @@ export default function Brands() {
                     <nav>
                         <ol className="text-[14px] text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/public">Home / </Link>
                             </li>
                             <li className="inline">Brands</li>
                         </ol>

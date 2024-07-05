@@ -21,7 +21,7 @@ interface FormData {
     city: string;
 }
 
-function Cart() {
+function Index() {
     const {
         register,
         handleSubmit,
@@ -58,7 +58,7 @@ function Cart() {
                     <nav>
                         <ol className="text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/public">Home / </Link>
                             </li>
                             <li className="inline">Your Shopping Cart</li>
                         </ol>
@@ -205,4 +205,4 @@ function Cart() {
     );
 }
 
-export default Cart;
+export default Index;

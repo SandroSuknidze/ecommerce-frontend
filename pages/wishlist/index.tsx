@@ -3,7 +3,7 @@ import collection2 from '@/public/assets/collections/collection2.webp'
 import CollectionCard from '@/components/CollectionCard'
 import { Empty } from '@/components/Empty'
 
-function Wishlist() {
+function Index() {
     return (
         <>
             <div className="max-w-[1290px] m-auto px-[15px]">
@@ -12,7 +12,7 @@ function Wishlist() {
                     <nav>
                         <ol className="text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/public">Home / </Link>
                             </li>
                             <li className="inline">Wishlist</li>
                         </ol>
@@ -40,4 +40,4 @@ function Wishlist() {
     )
 }
 
-export default Wishlist
+export default Index
