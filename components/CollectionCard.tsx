@@ -64,7 +64,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                     </button>
                 </div>
             </div>
-            <div className="bg-white pt-[15px]">
+            <div className="bg-white pt-[15px]  text-left">
                 <div className="">
                     <Link href={`/shop/products/1`}>{title}</Link>
                 </div>

@@ -27,6 +27,9 @@ export const collections = [
     { id: 2, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
     { id: 3, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
     { id: 4, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 5, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 6, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
+    { id: 7, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
 ]
 
 
@@ -164,7 +167,7 @@ function Index() {
 
             </section>
             <section className="py-[100px]">
-                <div className="m-auto max-w-[1290px]">
+                <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px]">
                             Featured Products
@@ -175,16 +178,59 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px] md:px-0">
-                    {collections.map((collection) => (
-                        <CollectionCard key={collection.id} title={collection.title}
-                                        imageSrc={collection.imageSrc} price={collection.price}
-                                        sale={collection.sale} />
-                    ))}
+                <div className="flex justify-center">
+                    <button
+                        className="arrow-left5 arrow flex h-[60px] w-[60px]
+                    items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white
+                    md:h-[40px] md:w-[40px]">
+                        <div>
+                            <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]"/>
+                        </div>
+                    </button>
+                    <button
+                        className="arrow-right5 arrow h-[60px] w-[60px]
+                    rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white ml-[20px]
+                    md:h-[40px] md:w-[40px]">
+                        <div>
+                            <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]"/>
+                        </div>
+                    </button>
+                </div>
+                <div className="mx-auto max-w-[1470px] mt-[50px] px-[15px] md:px-0">
+                    <Swiper
+                        navigation={{
+                            nextEl: '.arrow-right5',
+                            prevEl: '.arrow-left5',
+                        }}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 2,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                            },
+                        }}
+                        loop={true}
+                        modules={[Navigation]}
+                        className="mySwiper5"
+                    >
+                        {collections.map((collection) => (
+                            <SwiperSlide key={collection.id}>
+                                <CollectionCard title={collection.title}
+                                                imageSrc={collection.imageSrc} price={collection.price}
+                                                sale={collection.sale} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
             </section>
             <section>
-                <div className="m-auto max-w-[1290px]">
+                <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px]">
                             New Arrivals
@@ -194,12 +240,55 @@ function Index() {
                         </p>
                     </div>
                 </div>
-                <div className="mx-auto grid max-w-[1470px] grid-cols-4 mt-[50px] px-[15px] md:px-0">
-                    {collections.map((collection) => (
-                        <CollectionCard key={collection.id} title={collection.title}
-                                        imageSrc={collection.imageSrc} price={collection.price}
-                                        sale={collection.sale} />
-                    ))}
+                <div className="flex justify-center">
+                    <button
+                        className="arrow-left6 arrow flex h-[60px] w-[60px]
+                    items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white
+                    md:h-[40px] md:w-[40px]">
+                        <div>
+                            <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
+                        </div>
+                    </button>
+                    <button
+                        className="arrow-right6 arrow h-[60px] w-[60px]
+                    rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white ml-[20px]
+                    md:h-[40px] md:w-[40px]">
+                        <div>
+                            <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
+                        </div>
+                    </button>
+                </div>
+                <div className="mx-auto max-w-[1470px] mt-[50px] px-[15px] md:px-0">
+                    <Swiper
+                        navigation={{
+                            nextEl: '.arrow-right6',
+                            prevEl: '.arrow-left6',
+                        }}
+                        breakpoints={{
+                            320: {
+                                slidesPerView: 2,
+                            },
+                            768: {
+                                slidesPerView: 3,
+                            },
+                            1024: {
+                                slidesPerView: 4,
+                            },
+                        }}
+                        loop={true}
+                        modules={[Navigation]}
+                        className="mySwiper5"
+                    >
+                        {collections.map((collection) => (
+                            <SwiperSlide key={collection.id}>
+                                <CollectionCard title={collection.title}
+                                                imageSrc={collection.imageSrc} price={collection.price}
+                                                sale={collection.sale} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
             </section>
 

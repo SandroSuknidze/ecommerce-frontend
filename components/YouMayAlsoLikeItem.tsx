@@ -10,9 +10,9 @@ interface YouMayAlsoLikeItemProps {
 export function YouMayAlsoLikeItem({ price, sale }: YouMayAlsoLikeItemProps) {
     return (
         <>
-            <div className="flex items-center p-[10px] rounded-[10px] border-[1px] border-[#ebebeb]">
+            <div className="flex items-center p-[10px] rounded-[10px] border-[1px] border-[#ebebeb] mr-[1px]">
                 <div className="w-[79px] h-[106px] mr-[20px]">
-                    <Image src={collection1} alt="picture" />
+                    <Image src={collection1} alt="picture" className="rounded-[5px]"/>
                 </div>
                 <div className="flex flex-col justify-center">
                     <div className="text-11black text-left xs:text-[14px]">
