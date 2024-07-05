@@ -13,7 +13,7 @@ function BrandListLetter({ letter, available, selected, setSelected }: BrandList
     }
     return (
         <>
-            <div className={`flex border-[1px] rounded-[3px] select-none
+            <div className={`flex border-[1px] rounded-[3px] select-none xl:whitespace-nowrap
                     ${selected === letter ? 'border-black bg-black' : `border-[#ebebeb] ${available && 'hover:bg-[#f5f5f5]'}`} 
                     ${letter === 'Show All' ? 'py-[11px] px-[25px]' : 'py-[11px] px-[15px]'} 
                     ${available && 'cursor-pointer'}`}

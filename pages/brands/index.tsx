@@ -62,7 +62,7 @@ export default function Index() {
                     </nav>
                 </div>
                 <div className="px-[30px]">
-                    <div className="flex flex-wrap text-[12px] gap-[10px]">
+                    <div className="flex flex-wrap text-[12px] gap-[10px] xl:flex-nowrap xl:overflow-x-scroll xl:pb-3">
                         {alphabet.map((letter) => {
                             return (
                                 <BrandListLetter
@@ -77,80 +77,36 @@ export default function Index() {
                     </div>
                     <div className="mt-[50px]">
                         <div className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
-                            <div className="px-[30px] w-[6.5%]">
-                                <h3 className="text-11black text-[32px] font-medium uppercase">A</h3>
+                            <div className="px-[30px] w-[6.5%] xs:flex xs:justify-center xs:m-auto ">
+                                <h3 className="text-11black text-[32px] font-medium uppercase md:text-[24px]">A</h3>
                             </div>
-                            <div className="w-[85%]">
-                                <ul className="flex flex-wrap flex-1">
-                                    {[...Array(10)].map((_, index) => (
-                                        <li
-                                            key={index}
-                                            style={{ width: `calc(20% - 30px)` }}
-                                            className="leading-[34px] mr-[30px] text-55black"
-                                        >
-                                            Adrianna Papell
-                                        </li>
-                                    ))}
-
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
-                            <div className="px-[30px] w-[6.5%]">
-                                <h3 className="text-11black text-[32px] font-medium uppercase">A</h3>
-                            </div>
-                            <div className="w-[85%]">
+                            <div className="w-[85%] xs:pl-[20px]">
                                 <ul className="flex flex-wrap flex-1">
                                     {[...Array(15)].map((_, index) => (
                                         <li
                                             key={index}
-                                            style={{ width: `calc(20% - 30px)` }}
-                                            className="leading-[34px] mr-[30px] text-55black"
+                                            className="leading-[34px] mr-[30px] text-55black w-[calc(20%-30px)] md:w-[calc(33.3%-30px)] xs:!w-full"
                                         >
                                             Adrianna Papell
                                         </li>
                                     ))}
-
-
                                 </ul>
                             </div>
                         </div>
                         <div className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
-                            <div className="px-[30px] w-[6.5%]">
-                                <h3 className="text-11black text-[32px] font-medium uppercase">A</h3>
+                            <div className="px-[30px] w-[6.5%] xs:flex xs:justify-center xs:m-auto ">
+                                <h3 className="text-11black text-[32px] font-medium uppercase md:text-[24px]">A</h3>
                             </div>
-                            <div className="w-[85%]">
+                            <div className="w-[85%] xs:pl-[20px]">
                                 <ul className="flex flex-wrap flex-1">
-                                    {[...Array(2)].map((_, index) => (
+                                    {[...Array(10)].map((_, index) => (
                                         <li
                                             key={index}
-                                            style={{ width: `calc(20% - 30px)` }}
-                                            className="leading-[34px] mr-[30px] text-55black"
+                                            className="leading-[34px] mr-[30px] text-55black w-[calc(20%-30px)] md:w-[calc(33.3%-30px)] xs:!w-full"
                                         >
                                             Adrianna Papell
                                         </li>
                                     ))}
-
-                                </ul>
-                            </div>
-                        </div>
-                        <div className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
-                            <div className="px-[30px] w-[6.5%]">
-                                <h3 className="text-11black text-[32px] font-medium uppercase">A</h3>
-                            </div>
-                            <div className="w-[85%]">
-                                <ul className="flex flex-wrap flex-1">
-                                    {[...Array(7)].map((_, index) => (
-                                        <li
-                                            key={index}
-                                            style={{ width: `calc(20% - 30px)` }}
-                                            className="leading-[34px] mr-[30px] text-55black"
-                                        >
-                                            Adrianna Papell
-                                        </li>
-                                    ))}
-
                                 </ul>
                             </div>
                         </div>
