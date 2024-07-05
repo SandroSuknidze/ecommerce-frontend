@@ -4,7 +4,7 @@ import SearchIcon from '@/public/assets/SearchIcon'
 import ProductCard from '@/components/ProductCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
 import { useLockBodyScroll } from 'react-use'
-import { useEffect, useState } from 'react'
+import useResponsiveCols from '@/hooks/useResponsiveCols'
 
 interface SearchProps {
     toggleSearch: () => void,
@@ -14,28 +14,8 @@ function Search({ toggleSearch }: SearchProps) {
     useLockBodyScroll(true)
 
 
-    const [numCols, setNumCols] = useState(0); // Default to 3 columns
+    const numCols = useResponsiveCols();
 
-    useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth <= 1200 && window.innerWidth >= 992) {
-                setNumCols(5);
-            } else if (window.innerWidth <= 992 && window.innerWidth >= 768) {
-                setNumCols(4);
-            } else if (window.innerWidth <= 768 && window.innerWidth >= 576) {
-                setNumCols(3);
-            } else if (window.innerWidth <= 576 && window.innerWidth >= 320) {
-                setNumCols(2);
-            } else {
-                setNumCols(6);
-            }
-        };
-
-        handleResize();
-        window.addEventListener('resize', handleResize);
-
-        return () => window.removeEventListener('resize', handleResize);
-    }, []);
 
     return (
         <div className="fixed inset-0 !z-[70] flex items-center justify-center">

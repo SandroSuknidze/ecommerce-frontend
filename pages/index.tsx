@@ -120,7 +120,7 @@ function Index() {
                             <Image src={grid1} alt="Clothing"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
                                 Clothing
                             </div>
                         </Link>
@@ -130,7 +130,7 @@ function Index() {
                             <Image src={grid2} alt="Sunglasses"
                                    className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
                                 Sunglasses
                             </div>
                         </Link>
@@ -140,7 +140,7 @@ function Index() {
                             <Image src={grid4} alt="Sneaker"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
                                 Sneaker
                             </div>
                         </Link>
@@ -150,12 +150,11 @@ function Index() {
                             <Image src={grid3} alt="Bags"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div
-                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+                                className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10 lg:bottom-4">
                                 Bags
                             </div>
                         </Link>
                     </div>
-
                 </div>
             </section>
             <section className="py-[100px]">
