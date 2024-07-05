@@ -15,10 +15,10 @@ export function YouMayAlsoLikeItem({ price, sale }: YouMayAlsoLikeItemProps) {
                     <Image src={collection1} alt="picture" />
                 </div>
                 <div className="flex flex-col justify-center">
-                    <div className="text-11black">
+                    <div className="text-11black text-left xs:text-[14px]">
                         <Link href="/shop/products/1">Square Textured Striped</Link>
                     </div>
-                    <div className="mt-[3px] flex py-[20px] font-medium">
+                    <div className="mt-[3px] flex py-[20px] font-medium ">
                         {sale && (
                             <div className="text-[14px] text-red-600">
                                 ${sale.toFixed(2)}

@@ -34,7 +34,7 @@ function Index() {
 
     const onSubmit = (data: object) => {
         console.log(data)
-        toast.success('OrderOrder placed successfully!', {
+        toast.success('Order placed successfully!', {
             position: 'top-center',
         })
         reset();
@@ -52,7 +52,7 @@ function Index() {
 
     return (
         <>
-            <div className="max-w-[1290px] m-auto px-[30px]">
+            <div className="max-w-[1290px] m-auto px-[30px] lg:px-[15px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[59px] mb-[5px] text-[45px]">Your Cart</h1>
                     <nav>
@@ -64,31 +64,37 @@ function Index() {
                         </ol>
                     </nav>
                 </div>
-                <div className="flex gap-[30px]">
-                    <div className="w-3/4">
-                        <table className="border-collapse border border-[#ebebeb] w-full">
-                            <thead>
-                            <tr>
-                                <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium">Product</th>
-                                <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">Quantity</th>
-                                <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">Total</th>
-                                <th className="border border-[#ebebeb] p-4 w-1/12"></th>
-                            </tr>
+                <div className="flex lg:flex-col">
+                    <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
+                        <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
+                            <thead className="md:hidden">
+                                <tr>
+                                    <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium" colSpan={2}>Product</th>
+                                    <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">Quantity</th>
+                                    <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">Total</th>
+                                    <th className="border border-[#ebebeb] p-4 w-1/12"></th>
+                                </tr>
                             </thead>
                             <tbody>
-                            <CartItem />
-                            <CartItem />
-                            <CartItem />
-
+                                <CartItem />
+                                <CartItem />
+                                <CartItem />
                             </tbody>
                         </table>
                         <div className="mt-[100px]">
                             <h2 className="mb-[15px] font-medium text-[20px]">You may also like</h2>
                             <Swiper
-                                slidesPerView={2}
-                                spaceBetween={20}
                                 pagination={{
                                     clickable: true,
+                                }}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 1,
+                                    },
+                                    768: {
+                                        slidesPerView: 2,
+                                        spaceBetween: 20,
+                                    },
                                 }}
                                 modules={[Pagination]}
                                 className="mySwiper4"
@@ -108,7 +114,7 @@ function Index() {
                             </Swiper>
                         </div>
                     </div>
-                    <div className="w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px]">
+                    <div className="w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px] lg:w-full">
                         <form onSubmit={handleSubmit(onSubmit)} method="post">
                             <div className="mb-[10px] flex flex-col">
                                 <label htmlFor="" className="font-medium text-11black mb-[15px]">
