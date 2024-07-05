@@ -62,7 +62,7 @@ export default function Index() {
                     </nav>
                 </div>
                 <div className="px-[30px]">
-                    <div className="flex flex-wrap text-[12px] gap-[10px] xl:flex-nowrap xl:overflow-x-scroll xl:pb-3">
+                    <div className="flex flex-wrap text-[12px] gap-[10px] scrollbar xl:flex-nowrap xl:overflow-x-scroll xl:pb-3">
                         {alphabet.map((letter) => {
                             return (
                                 <BrandListLetter

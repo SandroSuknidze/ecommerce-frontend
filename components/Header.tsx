@@ -153,9 +153,9 @@ export function Header() {
                                     </div>
                                 </Link>
                             </div>
-                            <div className="my-auto ml-[20px]">
+                            <div className="my-auto ml-[20px] select-none">
                                 <div
-                                    className="flex cursor-pointer flex-row rounded-[3px] border-[1px] p-[10px]"
+                                    className="flex cursor-pointer flex-row rounded-[3px] border-[1px] p-[5px]"
                                     onClick={toggleDropdown}
                                 >
                                     <Image
@@ -172,10 +172,10 @@ export function Header() {
                                     />
                                 </div>
                                 {dropdown && (
-                                    <div className="absolute z-10 flex w-[60px] flex-col gap-[10px] rounded-[3px] border-[1px] bg-white py-[10px]">
+                                    <div className="absolute z-10 flex w-[50px] flex-col gap-[10px] rounded-[3px] border-[1px] bg-white py-[10px]">
                                         <div
                                             onClick={() => selectLanguage('en')}
-                                            className="flex cursor-pointer gap-2 px-[10px] py-[5px] hover:bg-blue-600"
+                                            className="flex cursor-pointer gap-2 px-[5px] py-[5px] hover:bg-blue-600"
                                         >
                                             <Image
                                                 src={en}
@@ -195,7 +195,7 @@ export function Header() {
                                             onClick={() =>
                                                 selectLanguage('geo')
                                             }
-                                            className="flex cursor-pointer gap-2 px-[10px] py-[5px] hover:bg-blue-600"
+                                            className="flex cursor-pointer gap-2 px-[5px] py-[5px] hover:bg-blue-600"
                                         >
                                             <Image
                                                 src={geo}

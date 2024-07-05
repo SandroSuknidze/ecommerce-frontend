@@ -14,7 +14,7 @@ function Search({ toggleSearch }: SearchProps) {
     useLockBodyScroll(true)
 
 
-    const numCols = useResponsiveCols();
+    const numCols = useResponsiveCols({ native: 6, xl: 5, lg: 4, md: 3, sm: 2, xs: 2 });
 
 
     return (

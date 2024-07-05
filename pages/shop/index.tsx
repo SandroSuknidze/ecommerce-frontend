@@ -1,6 +1,7 @@
 import Collection from '@/components/Collection'
 
 import firstImage from '@/public/assets/collections/collection16.webp'
+import useResponsiveCols from '@/hooks/useResponsiveCols'
 
 export const categories = [
     { id: 1, name: "Woman's a Shirts" },
@@ -11,6 +12,8 @@ export const categories = [
 ]
 
 function Index() {
+    const numCols = useResponsiveCols({ native: 4, xl: 4, lg: 3, md: 2, sm: 2, xs: 1});
+
     return (
         <div>
             <div className="py-[60px]">
@@ -25,8 +28,11 @@ function Index() {
                     </div>
                 </div>
             </div>
+            {/*grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1*/}
             <div>
-                <div className="mx-auto grid max-w-[1500px] grid-cols-4 px-[30px] xl:grid-cols-3">
+                <div className="mx-auto grid max-w-[1500px] px-[30px] xl:px-[15px] md:!px-0"
+                     style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
+                >
                     {categories.map((category) => (
                         <Collection
                             key={category.id}

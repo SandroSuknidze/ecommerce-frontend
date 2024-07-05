@@ -132,7 +132,7 @@ body {
 }
 
 .mySwiper3 {
-  height: calc(100vh - 78px);
+  height: calc(100vh - 70px);
 
   .swiper-slide {
     object-fit: cover;
@@ -178,6 +178,11 @@ body {
 /* Handle on hover */
 .scrollbar::-webkit-scrollbar-thumb:hover {
   background: #686868;
+}
+
+/* Horizontal Scrollbar */
+.scrollbar::-webkit-scrollbar:horizontal {
+  height: 5px;
 }
 
 select {
