@@ -5,6 +5,8 @@ import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import 'swiper/swiper-bundle.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import Image from 'next/image'
@@ -48,16 +50,18 @@ function Index() {
                         clickable: true,
                     }}
                     modules={[EffectFade, Navigation, Pagination]}
-                    className="mySwiper3 !-z-10"
+                    className="mySwiper3 !-z-10 lg:!z-0"
                 >
                     <SwiperSlide>
                         {/*<Image src={first} alt="slide" />*/}
-                        <div className="bg-first-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
+                        <div className="bg-first-image w-auto h-full bg-cover bg-no-repeat bg-center flex slide-move">
+                            <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
-                            md:ml-[10px] md:text-left md:w-full">
+                            md:ml-[10px] md:text-left md:w-full z-10">
                                 <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
-                                md:!text-[36px] md:!leading-[41px]">Stylish<br/>Top Trending</h2>
-                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
+                                md:!text-[36px] md:!leading-[41px] xs:text-white">Stylish<br />Top Trending</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]
+                                 xs:text-white">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
                             </div>
@@ -65,12 +69,14 @@ function Index() {
                     </SwiperSlide>
                     <SwiperSlide>
                         {/*<Image src={second} alt="slide" />*/}
-                        <div className="bg-second-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
+                        <div className="bg-second-image w-auto h-full bg-cover bg-no-repeat bg-center flex slide-move">
+                            <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
-                            md:ml-[10px] md:text-left md:w-full">
+                            md:ml-[10px] md:text-left md:w-full z-10">
                                 <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
-                                md:!text-[36px] md:!leading-[41px]">Hulton<br/>Perfect Simple</h2>
-                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
+                                md:!text-[36px] md:!leading-[41px] xs:text-white">Hulton<br />Perfect Simple</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px] xs:text-white">So
+                                    soft, you don&apos;t want to
                                     take it
                                     off.</p>
                             </div>
@@ -78,12 +84,14 @@ function Index() {
                     </SwiperSlide>
                     <SwiperSlide>
                         {/*<Image src={third} alt="slide" />*/}
-                        <div className="bg-third-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
+                        <div className="bg-third-image w-auto h-full bg-cover bg-no-repeat bg-center flex slide-move">
+                            <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
-                                        md:ml-[10px] md:text-left md:w-full">
+                                        md:ml-[10px] md:text-left md:w-full z-10">
                                 <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
-                                md:!text-[36px] md:!leading-[41px]">Online<br/>Limited Edition</h2>
-                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
+                                md:!text-[36px] md:!leading-[41px] xs:text-white">Online<br />Limited Edition</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px] xs:text-white">So soft, you
+                                    don&apos;t want to
                                     take it
                                     off.</p>
                             </div>

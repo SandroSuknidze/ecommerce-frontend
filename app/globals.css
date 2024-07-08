@@ -217,8 +217,20 @@ select.classic {
   }
 }
 
+
 @media (max-width: 480px) {
   .mySwiper3 {
-    height: 550px;
+    height: 650px;
+
+    /* custom class */
+    .slide-move {
+      background-position-x: -700px;
+    }
+
+    .text-stroke-white {
+      text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white;
+    }
   }
+
 }
+
