@@ -108,7 +108,7 @@ function Index() {
                     </button>
                 </Link>
             </main>
-            <section className="mt-[100px] max-w-[1440px] flex flex-col justify-center m-auto">
+            <section className="mt-[100px] max-w-[1470px] flex flex-col justify-center m-auto">
                 <div className="flex flex-col justify-center md:px-[15px]">
                     <h2 className="text-11black leading-[52px] text-[40px] text-center md:text-[30px]">
                         Featured Collections
