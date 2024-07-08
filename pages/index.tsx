@@ -53,8 +53,10 @@ function Index() {
                     <SwiperSlide>
                         {/*<Image src={first} alt="slide" />*/}
                         <div className="bg-first-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
-                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Stylish<br/>Top Trending</h2>
+                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
+                            md:ml-[10px] md:text-left md:w-full">
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                md:!text-[36px] md:!leading-[41px]">Stylish<br/>Top Trending</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
@@ -64,8 +66,10 @@ function Index() {
                     <SwiperSlide>
                         {/*<Image src={second} alt="slide" />*/}
                         <div className="bg-second-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
-                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Hulton<br/>Perfect Simple</h2>
+                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
+                            md:ml-[10px] md:text-left md:w-full">
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                md:!text-[36px] md:!leading-[41px]">Hulton<br/>Perfect Simple</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
@@ -75,8 +79,10 @@ function Index() {
                     <SwiperSlide>
                         {/*<Image src={third} alt="slide" />*/}
                         <div className="bg-third-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
-                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Online<br/>Limited Edition</h2>
+                            <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
+                                        md:ml-[10px] md:text-left md:w-full">
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                md:!text-[36px] md:!leading-[41px]">Online<br/>Limited Edition</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
@@ -87,7 +93,8 @@ function Index() {
                 <button
                     className="arrow-left arrow absolute left-10 top-1/2 z-10 flex h-[60px] w-[60px] -translate-y-1/2
                     transform items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition
-                    duration-500 hover:border-black hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]">
+                    duration-500 hover:border-black hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]
+                    md:hidden">
                     <div>
                         <FontAwesomeIcon icon={faChevronLeft} className="text-[15px]"/>
                     </div>
@@ -95,7 +102,8 @@ function Index() {
                 <button
                     className="arrow-right arrow absolute right-10 top-1/2 z-10 h-[60px] w-[60px] -translate-y-1/2
                     transform rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black
-                    hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]">
+                    hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]
+                    md:hidden">
                     <div>
                         <FontAwesomeIcon icon={faChevronRight} className="text-[15px]"/>
                     </div>
@@ -104,7 +112,8 @@ function Index() {
                     <button
                         className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-black
                             bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white
-                            lg:top-[60%] lg:px-[40px] lg:py-[11px] lg:left-[28%]"
+                            lg:top-[60%] lg:px-[40px] lg:py-[11px] lg:left-[28%]
+                            md:!left-[10px] md:!top-[57%]"
                     >
                         Shop Now
                     </button>
