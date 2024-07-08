@@ -213,6 +213,10 @@ select.classic {
 
 @media (max-width: 992px) {
   .mySwiper3 {
-    height: calc(100vh - 50px);
+    height: 650px;
   }
+}
+
+@media (max-width: 768px) {
+
 }

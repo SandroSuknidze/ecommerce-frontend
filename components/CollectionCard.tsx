@@ -51,7 +51,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                     <div onClick={func} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
                     h-[45px] w-[45px] m-auto flex
                     top-0 right-5 absolute hover-parent-heart mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black
-                    xs:h-[35px] xs:w-[35px] xs:p-[11px] xs:right-[10px]`}>
+                    lg:opacity-100 xs:h-[35px] xs:w-[35px] xs:p-[11px] xs:right-[10px]`}>
                         {isRemovable ? (
                             <XmarkIcon className="transition duration-300 hover-child-heart" />
                         ) : (
@@ -64,7 +64,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                                     bottom-2 left-1/2 -translate-x-1/2 absolute mb-[7%] mt-auto w-[88%] rounded-[30px] 
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
                                     text-black transition duration-500 hover:border-black hover:bg-black hover:text-white
-                                    xs:text-[11px] xs:p-[5px]`}>
+                                    lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
                         Add To Card
                     </button>
                 </div>

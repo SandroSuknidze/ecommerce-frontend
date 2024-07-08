@@ -35,8 +35,8 @@ export const collections = [
 
 function Index() {
     return (
-        <div>
-            <main>
+        <main>
+            <section className="relative">
                 <Swiper
                     effect={'fade'}
                     navigation={{
@@ -54,9 +54,8 @@ function Index() {
                         {/*<Image src={first} alt="slide" />*/}
                         <div className="bg-first-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px]">Stylish</h2>
-                                <h2 className="text-[73px] leading-[84px]">Top Trending</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Stylish<br/>Top Trending</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
                             </div>
@@ -66,9 +65,8 @@ function Index() {
                         {/*<Image src={second} alt="slide" />*/}
                         <div className="bg-second-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px]">Hulton</h2>
-                                <h2 className="text-[73px] leading-[84px]">Perfect Simple</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Hulton<br/>Perfect Simple</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
                             </div>
@@ -78,9 +76,8 @@ function Index() {
                         {/*<Image src={third} alt="slide" />*/}
                         <div className="bg-third-image w-auto h-full bg-cover bg-no-repeat bg-center flex">
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]">
-                                <h2 className="text-[73px] leading-[84px]">Online</h2>
-                                <h2 className="text-[73px] leading-[84px]">Limited Edition</h2>
-                                <p className="leading-[24px] text-55black mt-[20px]">So soft, you don&apos;t want to
+                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]">Online<br/>Limited Edition</h2>
+                                <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]">So soft, you don&apos;t want to
                                     take it
                                     off.</p>
                             </div>
@@ -90,7 +87,7 @@ function Index() {
                 <button
                     className="arrow-left arrow absolute left-10 top-1/2 z-10 flex h-[60px] w-[60px] -translate-y-1/2
                     transform items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition
-                    duration-500 hover:border-black hover:bg-black hover:text-white md:h-[40px] md:w-[40px]">
+                    duration-500 hover:border-black hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]">
                     <div>
                         <FontAwesomeIcon icon={faChevronLeft} className="text-[15px]"/>
                     </div>
@@ -98,7 +95,7 @@ function Index() {
                 <button
                     className="arrow-right arrow absolute right-10 top-1/2 z-10 h-[60px] w-[60px] -translate-y-1/2
                     transform rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black
-                    hover:bg-black hover:text-white md:h-[40px] md:w-[40px]">
+                    hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]">
                     <div>
                         <FontAwesomeIcon icon={faChevronRight} className="text-[15px]"/>
                     </div>
@@ -106,12 +103,13 @@ function Index() {
                 <Link href="/shop">
                     <button
                         className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-black
-                    bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white"
+                            bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white
+                            lg:top-[60%] lg:px-[40px] lg:py-[11px] lg:left-[28%]"
                     >
                         Shop Now
                     </button>
                 </Link>
-            </main>
+            </section>
             <section className="mt-[100px] max-w-[1470px] flex flex-col justify-center m-auto">
                 <div className="flex flex-col justify-center md:px-[15px]">
                     <h2 className="text-11black leading-[52px] text-[40px] text-center md:text-[30px]">
@@ -187,7 +185,7 @@ function Index() {
                         className="arrow-left5 arrow flex h-[60px] w-[60px]
                     items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white
-                    md:h-[40px] md:w-[40px]">
+                    xl:h-[40px] xl:w-[40px]">
                         <div>
                             <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]"/>
                         </div>
@@ -196,7 +194,7 @@ function Index() {
                         className="arrow-right5 arrow h-[60px] w-[60px]
                     rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white ml-[20px]
-                    md:h-[40px] md:w-[40px]">
+                    xl:h-[40px] xl:w-[40px]">
                         <div>
                             <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]"/>
                         </div>
@@ -249,7 +247,7 @@ function Index() {
                         className="arrow-left6 arrow flex h-[60px] w-[60px]
                     items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white
-                    md:h-[40px] md:w-[40px]">
+                    xl:h-[40px] xl:w-[40px]">
                         <div>
                             <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
                         </div>
@@ -258,7 +256,7 @@ function Index() {
                         className="arrow-right6 arrow h-[60px] w-[60px]
                     rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white ml-[20px]
-                    md:h-[40px] md:w-[40px]">
+                    xl:h-[40px] xl:w-[40px]">
                         <div>
                             <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
                         </div>
@@ -297,7 +295,7 @@ function Index() {
             </section>
 
 
-        </div>
+        </main>
     )
 }
 
