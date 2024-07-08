@@ -94,7 +94,7 @@ function ProductId() {
             {isShareModalOpen && (
                 <ShareModal toggleShareModal={toggleShareModal} />
             )}
-            <div className="m-auto max-w-[1350px] px-[30px]">
+            <div className="m-auto max-w-[1350px] px-[30px] md:px-[15px]">
                 <nav className="py-[25px]">
                     <ol className="text-[14px]">
                         <li className="inline text-11black"><Link href="/">Home</Link>&nbsp;/&nbsp;</li>
@@ -104,9 +104,10 @@ function ProductId() {
                         </li>
                     </ol>
                 </nav>
-                <div className="m-auto flex justify-center mb-[100px]">
-                    <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]">
-                        <div className="w-[8%] select-none">
+                <div className="m-auto flex justify-center mb-[100px] lg:flex-col">
+                    <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]
+                    lg:flex-col-reverse lg:max-h-max lg:w-full lg:p-0">
+                        <div className="w-[8%] select-none lg:w-full">
                             <Swiper
                                 // @ts-ignore
                                 onSwiper={setThumbsSwiper}
@@ -115,12 +116,19 @@ function ProductId() {
                                 freeMode={true}
                                 watchSlidesProgress={true}
                                 modules={[FreeMode, Navigation, Thumbs]}
-                                className="mySwiper w-full"
-                                direction="vertical"
+                                className="mySwiper w-full h-fit"
+                                breakpoints={{
+                                    992: {
+                                        direction: 'vertical',
+                                    },
+                                    320: {
+                                        direction: 'horizontal',
+                                    }
+                                }}
                             >
                                 <SwiperSlide>
-                                    <Image src={collection2} alt="Product Image" className="" quality={1}
-                                           style={{ objectFit: 'cover' }}
+                                    <Image src={collection2} alt="Product Image" className="h-[100%]"
+
                                     />
                                 </SwiperSlide>
                                 <SwiperSlide>
@@ -134,7 +142,7 @@ function ProductId() {
                                 </SwiperSlide>
                             </Swiper>
                         </div>
-                        <div className="w-[88%] select-none relative">
+                        <div className="w-[88%] select-none relative lg:w-full lg:h-full">
                             <Swiper
                                 // @ts-ignore
                                 style={{
@@ -184,7 +192,7 @@ function ProductId() {
                                 </button>
                         </div>
                     </div>
-                    <div className="w-1/2 px-[15px]">
+                    <div className="w-1/2 px-[15px] lg:flex-col lg:w-full lg:p-0 lg:mt-[30px]">
                         <div>
                             <div
                                 className="mb-[5px] inline-block rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
@@ -291,7 +299,7 @@ function ProductId() {
                             </div>
 
                             <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[20px]">
-                                <div className="flex gap-[30px]">
+                                <div className="flex gap-[30px] xs:flex-col xs:gap-[10px]">
                                     <div
                                         className="flex cursor-pointer gap-[10px]"
                                         onClick={toggleSizeGuideModal}
@@ -299,60 +307,70 @@ function ProductId() {
                                         <Image src={sizeIcon} alt="Size Icon" />
                                         <div>Size Guide</div>
                                     </div>
-                                    <div
-                                        className="flex cursor-pointer gap-[10px]"
-                                        onClick={toggleAskQuestionModal}
-                                    >
-                                        <Image src={askIcon} alt="Ask Icon" />
-                                        <div>Ask a Question</div>
+                                    <div className="flex gap-[30px]">
+                                        <div
+                                            className="flex cursor-pointer gap-[10px]"
+                                            onClick={toggleAskQuestionModal}
+                                        >
+                                            <Image src={askIcon} alt="Ask Icon" />
+                                            <div>Ask a Question</div>
+                                        </div>
+                                        <div
+                                            className="flex cursor-pointer gap-[10px]"
+                                            onClick={toggleShareModal}
+                                        >
+                                            <Image
+                                                src={shareIcon}
+                                                alt="Share Icon"
+                                            />
+                                            <div>Share</div>
+                                        </div>
                                     </div>
-                                    <div
-                                        className="flex cursor-pointer gap-[10px]"
-                                        onClick={toggleShareModal}
-                                    >
-                                        <Image
-                                            src={shareIcon}
-                                            alt="Share Icon"
-                                        />
-                                        <div>Share</div>
-                                    </div>
+
                                 </div>
                             </div>
 
-                            <div className="mt-[20px] flex h-[50px] select-none gap-[20px]">
-                                <div
-                                    className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
+                            <div className="mt-[20px] flex h-[50px] select-none gap-[20px] sm:flex-col sm:h-auto">
+                                <div className="h-[50px] flex">
                                     <div
-                                        className="flex w-1/4 cursor-pointer justify-center"
-                                        onClick={decrementCount}
+                                        className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5] sm:w-full">
+                                        <div
+                                            className="flex w-1/4 cursor-pointer justify-center"
+                                            onClick={decrementCount}
+                                        >
+                                            <Image
+                                                src={minusIcon}
+                                                alt="Minus Icon"
+                                            />
+                                        </div>
+                                        <div className="m-auto flex w-2/4 justify-center">
+                                            {itemCount}
+                                        </div>
+                                        <div
+                                            className="flex w-1/4 cursor-pointer justify-center"
+                                            onClick={incrementCount}
+                                        >
+                                            <Image src={plusIcon} alt="Plus Icon" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div className="h-[50px] flex gap-[20px]">
+                                    <button
+                                        type="submit"
+                                        className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px]
+                                    py-[14px] text-[12px] font-semibold uppercase text-white md:w-full sm:px-[30px] sm:w-full"
                                     >
-                                        <Image
-                                            src={minusIcon}
-                                            alt="Minus Icon"
-                                        />
-                                    </div>
-                                    <div className="m-auto flex w-2/4 justify-center">
-                                        {itemCount}
-                                    </div>
+                                        Add To Cart
+                                    </button>
                                     <div
-                                        className="flex w-1/4 cursor-pointer justify-center"
-                                        onClick={incrementCount}
-                                    >
-                                        <Image src={plusIcon} alt="Plus Icon" />
+                                        className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
+                                        <HeartIcon
+                                            className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
                                     </div>
                                 </div>
 
-                                <button
-                                    type="submit"
-                                    className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
-                                >
-                                    Add To Cart
-                                </button>
-                                <div
-                                    className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
-                                    <HeartIcon
-                                        className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
-                                </div>
+
                             </div>
 
                             <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[25px] text-55black">
@@ -397,7 +415,7 @@ function ProductId() {
                     </div>
                 </div>
             </div>
-            <section className="border-y-[1px] border-[#ebebeb] py-[100px] px-[30px]">
+            <section className="border-y-[1px] border-[#ebebeb] py-[100px] px-[30px] md:px-[15px]">
                 <div className="m-auto max-w-[1290px]">
                     <ul className="mb-[45px] flex justify-center gap-[20px]">
                         <li
@@ -599,8 +617,8 @@ function ProductId() {
                     )}
                 </div>
             </section>
-            <section className="pt-[100px] px-[15px]">
-                <div className="m-auto max-w-[1350px]">
+            <section className="pt-[100px] px-[15px] md:px-0">
+                <div className="m-auto max-w-[1350px] md:px-[15px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px]">
                             Featured Products

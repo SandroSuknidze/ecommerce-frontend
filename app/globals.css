@@ -215,6 +215,10 @@ select.classic {
   .mySwiper3 {
     height: 650px;
   }
+
+  .mySwiper2 {
+    height: 100%;
+  }
 }
 
 
