@@ -30,9 +30,9 @@ function Footer() {
     }
 
     return (
-        <footer className="mt-[100px] border-t-[1px] border-[#ebebeb]">
-            <div className="mx-auto max-w-[1470px] px-[30px] md:px-[15px]">
-                <div className="mb-[60px] mt-[100px]">
+        <footer className="mt-[50px] border-t-[1px] border-[#ebebeb]">
+            <div className="mx-auto max-w-[1470px] px-[30px] md:px-[15px] ">
+                <div className="mb-[60px] mt-[100px] sm:mb-[10px] sm:mt-[50px]">
                     <div className="flex min-h-[320px] flex-row justify-between sm:flex-col sm:gap-[30px]">
                         <div className="flex w-3/6 xl:flex-col xl:w-1/2 xl:h-[500px] sm:!w-full sm:!h-auto sm:gap-[30px]">
                             <div className="flex w-2/3 flex-col pr-[15px] xl:w-full xl:h-[350px] sm:!h-auto">

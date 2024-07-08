@@ -127,7 +127,7 @@ function Index() {
                     </button>
                 </Link>
             </section>
-            <section className="mt-[100px] max-w-[1470px] flex flex-col justify-center m-auto">
+            <section className="mt-[100px] max-w-[1470px] flex flex-col justify-center m-auto md:mt-[50px]">
                 <div className="flex flex-col justify-center md:px-[15px]">
                     <h2 className="text-11black leading-[52px] text-[40px] text-center md:text-[30px]">
                         Featured Collections
@@ -185,7 +185,7 @@ function Index() {
                 </div>
 
             </section>
-            <section className="py-[100px]">
+            <section className="py-[100px] md:py-[50px]">
                 <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
