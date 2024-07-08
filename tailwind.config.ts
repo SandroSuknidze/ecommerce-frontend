@@ -22,6 +22,7 @@ module.exports = {
                 '11black': '#111111',
                 '55black': '#555555',
                 '87black': '#878787',
+                'd7red': '#D73F0F',
             },
             content: {
                 'correct-icon': "url('../public/assets/correct.svg')",

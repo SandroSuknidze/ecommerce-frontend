@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
+import BurgerMenu from '@/components/BurgerMenu'
 
 
 export function Header() {
@@ -22,6 +23,7 @@ export function Header() {
     const [dropdown, setDropdown] = useState(false)
 
     const [isSearchOpen, setIsSearchOpen] = useState(false)
+    const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false)
 
     function toggleDropdown() {
         setDropdown(!dropdown)
@@ -36,6 +38,10 @@ export function Header() {
 
     function toggleSearch() {
         setIsSearchOpen(!isSearchOpen)
+    }
+
+    function toggleBurgerMenu() {
+        setIsBurgerMenuOpen(!isBurgerMenuOpen)
     }
 
     const [scrollPosition, setScrollPosition] = useState(0)
@@ -68,18 +74,19 @@ export function Header() {
                 />
             )}
 
+                <BurgerMenu
+                    isOpen={isBurgerMenuOpen} toggleBurgerMenu={toggleBurgerMenu}
+                />
+
+
             <header
                 className={`relative z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white duration-500`}
             >
                 {/*${isVisible ? 'translate-y-0 fixed z-20 ' : ''}*/}
                 <div className="my-[11px] w-full px-[30px] py-[11px] lg:my-0 md:px-[15px]">
                     <div className="flex w-full flex-row justify-between lg:h-[28px]">
-                        <div className="my-auto hidden w-1/3 lg:block">
-                            <div>
-                                <Link href="/">
-                                    <Image src={burgerMenuIcon} alt="Burger Menu Icon" />
-                                </Link>
-                            </div>
+                        <div className="my-auto hidden w-1/3 lg:block cursor-pointer">
+                            <Image src={burgerMenuIcon} alt="Burger Menu Icon" onClick={toggleBurgerMenu}/>
                         </div>
                         <div className="my-auto w-1/4 lg:w-1/3 lg:flex lg:justify-center ">
                             <div className="w-[95px]">
