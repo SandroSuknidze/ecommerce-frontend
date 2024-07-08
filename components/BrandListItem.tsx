@@ -9,12 +9,6 @@ interface BrandListItemProps {
 }
 export function BrandListItem({ id, name, quantity, onChange, isChecked }: BrandListItemProps) {
 
-    // const [isChecked, setIsChecked] = useState(false)
-
-    // const handleCheckboxClick = () => {
-    //     setIsChecked(!isChecked);
-    // }
-
     console.log(isChecked)
 
     return (
@@ -27,7 +21,7 @@ export function BrandListItem({ id, name, quantity, onChange, isChecked }: Brand
                         type="checkbox"
                         name="brands"
                         className={`${quantity <= 0 ? '' : 'cursor-pointer'} h-[28px] w-[18px] accent-black`}
-                        onChange={onChange}
+                        onClick={onChange}
                         disabled={quantity <= 0}
                         value={id}
                         defaultChecked={isChecked}

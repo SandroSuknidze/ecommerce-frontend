@@ -140,6 +140,9 @@ function ProductId() {
                                 <SwiperSlide>
                                     <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
                             </Swiper>
                         </div>
                         <div className="w-[88%] select-none relative lg:w-full lg:h-full">
@@ -167,6 +170,9 @@ function ProductId() {
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection4} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection5} alt="Product Image" />

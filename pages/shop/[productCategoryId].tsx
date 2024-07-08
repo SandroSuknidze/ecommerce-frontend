@@ -11,12 +11,11 @@ import { categories } from '@/pages/shop/index'
 import { BrandListItem } from '@/components/BrandListItem'
 import { ColorListItem } from '@/components/ColorListItem'
 import { SizeListItem } from '@/components/SizeListItem'
-import { useQueryState } from 'use-location-state/next'
+// import { useQueryState } from 'nuqs'
 // import { useSearchParams } from 'next/navigation'
 // export { getServerSideProps } from 'use-location-state/next'
-import queryString from 'query-string';
 
-// import { parseAsArrayOf, parseAsInteger, parseAsNumberLiteral, parseAsStringEnum, useQueryState } from 'nuqs'
+import { parseAsArrayOf, parseAsInteger, parseAsString, useQueryState } from 'nuqs'
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -58,30 +57,12 @@ export const sizes = [
 ]
 
 function ProductCategoryId() {
-
     const router = useRouter()
     const { productCategory } = router.query
-
-
-    // useEffect(() => {
-    //     router.push({
-    //         pathname: `/shop/2`,
-    //         query: { productCategoryId: 2 },
-    //     });
-    // }, [])
-    //
-    // console.log(productCategory);
-
-
-    // const searchParams = useSearchParams()
-    // @ts-ignore
-    // console.log(searchParams)
-
-    // useQueryState('array', parseAsArrayOf(parseAsInteger))
-    const [selectedBrands, setSelectedBrands] = useQueryState<any>('brands',[])
-
-
+    const [selectedBrands, setSelectedBrands] = useQueryState<any>('brands',parseAsArrayOf(parseAsInteger).withDefault([]))
+    const [selectedColors, setSelectedColors] = useQueryState<any>('colors',parseAsArrayOf(parseAsInteger).withDefault([]))
     const [isBrandOpen, setIsBrandOpen] = useState(true)
+    const [value1, setValue1] = useState([0, 200])
 
     function getCategoryName() {
         return categories.find(
@@ -98,8 +79,6 @@ function ProductCategoryId() {
     }
 
     const minDistance = 20
-
-    const [value1, setValue1] = useState([0, 200])
 
     // @ts-ignore
     const handleChange1 = (event, newValue, activeThumb) => {
@@ -121,21 +100,40 @@ function ProductCategoryId() {
     }
 
 
-
     useEffect(() => {
-        const numberBrands = selectedBrands.map(Number)
+        const numberBrands = selectedBrands?.map(Number)
 
         console.log(numberBrands)
 
+        console.log("heeyyyy", selectedBrands);
+
     }, [selectedBrands])
+
     const handleChange = (event: { target: { value: any; checked: any; }; }) => {
+        console.log("test");
         const value = Number(event.target.value);
-        const numberBrands = selectedBrands.map(Number);
+        const numberBrands = selectedBrands?.map(Number);
+        console.log(numberBrands)
         const updatedBrands = event.target.checked
             ? [...numberBrands, value]
             : numberBrands.filter((id: number) => id !== value);
 
         setSelectedBrands(updatedBrands);
+
+
+    };
+
+    const handleChangeColor = (isChecked: any, id: any) => {
+        console.log("test");
+        console.log(id);
+        // const value = Number(event.target.value);
+        const numberColors = selectedColors?.map(Number);
+        console.log(numberColors)
+        const updatedColors = !isChecked
+            ? [...numberColors, id]
+            : numberColors.filter((color_id: number) => color_id !== id);
+
+        setSelectedColors(updatedColors);
 
 
     };
@@ -171,7 +169,7 @@ function ProductCategoryId() {
                         <h1>Hello, {selectedBrands || 'anonymous visitor'}!</h1>
                         <input value={selectedBrands || ''} onChange={e => setSelectedBrands(e.target.value)} />
                         <input value={selectedBrands || ''} onChange={e => setSelectedBrands([...selectedBrands, e.target.value])} />
-                        <button onClick={() => setSelectedBrands(1)}>Clear</button>
+                        <button onClick={() => setSelectedBrands([])}>Clear</button>
                         <button onClick={() => setSelectedBrands([...selectedBrands, 3])}>Clear</button>
                         <ul className="max-h-[240px] overflow-y-scroll scrollbar">
                             <AnimatePresence initial={false}>
@@ -187,7 +185,7 @@ function ProductCategoryId() {
                                             return (
                                                 <Fragment key={brand.id}>
                                                     <BrandListItem
-                                                        isChecked={selectedBrands.map(Number).includes(brand.id)}
+                                                        isChecked={selectedBrands?.map(Number).includes(brand.id)}
                                                         id={brand.id}
                                                         name={brand.name}
                                                         quantity={brand.quantity}
@@ -223,9 +221,14 @@ function ProductCategoryId() {
                             {colors.map((color) => {
                                 return (
                                     <ColorListItem
+                                        isChecked={selectedColors?.map(Number).includes(color.id)}
+                                        id={color.id}
+
                                         key={color.id}
                                         name={color.name}
                                         quantity={color.quantity}
+                                        onChange={handleChangeColor}
+
                                     />
                                 )
                             })}
