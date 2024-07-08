@@ -65,7 +65,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
                                     text-black transition duration-500 hover:border-black hover:bg-black hover:text-white
                                     lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
-                        Add To Card
+                        Add To Cart
                     </button>
                 </div>
             </div>

@@ -32,6 +32,10 @@ import { ShareModal } from '@/components/ShareModal'
 import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
+import collection3 from '@/public/assets/collections/collection3.webp'
+import collection4 from '@/public/assets/collections/collection4.webp'
+import collection5 from '@/public/assets/collections/collection5.webp'
+import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -93,8 +97,8 @@ function ProductId() {
             <div className="m-auto max-w-[1350px] px-[30px]">
                 <nav className="py-[25px]">
                     <ol className="text-[14px]">
-                        <li className="inline text-11black"><Link href="/">Home</Link> /&nbsp;</li>
-                        <li className="inline text-11black"><Link href="/">Winter Coat</Link> /&nbsp;</li>
+                        <li className="inline text-11black"><Link href="/">Home</Link>&nbsp;/&nbsp;</li>
+                        <li className="inline text-11black"><Link href="/">Winter Coat</Link>&nbsp;/&nbsp;</li>
                         <li className="inline text-55black">
                             Square Textured Striped
                         </li>
@@ -115,20 +119,22 @@ function ProductId() {
                                 direction="vertical"
                             >
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                                    <Image src={collection2} alt="Product Image" className="" quality={1}
+                                           style={{ objectFit: 'cover' }}
+                                    />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                                    <Image src={collection3} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                                    <Image src={collection4} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                                    <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
                             </Swiper>
                         </div>
-                        <div className="w-[88%] select-none">
+                        <div className="w-[88%] select-none relative">
                             <Swiper
                                 // @ts-ignore
                                 style={{
@@ -136,24 +142,46 @@ function ProductId() {
                                     '--swiper-pagination-color': '#fff',
                                 } as CSSProperties}
                                 spaceBetween={10}
-                                navigation={true}
+                                navigation={{
+                                    nextEl: '.arrow-right7',
+                                    prevEl: '.arrow-left7',
+                                }}
                                 thumbs={{ swiper: thumbsSwiper }}
                                 modules={[FreeMode, Navigation, Thumbs]}
+                                loop={true}
                                 className="mySwiper2"
                             >
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+                                    <Image src={collection2} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+                                    <Image src={collection3} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+                                    <Image src={collection4} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+                                    <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
                             </Swiper>
+                                <button
+                                    className="arrow-left7 absolute z-10 top-1/2 -translate-y-1/2 left-5 arrow flex h-[60px] w-[60px]
+                    items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white
+                    xl:h-[40px] xl:w-[40px]">
+                                    <div>
+                                        <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
+                                    </div>
+                                </button>
+                                <button
+                                    className="arrow-right7 absolute z-10 top-1/2 -translate-y-1/2 right-5 arrow h-[60px] w-[60px]
+                    rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
+                    hover:border-black hover:bg-black hover:text-white ml-[20px]
+                    xl:h-[40px] xl:w-[40px]">
+                                    <div>
+                                        <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
+                                    </div>
+                                </button>
                         </div>
                     </div>
                     <div className="w-1/2 px-[15px]">
@@ -292,7 +320,8 @@ function ProductId() {
                             </div>
 
                             <div className="mt-[20px] flex h-[50px] select-none gap-[20px]">
-                                <div className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
+                                <div
+                                    className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5]">
                                     <div
                                         className="flex w-1/4 cursor-pointer justify-center"
                                         onClick={decrementCount}
