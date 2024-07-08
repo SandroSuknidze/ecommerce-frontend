@@ -88,20 +88,24 @@ function Index() {
                     </SwiperSlide>
                 </Swiper>
                 <button
-                    className="arrow-left arrow absolute left-10 top-1/2 z-10 flex h-[60px] w-[60px] -translate-y-1/2 transform items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white">
+                    className="arrow-left arrow absolute left-10 top-1/2 z-10 flex h-[60px] w-[60px] -translate-y-1/2
+                    transform items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition
+                    duration-500 hover:border-black hover:bg-black hover:text-white md:h-[40px] md:w-[40px]">
                     <div>
-                        <FontAwesomeIcon icon={faChevronLeft} />
+                        <FontAwesomeIcon icon={faChevronLeft} className="text-[15px]"/>
                     </div>
                 </button>
                 <button
-                    className="arrow-right arrow absolute right-10 top-1/2 z-10 h-[60px] w-[60px] -translate-y-1/2 transform rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white">
+                    className="arrow-right arrow absolute right-10 top-1/2 z-10 h-[60px] w-[60px] -translate-y-1/2
+                    transform rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black
+                    hover:bg-black hover:text-white md:h-[40px] md:w-[40px]">
                     <div>
-                        <FontAwesomeIcon icon={faChevronRight} />
+                        <FontAwesomeIcon icon={faChevronRight} className="text-[15px]"/>
                     </div>
                 </button>
                 <Link href="/shop">
                     <button
-                        className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-[#ebebeb]
+                        className="absolute top-[65%] left-[25%] z-10 rounded-[30px] border-[1px] border-black
                     bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white"
                     >
                         Shop Now
@@ -125,7 +129,7 @@ function Index() {
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
-                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto xs:px-[20px]">
                                 Clothing
                             </div>
                         </Link>
@@ -136,7 +140,7 @@ function Index() {
                                    className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
-                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto xs:px-[20px]">
                                 Sunglasses
                             </div>
                         </Link>
@@ -147,7 +151,7 @@ function Index() {
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
-                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto xs:px-[20px]">
                                 Sneaker
                             </div>
                         </Link>
@@ -158,7 +162,7 @@ function Index() {
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
-                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto">
+                                lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto xs:px-[20px]">
                                 Bags
                             </div>
                         </Link>
@@ -169,7 +173,7 @@ function Index() {
             <section className="py-[100px]">
                 <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
-                        <h2 className="mb-[5px] text-center text-[40px]">
+                        <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
                             Featured Products
                         </h2>
                         <p className="text-center text-55black">
@@ -232,7 +236,7 @@ function Index() {
             <section>
                 <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
-                        <h2 className="mb-[5px] text-center text-[40px]">
+                        <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
                             New Arrivals
                         </h2>
                         <p className="text-center text-55black">

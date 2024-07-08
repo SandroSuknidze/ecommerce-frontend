@@ -12,6 +12,8 @@ import arrowUp from '@/public/assets/arrow-up-icon.svg'
 import { useEffect, useState } from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
+import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
+
 
 export function Header() {
 
@@ -70,16 +72,23 @@ export function Header() {
                 className={`relative z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white duration-500`}
             >
                 {/*${isVisible ? 'translate-y-0 fixed z-20 ' : ''}*/}
-                <div className="my-[11px] w-full px-[30px] py-[11px]">
-                    <div className="flex w-full flex-row justify-between">
-                        <div className="my-auto w-1/4">
+                <div className="my-[11px] w-full px-[30px] py-[11px] lg:my-0 md:px-[15px]">
+                    <div className="flex w-full flex-row justify-between lg:h-[28px]">
+                        <div className="my-auto hidden w-1/3 lg:block">
+                            <div>
+                                <Link href="/">
+                                    <Image src={burgerMenuIcon} alt="Burger Menu Icon" />
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="my-auto w-1/4 lg:w-1/3 lg:flex lg:justify-center ">
                             <div className="w-[95px]">
                                 <Link href="/">
                                     <Image src={logo} alt="logo" />
                                 </Link>
                             </div>
                         </div>
-                        <div className="2/4 my-auto flex flex-row">
+                        <div className="2/4 my-auto flex flex-row lg:hidden">
                             <nav>
                                 <ul className="font-medium">
                                     <li className="inline">
@@ -113,47 +122,51 @@ export function Header() {
                                         >
                                             Sale
                                         </Link>
-                                        <div className="absolute bottom-[94%] right-[-4px] rounded-sm border-red-600 border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] font-bold uppercase leading-[9px] text-white">
+                                        <div
+                                            className="absolute bottom-[94%] right-[-4px] rounded-sm border-red-600 border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] font-bold uppercase leading-[9px] text-white">
                                             hot
                                         </div>
-                                        <div className="border-l-solid border-r-solid border-b-solid absolute bottom-[81%] right-[15px] h-0 w-0 rotate-180 border-b-[3px] border-l-[3px] border-r-[3px] border-b-red-600 border-l-transparent border-r-transparent"></div>
+                                        <div
+                                            className="border-l-solid border-r-solid border-b-solid absolute bottom-[81%] right-[15px] h-0 w-0 rotate-180 border-b-[3px] border-l-[3px] border-r-[3px] border-b-red-600 border-l-transparent border-r-transparent"></div>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
-                        <div className="flex w-1/4 flex-row justify-end">
+                        <div className="flex w-1/4 flex-row justify-end lg:w-1/3">
                             <div
                                 className="my-auto ml-[20px]"
                                 onClick={toggleSearch}
                             >
                                 <SearchIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
                             </div>
-                            <div className="my-auto ml-[20px]">
+                            <div className="my-auto ml-[20px] lg:hidden">
                                 <Link href="/account/login">
                                     <AvatarIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
                                 </Link>
                             </div>
-                            <div className="relative my-auto ml-[20px]">
+                            <div className="relative my-auto ml-[20px] lg:hidden">
                                 <Link href="/wishlist">
                                     <div className="hover-parent">
                                         <WishlistIcon className="hover-child cursor-pointer" />
-                                        <div className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
+                                        <div
+                                            className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
                                             0
                                         </div>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="relative my-auto ml-[20px]">
+                            <div className="relative my-auto ml-[20px] lg:pr-[10px]">
                                 <Link href="/cart">
                                     <div className="hover-parent">
                                         <CartIcon className="hover-child cursor-pointer" />
-                                        <div className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
+                                        <div
+                                            className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
                                             0
                                         </div>
                                     </div>
                                 </Link>
                             </div>
-                            <div className="my-auto ml-[20px] select-none">
+                            <div className="my-auto ml-[20px] select-none lg:hidden">
                                 <div
                                     className="flex cursor-pointer flex-row rounded-[3px] border-[1px] p-[5px]"
                                     onClick={toggleDropdown}
@@ -172,7 +185,8 @@ export function Header() {
                                     />
                                 </div>
                                 {dropdown && (
-                                    <div className="absolute z-10 flex w-[50px] flex-col gap-[10px] rounded-[3px] border-[1px] bg-white py-[10px]">
+                                    <div
+                                        className="absolute z-10 flex w-[50px] flex-col gap-[10px] rounded-[3px] border-[1px] bg-white py-[10px]">
                                         <div
                                             onClick={() => selectLanguage('en')}
                                             className="flex cursor-pointer gap-2 px-[5px] py-[5px] hover:bg-blue-600"
