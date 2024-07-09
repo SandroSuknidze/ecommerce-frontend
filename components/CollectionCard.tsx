@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
+import Rating from '@mui/material/Rating'
 
 interface CollectionCardProps {
     imageSrc: StaticImageData,
@@ -74,11 +75,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                     <Link href={`/shop/products/1`}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
+                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
                 </div>
                 <div className="m-auto mt-[3px] flex text-[14px] font-medium">
                     {sale && <div className="text-red-600">${sale}</div>}

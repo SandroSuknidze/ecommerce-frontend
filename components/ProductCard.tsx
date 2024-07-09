@@ -2,6 +2,7 @@ import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Rating from '@mui/material/Rating'
 
 interface ProductCardProps {
     title: string,
@@ -30,11 +31,7 @@ function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: Prod
                     <Link href={`/shop/${formattedTitle}`} onClick={() => toggleSearch()}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
+                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
                 </div>
                 <div className="mt-[3px] text-[14px] font-medium flex m-auto">
                     {sale && (
