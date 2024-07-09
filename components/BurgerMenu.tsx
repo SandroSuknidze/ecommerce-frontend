@@ -36,8 +36,8 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
 
                     <div className="px-[15px] bg-d7red uppercase text-[14px] text-white font-medium flex justify-between">
                         <div className="flex">
-                            <div className="p-[15px]">Menu</div>
-                            <div className="p-[15px] text-gray-600">Categories</div>
+                            <div className="p-[15px] cursor-default">Menu</div>
+                            {/*<div className="p-[15px] text-gray-600">Categories</div>*/}
                         </div>
 
                         <div className="flex mb-[1px]">
