@@ -60,7 +60,7 @@ function Register() {
                                     This email address is already associated
                                     with an account. If this account is yours,
                                     you can{' '}
-                                    <span className="cursor-pointer text-17black">
+                                    <span className="cursor-pointer text-11black">
                                         reset your password
                                     </span>
                                 </p>
@@ -145,7 +145,7 @@ function Register() {
                                 <button
                                     type="submit"
                                     className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-white px-[55px]
-                                    py-[14px] text-[12px] font-semibold uppercase text-17black transition duration-500 hover:bg-black hover:text-white"
+                                    py-[14px] text-[12px] font-semibold uppercase text-11black transition duration-500 hover:bg-black hover:text-white"
                                 >
                                     Log In
                                 </button>

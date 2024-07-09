@@ -63,7 +63,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                     <button onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
                                     bottom-2 left-1/2 -translate-x-1/2 absolute mb-[7%] mt-auto w-[88%] rounded-[30px] 
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
-                                    text-17black transition duration-500 hover:border-black hover:bg-black hover:text-white
+                                    text-11black transition duration-500 hover:border-black hover:bg-black hover:text-white
                                     lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
                         Add To Cart
                     </button>

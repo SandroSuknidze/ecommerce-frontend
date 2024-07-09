@@ -7,8 +7,6 @@ import Image from "next/image"
 import AvatarIcon from '@/public/assets/AvatarIcon'
 import en from '@/public/assets/en.webp'
 import geo from '@/public/assets/geo.webp'
-import arrowUp from '@/public/assets/arrow-up-icon.svg'
-import arrowDown from '@/public/assets/arrow-down-icon.svg'
 import { useState } from 'react'
 
 interface BurgerMenuProps {

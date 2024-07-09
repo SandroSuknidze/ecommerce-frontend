@@ -1,4 +1,3 @@
-// components/FilterComponent.js
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -10,8 +9,7 @@ import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem'
 import { parseAsArrayOf, parseAsInteger, useQueryState } from 'nuqs';
 import { brands, colors, sizes } from '@/pages/shop/[productCategoryId]'
 
-// @ts-ignore
-const FilterComponent = ({ categories, productCategory }) => {
+const FilterComponent = () => {
     const [isBrandOpen, setIsBrandOpen] = useState(true)
     const [isColorOpen, setIsColorOpen] = useState(true)
     const [isPriceOpen, setIsPriceOpen] = useState(true)
@@ -120,7 +118,7 @@ const FilterComponent = ({ categories, productCategory }) => {
                     onClick={toggleBrand}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-17black">Brand</h4>
+                    <h4 className="text-[18px] font-medium text-11black">Brand</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -165,7 +163,7 @@ const FilterComponent = ({ categories, productCategory }) => {
                     onClick={toggleColor}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-17black">Color</h4>
+                    <h4 className="text-[18px] font-medium text-11black">Color</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -210,7 +208,7 @@ const FilterComponent = ({ categories, productCategory }) => {
                     onClick={togglePrice}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-17black">Price</h4>
+                    <h4 className="text-[18px] font-medium text-11black">Price</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -271,7 +269,7 @@ const FilterComponent = ({ categories, productCategory }) => {
                     onClick={toggleSize}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-17black">Size</h4>
+                    <h4 className="text-[18px] font-medium text-11black">Size</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}

@@ -1,18 +1,12 @@
 import { useRouter } from 'next/router'
-import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Fragment, useCallback, useEffect, useState } from 'react'
-import { Slider } from '@mui/material'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
-import { AnimatePresence, motion } from 'framer-motion'
-
 import { categories } from '@/pages/shop/index'
-import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListItem'
-import { MemoizedColorListItem as ColorListItem } from '@/components/ColorListItem'
-import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem'
-import { parseAsArrayOf, parseAsInteger, useQueryState } from 'nuqs'
 import FilterComponent from '@/components/FilterComponent'
+import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useState } from 'react'
+import FilterMenu from '@/components/FilterMenu'
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -57,6 +51,13 @@ function ProductCategoryId() {
     const router = useRouter()
     const { productCategory } = router.query
 
+    const [isHovered, setIsHovered] = useState(false)
+    const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false)
+
+    function toggleFilterMenu() {
+        setIsFilterMenuOpen(!isFilterMenuOpen)
+    }
+
 
 
     function getCategoryName() {
@@ -68,18 +69,35 @@ function ProductCategoryId() {
 
     return (
         <div>
-            <div className="flex h-[200px] w-full flex-col justify-center bg-shop-banner text-center text-white">
+            <FilterMenu isOpen={isFilterMenuOpen} toggleFilterMenu={toggleFilterMenu} />
+            <div className="flex h-[200px] w-full flex-col justify-center bg-shop-banner bg-center text-center text-white">
                 <h1 className="mx-auto text-[45px]">{getCategoryName()}</h1>
                 <nav className="text-[14px]">Home / {getCategoryName()}</nav>
             </div>
 
             <div className="mx-auto mt-[50px] flex max-w-[1410px]">
-                <div className="w-1/4 px-[30px]">
-                    <FilterComponent categories={categories} productCategory={productCategory} />
+                <div className="w-1/4 px-[30px] lg:hidden">
+                    <FilterComponent />
                 </div>
-                <div className="w-3/4">
-                    <div className="text-55black pl-[15px] mb-[40px]">There are 30 results in total</div>
-                    <div className="grid grid-cols-3 pr-[15px]">
+                <div className="w-3/4 lg:w-full">
+                    <div className="flex justify-between mb-[40px]  px-[15px]">
+                        <div className="text-55black xs:text-[14px]">There are 30 results in total</div>
+                        <button
+                            className="hidden py-[3px] px-[18px] rounded-[3px] bg-11black text-white upper text-[12px]
+                                font-semibold h-auto gap-[5px] border-[1px] border-black transition duration-500
+                                hover:bg-white
+                                lg:flex xs:px-[15px]"
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
+                            onClick={() => toggleFilterMenu()}
+                        >
+                            <FontAwesomeIcon icon={faFilter} className={`${isHovered && 'text-11black'} m-auto`}/>
+                            <div className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
+                                Filter
+                            </div>
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-3 pr-[15px] lg:pr-0">
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
