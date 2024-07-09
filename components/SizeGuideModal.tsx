@@ -31,7 +31,7 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                     />
                 </div>
 
-                <div className="h-[755px] overflow-y-scroll px-[40px] py-[35px] lg:px-[30px] md:!px-[15px] scrollbar">
+                <div className="h-[85vw] overflow-y-auto px-[40px] py-[35px] lg:px-[30px] md:!px-[15px] scrollbar">
                     <h2 className="mb-[10px] text-[18px] font-medium">
                         Sizes for this Product.
                     </h2>

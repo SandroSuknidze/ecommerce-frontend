@@ -35,11 +35,13 @@ export function ShareModal({ toggleShareModal }: ShareModalProps) {
                 className="fixed inset-0 z-[60] cursor-close bg-black opacity-50"
                 onClick={() => toggleShareModal()}
             ></div>
-            <div className="fixed left-1/2 top-1/2 z-[61] h-[258px] w-[400px] -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white px-[40px] py-[35px] shadow-lg">
+            <div className="fixed left-1/2 top-1/2 z-[61] h-[258px] max-w-[400px] w-[85%] -translate-x-1/2 -translate-y-1/2
+            transform overflow-hidden rounded-[5px] border border-gray-300 bg-white px-[40px] py-[35px] shadow-lg
+            lg:px-[30px] md:!px-[15px]">
                 <Image
                     src={closeIcon}
                     alt="close icon"
-                    className="absolute right-[22px] top-[12px] h-[20px] w-[20px] cursor-pointer"
+                    className="absolute right-[22px] top-[12px] h-[20px] w-[20px] cursor-pointer md:right-[14px]"
                     onClick={() => toggleShareModal()}
                 />
 
@@ -50,7 +52,8 @@ export function ShareModal({ toggleShareModal }: ShareModalProps) {
                     <div className="mb-[20px] flex gap-[10px]">
                         <input
                             type="text"
-                            className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-white px-[20px] py-[10px] text-[14px] leading-[28px] outline-0 placeholder:text-[#555555]"
+                            className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-white px-[20px]
+                             py-[10px] text-[14px] leading-[28px] outline-0 placeholder:text-[#555555]"
                             placeholder={currentUrl}
                             disabled
                         />
