@@ -327,7 +327,7 @@ function ProductCategoryId() {
                             onClick={toggleSize}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
-                            <h4 className="text-[18px] font-medium">Size</h4>
+                            <h4 className="text-[18px] font-medium text-black">Size</h4>
                             <div className="relative">
                                 <FontAwesomeIcon
                                     icon={faMinus}
