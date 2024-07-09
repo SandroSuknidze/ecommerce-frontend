@@ -97,7 +97,7 @@ function ProductCategoryId() {
                             </div>
                         </button>
                     </div>
-                    <div className="grid grid-cols-3 pr-[15px] lg:pr-0">
+                    <div className="grid grid-cols-3 pr-[15px] md:grid-cols-2 lg:pr-0">
                         <CollectionCard
                             title={'Square Textured Striped'}
                             imageSrc={collection2}
