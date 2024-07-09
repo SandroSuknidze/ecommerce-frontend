@@ -124,7 +124,7 @@ export function Header() {
                                     </li>
                                     <li className="relative inline cursor-pointer transition duration-300 hover:text-red-600">
                                         <Link
-                                            href="/"
+                                            href="/sale"
                                             className="px-[15px] py-[10px] text-11black"
                                         >
                                             Sale

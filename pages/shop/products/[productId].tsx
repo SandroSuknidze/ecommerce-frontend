@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import { CSSProperties, Fragment, useState } from 'react'
+import { CSSProperties, useState } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
 
@@ -30,15 +30,12 @@ import SizeGuideModal from '@/components/SizeGuideModal'
 import { AskQuestionModal } from '@/components/AskQuestionModal'
 import { ShareModal } from '@/components/ShareModal'
 import Link from 'next/link'
-import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
 import collection3 from '@/public/assets/collections/collection3.webp'
 import collection4 from '@/public/assets/collections/collection4.webp'
 import collection5 from '@/public/assets/collections/collection5.webp'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import FeaturedProducts from '@/components/FeaturedProducts'
-import { brands } from '@/pages/shop/[productCategoryId]'
-import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListItem'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 
 function ProductId() {
@@ -127,12 +124,11 @@ function ProductId() {
                 <div className="m-auto flex justify-center mb-[100px] lg:flex-col">
                     <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]
                     lg:flex-col-reverse lg:max-h-max lg:w-full lg:p-0">
-                        <div className="w-[8%] select-none lg:w-full">
+                        <div className="w-[8%] select-none lg:w-full h-[100%]">
                             <Swiper
                                 // @ts-ignore
                                 onSwiper={setThumbsSwiper}
                                 spaceBetween={10}
-                                slidesPerView={4}
                                 freeMode={true}
                                 watchSlidesProgress={true}
                                 modules={[FreeMode, Navigation, Thumbs]}
@@ -140,22 +136,40 @@ function ProductId() {
                                 breakpoints={{
                                     992: {
                                         direction: 'vertical',
+                                        slidesPerView: 10,
                                     },
                                     320: {
                                         direction: 'horizontal',
+                                        slidesPerView: 4,
                                     }
                                 }}
                             >
                                 <SwiperSlide>
-                                    <Image src={collection2} alt="Product Image" className="h-[100%]"
-
-                                    />
+                                    <Image src={collection2} alt="Product Image"/>
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection3} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection4} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection5} alt="Product Image" />
@@ -190,6 +204,24 @@ function ProductId() {
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection4} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
+                                </SwiperSlide>
+                                <SwiperSlide>
+                                    <Image src={collection5} alt="Product Image" />
                                 </SwiperSlide>
                                 <SwiperSlide>
                                     <Image src={collection5} alt="Product Image" />

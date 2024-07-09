@@ -75,7 +75,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                             </li>
                             <li className="relative cursor-pointer border-b-[1px] border-b-[#ebebeb]">
                                 <Link
-                                    href="/"
+                                    href="/sale"
                                     className="cursor-pointer block py-[15px] w-[100%]"
                                     onClick={toggleBurgerMenu}
                                 >
