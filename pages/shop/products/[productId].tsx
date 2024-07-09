@@ -36,6 +36,7 @@ import collection3 from '@/public/assets/collections/collection3.webp'
 import collection4 from '@/public/assets/collections/collection4.webp'
 import collection5 from '@/public/assets/collections/collection5.webp'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import FeaturedProducts from '@/components/FeaturedProducts'
 
 function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -623,51 +624,8 @@ function ProductId() {
                     )}
                 </div>
             </section>
-            <section className="pt-[100px] px-[15px] md:px-0">
-                <div className="m-auto max-w-[1350px] md:px-[15px]">
-                    <div className="mb-[15px]">
-                        <h2 className="mb-[5px] text-center text-[40px]">
-                            Featured Products
-                        </h2>
-                        <p className="text-center text-55black">
-                            Don&apos;t forget! The products that you viewed. Add
-                            it to cart now.
-                        </p>
-                    </div>
-                </div>
-                <div className="mx-auto grid max-w-[1320px] grid-cols-4 mt-[50px] xl:grid-cols-3">
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={169}
-                        sale={143}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={300}
-                        sale={150}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={300}
-                        sale={150}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={300}
-                        sale={150}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={300}
-                        sale={150}
-                    />
-                </div>
-            </section>
+            <FeaturedProducts />
+
         </>
     )
 }
