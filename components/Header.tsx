@@ -109,7 +109,7 @@ export function Header() {
                                     <li className="inline">
                                         <Link
                                             href="/shop"
-                                            className="cursor-pointer px-[15px] py-[10px] transition duration-300 hover:text-red-600"
+                                            className="cursor-pointer px-[15px] py-[10px] transition duration-300 text-11black hover:text-red-600"
                                         >
                                             Shop
                                         </Link>
@@ -117,7 +117,7 @@ export function Header() {
                                     <li className="inline">
                                         <Link
                                             href="/brands"
-                                            className="cursor-pointer px-[15px] py-[10px] transition duration-300 hover:text-red-600"
+                                            className="cursor-pointer px-[15px] py-[10px] transition duration-300 text-11black hover:text-red-600"
                                         >
                                             Brands
                                         </Link>
@@ -125,7 +125,7 @@ export function Header() {
                                     <li className="relative inline cursor-pointer transition duration-300 hover:text-red-600">
                                         <Link
                                             href="/"
-                                            className="px-[15px] py-[10px]"
+                                            className="px-[15px] py-[10px] text-11black"
                                         >
                                             Sale
                                         </Link>

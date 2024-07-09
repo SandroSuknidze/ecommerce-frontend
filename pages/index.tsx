@@ -54,7 +54,7 @@ function Index() {
                             <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
                             md:ml-[10px] md:text-left md:w-full z-10">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                <h2 className="text-[73px] leading-[84px] text-11black lg:text-[45px] lg:leading-[51px]
                                 md:!text-[36px] md:!leading-[41px] xs:text-white">Stylish<br />Top Trending</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px]
                                  xs:text-white">So soft, you don&apos;t want to
@@ -69,7 +69,7 @@ function Index() {
                             <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
                             md:ml-[10px] md:text-left md:w-full z-10">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                <h2 className="text-[73px] leading-[84px] text-11black lg:text-[45px] lg:leading-[51px]
                                 md:!text-[36px] md:!leading-[41px] xs:text-white">Hulton<br />Perfect Simple</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px] xs:text-white">So
                                     soft, you don&apos;t want to
@@ -84,7 +84,7 @@ function Index() {
                             <div className="fixed inset-0 bg-black opacity-20 hidden sm:block"></div>
                             <div className="w-1/2 flex flex-col justify-center ml-[100px] mb-[100px]
                                         md:ml-[10px] md:text-left md:w-full z-10">
-                                <h2 className="text-[73px] leading-[84px] lg:text-[45px] lg:leading-[51px]
+                                <h2 className="text-[73px] leading-[84px] text-11black lg:text-[45px] lg:leading-[51px]
                                 md:!text-[36px] md:!leading-[41px] xs:text-white">Online<br />Limited Edition</h2>
                                 <p className="leading-[24px] text-55black mt-[20px] lg:text-[16px] xs:text-white">So soft, you
                                     don&apos;t want to
@@ -185,7 +185,7 @@ function Index() {
             <section>
                 <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
-                        <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
+                        <h2 className="mb-[5px] text-center text-[40px] md:text-[30px] text-11black">
                             New Arrivals
                         </h2>
                         <p className="text-center text-55black">
