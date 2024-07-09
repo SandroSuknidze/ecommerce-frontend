@@ -1,8 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import { CSSProperties, useState } from 'react'
+import { CSSProperties, Fragment, useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import 'swiper/css'
 import 'swiper/css/free-mode'
@@ -37,6 +37,9 @@ import collection4 from '@/public/assets/collections/collection4.webp'
 import collection5 from '@/public/assets/collections/collection5.webp'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import FeaturedProducts from '@/components/FeaturedProducts'
+import { brands } from '@/pages/shop/[productCategoryId]'
+import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListItem'
+import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 
 function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -51,6 +54,10 @@ function ProductId() {
     const [isSizeGuidModalOpen, setIsSizeGuidModalOpen] = useState(false)
     const [isAskQuestionModalOpen, setIsAskQuestionModalOpen] = useState(false)
     const [isShareModalOpen, setIsShareModalOpen] = useState(false)
+
+    const [isDescriptionOpen, setIsDescriptionOpen] = useState(false)
+    const [isShippingOpen, setIsShippingOpen] = useState(false)
+    const [isReturnOpen, setIsReturnOpen] = useState(false)
 
 
     type Section = 1 | 2 | 3;
@@ -79,6 +86,18 @@ function ProductId() {
 
     function toggleShareModal() {
         setIsShareModalOpen(!isShareModalOpen)
+    }
+
+    function toggleDescription() {
+        setIsDescriptionOpen(!isDescriptionOpen)
+    }
+
+    function toggleShipping() {
+        setIsShippingOpen(!isShippingOpen)
+    }
+
+    function toggleReturn() {
+        setIsReturnOpen(!isReturnOpen)
     }
 
 
@@ -366,7 +385,7 @@ function ProductId() {
                                     <button
                                         type="submit"
                                         className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px]
-                                    py-[14px] text-[12px] font-semibold uppercase text-white md:w-full sm:px-[30px] sm:w-full"
+                                    py-[14px] text-[12px] font-semibold uppercase text-white xl:w-full xl:px-[45px] sm:!px-[30px] sm:w-full"
                                     >
                                         Add To Cart
                                     </button>
@@ -422,8 +441,8 @@ function ProductId() {
                     </div>
                 </div>
             </div>
-            <section className="border-y-[1px] border-[#ebebeb] py-[100px] px-[30px] md:px-[15px]">
-                <div className="m-auto max-w-[1290px]">
+            <section className="border-y-[1px] border-[#ebebeb] py-[100px] px-[30px] md:px-[15px] lg:py-[60px]">
+                <div className="m-auto max-w-[1290px] lg:hidden">
                     <ul className="mb-[45px] flex justify-center gap-[20px]">
                         <li
                             onClick={() => setSection(1)}
@@ -623,9 +642,255 @@ function ProductId() {
                         </motion.div>
                     )}
                 </div>
+
+
+
+                <div className="overflow-hidden hidden lg:block">
+                    <div
+                        onClick={() => toggleDescription()}
+                        className="mb-[10px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
+                    >
+                        <h4 className="font-medium text-11black">Description</h4>
+                        <div className="relative">
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className="text-87black"
+                            />
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className={`${isDescriptionOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                            />
+                        </div>
+                    </div>
+                    <AnimatePresence initial={false}>
+                        {isDescriptionOpen && (
+                            <motion.section
+                                initial={{ height: 0 }}
+                                animate={{ height: 'auto' }}
+                                exit={{ height: 0 }}
+                                transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                            >
+                                <div className="pb-[20px] px-[15px]">
+                                    <div className="flex w-full gap-[30px] flex-col">
+                                        <div className="w-full">
+                                            <h2 className="mb-[10px] text-[20px] font-medium">
+                                                Outstanding Features
+                                            </h2>
+                                            <p className="leading-[28px] text-55black">
+                                                The garments labelled as committed
+                                                are products that have been produced
+                                                using sustainable fibres or
+                                                processes, reducing their
+                                                environmental impact. Umino’s goal
+                                                is to support the implementation of
+                                                practices more committed to the
+                                                environment.
+                                            </p>
+                                            <br />
+                                            <p className="leading-[28px] text-55black">
+                                                – Tonal stitching: 98% cotton, 2%
+                                                elastane.
+                                            </p>
+                                            <p className="leading-[28px] text-55black">
+                                                – Supple and stretch knit with a
+                                                rich touch of wool.
+                                            </p>
+                                            <p className="leading-[28px] text-55black">
+                                                – Model: Model is 6′1″, wearing a
+                                                size M.
+                                            </p>
+                                            <p className="leading-[28px] text-55black">
+                                                – Caring for your clothes is caring
+                                                for the environment.
+                                            </p>
+                                        </div>
+                                        <div className="w-full">
+                                            <h2 className="mb-[10px] text-[20px] font-medium">
+                                                Outstanding Features
+                                            </h2>
+                                            <div className="mb-[15px] flex gap-[10px]">
+                                                <Image src={washIcon} alt="Wash" />
+                                                <p className="leading-[28px] text-55black">
+                                                    Machine wash max. 30ºC. Short
+                                                    spin.
+                                                </p>
+                                            </div>
+                                            <div className="mb-[15px] flex gap-[10px]">
+                                                <Image src={ironIcon} alt="Iron" />
+                                                <p className="leading-[28px] text-55black">
+                                                    Iron maximum 110ºC.
+                                                </p>
+                                            </div>
+                                            <div className="mb-[15px] flex gap-[10px]">
+                                                <Image
+                                                    src={bleachIcon}
+                                                    alt="Bleach"
+                                                />
+                                                <p className="leading-[28px] text-55black">
+                                                    Do not bleach/bleach.
+                                                </p>
+                                            </div>
+                                            <div className="mb-[15px] flex gap-[10px]">
+                                                <Image src={dryIcon} alt="Dry" />
+                                                <p className="leading-[28px] text-55black">
+                                                    Do not dry clean.
+                                                </p>
+                                            </div>
+                                            <div className="mb-[15px] flex gap-[10px]">
+                                                <Image
+                                                    src={tumbleIcon}
+                                                    alt="Tumble"
+                                                />
+                                                <p className="leading-[28px] text-55black">
+                                                    Tumble dry, medium hear.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div className="leading-[28px] text-55black">
+                                        We work with monitoring programmes to ensure
+                                        compliance with our social, environmental
+                                        and health and safety standards for our
+                                        garments. To assess compliance, we have
+                                        developed a programme of audits and
+                                        continuous improvement plans. Made of
+                                        super-soft cotton, the Organic Cotton
+                                        Cutaway Tank features a high neck and back,
+                                        and a slight curve at the shoulders, which
+                                        makes it extra flattering. If there’s one
+                                        thing the ’90s got right, it’s the basics.
+                                    </div>
+                                </div>
+
+                            </motion.section>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+
+                <div className="overflow-hidden hidden lg:block">
+                    <div
+                        onClick={() => toggleShipping()}
+                        className="mb-[10px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
+                    >
+                        <h4 className="font-medium text-11black">Shipping & Returns</h4>
+                        <div className="relative">
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className="text-87black"
+                            />
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className={`${isShippingOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                            />
+                        </div>
+                    </div>
+                    <AnimatePresence initial={false}>
+                        {isShippingOpen && (
+                            <motion.section
+                                initial={{ height: 0 }}
+                                animate={{ height: 'auto' }}
+                                exit={{ height: 0 }}
+                                transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                            >
+                                <div className="pb-[20px] px-[15px]">
+                                    <p className="mb-[15px] leading-[28px] text-55black">
+                                        For all orders exceeding a value of 100USD
+                                        shipping is offered for free.
+                                    </p>
+                                    <p className="mb-[15px] leading-[28px] text-55black">
+                                        Returns will be accepted for up to 10 days
+                                        of Customer’s receipt or tracking number on
+                                        unworn items. You, as a Customer, are
+                                        obliged to inform us via email before you
+                                        return the item.
+                                    </p>
+                                    <p className="mb-[15px] leading-[28px] text-55black">
+                                        Otherwise, standard shipping charges apply.
+                                        Check out our delivery
+                                        <Link href="/" className="text-11black">
+                                            {' '}
+                                            Terms & Conditions
+                                        </Link>{' '}
+                                        for more details.
+                                    </p>
+                                </div>
+
+                            </motion.section>
+                        )}
+                    </AnimatePresence>
+                </div>
+
+
+
+                <div className="overflow-hidden hidden lg:block">
+                    <div
+                        onClick={() => toggleReturn()}
+                        className="mb-[20px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
+                    >
+                        <h4 className="font-medium text-11black">Return Policies</h4>
+                        <div className="relative">
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className="text-87black"
+                            />
+                            <FontAwesomeIcon
+                                icon={faMinus}
+                                className={`${isReturnOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                            />
+                        </div>
+                    </div>
+                    <AnimatePresence initial={false}>
+                        {isReturnOpen && (
+                            <motion.section
+                                initial={{ height: 0 }}
+                                animate={{ height: 'auto' }}
+                                exit={{ height: 0 }}
+                                transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                            >
+                                <div className="pb-[20px] px-[15px]">
+                                    <p className="mb-[15px] leading-[28px] text-55black">
+                                        Returns will be accepted for up to 10 days
+                                        of Customer’s receipt or tracking number on
+                                        unworn items. You, as a Customer, are
+                                        obliged to inform us via email before you
+                                        return the item, only in the case of:
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        – Received the wrong item.
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        – Item arrived not as expected (ie. damaged
+                                        packaging).
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        – Item had defects.
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        – Over delivery time.
+                                    </p>
+                                    <p className="mb-[15px] leading-[28px] text-55black">
+                                        – The shipper does not allow the goods to be
+                                        inspected before payment.
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        The returned product(s) must be in the
+                                        original packaging, safety wrapped,
+                                        undamaged and unworn. This means that the
+                                        item(s) must be safely packed in a carton
+                                        box for protection during transport,
+                                        possibly the same carton used to ship to you
+                                        as a customer.
+                                    </p>
+                                </div>
+                            </motion.section>
+                        )}
+                    </AnimatePresence>
+                </div>
             </section>
             <FeaturedProducts />
-
         </>
     )
 }
