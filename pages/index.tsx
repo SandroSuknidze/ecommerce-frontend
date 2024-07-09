@@ -1,3 +1,7 @@
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+config.autoAddCss = false;
+
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectFade, Navigation, Pagination } from 'swiper/modules'
 
@@ -6,6 +10,7 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/swiper-bundle.css';
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
