@@ -28,7 +28,7 @@ function Search({ toggleSearch }: SearchProps) {
                     <div className="flex cursor-pointer justify-end">
                         <FontAwesomeIcon
                             icon={faXmark}
-                            className="absolute right-[22px] top-[30px] h-[22px] w-[22px] text-gray-400 transition duration-300 hover:text-black"
+                            className="absolute right-[22px] top-[30px] h-[22px] w-[22px] text-gray-400 transition duration-300 hover:text-17black"
                             onClick={() => toggleSearch()}
                         />
                     </div>

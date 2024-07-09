@@ -176,7 +176,7 @@ function ProductCategoryId() {
                             onClick={toggleBrand}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
-                            <h4 className="text-[18px] font-medium text-black">Brand</h4>
+                            <h4 className="text-[18px] font-medium text-17black">Brand</h4>
                             <div className="relative">
                                 <FontAwesomeIcon
                                     icon={faMinus}
@@ -221,7 +221,7 @@ function ProductCategoryId() {
                             onClick={toggleColor}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
-                            <h4 className="text-[18px] font-medium text-black">Color</h4>
+                            <h4 className="text-[18px] font-medium text-17black">Color</h4>
                             <div className="relative">
                                 <FontAwesomeIcon
                                     icon={faMinus}
@@ -266,7 +266,7 @@ function ProductCategoryId() {
                             onClick={togglePrice}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
-                            <h4 className="text-[18px] font-medium text-black">Price</h4>
+                            <h4 className="text-[18px] font-medium text-17black">Price</h4>
                             <div className="relative">
                                 <FontAwesomeIcon
                                     icon={faMinus}
@@ -327,7 +327,7 @@ function ProductCategoryId() {
                             onClick={toggleSize}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
-                            <h4 className="text-[18px] font-medium text-black">Size</h4>
+                            <h4 className="text-[18px] font-medium text-17black">Size</h4>
                             <div className="relative">
                                 <FontAwesomeIcon
                                     icon={faMinus}

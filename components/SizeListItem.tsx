@@ -13,7 +13,7 @@ const SizeListItem = (({ id, name, isChecked, onChange }: SizeListItemProps) => 
             <div className={`cursor-pointer flex select-none`}
                  onClick={() => onChange(isChecked, id)}>
                 <div
-                    className={`${isChecked ? 'bg-black text-white' : 'bg-white text-black'} cursor-pointer rounded-[3px] 
+                    className={`${isChecked ? 'bg-black text-white' : 'bg-white text-17black'} cursor-pointer rounded-[3px] 
                     border-[1px] border-[#ebebeb] px-[15px] py-[3px] transition duration-500`}
                 >
                     {' '}
