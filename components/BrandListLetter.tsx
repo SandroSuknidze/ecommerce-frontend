@@ -20,7 +20,7 @@ function BrandListLetter({ letter, available, selected, setSelected }: BrandList
                  onClick={handleClick}
             >
                 <h4 className={`text-[12px] ${selected === letter ? 'text-white' : 'text-11black'}
-                                      ${!available && 'text-87black'}
+                                      ${!available && 'text-[#ebebeb]'}
                                 min-w-[22px] text-center font-semibold uppercase`}>
                     {letter}
                 </h4>

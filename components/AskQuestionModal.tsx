@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { TextareaInputForm } from './TextareaInputForm'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useLockBodyScroll } from 'react-use'
 
 interface AskQuestionModalProps {
     toggleAskQuestionModal: () => void,
@@ -16,6 +17,8 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
         handleSubmit,
         formState: { errors },
     } = useForm()
+
+    useLockBodyScroll(true)
 
     const onSubmit = (data: any) => {
         console.log(data)
@@ -32,7 +35,8 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                 className="fixed inset-0 z-[60] cursor-close bg-black opacity-50"
                 onClick={() => toggleAskQuestionModal()}
             ></div>
-            <div className="fixed left-1/2 top-1/2 z-[61] h-[568px] w-[600px] -translate-x-1/2 -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
+            <div className="fixed left-1/2 top-1/2 z-[61] max-h-[568px] max-w-[600px] w-[85%] h-[85%] -translate-x-1/2
+                -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
                 <div className="flex w-full justify-center border-b-[1px] border-[#ebebeb] p-[20px] leading-[20px]">
                     <h3 className="text-[20px] font-medium text-11black">
                         Ask A Question
@@ -45,14 +49,14 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                     />
                 </div>
 
-                <div className="px-[40px] py-[35px]">
+                <div className="px-[40px] py-[35px] overflow-y-auto lg:px-[30px] md:!px-[15px] ">
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         method="post"
                         className="flex w-full flex-col"
                     >
-                        <div className="flex w-full">
-                            <div className="w-full mr-[15px]">
+                        <div className="flex w-full lg:flex-col">
+                            <div className="w-full mr-[15px] lg:mr-0">
                                 <InputForm
                                     name="Name"
                                     type="text"

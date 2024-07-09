@@ -111,12 +111,14 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                         alt=""
                                         width="30"
                                         className="cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red"
+                                        onClick={toggleBurgerMenu}
                                     />
                                     <Image
                                         src={geo}
                                         alt=""
                                         width="30"
                                         className="cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red"
+                                        onClick={toggleBurgerMenu}
                                     />
                                 </div>
                             </li>
