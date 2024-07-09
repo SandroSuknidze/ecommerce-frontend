@@ -19,7 +19,7 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
+  /*color: rgb(var(--foreground-rgb));*/
   font-family: 'Jost', sans-serif;
 }
 
