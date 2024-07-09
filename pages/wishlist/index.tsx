@@ -6,7 +6,7 @@ import { Empty } from '@/components/Empty'
 function Index() {
     return (
         <>
-            <div className="max-w-[1290px] m-auto px-[15px]">
+            <div className="max-w-[1290px] m-auto px-[15px] md:px-0">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[59px] mb-[5px] text-[45px]">Wishlist</h1>
                     <nav>
@@ -18,7 +18,7 @@ function Index() {
                         </ol>
                     </nav>
                 </div>
-                <div className="grid grid-cols-4">
+                <div className="grid grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 justify-center">
                     <CollectionCard
                         title={'Square Textured Striped'}
                         imageSrc={collection2}
