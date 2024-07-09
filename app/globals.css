@@ -18,6 +18,10 @@
   }
 }
 
+.html {
+  color: theme('colors.11black');
+}
+
 body {
   /*color: rgb(var(--foreground-rgb));*/
   font-family: 'Jost', sans-serif;
