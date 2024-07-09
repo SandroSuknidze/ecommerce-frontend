@@ -1,23 +1,20 @@
-import { useState } from 'react'
+import { memo } from 'react'
 
 interface SizeListItemProps {
+    id: number,
     name: string,
-    quantity: number,
-}
+    isChecked: boolean,
+    onChange: (isChecked: boolean, id: number) => void;}
 
-export function SizeListItem({ name, quantity }: SizeListItemProps) {
-    const [isChecked, setIsChecked] = useState(false)
-
-    const handleCheckboxClick = () => {
-        setIsChecked(!isChecked);
-    }
+const SizeListItem = (({ id, name, isChecked, onChange }: SizeListItemProps) => {
 
     return (
         <li className={`flex h-[34px]`}>
-            <div className={`${quantity <= 0 ? '' : 'cursor-pointer'} flex select-none`}
-                 onClick={quantity > 0 ? handleCheckboxClick : undefined}>
+            <div className={`cursor-pointer flex select-none`}
+                 onClick={() => onChange(isChecked, id)}>
                 <div
-                    className={`${isChecked ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[15px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
+                    className={`${isChecked ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] 
+                    border-[1px] border-[#ebebeb] px-[15px] py-[3px] transition duration-500`}
                 >
                     {' '}
                     {name}
@@ -25,4 +22,6 @@ export function SizeListItem({ name, quantity }: SizeListItemProps) {
             </div>
         </li>
     )
-}
+})
+
+export const MemoizedSizeListItem = memo(SizeListItem)

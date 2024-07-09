@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo } from 'react'
 
 interface BrandListItemProps {
     id: number,
@@ -7,15 +7,13 @@ interface BrandListItemProps {
     onChange: any,
     isChecked: boolean,
 }
-export function BrandListItem({ id, name, quantity, onChange, isChecked }: BrandListItemProps) {
+const BrandListItem = ({ id, name, quantity, onChange, isChecked }: BrandListItemProps) => {
 
-    console.log(isChecked)
+    // console.log(isChecked)
 
     return (
         <li className={`mb-[7px] flex h-[28px] overflow-hidden`}>
-            <div className={`${quantity <= 0 ? '' : 'cursor-pointer'} flex select-none`}
-                 // onClick={quantity > 0 ? handleCheckboxClick : undefined}
-            >
+            <div className={`${quantity <= 0 ? '' : 'cursor-pointer'} flex select-none`}>
                 <div className="mr-[10px]">
                     <input
                         type="checkbox"
@@ -35,3 +33,5 @@ export function BrandListItem({ id, name, quantity, onChange, isChecked }: Brand
         </li>
     )
 }
+
+export const MemoizedBrandListItem = memo(BrandListItem);

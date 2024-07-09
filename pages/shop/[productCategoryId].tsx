@@ -1,21 +1,17 @@
 import { useRouter } from 'next/router'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Fragment, SetStateAction, useEffect, useState } from 'react'
+import { Fragment, useCallback, useEffect, useState } from 'react'
 import { Slider } from '@mui/material'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { categories } from '@/pages/shop/index'
-import { BrandListItem } from '@/components/BrandListItem'
-import { ColorListItem } from '@/components/ColorListItem'
-import { SizeListItem } from '@/components/SizeListItem'
-// import { useQueryState } from 'nuqs'
-// import { useSearchParams } from 'next/navigation'
-// export { getServerSideProps } from 'use-location-state/next'
-
-import { parseAsArrayOf, parseAsInteger, parseAsString, useQueryState } from 'nuqs'
+import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListItem'
+import { MemoizedColorListItem as ColorListItem } from '@/components/ColorListItem'
+import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem'
+import { parseAsArrayOf, parseAsInteger, useQueryState } from 'nuqs'
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -59,10 +55,17 @@ export const sizes = [
 function ProductCategoryId() {
     const router = useRouter()
     const { productCategory } = router.query
-    const [selectedBrands, setSelectedBrands] = useQueryState<any>('brands',parseAsArrayOf(parseAsInteger).withDefault([]))
-    const [selectedColors, setSelectedColors] = useQueryState<any>('colors',parseAsArrayOf(parseAsInteger).withDefault([]))
     const [isBrandOpen, setIsBrandOpen] = useState(true)
-    const [value1, setValue1] = useState([0, 200])
+    const [isColorOpen, setIsColorOpen] = useState(true)
+    const [isPriceOpen, setIsPriceOpen] = useState(true)
+    const [isSizeOpen, setIsSizeOpen] = useState(true)
+
+    const [selectedBrands, setSelectedBrands] = useQueryState<number[]>('brands', parseAsArrayOf(parseAsInteger).withDefault([]))
+    const [selectedColors, setSelectedColors] = useQueryState<number[]>('colors', parseAsArrayOf(parseAsInteger).withDefault([]))
+    const [selectedPrices, setSelectedPrices] = useQueryState<number[]>('price', parseAsArrayOf(parseAsInteger).withDefault([]))
+    const [value1, setValue1] = useState<number[]>([0, 200])
+    const [selectedSizes, setSelectedSizes] = useQueryState<number[]>('size', parseAsArrayOf(parseAsInteger).withDefault([]))
+
 
     function getCategoryName() {
         return categories.find(
@@ -74,70 +77,89 @@ function ProductCategoryId() {
         setIsBrandOpen(!isBrandOpen)
     }
 
+    function toggleColor() {
+        setIsColorOpen(!isColorOpen)
+    }
+
+    function togglePrice() {
+        setIsPriceOpen(!isPriceOpen)
+    }
+
+    function toggleSize() {
+        setIsSizeOpen(!isSizeOpen)
+    }
+
     function valuetext(value: number) {
         return `$${value}`
     }
 
-    const minDistance = 20
 
     // @ts-ignore
-    const handleChange1 = (event, newValue, activeThumb) => {
+    const handleChangePrice = useCallback((event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
             return
         }
+
+        const minDistance = 0
 
         if (activeThumb === 0) {
             setValue1([
                 Math.min(newValue[0], value1[1] - minDistance),
                 value1[1],
             ])
+
         } else {
             setValue1([
                 value1[0],
                 Math.max(newValue[1], value1[0] + minDistance),
             ])
+
         }
-    }
+        console.log('hii')
+        setSelectedPrices([newValue[0], newValue[1]]);
 
+    }, [setSelectedPrices, value1])
 
+    // Initialize value1 based on selectedPrices from URL
     useEffect(() => {
+        if (selectedPrices.length > 0) {
+            setValue1(selectedPrices)
+        }
+    }, [selectedPrices])
+
+    const handleChangeBrand = useCallback((event: { target: { value: string; checked: boolean; }; }) => {
+        console.log('brand')
+        const value = Number(event.target.value)
         const numberBrands = selectedBrands?.map(Number)
-
-        console.log(numberBrands)
-
-        console.log("heeyyyy", selectedBrands);
-
-    }, [selectedBrands])
-
-    const handleChange = (event: { target: { value: any; checked: any; }; }) => {
-        console.log("test");
-        const value = Number(event.target.value);
-        const numberBrands = selectedBrands?.map(Number);
-        console.log(numberBrands)
         const updatedBrands = event.target.checked
             ? [...numberBrands, value]
-            : numberBrands.filter((id: number) => id !== value);
+            : numberBrands.filter((id: number) => id !== value)
 
-        setSelectedBrands(updatedBrands);
+        setSelectedBrands(updatedBrands.length > 0 ? updatedBrands : null);
 
+    }, [selectedBrands, setSelectedBrands])
 
-    };
-
-    const handleChangeColor = (isChecked: any, id: any) => {
-        console.log("test");
-        console.log(id);
-        // const value = Number(event.target.value);
-        const numberColors = selectedColors?.map(Number);
-        console.log(numberColors)
+    const handleChangeColor = useCallback((isChecked: boolean, id: number) => {
+        console.log('color')
+        const numberColors = selectedColors?.map(Number)
         const updatedColors = !isChecked
             ? [...numberColors, id]
-            : numberColors.filter((color_id: number) => color_id !== id);
+            : numberColors.filter((color_id: number) => color_id !== id)
 
-        setSelectedColors(updatedColors);
+        setSelectedColors(updatedColors.length > 0 ? updatedColors : null);
 
+    }, [selectedColors, setSelectedColors])
 
-    };
+    const handleChangeSize = useCallback((isChecked: boolean, id: number) => {
+        console.log('size')
+        const numberSizes = selectedSizes?.map(Number)
+        const updatedSizes = !isChecked
+            ? [...numberSizes, id]
+            : numberSizes.filter((size_id: number) => size_id !== id)
 
+        setSelectedSizes(updatedSizes.length > 0 ? updatedSizes : null);
+
+    }, [selectedSizes, setSelectedSizes])
 
 
     return (
@@ -149,7 +171,7 @@ function ProductCategoryId() {
 
             <div className="mx-auto mt-[50px] flex max-w-[1410px]">
                 <div className="w-1/4 px-[30px]">
-                    <div className="mb-[30px] border-b-[1px] pb-[20px] border-[#ebebeb]">
+                    <div className="mb-[20px] border-b-[1px] pb-[20px] border-[#ebebeb]">
                         <div
                             onClick={toggleBrand}
                             className="mb-[20px] flex cursor-pointer justify-between"
@@ -166,11 +188,6 @@ function ProductCategoryId() {
                                 />
                             </div>
                         </div>
-                        <h1>Hello, {selectedBrands || 'anonymous visitor'}!</h1>
-                        <input value={selectedBrands || ''} onChange={e => setSelectedBrands(e.target.value)} />
-                        <input value={selectedBrands || ''} onChange={e => setSelectedBrands([...selectedBrands, e.target.value])} />
-                        <button onClick={() => setSelectedBrands([])}>Clear</button>
-                        <button onClick={() => setSelectedBrands([...selectedBrands, 3])}>Clear</button>
                         <ul className="max-h-[240px] overflow-y-scroll scrollbar">
                             <AnimatePresence initial={false}>
                                 {isBrandOpen && (
@@ -180,7 +197,6 @@ function ProductCategoryId() {
                                         exit={{ height: 0 }}
                                         transition={{ type: 'spring', duration: 1, bounce: 0 }}
                                     >
-
                                         {brands.map((brand) => {
                                             return (
                                                 <Fragment key={brand.id}>
@@ -189,7 +205,7 @@ function ProductCategoryId() {
                                                         id={brand.id}
                                                         name={brand.name}
                                                         quantity={brand.quantity}
-                                                        onChange={handleChange}
+                                                        onChange={handleChangeBrand}
                                                     />
                                                 </Fragment>
                                             )
@@ -200,9 +216,9 @@ function ProductCategoryId() {
                         </ul>
 
                     </div>
-                    <div className="border-b-[1px] mb-[30px] pb-[20px] border-[#ebebeb]">
+                    <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                         <div
-                            // onClick={toggleBrand}
+                            onClick={toggleColor}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
                             <h4 className="text-[18px] font-medium">Color</h4>
@@ -213,32 +229,41 @@ function ProductCategoryId() {
                                 />
                                 <FontAwesomeIcon
                                     icon={faMinus}
-                                    className={`${isBrandOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                                    className={`${isColorOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
                                 />
                             </div>
                         </div>
-                        <ul className="max-h-[240px] flex gap-[10px] flex-wrap">
-                            {colors.map((color) => {
-                                return (
-                                    <ColorListItem
-                                        isChecked={selectedColors?.map(Number).includes(color.id)}
-                                        id={color.id}
-
-                                        key={color.id}
-                                        name={color.name}
-                                        quantity={color.quantity}
-                                        onChange={handleChangeColor}
-
-                                    />
-                                )
-                            })}
+                        <ul className="max-h-[240px] overflow-hidden">
+                            <AnimatePresence initial={false}>
+                                {isColorOpen && (
+                                    <motion.section
+                                        initial={{ height: 0 }}
+                                        animate={{ height: 'auto' }}
+                                        exit={{ height: 0 }}
+                                        transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                                        className="flex gap-[10px] flex-wrap"
+                                    >
+                                        {colors.map((color) => {
+                                            return (
+                                                <ColorListItem
+                                                    isChecked={selectedColors?.map(Number).includes(color.id)}
+                                                    id={color.id}
+                                                    key={color.id}
+                                                    name={color.name}
+                                                    onChange={handleChangeColor}
+                                                />
+                                            )
+                                        })}
+                                    </motion.section>
+                                )}
+                            </AnimatePresence>
                         </ul>
 
                     </div>
 
-                    <div className="border-b-[1px] mb-[30px] pb-[20px] border-[#ebebeb]">
+                    <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                         <div
-                            // onClick={toggleBrand}
+                            onClick={togglePrice}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
                             <h4 className="text-[18px] font-medium">Price</h4>
@@ -249,46 +274,57 @@ function ProductCategoryId() {
                                 />
                                 <FontAwesomeIcon
                                     icon={faMinus}
-                                    className={`${isBrandOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                                    className={`${isPriceOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
                                 />
                             </div>
                         </div>
-                        <div>
-                            <div className="text-center">
-                                <Slider
-                                    getAriaLabel={() => 'Minimum distance'}
-                                    value={value1}
-                                    onChange={handleChange1}
-                                    valueLabelDisplay="auto"
-                                    getAriaValueText={valuetext}
-                                    disableSwap
-                                    max={200}
-                                    sx={{
-                                        color: 'black',
-                                        width: '94%',
-                                        '& .MuiSlider-thumb:hover': {
-                                            boxShadow:
-                                                '0 0 0 6px rgba(135, 135, 135, 0.5) !important',
-                                        },
-                                        '& .MuiSlider-thumb.Mui-focusVisible': {
-                                            boxShadow:
-                                                '0 0 0 6px transparent !important',
-                                        },
-                                    }}
-                                />
-                            </div>
+                        <div className="overflow-hidden">
+                            <AnimatePresence initial={false}>
+                                {isPriceOpen && (
+                                    <motion.section
+                                        initial={{ height: 0 }}
+                                        animate={{ height: 'auto' }}
+                                        exit={{ height: 0 }}
+                                        transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                                    >
+                                        <div className="text-center">
+                                            <Slider
+                                                getAriaLabel={() => 'Minimum distance'}
+                                                value={value1}
+                                                onChange={handleChangePrice}
+                                                valueLabelDisplay="auto"
+                                                getAriaValueText={valuetext}
+                                                max={200}
+                                                sx={{
+                                                    color: 'black',
+                                                    width: '91%',
+                                                    '& .MuiSlider-thumb:hover': {
+                                                        boxShadow:
+                                                            '0 0 0 0px rgba(135, 135, 135, 0.5) !important',
+                                                    },
+                                                    '& .MuiSlider-thumb.Mui-focusVisible': {
+                                                        boxShadow:
+                                                            '0 0 0 0px transparent !important',
+                                                    },
+                                                }}
+                                            />
 
-                            <div className="text-55black mt-[10px]">Price:&nbsp;
-                                <span className="text-11black font-medium">
-                                    ${value1[0].toFixed(2)} - ${value1[1].toFixed(2)}
-                                </span>
-                            </div>
+                                        </div>
+
+                                        <div className="text-55black mt-[10px]">Price:&nbsp;
+                                            <span className="text-11black font-medium">
+                                                ${value1[0]?.toFixed(2)} - ${value1[1]?.toFixed(2)}
+                                            </span>
+                                        </div>
+                                    </motion.section>
+                                )}
+                            </AnimatePresence>
                         </div>
                     </div>
 
-                    <div className="border-b-[1px] mb-[30px] pb-[30px] border-[#ebebeb]">
+                    <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                         <div
-                            // onClick={toggleBrand}
+                            onClick={toggleSize}
                             className="mb-[20px] flex cursor-pointer justify-between"
                         >
                             <h4 className="text-[18px] font-medium">Size</h4>
@@ -299,29 +335,41 @@ function ProductCategoryId() {
                                 />
                                 <FontAwesomeIcon
                                     icon={faMinus}
-                                    className={`${isBrandOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
+                                    className={`${isSizeOpen ? 'opacity-0' : 'opacity-100'} absolute left-0 top-[3px] rotate-90 text-87black transition duration-500`}
                                 />
                             </div>
                         </div>
                         <div>
-                            <ul className="max-h-[240px] flex gap-[10px] flex-wrap">
-                                {sizes.map((size) => {
-                                    return (
-                                        <SizeListItem
-                                            key={size.id}
-                                            name={size.name}
-                                            quantity={size.quantity}
-                                        />
-                                    )
-                                })}
+                            <ul className="max-h-[240px] overflow-y-hidden">
+                                <AnimatePresence initial={false}>
+                                    {isSizeOpen && (
+                                        <motion.section
+                                            initial={{ height: 0 }}
+                                            animate={{ height: 'auto' }}
+                                            exit={{ height: 0 }}
+                                            transition={{ type: 'spring', duration: 1, bounce: 0 }}
+                                            className="flex gap-[10px] flex-wrap"
+                                        >
+                                            {sizes.map((size) => {
+                                                return (
+                                                    <SizeListItem
+                                                        isChecked={selectedSizes?.map(Number).includes(size.id)}
+                                                        key={size.id}
+                                                        id={size.id}
+                                                        name={size.name}
+                                                        onChange={handleChangeSize}
+                                                    />
+                                                )
+                                            })}
+                                        </motion.section>
+                                    )}
+                                </AnimatePresence>
                             </ul>
                         </div>
                     </div>
-
-
                 </div>
                 <div className="w-3/4">
-                    <div className="text-55black pl-[15px] mb-[30px]">There are 30 results in total</div>
+                    <div className="text-55black pl-[15px] mb-[40px]">There are 30 results in total</div>
                     <div className="grid grid-cols-3 pr-[15px]">
                         <CollectionCard
                             title={'Square Textured Striped'}

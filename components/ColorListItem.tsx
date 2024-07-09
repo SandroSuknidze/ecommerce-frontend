@@ -1,34 +1,29 @@
-import { useState } from 'react'
+import { memo } from 'react'
 
 interface ColorListItemProps {
     id: number,
     name: string,
-    quantity: number,
-    isChecked?: boolean,
-    onChange?: any,
+    isChecked: boolean,
+    onChange: (isChecked: boolean, id: number) => void;
 }
 
-export function ColorListItem({ id, name, quantity, isChecked, onChange }: ColorListItemProps) {
-
-    // const [isChecked, setIsChecked] = useState(false)
-    //
-    // const handleCheckboxClick = () => {
-    //     setIsChecked(!isChecked);
-    // }
-
+const ColorListItem = (({ id, name, isChecked, onChange }: ColorListItemProps) => {
+    // console.log("id", id, "isChecked", isChecked);
     return (
         <li className={`flex h-[34px]`}>
-            <div className={`${quantity <= 0 ? '' : 'cursor-pointer'} flex select-none`}
-                 onClick={quantity > 0 ? () => onChange(isChecked, id) : undefined}
-
+            <div className="cursor-pointer flex select-none"
+                 onClick={() => onChange(isChecked, id)}
             >
                 <div
                     style={{ background: `${name}` }}
-                    className={`${isChecked && 'border-4'} h-[34px] w-[34px] cursor-pointer rounded-full border-[1px] border-87black transition duration-500 hover:border-black`}
+                    className={`${isChecked && 'border-black'} h-[34px] w-[34px] cursor-pointer rounded-full 
+                    border-[1px] border-[#ebebeb] transition duration-500`}
                 >
                     <div className="h-[32px] w-[32px] rounded-full border-2 border-white"></div>
                 </div>
             </div>
         </li>
     )
-}
+})
+
+export const MemoizedColorListItem = memo(ColorListItem);
