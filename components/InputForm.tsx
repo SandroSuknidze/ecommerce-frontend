@@ -4,15 +4,17 @@ interface InputFormProps {
     register: object,
     label?: boolean,
     errorMessage?: any,
+    disabled?: boolean,
 }
 
-function InputForm({ name, type, register, errorMessage, label=true }: InputFormProps) {
+function InputForm({ name, type, register, errorMessage, label=true, disabled=false }: InputFormProps) {
     return (
         <div className="mb-[10px] flex flex-col">
             {label && <label htmlFor="" className="pb-[5px] text-11black">
                 {name} <span className="text-red-600">*</span>
             </label>}
             <input type={type} placeholder={name} {...register}
+                   disabled={disabled}
                    className="px-[20px] py-[10px] text-[14px] placeholder:text-[#555555] leading-[28px]
                                focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300
                                transition duration-300 outline-0 border-[1px] border-[#ebebeb] rounded-[30px]"
