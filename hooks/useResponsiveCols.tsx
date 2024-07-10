@@ -21,12 +21,8 @@ function useResponsiveCols({ native, xl, lg, md, sm, xs }: useResponsiveColsProp
             } else if (window.innerWidth <= 768 && window.innerWidth >= 576) {
                 setNumCols(md);
             } else if (window.innerWidth <= 576 && window.innerWidth >= 480) {
-                console.log("sm");
-                console.log(window.innerWidth);
                 setNumCols(sm);
             } else if (window.innerWidth <= 480 && window.innerWidth >= 320) {
-                console.log("xs");
-                console.log(window.innerWidth);
                 setNumCols(xs);
             } else {
                 setNumCols(native);
