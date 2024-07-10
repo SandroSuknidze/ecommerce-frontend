@@ -28,8 +28,8 @@ function Index() {
                 </div>
             </div>
 
-            <div className="m-auto max-w-[1290px] md:px-[15px] mt-[50px]">
-                <div className="mb-[15px]">
+            <div className="m-auto max-w-[1290px] px-[15px] md:px-0 mt-[50px]">
+                <div className="mb-[15px] md:px-[15px]">
                     <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
                         Top Offers
                     </h2>
