@@ -37,6 +37,7 @@ import collection5 from '@/public/assets/collections/collection5.webp'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import FeaturedProducts from '@/components/FeaturedProducts'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
+import Rating from '@mui/material/Rating'
 
 function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -261,11 +262,7 @@ function ProductId() {
                             </h1>
                             <div className="flex text-[10px] leading-[28px]">
                                 <div>
-                                    <FontAwesomeIcon icon={faStar} />
-                                    <FontAwesomeIcon icon={faStar} />
-                                    <FontAwesomeIcon icon={faStar} />
-                                    <FontAwesomeIcon icon={faStar} />
-                                    <FontAwesomeIcon icon={faStar} />
+                                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
                                 </div>
                                 <div className="ml-[10px] text-[14px] text-55black">
                                     2 reviews
