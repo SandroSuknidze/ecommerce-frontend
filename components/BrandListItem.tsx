@@ -13,23 +13,22 @@ const BrandListItem = ({ id, name, quantity, onChange, isChecked }: BrandListIte
 
     return (
         <li className={`mb-[7px] flex h-[28px] overflow-hidden`}>
-            <div className={`${quantity <= 0 ? '' : 'cursor-pointer'} flex select-none`}>
+            <label  className={`${quantity <= 0 ? 'cursor-initial opacity-70' : 'cursor-pointer'} flex select-none`}>
                 <div className="mr-[10px]">
                     <input
                         type="checkbox"
                         name="brands"
-                        className={`${quantity <= 0 ? '' : 'cursor-pointer'} h-[28px] w-[18px] accent-black`}
-                        onClick={onChange}
+                        className="h-[28px] w-[18px] accent-black cursor-pointer"
+                        checked={isChecked}
+                        onChange={onChange}
                         disabled={quantity <= 0}
                         value={id}
-                        defaultChecked={isChecked}
                     />
                 </div>
-                <label htmlFor="brands" className={`${quantity <= 0 && 'cursor-initial opacity-70'} leading-[28px] text-55black`}>
-                    {name}{' '}
-                    <span className="text-[12px]">{`(${quantity})`}</span>
-                </label>
-            </div>
+                <span className="leading-[28px] text-55black">
+                    {name} <span className="text-[12px]">{`(${quantity})`}</span>
+                </span>
+            </label>
         </li>
     )
 }
