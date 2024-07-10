@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image, { StaticImageData } from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
@@ -25,7 +25,31 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
     }
 
     const [hovered, setHovered] = useState(false);
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
 
+    useEffect(() => {
+        const mediaQuery = window.matchMedia('(min-width: 992px)');
+        setIsLargeScreen(mediaQuery.matches);
+
+        const handleResize = () => setIsLargeScreen(mediaQuery.matches);
+        mediaQuery.addListener(handleResize);
+
+        return () => {
+            mediaQuery.removeListener(handleResize);
+        };
+    }, []);
+
+    const handleMouseEnter = () => {
+        if (isLargeScreen) {
+            setHovered(true);
+        }
+    };
+
+    const handleMouseLeave = () => {
+        if (isLargeScreen) {
+            setHovered(false);
+        }
+    };
     function func(){
         console.log("hi");
     }
@@ -34,8 +58,8 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
         <div className="mb-[40px] overflow-hidden rounded-xl px-[15px]">
             <div
                 className="relative max-h-[453px] max-w-full overflow-hidden rounded-xl"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
             >
                 <Link href={`/shop/products/1`} className="relative" >
                     <Image

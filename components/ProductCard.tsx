@@ -23,7 +23,7 @@ function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: Prod
                     toggleSearch()
                 }}>
                     <Image src={imageSrc} alt="collection"
-                           className="rounded-xl hover:scale-105 transition duration-300 cursor-pointer max-h-[313px] max-w-full overflow-hidden" />
+                           className="rounded-xl hover:scale-105 transition duration-300 cursor-pointer max-h-[313px] max-w-full overflow-hidden lg:hover:scale-100" />
                 </Link>
             </div>
             <div className="bg-white pt-[15px]">
