@@ -5,20 +5,47 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import sadEmojiIcon from '@/public/assets/sad-emoji-icon.svg'
+import axiosInstance from '@/utils/axiosInstance'
+
+
+
+interface FormData {
+    first_name: string
+    last_name: string
+    email: string
+    password: string
+}
 
 function Register() {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({
+    } = useForm<FormData>({
         mode: 'onSubmit',
     })
 
-    const onSubmit = (data: object) => {
-        console.log(data)
+    const onSubmit = async (data: FormData) => {
+        try {
+            const response = await axiosInstance.post('/register', {
+                first_name: data.first_name,
+                last_name: data.last_name,
+                email: data.email,
+                password: data.password,
+            })
 
-        setEmailAlreadyExists(true)
+            if (response.status === 200) {
+                console.log("success");
+            } else {
+                console.error(response.data);
+            }
+        } catch (error: any) {
+            if (error.response && error.response.status === 422) {
+                setEmailAlreadyExists(true);
+            } else {
+                console.error("Error registering user:", error);
+            }
+        }
     }
 
     const [emailAlreadyExists, setEmailAlreadyExists] = useState(false)
@@ -60,9 +87,9 @@ function Register() {
                                     This email address is already associated
                                     with an account. If this account is yours,
                                     you can{' '}
-                                    <span className="cursor-pointer text-11black">
+                                    <Link href="/account/reset" className="cursor-pointer text-11black inline">
                                         reset your password
-                                    </span>
+                                    </Link>
                                 </p>
                             </div>
                         )}
