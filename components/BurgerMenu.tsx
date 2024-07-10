@@ -98,7 +98,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                 </Link>
                             </li>
                             <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] py-[15px] w-[100%] flex gap-[15px]">
-                                <Link href="/account/login" className="flex gap-[15px]" onClick={toggleBurgerMenu}>
+                                <Link href="/account/login" className="flex gap-[15px] w-full" onClick={toggleBurgerMenu}>
                                     <AvatarIcon />
                                     <div>Login / Register</div>
                                 </Link>
