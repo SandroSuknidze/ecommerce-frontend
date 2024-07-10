@@ -34,7 +34,9 @@ function Index() {
                         isRemovable={true}
                     />
                 </div>
-                <Empty title={"No products were added to the wishlist page."}/>
+                <div className="md:px-[15px] text-center">
+                    <Empty title={"No products were added to the wishlist page."}/>
+                </div>
             </div>
         </>
     )
