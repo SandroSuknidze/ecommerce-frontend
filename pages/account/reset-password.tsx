@@ -4,6 +4,9 @@ import InputForm from '@/components/InputForm'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
+import { toast } from 'react-toastify'
+import RequireGuest from '@/utils/requireGuest'
+import { useAuth } from '@/context/authContext'
 
 
 interface FormData {
@@ -25,24 +28,23 @@ function ResetPassword() {
     const router = useRouter()
     const { token } = router.query
 
-    const [isValidToken, setIsValidToken] = useState(false)
     const [loading, setLoading] = useState(true)
+
+    const { isAuthenticated, login } = useAuth()
+
+    if (isAuthenticated) {
+        router.push('/')
+    }
 
     useEffect(() => {
         const validateToken = async () => {
             if (!token) return
 
             try {
-                const response = await axiosInstance.post('/validate-password-token', {
+                await axiosInstance.post('/validate-password-token', {
                     token: token,
                 })
 
-                if (response.status === 200) {
-                    setIsValidToken(true)
-                } else {
-                    console.log('Invalid token: ' + response.status)
-                    await router.push('/invalid-token')
-                }
             } catch (error) {
                 console.error('Error validating token:', error)
                 await router.push('/invalid-token')
@@ -62,6 +64,9 @@ function ResetPassword() {
             })
 
             if (response.status === 200) {
+                toast.success('Your password has been successfully reset.', {
+                    position: 'top-center',
+                })
                 await router.push('/account/login')
             } else {
                 console.log("Failed to reset password: " + response.status);
@@ -153,4 +158,4 @@ function ResetPassword() {
     )
 }
 
-export default ResetPassword
+export default RequireGuest(ResetPassword)

@@ -14,9 +14,11 @@ import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
 import BurgerMenu from '@/components/BurgerMenu'
+import { useAuth } from '@/context/authContext'
 
 
 export function Header() {
+    const { isAuthenticated } = useAuth()
 
     type Language = 'en' | 'geo';
     const [language, setLanguage] = useState<Language>('en')
@@ -147,7 +149,7 @@ export function Header() {
                                 <SearchIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
                             </div>
                             <div className="my-auto ml-[20px] lg:hidden">
-                                <Link href="/account/login">
+                                <Link href={isAuthenticated ? '/account' : '/account/login'}>
                                     <AvatarIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
                                 </Link>
                             </div>

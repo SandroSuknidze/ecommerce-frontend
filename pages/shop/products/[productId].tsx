@@ -9,7 +9,6 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/thumbs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 
 import minusIcon from '@/public/assets/minus-icon.svg'
 import plusIcon from '@/public/assets/plus-icon.svg'
@@ -38,6 +37,15 @@ import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons
 import FeaturedProducts from '@/components/FeaturedProducts'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import Rating from '@mui/material/Rating'
+import { styled } from '@mui/system'
+
+
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+        color: '#111111',
+        fontSize: '12px',
+    },
+});
 
 function ProductId() {
     const [thumbsSwiper, setThumbsSwiper] = useState(null)
@@ -262,7 +270,7 @@ function ProductId() {
                             </h1>
                             <div className="flex text-[10px] leading-[28px]">
                                 <div>
-                                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
+                                    <StyledRating name="read-only" value={5} readOnly />
                                 </div>
                                 <div className="ml-[10px] text-[14px] text-55black">
                                     2 reviews

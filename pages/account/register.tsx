@@ -6,6 +6,11 @@ import Image from 'next/image'
 
 import sadEmojiIcon from '@/public/assets/sad-emoji-icon.svg'
 import axiosInstance from '@/utils/axiosInstance'
+import { useRouter } from 'next/router'
+import Cookies from 'js-cookie'
+import { toast } from 'react-toastify'
+import { useAuth } from '@/context/authContext'
+import RequireGuest from '@/utils/requireGuest'
 
 
 
@@ -25,7 +30,18 @@ function Register() {
         mode: 'onSubmit',
     })
 
+    const router = useRouter();
+    const { isAuthenticated, login } = useAuth()
+
+    const [isSubmittable, setIsSubmittable] = useState(true)
+
+
+    if (isAuthenticated) {
+        router.push('/')
+    }
+
     const onSubmit = async (data: FormData) => {
+        setIsSubmittable(false)
         try {
             const response = await axiosInstance.post('/register', {
                 first_name: data.first_name,
@@ -36,10 +52,17 @@ function Register() {
 
             if (response.status === 200) {
                 console.log("success");
-            } else {
-                console.error(response.data);
+                const { access_token, user } = response.data;
+                Cookies.set('access_token', access_token, { expires: 1 });
+                Cookies.set('user', JSON.stringify(user), { expires: 1 });
+                login(user)
+                toast.success('Registration successful!', {
+                    position: 'top-center',
+                })
+                await router.push('/')
             }
         } catch (error: any) {
+            setIsSubmittable(true)
             if (error.response && error.response.status === 422) {
                 setEmailAlreadyExists(true);
             } else {
@@ -76,7 +99,6 @@ function Register() {
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                         method="post"
-                        action=""
                         className="w-1/2 md:w-full md:px-[15px]"
                     >
                         {emailAlreadyExists && (
@@ -163,6 +185,7 @@ function Register() {
                             <button
                                 type="submit"
                                 className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
+                                disabled={!isSubmittable}
                             >
                                 Create Account
                             </button>
@@ -185,4 +208,4 @@ function Register() {
     )
 }
 
-export default Register
+export default RequireGuest(Register)

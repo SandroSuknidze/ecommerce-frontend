@@ -1,12 +1,11 @@
 import Link from 'next/link'
 import Image, { StaticImageData } from 'next/image'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
 import { useEffect, useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
 import Rating from '@mui/material/Rating'
+import { styled } from '@mui/system'
 
 interface CollectionCardProps {
     imageSrc: StaticImageData,
@@ -15,6 +14,13 @@ interface CollectionCardProps {
     price: number,
     isRemovable?: boolean,
 }
+
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+        color: '#111111',
+        fontSize: '12px',
+    },
+});
 
 function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: CollectionCardProps) {
     let discount: number | undefined;
@@ -99,7 +105,7 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                     <Link href={`/shop/products/1`}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
-                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
+                    <StyledRating name="read-only" value={5} readOnly />
                 </div>
                 <div className="m-auto mt-[3px] flex text-[14px] font-medium">
                     {sale && <div className="text-red-600">${sale}</div>}

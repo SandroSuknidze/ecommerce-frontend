@@ -5,6 +5,13 @@ import Link from 'next/link'
 import NewCustomer from '@/components/NewCustomer'
 import Image from 'next/image'
 import sadEmojiIcon from '@/public/assets/sad-emoji-icon.svg'
+import Cookies from 'js-cookie'
+import axiosInstance from '@/utils/axiosInstance'
+import { router } from 'next/client'
+import { useAuth } from '@/context/authContext'
+import RequireGuest from '@/utils/requireGuest'
+import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 function Login() {
     const {
@@ -13,10 +20,35 @@ function Login() {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data: object) => {
-        console.log(data)
+    const { isAuthenticated, login } = useAuth()
+    const [isSubmittable, setIsSubmittable] = useState(true)
 
-        setIncorrectCredentials(true)
+    const router = useRouter();
+
+    if (isAuthenticated) {
+        router.push('/')
+    }
+
+    const onSubmit = async (data: object) => {
+        setIsSubmittable(false)
+
+        try {
+            const response = await axiosInstance.post('/login', data);
+            if (response.status === 200) {
+                await router.push('/')
+                const { access_token, user } = response.data;
+                Cookies.set('access_token', access_token, { expires: 1 });
+                Cookies.set('user', JSON.stringify(user), { expires: 1 });
+                login(user)
+                toast.success('Login successful!', {
+                    position: 'top-center',
+                })
+            }
+        } catch (error: any) {
+            // console.error("Login error:", error);
+            setIncorrectCredentials(true)
+            setIsSubmittable(true)
+        }
     }
 
     const [incorrectCredentials, setIncorrectCredentials] = useState(false)
@@ -97,6 +129,7 @@ function Login() {
                                 <button
                                     type="submit"
                                     className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
+                                    disabled={!isSubmittable}
                                 >
                                     Submit
                                 </button>
@@ -112,4 +145,4 @@ function Login() {
     )
 }
 
-export default Login
+export default RequireGuest(Login)

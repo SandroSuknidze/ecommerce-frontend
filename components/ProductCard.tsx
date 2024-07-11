@@ -1,8 +1,7 @@
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
-import { faStar } from '@fortawesome/free-solid-svg-icons/faStar'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Rating from '@mui/material/Rating'
+import { styled } from '@mui/system'
 
 interface ProductCardProps {
     title: string,
@@ -11,6 +10,13 @@ interface ProductCardProps {
     toggleSearch: () => void,
     sale?: string | null,
 }
+
+const StyledRating = styled(Rating)({
+    '& .MuiRating-iconFilled': {
+        color: '#111111',
+        fontSize: '12px',
+    },
+});
 
 function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: ProductCardProps) {
 
@@ -31,7 +37,7 @@ function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: Prod
                     <Link href={`/shop/${formattedTitle}`} onClick={() => toggleSearch()}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
-                    <Rating name="read-only" value={5} readOnly className="text-[12px] text-11black"/>
+                    <StyledRating name="read-only" value={5} readOnly />
                 </div>
                 <div className="mt-[3px] text-[14px] font-medium flex m-auto">
                     {sale && (

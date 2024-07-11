@@ -6,21 +6,51 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 import correctIcon from '@/public/assets/correct.svg'
+import axiosInstance from '@/utils/axiosInstance'
+import { useAuth } from '@/context/authContext'
+import { useRouter } from 'next/router'
+import RequireGuest from '@/utils/requireGuest'
 
+
+interface FormData {
+    email: string
+}
 function Reset() {
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm()
+    } = useForm<FormData>({
+        mode: 'onSubmit',
+    })
 
-    const onSubmit = (data: object) => {
-        console.log(data)
+    const [isSubmittable, setIsSubmittable] = useState(true)
 
+    const { isAuthenticated, login } = useAuth()
+
+    const router = useRouter();
+
+    if (isAuthenticated) {
+        router.push('/')
+    }
+
+    const onSubmit = async (data: FormData) => {
+        setIsSubmittable(false)
         setEmailSent(true)
-
         reset()
+
+        try {
+            await axiosInstance.post('/forgot-password', {
+                email: data.email,
+            })
+
+        } catch (err) {
+            console.error(err)
+        }
+        setTimeout(() => {
+            setIsSubmittable(true)
+        }, 5000)
     }
 
     const [emailSent, setEmailSent] = useState(false)
@@ -52,7 +82,6 @@ function Reset() {
                         <form
                             onSubmit={handleSubmit(onSubmit)}
                             method="post"
-                            action=""
                             className="w-full"
                         >
                             {emailSent && (
@@ -87,6 +116,7 @@ function Reset() {
                                 <button
                                     type="submit"
                                     className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
+                                    disabled={!isSubmittable}
                                 >
                                     Reset Password
                                 </button>
@@ -102,4 +132,4 @@ function Reset() {
     )
 }
 
-export default Reset
+export default RequireGuest(Reset)
