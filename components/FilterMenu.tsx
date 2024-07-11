@@ -1,8 +1,8 @@
 import { Transition } from '@headlessui/react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import FilterComponent from '@/components/FilterComponent'
 import { useLockBodyScroll } from 'react-use'
+import Image from 'next/image'
+import closeIcon from '@/public/assets/gray-close.svg'
 
 interface FilterMenuProps {
     toggleFilterMenu: () => void,
@@ -26,12 +26,11 @@ function FilterMenu({ toggleFilterMenu, isOpen }: FilterMenuProps) {
                     <div className="px-[30px] bg-white text-[14px] text-white font-medium flex justify-between border-b-[1px] border-[#ebebeb]">
                         <div className="flex">
                             <div className="py-[15px] cursor-default text-11black text-[18px]">Filter</div>
-                            {/*<div className="p-[15px] text-gray-600">Categories</div>*/}
                         </div>
 
                         <div className="flex mb-[1px]">
                             <button className="flex text-xl justify-center m-auto" onClick={toggleFilterMenu}>
-                                <FontAwesomeIcon icon={faTimes} className="text-11black" />
+                                <Image src={closeIcon} alt="Close Icon" className="text-[12px]"/>
                             </button>
                         </div>
                     </div>

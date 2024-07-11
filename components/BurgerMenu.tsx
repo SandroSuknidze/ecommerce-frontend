@@ -7,7 +7,9 @@ import Image from "next/image"
 import AvatarIcon from '@/public/assets/AvatarIcon'
 import en from '@/public/assets/en.webp'
 import geo from '@/public/assets/geo.webp'
+import closeIcon from '@/public/assets/white-close.svg'
 import { useState } from 'react'
+import { useAuth } from '@/context/authContext'
 
 interface BurgerMenuProps {
     toggleBurgerMenu: () => void,
@@ -15,6 +17,8 @@ interface BurgerMenuProps {
 }
 
 const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
+
+    const { isAuthenticated, user } = useAuth();
 
     type Language = 'en' | 'geo';
     const [language, setLanguage] = useState<Language>('en')
@@ -35,12 +39,11 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                     <div className="px-[15px] bg-d7red uppercase text-[14px] text-white font-medium flex justify-between">
                         <div className="flex">
                             <div className="p-[15px] cursor-default">Menu</div>
-                            {/*<div className="p-[15px] text-gray-600">Categories</div>*/}
                         </div>
 
                         <div className="flex mb-[1px]">
                             <button className="flex text-xl justify-center m-auto" onClick={toggleBurgerMenu}>
-                                <FontAwesomeIcon icon={faTimes} className="text-[#ebebeb] hover:text-white" />
+                                <Image src={closeIcon} alt="Close Icon" className="text-[12px]"/>
                             </button>
                         </div>
                     </div>
@@ -93,14 +96,19 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                             </li>
                             <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] w-[100%]">
                                 <Link href="/wishlist" className="flex gap-[15px] py-[15px]" onClick={toggleBurgerMenu} >
-                                    <Image src={heartIcon} alt="Heart Icon" />
+                                    <div className="w-[20px] flex items-center">
+                                        <Image src={heartIcon} alt="Heart Icon" />
+                                    </div>
                                     <div>Wishlist</div>
                                 </Link>
                             </li>
                             <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] w-[100%] flex gap-[15px]">
-                                <Link href="/account/login" className="flex gap-[15px] w-full py-[15px]" onClick={toggleBurgerMenu}>
-                                    <AvatarIcon />
-                                    <div>Login / Register</div>
+                                <Link href={isAuthenticated ? '/account' : '/account/login'}
+                                      className="flex gap-[15px] w-full py-[15px]" onClick={toggleBurgerMenu}>
+                                    <div className="w-[20px] flex items-center">
+                                        <AvatarIcon />
+                                    </div>
+                                    <p className="line-clamp ">{isAuthenticated ? user?.first_name : 'Login / Register'}</p>
                                 </Link>
                             </li>
                             <li className="border-b-[1px] border-b-[#ebebeb] py-[15px] w-[100%] flex gap-[15px] flex-col">
