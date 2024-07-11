@@ -58,7 +58,7 @@ function Index() {
                     <nav>
                         <ol className="text-55black">
                             <li className="inline">
-                                <Link href="/public">Home / </Link>
+                                <Link href="/">Home / </Link>
                             </li>
                             <li className="inline">Your Shopping Cart</li>
                         </ol>

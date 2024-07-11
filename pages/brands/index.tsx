@@ -55,7 +55,7 @@ export default function Index() {
                     <nav>
                         <ol className="text-[14px] text-55black">
                             <li className="inline">
-                                <Link href="/public">Home / </Link>
+                                <Link href="/">Home / </Link>
                             </li>
                             <li className="inline">Brands</li>
                         </ol>

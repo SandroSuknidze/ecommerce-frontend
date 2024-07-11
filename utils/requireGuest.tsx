@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useAuth } from '@/context/authContext';
 import { Loader } from '@/components/Loader'
 
@@ -21,7 +21,6 @@ const requireGuest = (WrappedComponent: any) => {
             );
         }
 
-        // Otherwise render the wrapped component
         return <WrappedComponent {...props} />;
     };
 

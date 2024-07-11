@@ -1,13 +1,17 @@
-import Image from "next/image";
-import collection1 from "@/public/assets/collections/fashion.webp";
-import Link from "next/link";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrashCan} from "@fortawesome/free-solid-svg-icons/faTrashCan";
+import Image from 'next/image'
+import collection1 from '@/public/assets/collections/fashion.webp'
+import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan'
 import { useState } from 'react'
 import minusIcon from '@/public/assets/minus-icon.svg'
 import plusIcon from '@/public/assets/plus-icon.svg'
 
-export function CartItem() {
+interface CartItemProps {
+    dynamicCount?: boolean;
+}
+
+export function CartItem({ dynamicCount = true }: CartItemProps) {
 
     const [itemCount, setItemCount] = useState(1)
 
@@ -21,7 +25,7 @@ export function CartItem() {
         }
     }
 
-    const price = 20;
+    const price = 20
 
 
     return (
@@ -30,7 +34,7 @@ export function CartItem() {
                 <td className="border border-[#ebebeb] border-r-0 p-4 pr-0 w-1/12 md:border-0 md:p-0 md:py-8">
                     <div className="flex items-left">
                         <div className="w-[79px] h-[106px] mr-[20px] md:h-[133px] md:min-w-[100px]">
-                            <Image src={collection1} alt="picture" className="rounded-[5px]"/>
+                            <Image src={collection1} alt="picture" className="rounded-[5px]" />
                         </div>
                     </div>
                 </td>
@@ -44,38 +48,49 @@ export function CartItem() {
                     </div>
                 </td>
                 <td className="border border-[#ebebeb] p-4 md:border-0 md:w-full md:flex md:justify-start md:p-0 md:pt-2">
-                    <div
-                        className="flex h-[47px] w-[112px] select-none rounded-[5px] border-[1px] border-[#ebebeb] bg-[#F5F5F5] md:h-[32px]">
-                        <div
-                            className={`${itemCount === 1 && 'cursor-not-allowed'} flex w-1/3 cursor-pointer justify-center`}
-                            onClick={decrementCount}
-                        >
-                            <Image
-                                src={minusIcon}
-                                alt="Minus Icon"
-                            />
-                        </div>
-                        <div className="m-auto flex w-1/3 justify-center">
-                            {itemCount}
-                        </div>
-                        <div
-                            className="flex w-1/3 cursor-pointer justify-center"
-                            onClick={incrementCount}
-                        >
-                            <Image src={plusIcon} alt="Plus Icon" />
-                        </div>
-                    </div>
+                    {dynamicCount ?
+                        (<div
+                                className="flex h-[47px] w-[112px] select-none rounded-[5px] border-[1px] border-[#ebebeb] bg-[#F5F5F5] md:h-[32px]">
+                                <div
+                                    className={`${itemCount === 1 && 'cursor-not-allowed'} flex w-1/3 cursor-pointer justify-center`}
+                                    onClick={decrementCount}
+                                >
+                                    <Image
+                                        src={minusIcon}
+                                        alt="Minus Icon"
+                                    />
+                                </div>
+                                <div className="m-auto flex w-1/3 justify-center">
+                                    {itemCount}
+                                </div>
+                                <div
+                                    className="flex w-1/3 cursor-pointer justify-center"
+                                    onClick={incrementCount}
+                                >
+                                    <Image src={plusIcon} alt="Plus Icon" />
+                                </div>
+                            </div>
+                        ) : (
+                            <div>{itemCount}</div>
+                        )}
                 </td>
                 <td className="border border-[#ebebeb] p-4 md:border-0 md:flex md:justify-start md:p-0 md:text-[14px] md:font-medium md:pt-1">
-                    ${(price*itemCount).toFixed(2)}
+                    ${(price * itemCount).toFixed(2)}
                 </td>
-                <td className="border border-[#ebebeb] p-4 text-center md:border-0">
-                    <button className="text-gray-500 hover:text-gray-800">
-                        <FontAwesomeIcon icon={faTrashCan} />
-                    </button>
-                </td>
+                {dynamicCount ? (
+                    <td className="border border-[#ebebeb] p-4 text-center md:border-0">
+                        <button className="text-gray-500 hover:text-gray-800">
+                            <FontAwesomeIcon icon={faTrashCan} />
+                        </button>
+                    </td>
+                ) : (
+                    <td className="border border-[#ebebeb] p-4 text-left md:border-0 md:text-right md:w-auto sm:text-[14px]">
+                        <div>2024/07/06</div>
+                    </td>
+                )}
+
             </tr>
 
         </>
-    );
+    )
 }
