@@ -32,6 +32,10 @@ function ResetPassword() {
 
     const { isAuthenticated, login } = useAuth()
 
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+    const [isRepeatPasswordVisible, setIsRepeatPasswordVisible] = useState(false)
+
+
     if (isAuthenticated) {
         router.push('/')
     }
@@ -57,6 +61,7 @@ function ResetPassword() {
     }, [router, token])
 
     const onSubmit = async (data: FormData) => {
+        setLoading(true)
         try {
             const response = await axiosInstance.post('/reset-password', {
                 password: data.password,
@@ -76,6 +81,15 @@ function ResetPassword() {
             console.error('Error resetting password:', error)
         }
     }
+
+    function togglePasswordVisibility() {
+        setIsPasswordVisible(!isPasswordVisible)
+    }
+
+    function toggleRepeatPasswordVisibility() {
+        setIsRepeatPasswordVisible(!isRepeatPasswordVisible)
+    }
+
 
     return (
         <div className="flex justify-center">
@@ -103,7 +117,7 @@ function ResetPassword() {
                         <div className={`${loading && 'animate-pulse'}`}>
                             <InputForm
                                 name="Password"
-                                type="password"
+                                type={isPasswordVisible ? 'text' : 'password'}
                                 register={register('password', {
                                     required: 'Password is required',
                                     validate: (value) => value.trim() !== '' || 'Password cannot be empty',
@@ -118,10 +132,12 @@ function ResetPassword() {
                                 })}
                                 errorMessage={errors.password?.message}
                                 disabled={loading}
+                                togglePassword={togglePasswordVisibility}
+                                isPasswordVisible={isPasswordVisible}
                             />
                             <InputForm
                                 name="Repeat Password"
-                                type="password"
+                                type={isRepeatPasswordVisible ? 'text' : 'password'}
                                 register={register('repeat_password', {
                                     required: 'Repeat Password is required',
                                     validate: {
@@ -139,6 +155,8 @@ function ResetPassword() {
                                 })}
                                 errorMessage={errors.repeat_password?.message}
                                 disabled={loading}
+                                togglePassword={toggleRepeatPasswordVisibility}
+                                isPasswordVisible={isRepeatPasswordVisible}
                             />
                             <div className="mt-[30px]">
                                 <button

@@ -25,7 +25,7 @@ function InputForm({ name, type, register, errorMessage, label=true, disabled=fa
                                focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300
                                transition duration-300 outline-0 border-[1px] border-[#ebebeb] rounded-[30px]"
             />
-            {name === 'Password' &&
+            {(name === 'Password' || name === 'Repeat Password') &&
                 <Image onClick={togglePassword} src={isPasswordVisible ? openedEye : closedEye}
                        className="cursor-pointer absolute top-[44px] right-[20px]"  alt='Eye Icon'/>
             }
