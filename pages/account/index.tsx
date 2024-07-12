@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState } from 'react'
 import { CartItem } from '@/components/CartItem'
+import { toast } from 'react-toastify'
 
 const Index = () => {
     const { user, logout } = useAuth();
@@ -15,6 +16,9 @@ const Index = () => {
     async function Logout() {
         await router.push('/')
         logout()
+        toast.success('Logout successful!', {
+            position: 'top-center',
+        })
     }
 
     return (
@@ -43,7 +47,7 @@ const Index = () => {
                                 border-b-[1px] border-[#ebebeb] cursor-pointer`}>Order
                                 history
                             </div>
-                            <div onClick={logout} className="px-[20px] py-[11px] cursor-pointer">Log out</div>
+                            <div onClick={Logout} className="px-[20px] py-[11px] cursor-pointer">Log out</div>
                         </div>
                     </div>
                     <div className="flex flex-col w-3/4 px-[50px] border-l-[1px] border-l-[#ebebeb] lg:px-[15px] md:w-full">
@@ -55,7 +59,7 @@ const Index = () => {
                                             className="font-medium text-11black">{user?.first_name + ' ' + user?.last_name}!&nbsp;</span>
                                         (Not? <span
                                             className="font-medium text-11black">{user?.first_name + ' ' + user?.last_name}&nbsp;</span>
-                                        <span onClick={logout}
+                                        <span onClick={Logout}
                                               className="underline cursor-pointer text-11black">Log out</span>)
                                     </div>
                                 </div>

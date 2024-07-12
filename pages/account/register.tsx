@@ -34,6 +34,7 @@ function Register() {
     const { isAuthenticated, login } = useAuth()
 
     const [isSubmittable, setIsSubmittable] = useState(true)
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
 
     if (isAuthenticated) {
@@ -78,6 +79,11 @@ function Register() {
             setEmailAlreadyExists(false)
         }
     }, [])
+
+    function togglePasswordVisibility() {
+        setIsPasswordVisible(!isPasswordVisible)
+    }
+
 
     return (
         <div className="flex justify-center">
@@ -160,7 +166,7 @@ function Register() {
                         />
                         <InputForm
                             name="Password"
-                            type="password"
+                            type={isPasswordVisible ? 'text' : 'password'}
                             register={register('password', {
                                 required: 'Password is required',
                                 validate: (value) => value.trim() !== "" || "Password cannot be empty",
@@ -174,6 +180,8 @@ function Register() {
                                 }
                             })}
                             errorMessage={errors.password?.message}
+                            togglePassword={togglePasswordVisibility}
+                            isPasswordVisible={isPasswordVisible}
                         />
                         <p className="text-55black">
                             Your personal data will be used to support your

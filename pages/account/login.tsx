@@ -22,6 +22,7 @@ function Login() {
 
     const { isAuthenticated, login } = useAuth()
     const [isSubmittable, setIsSubmittable] = useState(true)
+    const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     const router = useRouter();
 
@@ -58,6 +59,10 @@ function Login() {
             setIncorrectCredentials(false)
         }
     }, [])
+
+    function togglePasswordVisibility() {
+        setIsPasswordVisible(!isPasswordVisible)
+    }
 
     return (
         <div className="flex justify-center">
@@ -109,7 +114,7 @@ function Login() {
                             />
                             <InputForm
                                 name="Password"
-                                type="password"
+                                type={isPasswordVisible ? 'text' : 'password'}
                                 register={register('password', {
                                     required: 'Password is required',
                                     validate: (value) => value.trim() !== "" || "Password cannot be empty",
@@ -119,6 +124,8 @@ function Login() {
                                     }
                                 })}
                                 errorMessage={errors.password?.message}
+                                togglePassword={togglePasswordVisibility}
+                                isPasswordVisible={isPasswordVisible}
                             />
                             <p className="text-55black">
                                 <Link href="/account/reset">
