@@ -6,13 +6,16 @@ import HeartIcon from '@/public/assets/HeartIcon'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
 import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
+import { auto } from '@popperjs/core'
 
 interface CollectionCardProps {
+    id: number,
     imageSrc: StaticImageData,
     title: string,
     sale?: number | null,
     price: number,
     isRemovable?: boolean,
+    rating?: number
 }
 
 const StyledRating = styled(Rating)({
@@ -20,44 +23,48 @@ const StyledRating = styled(Rating)({
         color: '#111111',
         fontSize: '12px',
     },
-});
+    '& .MuiRating-iconEmpty': {
+        fontSize: '12px',
+    }
+})
 
-function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: CollectionCardProps) {
-    let discount: number | undefined;
+function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = false, id }: CollectionCardProps) {
+    let discount: number | undefined
 
     if (sale) {
-        const salePrice = parseFloat(String(sale));
-        discount = Math.round(100 - (salePrice * 100) / price);
+        const salePrice = parseFloat(String(sale))
+        discount = Math.round(100 - (salePrice * 100) / price)
     }
 
-    const [hovered, setHovered] = useState(false);
-    const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [hovered, setHovered] = useState(false)
+    const [isLargeScreen, setIsLargeScreen] = useState(false)
 
     useEffect(() => {
-        const mediaQuery = window.matchMedia('(min-width: 992px)');
-        setIsLargeScreen(mediaQuery.matches);
+        const mediaQuery = window.matchMedia('(min-width: 992px)')
+        setIsLargeScreen(mediaQuery.matches)
 
-        const handleResize = () => setIsLargeScreen(mediaQuery.matches);
-        mediaQuery.addListener(handleResize);
+        const handleResize = () => setIsLargeScreen(mediaQuery.matches)
+        mediaQuery.addListener(handleResize)
 
         return () => {
-            mediaQuery.removeListener(handleResize);
-        };
-    }, []);
+            mediaQuery.removeListener(handleResize)
+        }
+    }, [])
 
     const handleMouseEnter = () => {
         if (isLargeScreen) {
-            setHovered(true);
+            setHovered(true)
         }
-    };
+    }
 
     const handleMouseLeave = () => {
         if (isLargeScreen) {
-            setHovered(false);
+            setHovered(false)
         }
-    };
-    function func(){
-        console.log("hi");
+    }
+
+    function func() {
+        console.log('hi')
     }
 
     return (
@@ -67,17 +74,19 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <Link href={`/shop/products/1`} className="relative" >
+                <Link href={`/shop/products/${id}`} className="relative">
                     <Image
-                        src={imageSrc}
+                        src={process.env.imageUrl + '' + imageSrc}
+                        width={318}
+                        height={423}
                         alt="collection"
                         className={`rounded-xl ${hovered ? 'scale-105' : ''} max-h-[453px] max-w-full cursor-pointer overflow-hidden transition duration-300`}
                     />
                 </Link>
-                <div className="absolute z-10 left-[20px] top-[16px] rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white
+                {sale && <div className="absolute z-10 left-[20px] top-[16px] rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white
                                 xs:text-[11px] xs:left-[10px] xs:top-[8px] xs:py-5px xs:px-[8px]">
                     -{discount}%
-                </div>
+                </div>}
                 <div>
                     <div onClick={func} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
                     h-[45px] w-[45px] m-auto flex
@@ -102,15 +111,15 @@ function CollectionCard({ imageSrc, title, sale, price, isRemovable = false}: Co
             </div>
             <div className="bg-white pt-[15px]  text-left">
                 <div className="xs:block xs:text-[16px]">
-                    <Link href={`/shop/products/1`}>{title}</Link>
+                    <Link href={`/shop/products/${id}`}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
-                    <StyledRating name="read-only" value={5} readOnly />
+                    <StyledRating name="read-only" value={rating} readOnly />
                 </div>
                 <div className="m-auto mt-[3px] flex text-[14px] font-medium">
-                    {sale && <div className="text-red-600">${sale}</div>}
+                    {sale !== null && <div className="text-red-600">${sale}</div>}
                     <div
-                        className={`${sale ? 'my-auto ml-[5px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
+                        className={`${sale !== null ? 'my-auto ml-[5px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
                     >
                         ${price}
                     </div>

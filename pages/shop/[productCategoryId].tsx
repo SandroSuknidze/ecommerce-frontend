@@ -5,8 +5,9 @@ import { categories } from '@/pages/shop/index'
 import FilterComponent from '@/components/FilterComponent'
 import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import FilterMenu from '@/components/FilterMenu'
+import axiosInstance from '@/utils/axiosInstance'
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -49,22 +50,56 @@ export const sizes = [
 
 function ProductCategoryId() {
     const router = useRouter()
-    const { productCategory } = router.query
+    const { productCategoryId, colors, brands, price, sizes } = router.query;
 
     const [isHovered, setIsHovered] = useState(false)
     const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false)
 
+    const [products, setProducts] = useState([])
+
+
+    const [testF, setTestF] = useState(router.asPath.split('?')[1])
     function toggleFilterMenu() {
         setIsFilterMenuOpen(!isFilterMenuOpen)
     }
 
-
-
     function getCategoryName() {
         return categories.find(
-            (category) => category.id === Number(productCategory),
+            (category) => category.id === Number(productCategoryId),
         )?.name
     }
+
+    async function fetchProducts() {
+        try {
+            const params = {
+                colors: formatQueryParam(colors),
+                brands: formatQueryParam(brands),
+                price: formatQueryParam(price),
+                sizes: formatQueryParam(sizes),
+            };
+
+            const response = await axiosInstance.get(`/products/${productCategoryId}`, { params });
+            setProducts(response.data);
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching products:', error);
+        }
+    }
+
+    function formatQueryParam(param: string | any[] | undefined) {
+        if (Array.isArray(param)) {
+            return param.join(',');
+        }
+        return param || '';
+    }
+
+
+    useEffect(() => {
+        if (productCategoryId) {
+            fetchProducts();
+        }
+    }, [productCategoryId, colors, brands, price, sizes]);
+
 
 
     return (
@@ -80,7 +115,7 @@ function ProductCategoryId() {
                     <FilterComponent />
                 </div>
                 <div className="w-3/4 lg:w-full">
-                    <div className="flex justify-between mb-[40px]  px-[15px]">
+                    <div className="flex justify-between mb-[30px] px-[15px]">
                         <div className="text-55black xs:text-[14px]">There are 30 results in total</div>
                         <button
                             className="hidden py-[3px] px-[18px] rounded-[3px] bg-11black text-white upper text-[12px]
@@ -98,36 +133,17 @@ function ProductCategoryId() {
                         </button>
                     </div>
                     <div className="grid grid-cols-3 pr-[15px] md:grid-cols-2 lg:pr-0">
-                        <CollectionCard
-                            title={'Square Textured Striped'}
-                            imageSrc={collection2}
-                            price={169}
-                            sale={143}
-                        />
-                        <CollectionCard
-                            title={'Square Textured Striped'}
-                            imageSrc={collection2}
-                            price={300}
-                            sale={150}
-                        />
-                        <CollectionCard
-                            title={'Square Textured Striped'}
-                            imageSrc={collection2}
-                            price={300}
-                            sale={150}
-                        />
-                        <CollectionCard
-                            title={'Square Textured Striped'}
-                            imageSrc={collection2}
-                            price={300}
-                            sale={150}
-                        />
-                        <CollectionCard
-                            title={'Square Textured Striped'}
-                            imageSrc={collection2}
-                            price={300}
-                            sale={150}
-                        />
+                        {products.map((product:any) => (
+                            <CollectionCard
+                                key={product.id}
+                                id={product.id}
+                                title={product.title}
+                                imageSrc={product.image_path[0]}
+                                price={product.price}
+                                sale={product.sale_price}
+                                rating={product.rating}
+                            />
+                        ))}
                     </div>
                 </div>
             </div>

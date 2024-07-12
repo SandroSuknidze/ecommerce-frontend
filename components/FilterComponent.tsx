@@ -77,7 +77,6 @@ const FilterComponent = () => {
     }, [selectedPrices])
 
     const handleChangeBrand = useCallback((event: { target: { value: string; checked: boolean; }; }) => {
-        console.log('brand')
         const value = Number(event.target.value)
         const numberBrands = selectedBrands?.map(Number)
         const updatedBrands = event.target.checked
@@ -89,7 +88,6 @@ const FilterComponent = () => {
     }, [selectedBrands, setSelectedBrands])
 
     const handleChangeColor = useCallback((isChecked: boolean, id: number) => {
-        console.log('color')
         const numberColors = selectedColors?.map(Number)
         const updatedColors = !isChecked
             ? [...numberColors, id]
@@ -100,7 +98,6 @@ const FilterComponent = () => {
     }, [selectedColors, setSelectedColors])
 
     const handleChangeSize = useCallback((isChecked: boolean, id: number) => {
-        console.log('size')
         const numberSizes = selectedSizes?.map(Number)
         const updatedSizes = !isChecked
             ? [...numberSizes, id]
