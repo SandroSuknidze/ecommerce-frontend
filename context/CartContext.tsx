@@ -98,12 +98,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
     }
 };
 
-// Utility function to save cart to localStorage
 const saveCartToLocalStorage = (cartState: CartState) => {
     localStorage.setItem('cart', JSON.stringify(cartState));
 };
 
-// Utility function to load cart from localStorage
 const loadCartFromLocalStorage = (): CartState => {
     const savedCart = localStorage.getItem('cart');
     return savedCart ? JSON.parse(savedCart) : initialState;
@@ -176,19 +174,4 @@ export const useCart = () => {
         throw new Error('useCart must be used within a CartProvider');
     }
     return context;
-};
-
-// Example component to render CartItems
-const CartItemList = () => {
-    const { items } = useCart();
-
-    return (
-        <ul>
-            {items.map((item, index) => (
-                <li key={`${item.id}-${item.size_id}-${item.color_id}`}>
-                    {item.title} - {item.quantity}
-                </li>
-            ))}
-        </ul>
-    );
 };
