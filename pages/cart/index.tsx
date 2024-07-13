@@ -207,7 +207,7 @@ function Index() {
                             <div className="border-t-[1px] border-[#DEDEDE]">
                                 <div className="flex justify-between text-[20px] font-medium mb-[5px] mt-[30px]">
                                     <p>Subtotal</p>
-                                    <p>$115.00</p>
+                                    <p>${(totalPrice()).toFixed(2)}</p>
                                 </div>
                                 <div>
                                     <p className="text-[14px] text-55black">Taxes and shipping calculated at checkout</p>

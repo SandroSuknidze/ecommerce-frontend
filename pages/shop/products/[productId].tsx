@@ -314,13 +314,13 @@ function ProductId() {
                                     <div className="m-auto mt-[3px] flex py-[20px] font-medium">
                                         {product.sale_price && (
                                             <div className="text-[30px] text-red-600">
-                                                ${product.sale_price}
+                                                ${(product.sale_price).toFixed(2)}
                                             </div>
                                         )}
                                         <div
                                             className={`${product.sale_price ? 'my-auto ml-[5px] text-[20px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
                                         >
-                                            ${product.price}
+                                            ${(product.price).toFixed(2)}
                                         </div>
                                     </div>
                                     <div className="text-55black">

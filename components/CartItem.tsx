@@ -80,7 +80,7 @@ export function CartItem({
                             <Link href="/shop">{title}</Link>
                         </div>
                         <div className="text-55black text-[14px]">{size_name} / {color_name}</div>
-                        <div className="text-55black text-[14px]">${(price).toFixed(2)}</div>
+                        <div className="text-55black text-[14px]">${(sale_price || price).toFixed(2)}</div>
                     </div>
                 </td>
                 <td className="border border-[#ebebeb] p-4 md:border-0 md:w-full md:flex md:justify-start md:p-0 md:pt-2">
@@ -100,7 +100,7 @@ export function CartItem({
                         )}
                 </td>
                 <td className="border border-[#ebebeb] p-4 md:border-0 md:flex md:justify-start md:p-0 md:text-[14px] md:font-medium md:pt-1">
-                    ${(price * quantity).toFixed(2)}
+                    ${((sale_price || price) * quantity).toFixed(2)}
                 </td>
                 {dynamicCount ? (
                     <td className="border border-[#ebebeb] p-4 text-center md:border-0">
