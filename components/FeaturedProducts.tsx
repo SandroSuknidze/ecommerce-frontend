@@ -4,8 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons'
 import CollectionCard from '@/components/CollectionCard'
 import { collections } from '@/pages'
+import axiosInstance from '@/utils/axiosInstance'
+import { useEffect, useState } from 'react'
 
 function FeaturedProducts() {
+
+    const [featuredProducts, setFeaturedProducts] = useState([])
+
+    async function fetchFeatureProducts() {
+        try {
+            const response = await axiosInstance('/products/featured')
+            const data = await response.data;
+
+            setFeaturedProducts(data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchFeatureProducts()
+    }, [])
     return (
         <>
             <section className="py-[100px] md:py-[50px]">
@@ -61,11 +80,16 @@ function FeaturedProducts() {
                         modules={[Navigation]}
                         className="mySwiper5"
                     >
-                        {collections.map((collection) => (
-                            <SwiperSlide key={collection.id}>
-                                <CollectionCard title={collection.title}
-                                                imageSrc={collection.imageSrc} price={collection.price}
-                                                sale={collection.sale} />
+                        {featuredProducts.map((featuredProduct: any) => (
+                            <SwiperSlide key={featuredProduct.id}>
+                                <CollectionCard
+                                    id={featuredProduct.id}
+                                    title={featuredProduct.title}
+                                    imageSrc={featuredProduct.image_path[0]}
+                                    price={featuredProduct.price}
+                                    rating={featuredProduct.rating}
+                                    sale={featuredProduct.sale_price}
+                                />
                             </SwiperSlide>
                         ))}
                     </Swiper>

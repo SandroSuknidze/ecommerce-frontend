@@ -4,10 +4,10 @@ import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
 import { AppProps } from 'next/app';
-import { ComponentType, JSX, useEffect } from 'react'
-import { AuthProvider, useAuth } from '@/context/authContext'
-const jost = Jost({ subsets: ['latin'] })
+import { ComponentType } from 'react';
+import { AuthProvider } from '@/context/authContext';
 
+const jost = Jost({ subsets: ['latin'] });
 
 interface MyAppProps extends AppProps {
     Component: ComponentType<AppProps['Component']> & { authRequired?: boolean };
@@ -16,14 +16,14 @@ interface MyAppProps extends AppProps {
 
 function MyApp({ Component, pageProps }: MyAppProps) {
     return (
-        <div className={jost.className}>
-            <AuthProvider>
+        <AuthProvider>
+            <div className={jost.className}>
                 <ToastContainer />
                 <Header />
-                <Component {...pageProps}/>
+                <Component {...pageProps} />
                 <Footer />
-            </AuthProvider>
-        </div>
+            </div>
+        </AuthProvider>
     );
 }
 

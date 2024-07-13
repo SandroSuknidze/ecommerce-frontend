@@ -24,6 +24,8 @@ import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
 import collection2 from '@/public/assets/collections/collection2.webp'
 import FeaturedProducts from '@/components/FeaturedProducts'
+import { useEffect, useState } from 'react'
+import axiosInstance from '@/utils/axiosInstance'
 
 export const collections = [
     { id: 1, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
@@ -37,6 +39,26 @@ export const collections = [
 
 
 function Index() {
+    const [newArrivals, setNewArrivals] = useState([])
+
+    async function fetchNewArrivals() {
+        try {
+            const response = await axiosInstance('/products/new-arrivals')
+            const data = await response.data
+
+            console.log(data);
+
+            setNewArrivals(data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchNewArrivals()
+    }, [])
+
+
     return (
         <main>
             <section className="relative">
@@ -239,11 +261,16 @@ function Index() {
                         modules={[Navigation]}
                         className="mySwiper5"
                     >
-                        {collections.map((collection) => (
-                            <SwiperSlide key={collection.id}>
-                                <CollectionCard title={collection.title}
-                                                imageSrc={collection.imageSrc} price={collection.price}
-                                                sale={collection.sale} />
+                        {newArrivals.map((newArrival: any) => (
+                            <SwiperSlide key={newArrival.id}>
+                                <CollectionCard
+                                    id={newArrival.id}
+                                    title={newArrival.title}
+                                    imageSrc={newArrival.image_path[0]}
+                                    price={newArrival.price}
+                                    rating={newArrival.rating}
+                                    sale={newArrival.sale_price}
+                                />
                             </SwiperSlide>
                         ))}
                     </Swiper>
