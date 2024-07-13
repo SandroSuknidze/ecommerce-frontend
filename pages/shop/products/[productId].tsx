@@ -70,7 +70,7 @@ function ProductId() {
     const router = useRouter()
     const { productId } = router.query
 
-    const { addItem, removeItem, items } = useCart();
+    const { addItem, items } = useCart();
 
 
     const [product, setProduct] = useState<any>({})
@@ -373,10 +373,10 @@ function ProductId() {
                                                             id: color.id,
                                                             name: color.name,
                                                         })}
-                                                        className={`${selectedColor?.id === color.id && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] transition duration-500`}
-                                                        style={{ backgroundColor: color.color }}
+                                                        className={`${selectedColor?.id === color.id ? 'border-black' : 'border-[#dddddd]'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] transition duration-500`}
                                                     >
                                                         <div
+                                                            style={{ backgroundColor: color.color }}
                                                             className="h-[30px] w-[30px] rounded-full border-2 border-white"></div>
                                                     </div>
                                                 ))}

@@ -83,12 +83,17 @@ function FeaturedProducts() {
                         {featuredProducts.map((featuredProduct: any) => (
                             <SwiperSlide key={featuredProduct.id}>
                                 <CollectionCard
+                                    key={featuredProduct.id}
                                     id={featuredProduct.id}
                                     title={featuredProduct.title}
                                     imageSrc={featuredProduct.image_path[0]}
                                     price={featuredProduct.price}
-                                    rating={featuredProduct.rating}
                                     sale={featuredProduct.sale_price}
+                                    rating={featuredProduct.rating}
+                                    size_id={featuredProduct.sizes[0].id}
+                                    size_name={featuredProduct.sizes[0].name}
+                                    color_id={featuredProduct.colors[0].id}
+                                    color_name={featuredProduct.colors[0].name}
                                 />
                             </SwiperSlide>
                         ))}

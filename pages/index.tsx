@@ -264,12 +264,17 @@ function Index() {
                         {newArrivals.map((newArrival: any) => (
                             <SwiperSlide key={newArrival.id}>
                                 <CollectionCard
+                                    key={newArrival.id}
                                     id={newArrival.id}
                                     title={newArrival.title}
                                     imageSrc={newArrival.image_path[0]}
                                     price={newArrival.price}
-                                    rating={newArrival.rating}
                                     sale={newArrival.sale_price}
+                                    rating={newArrival.rating}
+                                    size_id={newArrival.sizes[0].id}
+                                    size_name={newArrival.sizes[0].name}
+                                    color_id={newArrival.colors[0].id}
+                                    color_name={newArrival.colors[0].name}
                                 />
                             </SwiperSlide>
                         ))}

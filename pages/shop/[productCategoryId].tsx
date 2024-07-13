@@ -144,6 +144,11 @@ function ProductCategoryId() {
                                 price={product.price}
                                 sale={product.sale_price}
                                 rating={product.rating}
+                                size_id={product.sizes[0].id}
+                                size_name={product.sizes[0].name}
+                                color_id={product.colors[0].id}
+                                color_name={product.colors[0].name}
+                                colors={product.colors}
                             />
                         ))}
                     </div>

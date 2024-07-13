@@ -7,15 +7,22 @@ import { XmarkIcon } from '@/public/assets/XmarkIcon'
 import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
 import { auto } from '@popperjs/core'
+import { toast } from 'react-toastify'
+import { useCart } from '@/context/CartContext'
 
 interface CollectionCardProps {
-    id: number,
-    imageSrc: StaticImageData,
+    id: string,
+    imageSrc: string,
     title: string,
-    sale?: number | null,
+    sale?: number,
     price: number,
     isRemovable?: boolean,
     rating?: number
+    size_id: number | undefined
+    size_name: string
+    color_id: number | undefined
+    color_name: string
+    colors: any
 }
 
 const StyledRating = styled(Rating)({
@@ -28,8 +35,24 @@ const StyledRating = styled(Rating)({
     }
 })
 
-function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = false, id }: CollectionCardProps) {
+function CollectionCard({
+                            imageSrc,
+                            title,
+                            sale,
+                            price,
+                            rating,
+                            size_id,
+                            size_name,
+                            color_id,
+                            color_name,
+                            id,
+                            colors,
+                            isRemovable = false,
+                        }: CollectionCardProps) {
     let discount: number | undefined
+
+    const { addItem, items } = useCart();
+
 
     if (sale) {
         const salePrice = parseFloat(String(sale))
@@ -67,6 +90,27 @@ function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = fa
         console.log('hi')
     }
 
+
+    const addToCart = () => {
+        toast.success('Item added to your cart!', {
+            position: 'top-center'
+        })
+        const item = {
+            id: id,
+            title: title,
+            price: price,
+            sale_price: sale,
+            image_path: imageSrc,
+            quantity: 1,
+            size_id: size_id,
+            size_name: size_name,
+            color_id: color_id,
+            color_name: color_name,
+        }
+        addItem(item);
+        console.log(items);
+    };
+
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl px-[15px]">
             <div
@@ -100,7 +144,7 @@ function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = fa
                         )}
                     </div>
 
-                    <button onClick={func} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
+                    <button onClick={() => addToCart()} className={`${hovered ? 'opacity-100' : 'opacity-0'} 
                                     bottom-2 left-1/2 -translate-x-1/2 absolute mb-[7%] mt-auto w-[88%] rounded-[30px] 
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
                                     text-11black transition duration-500 hover:border-black hover:bg-black hover:text-white
@@ -110,13 +154,13 @@ function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = fa
                 </div>
             </div>
             <div className="bg-white pt-[15px]  text-left">
-                <div className="xs:block xs:text-[16px]">
+                <div className="leading-[21px] h-[21px] xs:block xs:text-[16px]">
                     <Link href={`/shop/products/${id}`}>{title}</Link>
                 </div>
-                <div className="text-[10px] leading-[28px]">
+                <div className="flex items-center h-[28px] text-[10px]">
                     <StyledRating name="read-only" value={rating} readOnly />
                 </div>
-                <div className="m-auto mt-[3px] flex text-[14px] font-medium">
+                <div className="m-auto mt-[3px] h-[25px] items-center flex text-[14px] font-medium">
                     {sale !== null && <div className="text-red-600">${sale}</div>}
                     <div
                         className={`${sale !== null ? 'my-auto ml-[5px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
@@ -124,6 +168,20 @@ function CollectionCard({ imageSrc, title, sale, price, rating, isRemovable = fa
                         ${price}
                     </div>
                 </div>
+                <div className="flex gap-[7px] mt-[10px]">
+                    {colors?.map((color: any) => (
+                        <div
+                            key={color.id}
+                            id={String(color.id)}
+                            className={`h-[26px] w-[26px] rounded-full border-[1px] border-87black transition duration-500`}
+                        >
+                            <div
+                                style={{ backgroundColor: color.color }}
+                                className="h-[24px] w-[24px] rounded-full border-2 border-white"></div>
+                        </div>
+                    ))}
+                </div>
+
             </div>
         </div>
     )
