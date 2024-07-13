@@ -15,10 +15,12 @@ import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
 import BurgerMenu from '@/components/BurgerMenu'
 import { useAuth } from '@/context/authContext'
+import { useCart } from '@/context/CartContext'
 
 
 export function Header() {
     const { isAuthenticated } = useAuth()
+    const { totalItems} = useCart()
 
     type Language = 'en' | 'geo';
     const [language, setLanguage] = useState<Language>('en')
@@ -170,7 +172,7 @@ export function Header() {
                                         <CartIcon className="hover-child cursor-pointer" />
                                         <div
                                             className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
-                                            0
+                                            {totalItems()}
                                         </div>
                                     </div>
                                 </Link>

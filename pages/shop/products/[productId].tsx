@@ -40,6 +40,7 @@ import { styled } from '@mui/system'
 import axiosInstance from '@/utils/axiosInstance'
 import { useRouter } from 'next/router'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useCart } from '@/context/CartContext'
 
 
 interface Size {
@@ -68,11 +69,14 @@ function ProductId() {
     const router = useRouter()
     const { productId } = router.query
 
+    const { addItem, removeItem, items } = useCart();
+
+
     const [product, setProduct] = useState<any>({})
     const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
-    const [sizes, setSizes] = useState<number | null>(null)
 
-    const [colors, setColors] = useState<number | null>(null)
+    const [selectedSize, setSelectedSize] = useState<{ id: number; name: string } | null>(null);
+    const [selectedColor, setSelectedColor] = useState<{ id: number; name: string } | null>(null);
     const [itemCount, setItemCount] = useState(1)
 
     const [isSizeGuidModalOpen, setIsSizeGuidModalOpen] = useState(false)
@@ -85,6 +89,8 @@ function ProductId() {
 
     type Section = 1 | 2 | 3;
     const [section, setSection] = useState<Section>(1)
+
+
 
     const sale = '20.00'
     const price = '40.00'
@@ -128,8 +134,12 @@ function ProductId() {
             const response = await axiosInstance.get(`/product/${productId}`)
             const data = response.data
             setProduct(data)
-            setSizes(data.sizes[0]?.id ?? null)
-            setColors(data.colors[0]?.id ?? null)
+            if (data.sizes.length > 0) {
+                setSelectedSize({ id: data.sizes[0].id, name: data.sizes[0].name });
+            }
+            if (data.colors.length > 0) {
+                setSelectedColor({ id: data.colors[0].id, name: data.colors[0].name });
+            }
             console.log(data)
         } catch (error) {
             console.log(error)
@@ -139,6 +149,24 @@ function ProductId() {
     useEffect(() => {
         if (productId) fetchProduct()
     }, [productId])
+
+
+    const addToCart = (product: any) => {
+        const item = {
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            sale_price: product.sale_price,
+            image_path: product.image_path[0],
+            quantity: itemCount,
+            size_id: selectedSize?.id,
+            size_name: selectedSize?.name,
+            color_id: selectedColor?.id,
+            color_name: selectedColor?.name,
+        }
+        addItem(item);
+        console.log(items);
+    };
 
 
     return (
@@ -301,20 +329,20 @@ function ProductId() {
                                     <div className="mt-[20px]">
                                         <fieldset>
                                             <legend>
-                                        <span className="text-55black">
-                                            Size:{' '}
-                                        </span>
+                                                <span className="text-55black">
+                                                    Size:{' '}
+                                                </span>
                                                 <span className="font-medium text-11black">
-                                            {sizes && product.sizes.find((size: any) => size.id === sizes)?.name}
-                                        </span>
+                                                    {selectedSize?.name}
+                                                </span>
                                             </legend>
                                             <div className="mt-[10px] flex gap-[10px]">
                                                 {product.sizes?.map((size: any) => (
                                                     <div
                                                         key={size.id}
                                                         id={String(size.id)}
-                                                        onClick={() => setSizes(size.id)}
-                                                        className={`${sizes === size.id ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
+                                                        onClick={() => setSelectedSize({ id: size.id, name: size.name })}
+                                                        className={`${selectedSize?.id === size.id ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
                                                     >
                                                         {size.name}
                                                     </div>
@@ -325,20 +353,23 @@ function ProductId() {
                                     <div className="mt-[20px]">
                                         <fieldset>
                                             <legend>
-                                        <span className="text-55black">
-                                            Color:{' '}
-                                        </span>
+                                                <span className="text-55black">
+                                                    Color:{' '}
+                                                </span>
                                                 <span className="font-medium text-11black">
-                                            {colors && product.colors.find((color: any) => color.id === colors)?.name}
-                                        </span>
+                                                    {selectedColor?.name}
+                                                </span>
                                             </legend>
                                             <div className="mt-[10px] flex gap-[10px]">
                                                 {product.colors?.map((color: any) => (
                                                     <div
                                                         key={color.id}
                                                         id={String(color.id)}
-                                                        onClick={() => setColors(color.id)}
-                                                        className={`${colors === color.id && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] transition duration-500`}
+                                                        onClick={() => setSelectedColor({
+                                                            id: color.id,
+                                                            name: color.name,
+                                                        })}
+                                                        className={`${selectedColor?.id === color.id && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] transition duration-500`}
                                                         style={{ backgroundColor: color.color }}
                                                     >
                                                         <div
@@ -391,6 +422,7 @@ function ProductId() {
                                         </div>
                                         <div className="h-[50px] flex gap-[20px]">
                                             <button
+                                                onClick={() => addToCart(product)}
                                                 type="submit"
                                                 className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white xl:w-full xl:px-[45px] sm:!px-[30px] sm:w-full"
                                             >

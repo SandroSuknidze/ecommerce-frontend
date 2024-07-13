@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import { AppProps } from 'next/app';
 import { ComponentType } from 'react';
 import { AuthProvider } from '@/context/authContext';
+import { CartProvider } from '@/context/CartContext'
 
 const jost = Jost({ subsets: ['latin'] });
 
@@ -17,12 +18,14 @@ interface MyAppProps extends AppProps {
 function MyApp({ Component, pageProps }: MyAppProps) {
     return (
         <AuthProvider>
-            <div className={jost.className}>
-                <ToastContainer />
-                <Header />
-                <Component {...pageProps} />
-                <Footer />
-            </div>
+            <CartProvider>
+                <div className={jost.className}>
+                    <ToastContainer />
+                    <Header />
+                    <Component {...pageProps} />
+                    <Footer />
+                </div>
+            </CartProvider>
         </AuthProvider>
     );
 }

@@ -12,6 +12,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules'
 import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem'
+import { useCart } from '@/context/CartContext'
 
 
 interface FormData {
@@ -31,6 +32,9 @@ function Index() {
     } = useForm<FormData>({
         mode: 'onSubmit',
     })
+
+    const { items, totalItems, removeItem, addItem, totalPrice } = useCart()
+
 
     const onSubmit = (data: object) => {
         console.log(data)
@@ -64,7 +68,8 @@ function Index() {
                         </ol>
                     </nav>
                 </div>
-                <div className="flex lg:flex-col">
+                {items.length > 0 ? (
+                    <div className="flex lg:flex-col">
                     <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
                         <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
                             <thead className="md:hidden">
@@ -76,9 +81,22 @@ function Index() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <CartItem />
-                                <CartItem />
-                                <CartItem />
+                            {items.map((item, index) => (
+                                <CartItem
+                                    key={index}
+                                    id={item.id}
+                                    title={item.title}
+                                    price={item.price}
+                                    sale_price={item.sale_price}
+                                    image_path={item.image_path}
+                                    quantity={item.quantity}
+                                    size_name={item.size_name}
+                                    color_name={item.color_name}
+                                    size_id={item.size_id}
+                                    color_id={item.color_id}
+                                    onRemove={removeItem}
+                                />
+                            ))}
                             </tbody>
                         </table>
                         <div className="mt-[100px]">
@@ -203,9 +221,11 @@ function Index() {
                         </form>
                     </div>
                 </div>
+                ) : (
+                    <Empty title={"Your cart is currently empty."}/>
+                )}
 
 
-                <Empty title={"Your cart is currently empty."}/>
             </div>
         </>
     );
