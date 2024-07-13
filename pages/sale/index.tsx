@@ -1,8 +1,28 @@
 import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
-import collection2 from '@/public/assets/collections/collection2.webp'
+import { useEffect, useState } from 'react'
+import axiosInstance from '@/utils/axiosInstance'
 
 function Index() {
+
+    const [saleProducts, setSaleProducts] = useState([])
+
+    async function fetchSaleProducts() {
+        try {
+            const response = await axiosInstance('/products/sale')
+            const data = await response.data
+
+            console.log(data);
+
+            setSaleProducts(data)
+        } catch (err) {
+            console.error(err)
+        }
+    }
+
+    useEffect(() => {
+        fetchSaleProducts()
+    }, [])
     return (
         <div>
             <div className="bg-sale-banner bg-center bg-cover h-[800px] w-full justify-center flex lg:h-[500px]">
@@ -38,18 +58,17 @@ function Index() {
                     </p>
                 </div>
                 <div className="grid grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 justify-center mt-[50px]">
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={169}
-                        sale={143}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={169}
-                        sale={143}
-                    />
+                    {saleProducts.map((saleProduct: any) => (
+                        <CollectionCard
+                            key={saleProduct.id}
+                            id={saleProduct.id}
+                            title={saleProduct.title}
+                            imageSrc={saleProduct.image_path[0]}
+                            price={saleProduct.price}
+                            rating={saleProduct.rating}
+                            sale={saleProduct.sale_price}
+                        />
+                    ))}
                 </div>
             </div>
 
