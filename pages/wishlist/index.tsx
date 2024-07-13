@@ -19,20 +19,20 @@ function Index() {
                     </nav>
                 </div>
                 <div className="grid grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 justify-center">
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={169}
-                        sale={143}
-                        isRemovable={true}
-                    />
-                    <CollectionCard
-                        title={'Square Textured Striped'}
-                        imageSrc={collection2}
-                        price={169}
-                        sale={143}
-                        isRemovable={true}
-                    />
+                    {/*<CollectionCard*/}
+                    {/*    title={'Square Textured Striped'}*/}
+                    {/*    imageSrc={collection2}*/}
+                    {/*    price={169}*/}
+                    {/*    sale={143}*/}
+                    {/*    isRemovable={true}*/}
+                    {/*/>*/}
+                    {/*<CollectionCard*/}
+                    {/*    title={'Square Textured Striped'}*/}
+                    {/*    imageSrc={collection2}*/}
+                    {/*    price={169}*/}
+                    {/*    sale={143}*/}
+                    {/*    isRemovable={true}*/}
+                    {/*/>*/}
                 </div>
                 <div className="md:px-[15px] text-center">
                     <Empty title={"No products were added to the wishlist page."}/>
