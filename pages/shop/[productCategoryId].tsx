@@ -116,7 +116,9 @@ function ProductCategoryId() {
                 </div>
                 <div className="w-3/4 lg:w-full">
                     <div className="flex justify-between mb-[30px] px-[15px]">
-                        <div className="text-55black xs:text-[14px]">There are 30 results in total</div>
+                        <div className="text-55black xs:text-[14px]">
+                            There are {products.length} {products.length > 0 ? 'results' : 'result'} in total
+                        </div>
                         <button
                             className="hidden py-[3px] px-[18px] rounded-[3px] bg-11black text-white upper text-[12px]
                                 font-semibold h-auto gap-[5px] border-[1px] border-black transition duration-500
