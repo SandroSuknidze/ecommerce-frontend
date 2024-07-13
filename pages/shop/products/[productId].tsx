@@ -41,6 +41,7 @@ import axiosInstance from '@/utils/axiosInstance'
 import { useRouter } from 'next/router'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 import { useCart } from '@/context/CartContext'
+import { toast } from 'react-toastify'
 
 
 interface Size {
@@ -152,6 +153,9 @@ function ProductId() {
 
 
     const addToCart = (product: any) => {
+        toast.success('Item added to your cart!', {
+            position: 'top-center'
+        })
         const item = {
             id: product.id,
             title: product.title,

@@ -1,5 +1,6 @@
 import React from 'react';
 import { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import { toast } from 'react-toastify'
 
 interface CartItem {
     id: string;
@@ -129,6 +130,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     };
 
     const removeItem = (id: string, color_id: number, size_id: number) => {
+        toast.success('Item removed from your cart!', {
+            position: 'top-center'
+        })
         dispatch({
             type: 'REMOVE_ITEM',
             itemId: id,
