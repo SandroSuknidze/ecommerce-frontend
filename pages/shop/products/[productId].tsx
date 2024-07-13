@@ -1,9 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Navigation, Thumbs } from 'swiper/modules'
-import { CSSProperties, useState } from 'react'
+import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules'
+import { CSSProperties, useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { AnimatePresence, motion } from 'framer-motion'
-
 import 'swiper/css'
 import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
@@ -38,23 +37,42 @@ import FeaturedProducts from '@/components/FeaturedProducts'
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus'
 import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
+import axiosInstance from '@/utils/axiosInstance'
+import { useRouter } from 'next/router'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
+
+interface Size {
+    id: number;
+    name: string;
+    pivot: {
+        product_id: number;
+        size_id: number;
+    };
+}
 
 const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
         color: '#111111',
         fontSize: '12px',
     },
-});
+    '& .MuiRating-iconEmpty': {
+        fontSize: '12px',
+    },
+})
+
+
+
 
 function ProductId() {
-    const [thumbsSwiper, setThumbsSwiper] = useState(null)
+    const router = useRouter()
+    const { productId } = router.query
 
-    type Size = 'S' | 'M' | 'L';
-    const [size, setSize] = useState<Size>('S')
+    const [product, setProduct] = useState<any>({})
+    const [thumbsSwiper, setThumbsSwiper] = useState<any>(null)
+    const [sizes, setSizes] = useState<number | null>(null)
 
-    type Color = 'blue' | 'beige' | 'pink';
-    const [color, setColor] = useState<Color>('blue')
+    const [colors, setColors] = useState<number | null>(null)
     const [itemCount, setItemCount] = useState(1)
 
     const [isSizeGuidModalOpen, setIsSizeGuidModalOpen] = useState(false)
@@ -64,7 +82,6 @@ function ProductId() {
     const [isDescriptionOpen, setIsDescriptionOpen] = useState(false)
     const [isShippingOpen, setIsShippingOpen] = useState(false)
     const [isReturnOpen, setIsReturnOpen] = useState(false)
-
 
     type Section = 1 | 2 | 3;
     const [section, setSection] = useState<Section>(1)
@@ -106,6 +123,23 @@ function ProductId() {
         setIsReturnOpen(!isReturnOpen)
     }
 
+    async function fetchProduct() {
+        try {
+            const response = await axiosInstance.get(`/product/${productId}`)
+            const data = response.data
+            setProduct(data)
+            setSizes(data.sizes[0]?.id ?? null)
+            setColors(data.colors[0]?.id ?? null)
+            console.log(data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        if (productId) fetchProduct()
+    }, [productId])
+
 
     return (
         <>
@@ -122,359 +156,344 @@ function ProductId() {
             )}
             <div className="m-auto max-w-[1350px] px-[30px] md:px-[15px]">
                 <nav className="py-[25px]">
-                    <ol className="text-[14px]">
-                        <li className="inline text-11black"><Link href="/">Home</Link>&nbsp;/&nbsp;</li>
-                        <li className="inline text-11black"><Link href="/">Winter Coat</Link>&nbsp;/&nbsp;</li>
-                        <li className="inline text-55black">
-                            Square Textured Striped
-                        </li>
-                    </ol>
+                    {product.image_path?.length > 0 ? (
+                        <ol className="text-[14px]">
+                            <li className="inline text-11black"><Link href="/">Home</Link>&nbsp;/&nbsp;</li>
+                            <li className="inline text-11black"><Link href={`/shop/${product.category?.id}`}>
+                                {product.category?.name}</Link>&nbsp;/&nbsp;
+                            </li>
+                            <li className="inline text-55black">
+                                {product.title}
+                            </li>
+                        </ol>
+                    ) : (
+                        <ol className="text-[14px]">
+                            <li className="inline text-11black">
+                                <SkeletonLoader className="w-[300px] h-[21px]" />
+                            </li>
+                        </ol>
+
+                    )}
                 </nav>
                 <div className="m-auto flex justify-center mb-[100px] lg:flex-col">
-                    <div className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px]
-                    lg:flex-col-reverse lg:max-h-max lg:w-full lg:p-0">
-                        <div className="w-[8%] select-none lg:w-full h-[100%]">
-                            <Swiper
-                                // @ts-ignore
-                                onSwiper={setThumbsSwiper}
-                                spaceBetween={10}
-                                freeMode={true}
-                                watchSlidesProgress={true}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                className="mySwiper w-full h-fit"
-                                breakpoints={{
-                                    992: {
-                                        direction: 'vertical',
-                                        slidesPerView: 10,
-                                    },
-                                    320: {
-                                        direction: 'horizontal',
-                                        slidesPerView: 4,
-                                    }
-                                }}
-                            >
-                                <SwiperSlide>
-                                    <Image src={collection2} alt="Product Image"/>
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection3} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection4} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                            </Swiper>
-                        </div>
-                        <div className="w-[88%] select-none relative lg:w-full lg:h-full">
-                            <Swiper
-                                // @ts-ignore
-                                style={{
-                                    '--swiper-navigation-color': '#fff',
-                                    '--swiper-pagination-color': '#fff',
-                                } as CSSProperties}
-                                spaceBetween={10}
-                                navigation={{
-                                    nextEl: '.arrow-right7',
-                                    prevEl: '.arrow-left7',
-                                }}
-                                thumbs={{ swiper: thumbsSwiper }}
-                                modules={[FreeMode, Navigation, Thumbs]}
-                                loop={true}
-                                className="mySwiper2"
-                            >
-                                <SwiperSlide>
-                                    <Image src={collection2} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection3} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection4} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                                <SwiperSlide>
-                                    <Image src={collection5} alt="Product Image" />
-                                </SwiperSlide>
-                            </Swiper>
+                    {product.image_path?.length > 0 ? (
+                        <div
+                            className="flex max-h-[800px] w-1/2 flex-row gap-[10px] pr-[15px] lg:flex-col-reverse lg:max-h-max lg:w-full lg:p-0">
+                            <div className="w-[8%] select-none lg:w-full h-[100%]">
+                                <Swiper
+                                    onSwiper={setThumbsSwiper}
+                                    spaceBetween={10}
+                                    freeMode={true}
+                                    watchSlidesProgress={true}
+                                    modules={[FreeMode, Navigation, Thumbs]}
+                                    className="mySwiper w-full h-fit"
+                                    breakpoints={{
+                                        992: {
+                                            direction: 'vertical',
+                                            slidesPerView: 10,
+                                        },
+                                        320: {
+                                            direction: 'horizontal',
+                                            slidesPerView: 4,
+                                        },
+                                    }}
+                                >
+                                    {product.image_path?.map((image: any, index: number) => (
+                                        <SwiperSlide key={'small-' + index}>
+                                            <Image
+                                                width={50}
+                                                height={69}
+                                                src={process.env.imageUrl + '' + image}
+                                                alt="Product Image"
+                                            />
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
+                            </div>
+                            <div className="w-[88%] select-none relative lg:w-full lg:h-full">
+                                <Swiper
+                                    style={{
+                                        '--swiper-navigation-color': '#fff',
+                                        '--swiper-pagination-color': '#fff',
+                                    } as CSSProperties}
+                                    spaceBetween={10}
+                                    navigation={{
+                                        nextEl: '.arrow-right7',
+                                        prevEl: '.arrow-left7',
+                                    }}
+                                    thumbs={{ swiper: thumbsSwiper }}
+                                    modules={[FreeMode, Navigation, Thumbs]}
+                                    loop={true}
+                                    className="mySwiper2"
+                                >
+                                    {product.image_path?.map((image: any, index: number) => (
+                                        <SwiperSlide key={'big-' + index}>
+                                            <Image
+                                                width={554}
+                                                height={783}
+                                                src={process.env.imageUrl + '' + image}
+                                                alt="Product Image"
+                                                loading={'lazy'}
+                                            />
+                                        </SwiperSlide>
+                                    ))}
+                                </Swiper>
                                 <button
-                                    className="arrow-left7 absolute z-10 top-1/2 -translate-y-1/2 left-5 arrow flex h-[60px] w-[60px]
-                    items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
-                    hover:border-black hover:bg-black hover:text-white
-                    xl:h-[40px] xl:w-[40px]">
+                                    className="arrow-left7 absolute z-10 top-1/2 -translate-y-1/2 left-5 arrow flex h-[60px] w-[60px] items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]"
+                                >
                                     <div>
                                         <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
                                     </div>
                                 </button>
                                 <button
-                                    className="arrow-right7 absolute z-10 top-1/2 -translate-y-1/2 right-5 arrow h-[60px] w-[60px]
-                    rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
-                    hover:border-black hover:bg-black hover:text-white ml-[20px]
-                    xl:h-[40px] xl:w-[40px]">
+                                    className="arrow-right7 absolute z-10 top-1/2 -translate-y-1/2 right-5 arrow h-[60px] w-[60px] rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white ml-[20px] xl:h-[40px] xl:w-[40px]"
+                                >
                                     <div>
                                         <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
                                     </div>
                                 </button>
+                            </div>
                         </div>
-                    </div>
+                    ) : (
+                        <div
+                            className="flex h-[800px] w-1/2 flex-row gap-[10px] pr-[15px] lg:flex-col-reverse lg:max-h-max lg:w-full lg:p-0">
+                            <SkeletonLoader className="w-[8%] lg:w-full h-[100%] lg:h-[20%]" />
+                            <SkeletonLoader className="w-[88%] lg:w-full  relative lg:h-[80%]" />
+                        </div>
+                    )}
+
                     <div className="w-1/2 px-[15px] lg:flex-col lg:w-full lg:p-0 lg:mt-[30px]">
-                        <div>
-                            <div
-                                className="mb-[5px] inline-block rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
-                                -50%
-                            </div>
-                            <h1 className="mb-[5px] text-[30px] text-11black">
-                                Square Textured Striped
-                            </h1>
-                            <div className="flex text-[10px] leading-[28px]">
+                        {product.title ? (
+                            <>
                                 <div>
-                                    <StyledRating name="read-only" value={5} readOnly />
-                                </div>
-                                <div className="ml-[10px] text-[14px] text-55black">
-                                    2 reviews
-                                </div>
-                            </div>
-                            <div className="m-auto mt-[3px] flex py-[20px] font-medium">
-                                {sale && (
-                                    <div className="text-[30px] text-red-600">
-                                        ${sale}
+                                    {product.sale_price && (
+                                        <div
+                                            className="mb-[5px] inline-block rounded-[12px] bg-red-600 px-[12px] py-[6px] text-[13px] leading-3 text-white">
+                                            -{Math.round(100 - (product.sale_price * 100) / product.price)}%
+                                        </div>
+                                    )}
+                                    <h1 className="mb-[5px] text-[30px] text-11black">
+                                        {product.title}
+                                    </h1>
+                                    <div className="flex text-[10px] leading-[28px]">
+                                        <div>
+                                            <StyledRating name="read-only" value={product.rating ?? 0} readOnly />
+                                        </div>
+                                        <div className="ml-[10px] text-[14px] text-55black">
+                                            2 reviews
+                                        </div>
                                     </div>
-                                )}
-                                <div
-                                    className={`${sale ? 'my-auto ml-[5px] text-[20px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
-                                >
-                                    ${price}
-                                </div>
-                            </div>
-                            <div className="text-55black">
-                                The garments labelled as committed are products
-                                that have been produced using sustainable fibres
-                                or processes, reducing their environmental
-                                impact.
-                            </div>
-                            <div className="mt-[20px]">
-                                <fieldset>
-                                    <legend>
+                                    <div className="m-auto mt-[3px] flex py-[20px] font-medium">
+                                        {product.sale_price && (
+                                            <div className="text-[30px] text-red-600">
+                                                ${product.sale_price}
+                                            </div>
+                                        )}
+                                        <div
+                                            className={`${product.sale_price ? 'my-auto ml-[5px] text-[20px] font-normal text-gray-400 line-through' : 'text-[#111111]'}`}
+                                        >
+                                            ${product.price}
+                                        </div>
+                                    </div>
+                                    <div className="text-55black">
+                                        {product.description}
+                                    </div>
+                                    <div className="mt-[20px]">
+                                        <fieldset>
+                                            <legend>
                                         <span className="text-55black">
                                             Size:{' '}
                                         </span>
-                                        <span className="font-medium text-11black">
-                                            {size}
+                                                <span className="font-medium text-11black">
+                                            {sizes && product.sizes.find((size: any) => size.id === sizes)?.name}
                                         </span>
-                                    </legend>
-                                    <div className="mt-[10px] flex gap-[10px]">
-                                        <div
-                                            onClick={() => setSize('S')}
-                                            className={`${size === 'S' ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
-                                        >
-                                            S
-                                        </div>
-                                        <div
-                                            onClick={() => setSize('M')}
-                                            className={`${size === 'M' ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
-                                        >
-                                            {' '}
-                                            M
-                                        </div>
-                                        <div
-                                            onClick={() => setSize('L')}
-                                            className={`${size === 'L' ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
-                                        >
-                                            {' '}
-                                            L
-                                        </div>
+                                            </legend>
+                                            <div className="mt-[10px] flex gap-[10px]">
+                                                {product.sizes?.map((size: any) => (
+                                                    <div
+                                                        key={size.id}
+                                                        id={String(size.id)}
+                                                        onClick={() => setSizes(size.id)}
+                                                        className={`${sizes === size.id ? 'bg-black text-white' : 'bg-white'} cursor-pointer rounded-[3px] border-[1px] border-[#ebebeb] px-[22px] py-[3px] transition duration-500 hover:bg-black hover:text-white`}
+                                                    >
+                                                        {size.name}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </fieldset>
                                     </div>
-                                </fieldset>
-                            </div>
-                            <div className="mt-[20px]">
-                                <fieldset>
-                                    <legend>
+                                    <div className="mt-[20px]">
+                                        <fieldset>
+                                            <legend>
                                         <span className="text-55black">
                                             Color:{' '}
                                         </span>
-                                        <span className="font-medium text-11black">
-                                            {color}
+                                                <span className="font-medium text-11black">
+                                            {colors && product.colors.find((color: any) => color.id === colors)?.name}
                                         </span>
-                                    </legend>
-                                    <div className="mt-[10px] flex gap-[10px]">
-                                        <div
-                                            onClick={() => setColor('blue')}
-                                            className={`${color === 'blue' && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-[#3f8ad1] transition duration-500 hover:border-black`}
-                                        >
-                                            <div className="h-[30px] w-[30px] rounded-full border-2 border-white"></div>
-                                        </div>
-                                        <div
-                                            onClick={() => setColor('beige')}
-                                            className={`${color === 'beige' && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-[#f5f5dc] transition duration-500 hover:border-black`}
-                                        >
-                                            <div className="h-[30px] w-[30px] rounded-full border-2 border-white"></div>
-                                        </div>
-                                        <div
-                                            onClick={() => setColor('pink')}
-                                            className={`${color === 'pink' && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-[#fcd1db] transition duration-500 hover:border-black`}
-                                        >
-                                            <div className="h-[30px] w-[30px] rounded-full border-2 border-white"></div>
+                                            </legend>
+                                            <div className="mt-[10px] flex gap-[10px]">
+                                                {product.colors?.map((color: any) => (
+                                                    <div
+                                                        key={color.id}
+                                                        id={String(color.id)}
+                                                        onClick={() => setColors(color.id)}
+                                                        className={`${colors === color.id && 'border-black'} h-[32px] w-[32px] cursor-pointer rounded-full border-[1px] border-[#ebebeb] transition duration-500`}
+                                                        style={{ backgroundColor: color.color }}
+                                                    >
+                                                        <div
+                                                            className="h-[30px] w-[30px] rounded-full border-2 border-white"></div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[20px]">
+                                        <div className="flex gap-[30px] xs:flex-col xs:gap-[10px]">
+                                            <div className="flex cursor-pointer gap-[10px]"
+                                                 onClick={toggleSizeGuideModal}>
+                                                <Image src={sizeIcon} alt="Size Icon" />
+                                                <div>Size Guide</div>
+                                            </div>
+                                            <div className="flex gap-[30px]">
+                                                <div className="flex cursor-pointer gap-[10px]"
+                                                     onClick={toggleAskQuestionModal}>
+                                                    <Image src={askIcon} alt="Ask Icon" />
+                                                    <div>Ask a Question</div>
+                                                </div>
+                                                <div className="flex cursor-pointer gap-[10px]"
+                                                     onClick={toggleShareModal}>
+                                                    <Image src={shareIcon} alt="Share Icon" />
+                                                    <div>Share</div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </fieldset>
-                            </div>
 
-                            <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[20px]">
-                                <div className="flex gap-[30px] xs:flex-col xs:gap-[10px]">
                                     <div
-                                        className="flex cursor-pointer gap-[10px]"
-                                        onClick={toggleSizeGuideModal}
-                                    >
-                                        <Image src={sizeIcon} alt="Size Icon" />
-                                        <div>Size Guide</div>
-                                    </div>
-                                    <div className="flex gap-[30px]">
-                                        <div
-                                            className="flex cursor-pointer gap-[10px]"
-                                            onClick={toggleAskQuestionModal}
-                                        >
-                                            <Image src={askIcon} alt="Ask Icon" />
-                                            <div>Ask a Question</div>
+                                        className="mt-[20px] flex h-[50px] select-none gap-[20px] sm:flex-col sm:h-auto">
+                                        <div className="h-[50px] flex">
+                                            <div
+                                                className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5] sm:w-full">
+                                                <div className="flex w-1/4 cursor-pointer justify-center"
+                                                     onClick={decrementCount}>
+                                                    <Image src={minusIcon} alt="Minus Icon" />
+                                                </div>
+                                                <div className="m-auto flex w-2/4 justify-center">
+                                                    {itemCount}
+                                                </div>
+                                                <div className="flex w-1/4 cursor-pointer justify-center"
+                                                     onClick={incrementCount}>
+                                                    <Image src={plusIcon} alt="Plus Icon" />
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div
-                                            className="flex cursor-pointer gap-[10px]"
-                                            onClick={toggleShareModal}
-                                        >
-                                            <Image
-                                                src={shareIcon}
-                                                alt="Share Icon"
-                                            />
-                                            <div>Share</div>
+                                        <div className="h-[50px] flex gap-[20px]">
+                                            <button
+                                                type="submit"
+                                                className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white xl:w-full xl:px-[45px] sm:!px-[30px] sm:w-full"
+                                            >
+                                                Add To Cart
+                                            </button>
+                                            <div
+                                                className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
+                                                <HeartIcon
+                                                    className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
+                                            </div>
                                         </div>
                                     </div>
 
-                                </div>
-                            </div>
-
-                            <div className="mt-[20px] flex h-[50px] select-none gap-[20px] sm:flex-col sm:h-auto">
-                                <div className="h-[50px] flex">
+                                    <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[25px] text-55black">
+                                        <div className="mb-[10px] flex gap-[15px] leading-[28px]">
+                                            <Image src={estIcon} alt="Estimate Delivery Icon" />
+                                            <p>
+                                                Estimate delivery times:{' '}
+                                                <strong className="font-medium text-11black">
+                                                    3-6 days
+                                                </strong>{' '}
+                                                (International)
+                                            </p>
+                                        </div>
+                                        <div className="flex gap-[15px] leading-[28px]">
+                                            <Image src={returnIcon} alt="Return Icon" />
+                                            <p>
+                                                Return within{' '}
+                                                <strong className="font-medium text-11black">
+                                                    45 days
+                                                </strong>{' '}
+                                                of purchase. Duties & taxes are non-refundable.
+                                            </p>
+                                        </div>
+                                    </div>
                                     <div
-                                        className="flex w-[150px] px-[10px] rounded-full border-[1px] border-[#ebebeb] bg-[#F5F5F5] sm:w-full">
-                                        <div
-                                            className="flex w-1/4 cursor-pointer justify-center"
-                                            onClick={decrementCount}
-                                        >
-                                            <Image
-                                                src={minusIcon}
-                                                alt="Minus Icon"
-                                            />
-                                        </div>
-                                        <div className="m-auto flex w-2/4 justify-center">
-                                            {itemCount}
-                                        </div>
-                                        <div
-                                            className="flex w-1/4 cursor-pointer justify-center"
-                                            onClick={incrementCount}
-                                        >
-                                            <Image src={plusIcon} alt="Plus Icon" />
+                                        className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
+                                        <label className="absolute top-[-13px] bg-white px-[20px] font-medium">
+                                            Guarantee safe checkout
+                                        </label>
+                                        <div>
+                                            <Image src={paymentPicture} alt="Payment Methods" />
                                         </div>
                                     </div>
-
                                 </div>
-                                <div className="h-[50px] flex gap-[20px]">
-                                    <button
-                                        type="submit"
-                                        className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px]
-                                    py-[14px] text-[12px] font-semibold uppercase text-white xl:w-full xl:px-[45px] sm:!px-[30px] sm:w-full"
-                                    >
-                                        Add To Cart
-                                    </button>
-                                    <div
-                                        className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
-                                        <HeartIcon
-                                            className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
+                            </>
+                        ) : (
+                            <div>
+                                <SkeletonLoader className="h-[30px] w-[150px] mb-[5px] inline-block rounded-[12px]" />
+                                <SkeletonLoader className="h-[40px] w-[300px] mb-[5px]" />
+                                <SkeletonLoader className="h-[20px] w-[100px] mb-[5px]" />
+                                <SkeletonLoader className="h-[40px] w-[200px] mt-[3px]" />
+                                <SkeletonLoader className="h-[20px] w-[100%] mt-[20px]" />
+                                <SkeletonLoader className="h-[20px] w-[100%] mt-[20px]" />
+                                <div className="mt-[20px]">
+                                    <fieldset>
+                                        <legend>
+                                            <span className="font-medium text-11black">
+                                                <SkeletonLoader className="h-[20px] w-[50px]" />
+                                            </span>
+                                        </legend>
+                                        <div className="mt-[10px] flex gap-[10px]">
+                                            <SkeletonLoader className="h-[32px] w-[50px] rounded-[3px]" />
+                                            <SkeletonLoader className="h-[32px] w-[50px] rounded-[3px]" />
+                                            <SkeletonLoader className="h-[32px] w-[50px] rounded-[3px]" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div className="mt-[20px]">
+                                    <fieldset>
+                                        <legend>
+                                            <span className="font-medium text-11black">
+                                                <SkeletonLoader className="h-[20px] w-[50px]" />
+                                            </span>
+                                        </legend>
+                                        <div className="mt-[10px] flex gap-[10px]">
+                                            <SkeletonLoader className="h-[32px] w-[32px] rounded-full" />
+                                            <SkeletonLoader className="h-[32px] w-[32px] rounded-full" />
+                                            <SkeletonLoader className="h-[32px] w-[32px] rounded-full" />
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[20px]">
+                                    <div className="flex gap-[30px] xs:flex-col xs:gap-[10px]">
+                                        <SkeletonLoader className="h-[20px] w-[100px]" />
+                                        <SkeletonLoader className="h-[20px] w-[100px]" />
                                     </div>
                                 </div>
-
-
-                            </div>
-
-                            <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[25px] text-55black">
-                                <div className="mb-[10px] flex gap-[15px] leading-[28px]">
-                                    <Image
-                                        src={estIcon}
-                                        alt="Estimate Delivery Icon"
-                                    />
-                                    <p>
-                                        Estimate delivery times:{' '}
-                                        <strong className="font-medium text-11black">
-                                            3-6 days
-                                        </strong>{' '}
-                                        (International)
-                                    </p>
+                                <div className="mt-[20px] flex h-[50px] select-none gap-[20px] sm:flex-col sm:h-auto">
+                                    <SkeletonLoader className="h-[50px] w-[150px] rounded-full" />
+                                    <SkeletonLoader className="h-[50px] w-[300px] rounded-full" />
                                 </div>
-                                <div className="flex gap-[15px] leading-[28px]">
-                                    <Image src={returnIcon} alt="Return Icon" />
-                                    <p>
-                                        Return within{' '}
-                                        <strong className="font-medium text-11black">
-                                            45 days
-                                        </strong>{' '}
-                                        of purchase. Duties & taxes are
-                                        non-refundable.
-                                    </p>
+                                <div className="mt-[25px] border-b-[1px] border-[#ebebeb] pb-[25px] text-55black">
+                                    <SkeletonLoader className="h-[20px] w-[300px] mb-[10px]" />
+                                    <SkeletonLoader className="h-[20px] w-[300px]" />
+                                </div>
+                                <div
+                                    className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
+                                    <SkeletonLoader className="h-[20px] w-[150px] absolute top-[-13px] bg-white" />
+                                    <SkeletonLoader className="h-[30px] w-[200px]" />
                                 </div>
                             </div>
-                            <div
-                                className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
-                                <label className="absolute top-[-13px] bg-white px-[20px] font-medium">
-                                    Guarantee safe checkout
-                                </label>
-                                <div>
-                                    <Image
-                                        src={paymentPicture}
-                                        alt="Payment Methods"
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -681,7 +700,6 @@ function ProductId() {
                 </div>
 
 
-
                 <div className="overflow-hidden hidden lg:block">
                     <div
                         onClick={() => toggleDescription()}
@@ -806,7 +824,6 @@ function ProductId() {
                 </div>
 
 
-
                 <div className="overflow-hidden hidden lg:block">
                     <div
                         onClick={() => toggleShipping()}
@@ -859,7 +876,6 @@ function ProductId() {
                         )}
                     </AnimatePresence>
                 </div>
-
 
 
                 <div className="overflow-hidden hidden lg:block">

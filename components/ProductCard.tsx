@@ -16,7 +16,10 @@ const StyledRating = styled(Rating)({
         color: '#111111',
         fontSize: '12px',
     },
-});
+    '& .MuiRating-iconEmpty': {
+        fontSize: '12px',
+    }
+})
 
 function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: ProductCardProps) {
 
