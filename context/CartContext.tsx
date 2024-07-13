@@ -30,7 +30,7 @@ interface CartAction {
 
 const CartContext = createContext<CartState & {
     addItem: (item: CartItem) => void;
-    removeItem: (id: string, color_id: number, size_id: number) => void;
+    removeItem: (id: string, color_id: number | undefined, size_id: number | undefined) => void;
     updateQuantity: (id: string, quantity: number, size_id?: number, color_id?: number) => void;
     clearCart: () => void;
     totalItems: () => number;
@@ -129,10 +129,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         });
     };
 
-    const removeItem = (id: string, color_id: number, size_id: number) => {
-        toast.success('Item removed from your cart!', {
-            position: 'top-center'
-        })
+    const removeItem = (id: string, color_id: number | undefined, size_id: number | undefined) => {
+
         dispatch({
             type: 'REMOVE_ITEM',
             itemId: id,

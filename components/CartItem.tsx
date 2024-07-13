@@ -20,7 +20,7 @@ interface CartItemProps {
     size_name?: string;
     color_id?: number;
     color_name?: string;
-    onRemove: (id: string, color_id: number, size_id: number) => void;
+    onRemove: (id: string, color_id: number | undefined, size_id: number | undefined) => void;
 
 }
 
@@ -35,6 +35,7 @@ export function CartItem({
                              size_name,
                              color_id,
                              color_name,
+                             onRemove,
                              dynamicCount = true,
                          }: CartItemProps) {
 
@@ -43,7 +44,6 @@ export function CartItem({
 
     useEffect(() => {
         updateQuantity(id, itemQuantity, size_id, color_id);
-        console.log('size', size_id);
     }, [itemQuantity]);
 
     const incrementCount = () => {
@@ -104,7 +104,7 @@ export function CartItem({
                 </td>
                 {dynamicCount ? (
                     <td className="border border-[#ebebeb] p-4 text-center md:border-0">
-                        <button onClick={() => removeItem(id, color_id, size_id)} className="text-gray-500 hover:text-gray-800">
+                        <button onClick={() => onRemove(id, color_id, size_id)} className="text-gray-500 hover:text-gray-800">
                             <FontAwesomeIcon icon={faTrashCan} />
                         </button>
                     </td>

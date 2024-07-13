@@ -13,6 +13,7 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules'
 import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem'
 import { useCart } from '@/context/CartContext'
+import { useState } from 'react'
 
 
 interface FormData {
@@ -53,6 +54,13 @@ function Index() {
         return format.test(zipCode) || `Invalid ZIP code for ${selectedCountry}`;
     };
 
+    function removeCartItem(id: string, color_id: number | undefined, size_id: number | undefined) {
+        toast.success('Item removed from your cart!', {
+            position: 'top-center'
+        })
+        removeItem(id, color_id, size_id)
+    }
+
 
     return (
         <>
@@ -83,7 +91,7 @@ function Index() {
                             <tbody>
                             {items.map((item, index) => (
                                 <CartItem
-                                    key={index}
+                                    key={`${item.id}-${item.size_id}-${item.color_id}-${index}`}
                                     id={item.id}
                                     title={item.title}
                                     price={item.price}
@@ -94,7 +102,7 @@ function Index() {
                                     color_name={item.color_name}
                                     size_id={item.size_id}
                                     color_id={item.color_id}
-                                    onRemove={removeItem}
+                                    onRemove={removeCartItem}
                                 />
                             ))}
                             </tbody>
