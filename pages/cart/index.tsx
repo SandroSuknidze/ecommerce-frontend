@@ -67,30 +67,30 @@ function Index() {
         }
     }
 
-    useEffect(() => {
-        const getCart = async () => {
-            setCurrentLoading(true);
-            try {
-                // const response = await axiosInstance.get('/cart');
-                // setItemsBackend(response.data);
-                console.log("data is here");
-                console.log(isAuthenticated);
-                // setTimeout(() => {
-                    setCurrentLoading(false);
-
-                // }, 1000)
-
-            } catch (error) {
-                console.error('Error fetching cart data:', error);
-                setError('Failed to fetch cart data');
-            } finally {
-                console.log("false");
-            }
-        };
-        if (isAuthenticated) {
-            getCart();
-        }
-    }, [isAuthenticated]);
+    // useEffect(() => {
+    //     const getCart = async () => {
+    //         setCurrentLoading(true);
+    //         try {
+    //             // const response = await axiosInstance.get('/cart');
+    //             // setItemsBackend(response.data);
+    //             console.log("data is here");
+    //             console.log(isAuthenticated);
+    //             // setTimeout(() => {
+    //                 setCurrentLoading(false);
+    //
+    //             // }, 1000)
+    //
+    //         } catch (error) {
+    //             console.error('Error fetching cart data:', error);
+    //             setError('Failed to fetch cart data');
+    //         } finally {
+    //             console.log("false");
+    //         }
+    //     };
+    //     if (isAuthenticated) {
+    //         getCart();
+    //     }
+    // }, [isAuthenticated]);
 
     if (cartLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;

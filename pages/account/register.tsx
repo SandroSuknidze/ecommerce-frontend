@@ -53,6 +53,8 @@ function Register() {
 
             if (response.status === 200) {
                 console.log("success");
+                await router.push('/')
+
                 const { access_token, user } = response.data;
                 Cookies.set('access_token', access_token, { expires: 1 });
                 Cookies.set('user', JSON.stringify(user), { expires: 1 });
@@ -60,7 +62,16 @@ function Register() {
                 toast.success('Registration successful!', {
                     position: 'top-center',
                 })
-                await router.push('/')
+
+                const savedCart:any = localStorage.getItem('cart');
+                const jsonSavedCart = JSON.parse(savedCart);
+                console.log(jsonSavedCart.length);
+                console.log(savedCart);
+                if(jsonSavedCart.items.length > 0) {
+                    await axiosInstance.post('/cart/sync', { cart: jsonSavedCart.items });
+
+                }
+                localStorage.removeItem('cart');
             }
         } catch (error: any) {
             setIsSubmittable(true)
