@@ -2,7 +2,7 @@ import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
 
 interface CollectionProps {
-    imageSrc: StaticImageData;
+    imageSrc: string;
     title: string;
     id: number;
     totalProducts: number;

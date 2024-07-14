@@ -94,6 +94,7 @@ function FeaturedProducts() {
                                     size_name={featuredProduct.sizes[0].name}
                                     color_id={featuredProduct.colors[0].id}
                                     color_name={featuredProduct.colors[0].name}
+                                    colors={featuredProduct.colors}
                                 />
                             </SwiperSlide>
                         ))}

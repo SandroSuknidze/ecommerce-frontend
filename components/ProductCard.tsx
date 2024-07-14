@@ -4,11 +4,13 @@ import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
 
 interface ProductCardProps {
+    id: number,
     title: string,
     imageSrc: StaticImageData,
     price: string,
     toggleSearch: () => void,
     sale?: string | null,
+    rating?: number
 }
 
 const StyledRating = styled(Rating)({
@@ -21,23 +23,27 @@ const StyledRating = styled(Rating)({
     }
 })
 
-function ProductCard({ title, imageSrc, price, toggleSearch, sale = null }: ProductCardProps) {
+function ProductCard({ id, title, imageSrc, price, rating, toggleSearch, sale }: ProductCardProps) {
 
-    const formattedTitle = title.replace(/ /g, '-').toLowerCase()
+    // const formattedTitle = title.replace(/ /g, '-').toLowerCase()
 
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl">
             <div className="max-w-full overflow-hidden rounded-xl">
-                <Link href={`/shop/${formattedTitle}`} onClick={() => {
+                <Link href={`/shop/products/${id}`} onClick={() => {
                     toggleSearch()
                 }}>
-                    <Image src={imageSrc} alt="collection"
-                           className="rounded-xl hover:scale-105 transition duration-300 cursor-pointer max-h-[313px] max-w-full overflow-hidden lg:hover:scale-100" />
+                    <Image
+                        width={211}
+                        height={281}
+                        src={process.env.imageUrl + '' + imageSrc}
+                        alt="collection"
+                       className="rounded-xl hover:scale-105 transition duration-300 cursor-pointer max-h-[313px] max-w-full overflow-hidden lg:hover:scale-100" />
                 </Link>
             </div>
             <div className="bg-white pt-[15px]">
                 <div className="">
-                    <Link href={`/shop/${formattedTitle}`} onClick={() => toggleSearch()}>{title}</Link>
+                    <Link href={`/shop/products/${id}`} onClick={() => toggleSearch()}>{title}</Link>
                 </div>
                 <div className="text-[10px] leading-[28px]">
                     <StyledRating name="read-only" value={5} readOnly />

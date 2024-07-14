@@ -26,6 +26,7 @@ import collection2 from '@/public/assets/collections/collection2.webp'
 import FeaturedProducts from '@/components/FeaturedProducts'
 import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 export const collections = [
     { id: 1, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
@@ -241,45 +242,56 @@ function Index() {
                     </button>
                 </div>
                 <div className="mx-auto max-w-[1470px] mt-[50px] px-[15px] md:px-0">
-                    <Swiper
-                        navigation={{
-                            nextEl: '.arrow-right6',
-                            prevEl: '.arrow-left6',
-                        }}
-                        breakpoints={{
-                            320: {
-                                slidesPerView: 2,
-                            },
-                            768: {
-                                slidesPerView: 3,
-                            },
-                            1024: {
-                                slidesPerView: 4,
-                            },
-                        }}
-                        loop={true}
-                        modules={[Navigation]}
-                        className="mySwiper5"
-                    >
-                        {newArrivals.map((newArrival: any) => (
-                            <SwiperSlide key={newArrival.id}>
-                                <CollectionCard
-                                    key={newArrival.id}
-                                    id={newArrival.id}
-                                    title={newArrival.title}
-                                    imageSrc={newArrival.image_path[0]}
-                                    price={newArrival.price}
-                                    sale={newArrival.sale_price}
-                                    rating={newArrival.rating}
-                                    size_id={newArrival.sizes[0].id}
-                                    size_name={newArrival.sizes[0].name}
-                                    color_id={newArrival.colors[0].id}
-                                    color_name={newArrival.colors[0].name}
-                                />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                    {newArrivals.length > 0 ? (
+                        <Swiper
+                            navigation={{
+                                nextEl: '.arrow-right6',
+                                prevEl: '.arrow-left6',
+                            }}
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 2,
+                                },
+                                768: {
+                                    slidesPerView: 3,
+                                },
+                                1024: {
+                                    slidesPerView: 4,
+                                },
+                            }}
+                            loop={true}
+                            modules={[Navigation]}
+                            className="mySwiper5"
+                        >
+                            {newArrivals.map((newArrival: any) => (
+                                <SwiperSlide key={newArrival.id}>
+                                    <CollectionCard
+                                        key={newArrival.id}
+                                        id={newArrival.id}
+                                        title={newArrival.title}
+                                        imageSrc={newArrival.image_path[0]}
+                                        price={newArrival.price}
+                                        sale={newArrival.sale_price}
+                                        rating={newArrival.rating}
+                                        size_id={newArrival.sizes[0].id}
+                                        size_name={newArrival.sizes[0].name}
+                                        color_id={newArrival.colors[0].id}
+                                        color_name={newArrival.colors[0].name}
+                                        colors={newArrival.colors}
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    ) : (
+                        <div className="flex gap-[15px] flex-wrap justify-center">
+                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
+                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
+                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
+                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
+                        </div>
+                    )}
                 </div>
+
             </section>
 
 
