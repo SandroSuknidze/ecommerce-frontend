@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Fragment, useEffect, useState } from 'react'
 import FilterMenu from '@/components/FilterMenu'
 import axiosInstance from '@/utils/axiosInstance'
+import { SkeletonLoader } from '@/components/SkeletonLoader';
+
 
 export const brands = [
     { id: 1, name: 'John', quantity: 1 },
@@ -56,6 +58,8 @@ function ProductCategoryId() {
     const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false)
 
     const [products, setProducts] = useState([])
+    const [isProductsLoading, setIsProductsLoading] = useState(true);
+
 
 
     const [testF, setTestF] = useState(router.asPath.split('?')[1])
@@ -70,6 +74,7 @@ function ProductCategoryId() {
     }
 
     async function fetchProducts() {
+        setIsProductsLoading(true);
         try {
             const params = {
                 colors: formatQueryParam(colors),
@@ -83,8 +88,11 @@ function ProductCategoryId() {
             console.log(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
+        } finally {
+            setIsProductsLoading(false);
         }
     }
+
 
     function formatQueryParam(param: string | any[] | undefined) {
         if (Array.isArray(param)) {
@@ -117,7 +125,9 @@ function ProductCategoryId() {
                 <div className="w-3/4 lg:w-full">
                     <div className="flex justify-between mb-[30px] px-[15px]">
                         <div className="text-55black xs:text-[14px]">
-                            There are {products.length} {products.length > 0 ? 'results' : 'result'} in total
+                            {isProductsLoading ? (<SkeletonLoader className="h-[20px] w-[200px] rounded-xl" />)
+                                : `There are ${products.length} ${products.length > 0 ? 'results' : 'result'} in total`
+                            }
                         </div>
                         <button
                             className="hidden py-[3px] px-[18px] rounded-[3px] bg-11black text-white upper text-[12px]
@@ -128,30 +138,44 @@ function ProductCategoryId() {
                             onMouseLeave={() => setIsHovered(false)}
                             onClick={() => toggleFilterMenu()}
                         >
-                            <FontAwesomeIcon icon={faFilter} className={`${isHovered && 'text-11black'} m-auto`}/>
-                            <div className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
+                            <FontAwesomeIcon icon={faFilter} className={`${isHovered && 'text-11black'} m-auto`} />
+                            <div
+                                className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
                                 Filter
                             </div>
                         </button>
                     </div>
                     <div className="grid grid-cols-3 pr-[15px] md:grid-cols-2 lg:pr-0">
-                        {products.map((product:any) => (
-                            <CollectionCard
-                                key={product.id}
-                                id={product.id}
-                                title={product.title}
-                                imageSrc={product.image_path[0]}
-                                price={product.price}
-                                sale={product.sale_price}
-                                rating={product.rating}
-                                size_id={product.sizes[0].id}
-                                size_name={product.sizes[0].name}
-                                color_id={product.colors[0].id}
-                                color_name={product.colors[0].name}
-                                colors={product.colors}
-                            />
-                        ))}
+                        {isProductsLoading ? (
+                            Array(6).fill(null).map((_, index) => (
+                                <div key={index} className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                    <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                    <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
+                                    <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
+                                    <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                    <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                </div>
+                            ))
+                        ) : (
+                            products.map((product: any) => (
+                                <CollectionCard
+                                    key={product.id}
+                                    id={product.id}
+                                    title={product.title}
+                                    imageSrc={product.image_path[0]}
+                                    price={product.price}
+                                    sale={product.sale_price}
+                                    rating={product.rating}
+                                    size_id={product.sizes[0].id}
+                                    size_name={product.sizes[0].name}
+                                    color_id={product.colors[0].id}
+                                    color_name={product.colors[0].name}
+                                    colors={product.colors}
+                                />
+                            ))
+                        )}
                     </div>
+
                 </div>
             </div>
         </div>

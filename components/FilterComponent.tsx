@@ -7,106 +7,140 @@ import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListIt
 import { MemoizedColorListItem as ColorListItem } from '@/components/ColorListItem';
 import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem';
 import { parseAsArrayOf, parseAsInteger, useQueryState } from 'nuqs';
-import { brands, colors, sizes } from '@/pages/shop/[productCategoryId]'
+import axiosInstance from '@/utils/axiosInstance';
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 const FilterComponent = () => {
-    const [isBrandOpen, setIsBrandOpen] = useState(true)
-    const [isColorOpen, setIsColorOpen] = useState(true)
-    const [isPriceOpen, setIsPriceOpen] = useState(true)
-    const [isSizeOpen, setIsSizeOpen] = useState(true)
+    const [isBrandOpen, setIsBrandOpen] = useState(true);
+    const [isColorOpen, setIsColorOpen] = useState(true);
+    const [isPriceOpen, setIsPriceOpen] = useState(true);
+    const [isSizeOpen, setIsSizeOpen] = useState(true);
 
-    const [selectedBrands, setSelectedBrands] = useQueryState<number[]>('brands', parseAsArrayOf(parseAsInteger).withDefault([]))
-    const [selectedColors, setSelectedColors] = useQueryState<number[]>('colors', parseAsArrayOf(parseAsInteger).withDefault([]))
-    const [selectedPrices, setSelectedPrices] = useQueryState<number[]>('price', parseAsArrayOf(parseAsInteger).withDefault([]))
-    const [value1, setValue1] = useState<number[]>([0, 200])
-    const [selectedSizes, setSelectedSizes] = useQueryState<number[]>('size', parseAsArrayOf(parseAsInteger).withDefault([]))
+    const [selectedBrands, setSelectedBrands] = useQueryState<number[]>('brands', parseAsArrayOf(parseAsInteger).withDefault([]));
+    const [selectedColors, setSelectedColors] = useQueryState<number[]>('colors', parseAsArrayOf(parseAsInteger).withDefault([]));
+    const [selectedPrices, setSelectedPrices] = useQueryState<number[]>('price', parseAsArrayOf(parseAsInteger).withDefault([]));
+    const [value1, setValue1] = useState<number[]>([0, 200]);
+    const [selectedSizes, setSelectedSizes] = useQueryState<number[]>('size', parseAsArrayOf(parseAsInteger).withDefault([]));
 
+    const [brands, setBrands] = useState([]);
+    const [colors, setColors] = useState([]);
+    const [sizes, setSizes] = useState([]);
+
+    const [isBrandsLoading, setIsBrandsLoading] = useState(true);
+    const [isColorsLoading, setIsColorsLoading] = useState(true);
+    const [isSizesLoading, setIsSizesLoading] = useState(true);
+
+
+    useEffect(() => {
+        const fetchFilters = async () => {
+            try {
+                setIsBrandsLoading(true);
+                setIsColorsLoading(true);
+                setIsSizesLoading(true);
+
+                const [brandsResponse, colorsResponse, sizesResponse] = await Promise.all([
+                    axiosInstance.get('/brands'),
+                    axiosInstance.get('/colors'),
+                    axiosInstance.get('/sizes'),
+                ]);
+
+                setBrands(brandsResponse.data);
+                setColors(colorsResponse.data);
+                setSizes(sizesResponse.data);
+            } catch (error) {
+                console.error('Error fetching filters:', error);
+            } finally {
+                setIsBrandsLoading(false);
+                setIsColorsLoading(false);
+                setIsSizesLoading(false);
+            }
+        };
+
+        fetchFilters();
+    }, []);
 
     function toggleBrand() {
-        setIsBrandOpen(!isBrandOpen)
+        setIsBrandOpen(!isBrandOpen);
     }
 
     function toggleColor() {
-        setIsColorOpen(!isColorOpen)
+        setIsColorOpen(!isColorOpen);
     }
 
     function togglePrice() {
-        setIsPriceOpen(!isPriceOpen)
+        setIsPriceOpen(!isPriceOpen);
     }
 
     function toggleSize() {
-        setIsSizeOpen(!isSizeOpen)
+        setIsSizeOpen(!isSizeOpen);
     }
 
     function valuetext(value: number) {
-        return `$${value}`
+        return `$${value}`;
     }
-
 
     // @ts-ignore
     const handleChangePrice = useCallback((event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
-            return
+            return;
         }
 
-        const minDistance = 0
+        const minDistance = 0;
 
         if (activeThumb === 0) {
             setValue1([
                 Math.min(newValue[0], value1[1] - minDistance),
                 value1[1],
-            ])
+            ]);
 
         } else {
             setValue1([
                 value1[0],
                 Math.max(newValue[1], value1[0] + minDistance),
-            ])
+            ]);
 
         }
-        console.log('hii')
         setSelectedPrices([newValue[0], newValue[1]]);
 
-    }, [setSelectedPrices, value1])
+    }, [setSelectedPrices, value1]);
 
     // Initialize value1 based on selectedPrices from URL
     useEffect(() => {
         if (selectedPrices.length > 0) {
-            setValue1(selectedPrices)
+            setValue1(selectedPrices);
         }
-    }, [selectedPrices])
+    }, [selectedPrices]);
 
     const handleChangeBrand = useCallback((event: { target: { value: string; checked: boolean; }; }) => {
-        const value = Number(event.target.value)
-        const numberBrands = selectedBrands?.map(Number)
+        const value = Number(event.target.value);
+        const numberBrands = selectedBrands?.map(Number);
         const updatedBrands = event.target.checked
             ? [...numberBrands, value]
-            : numberBrands.filter((id: number) => id !== value)
+            : numberBrands.filter((id: number) => id !== value);
 
         setSelectedBrands(updatedBrands.length > 0 ? updatedBrands : null);
 
-    }, [selectedBrands, setSelectedBrands])
+    }, [selectedBrands, setSelectedBrands]);
 
     const handleChangeColor = useCallback((isChecked: boolean, id: number) => {
-        const numberColors = selectedColors?.map(Number)
+        const numberColors = selectedColors?.map(Number);
         const updatedColors = !isChecked
             ? [...numberColors, id]
-            : numberColors.filter((color_id: number) => color_id !== id)
+            : numberColors.filter((color_id: number) => color_id !== id);
 
         setSelectedColors(updatedColors.length > 0 ? updatedColors : null);
 
-    }, [selectedColors, setSelectedColors])
+    }, [selectedColors, setSelectedColors]);
 
     const handleChangeSize = useCallback((isChecked: boolean, id: number) => {
-        const numberSizes = selectedSizes?.map(Number)
+        const numberSizes = selectedSizes?.map(Number);
         const updatedSizes = !isChecked
             ? [...numberSizes, id]
-            : numberSizes.filter((size_id: number) => size_id !== id)
+            : numberSizes.filter((size_id: number) => size_id !== id);
 
         setSelectedSizes(updatedSizes.length > 0 ? updatedSizes : null);
 
-    }, [selectedSizes, setSelectedSizes])
-
+    }, [selectedSizes, setSelectedSizes]);
 
     return (
         <div>
@@ -136,24 +170,26 @@ const FilterComponent = () => {
                                 exit={{ height: 0 }}
                                 transition={{ type: 'spring', duration: 1, bounce: 0 }}
                             >
-                                {brands.map((brand) => {
-                                    return (
+                                {isBrandsLoading ? (
+                                    Array(5).fill(null).map((_, index) => (
+                                        <SkeletonLoader key={index} className="h-6 mb-2" />
+                                    ))
+                                ) : (
+                                    brands.map((brand : any) => (
                                         <Fragment key={brand.id}>
                                             <BrandListItem
                                                 isChecked={selectedBrands?.map(Number).includes(brand.id)}
                                                 id={brand.id}
                                                 name={brand.name}
-                                                quantity={brand.quantity}
                                                 onChange={handleChangeBrand}
                                             />
                                         </Fragment>
-                                    )
-                                })}
+                                    ))
+                                )}
                             </motion.section>
                         )}
                     </AnimatePresence>
                 </ul>
-
             </div>
             <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                 <div
@@ -182,8 +218,12 @@ const FilterComponent = () => {
                                 transition={{ type: 'spring', duration: 1, bounce: 0 }}
                                 className="flex gap-[10px] flex-wrap"
                             >
-                                {colors.map((color) => {
-                                    return (
+                                {isColorsLoading ? (
+                                    Array(5).fill(null).map((_, index) => (
+                                        <SkeletonLoader key={index} className="h-6 w-16 mb-2" />
+                                    ))
+                                ) : (
+                                    colors.map((color : any) => (
                                         <ColorListItem
                                             isChecked={selectedColors?.map(Number).includes(color.id)}
                                             id={color.id}
@@ -191,15 +231,13 @@ const FilterComponent = () => {
                                             name={color.name}
                                             onChange={handleChangeColor}
                                         />
-                                    )
-                                })}
+                                    ))
+                                )}
                             </motion.section>
                         )}
                     </AnimatePresence>
                 </ul>
-
             </div>
-
             <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                 <div
                     onClick={togglePrice}
@@ -247,20 +285,18 @@ const FilterComponent = () => {
                                             },
                                         }}
                                     />
-
                                 </div>
 
                                 <div className="text-55black mt-[10px]">Price:&nbsp;
                                     <span className="text-11black font-medium">
-                                                ${value1[0]?.toFixed(2)} - ${value1[1]?.toFixed(2)}
-                                            </span>
+                                ${value1[0]?.toFixed(2)} - ${value1[1]?.toFixed(2)}
+                            </span>
                                 </div>
                             </motion.section>
                         )}
                     </AnimatePresence>
                 </div>
             </div>
-
             <div className="border-b-[1px] mb-[20px] pb-[20px] border-[#ebebeb]">
                 <div
                     onClick={toggleSize}
@@ -289,8 +325,12 @@ const FilterComponent = () => {
                                     transition={{ type: 'spring', duration: 1, bounce: 0 }}
                                     className="flex gap-[10px] flex-wrap"
                                 >
-                                    {sizes.map((size) => {
-                                        return (
+                                    {isSizesLoading ? (
+                                        Array(5).fill(null).map((_, index) => (
+                                            <SkeletonLoader key={index} className="h-6 w-16 mb-2" />
+                                        ))
+                                    ) : (
+                                        sizes.map((size : any) => (
                                             <SizeListItem
                                                 isChecked={selectedSizes?.map(Number).includes(size.id)}
                                                 key={size.id}
@@ -298,8 +338,8 @@ const FilterComponent = () => {
                                                 name={size.name}
                                                 onChange={handleChangeSize}
                                             />
-                                        )
-                                    })}
+                                        ))
+                                    )}
                                 </motion.section>
                             )}
                         </AnimatePresence>
@@ -307,7 +347,6 @@ const FilterComponent = () => {
                 </div>
             </div>
         </div>
-
     );
 };
 
