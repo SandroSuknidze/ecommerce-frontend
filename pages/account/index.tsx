@@ -104,9 +104,9 @@ const Index = () => {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            <CartItem dynamicCount={false}/>
-                                            <CartItem dynamicCount={false}/>
-                                            <CartItem dynamicCount={false}/>
+                                            {/*<CartItem dynamicCount={false}/>*/}
+                                            {/*<CartItem dynamicCount={false}/>*/}
+                                            {/*<CartItem dynamicCount={false}/>*/}
                                         </tbody>
                                     </table>
                                 </div>

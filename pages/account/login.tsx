@@ -12,6 +12,7 @@ import { useAuth } from '@/context/authContext'
 import RequireGuest from '@/utils/requireGuest'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
+import { useCart } from '@/context/CartContext'
 
 function Login() {
     const {
@@ -44,6 +45,17 @@ function Login() {
                 toast.success('Login successful!', {
                     position: 'top-center',
                 })
+
+                const savedCart:any = localStorage.getItem('cart');
+                const jsonSavedCart = JSON.parse(savedCart);
+                console.log(jsonSavedCart.length);
+                console.log(savedCart);
+                if(jsonSavedCart.items.length > 0) {
+                    await axiosInstance.post('/cart/sync', { cart: jsonSavedCart.items });
+
+                }
+                localStorage.removeItem('cart');
+
             }
         } catch (error: any) {
             // console.error("Login error:", error);

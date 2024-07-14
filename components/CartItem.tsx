@@ -7,10 +7,12 @@ import { useEffect, useState } from 'react'
 import minusIcon from '@/public/assets/minus-icon.svg'
 import plusIcon from '@/public/assets/plus-icon.svg'
 import { useCart } from '@/context/CartContext'
+import { useAuth } from '@/context/authContext'
+import axiosInstance from '@/utils/axiosInstance'
 
 interface CartItemProps {
     dynamicCount?: boolean;
-    id: string;
+    id: number;
     title: string;
     price: number;
     sale_price?: number;
@@ -20,7 +22,7 @@ interface CartItemProps {
     size_name?: string;
     color_id?: number;
     color_name?: string;
-    onRemove: (id: string, color_id: number | undefined, size_id: number | undefined) => void;
+    onRemove: (id: number, color_id: number | undefined, size_id: number | undefined) => void;
 
 }
 
@@ -41,18 +43,37 @@ export function CartItem({
 
     const [itemQuantity, setItemQuantity] = useState(quantity);
     const { removeItem, updateQuantity } = useCart();
+    const { isAuthenticated } = useAuth();
+
 
     useEffect(() => {
         updateQuantity(id, itemQuantity, size_id, color_id);
     }, [itemQuantity]);
 
-    const incrementCount = () => {
+    const incrementCount = async () => {
         setItemQuantity(prevQuantity => prevQuantity + 1);
+
+        if (isAuthenticated) {
+            await axiosInstance.post('/cart/update-quantity', {
+                id: id,
+                quantity: itemQuantity + 1,
+                size_id: size_id,
+                color_id: color_id,
+            })
+        }
     };
 
-    const decrementCount = () => {
+    const decrementCount = async () => {
         if (itemQuantity > 1) {
             setItemQuantity(prevQuantity => prevQuantity - 1);
+            if (isAuthenticated) {
+                await axiosInstance.post('/cart/update-quantity', {
+                    id: id,
+                    quantity: itemQuantity - 1,
+                    size_id: size_id,
+                    color_id: color_id,
+                })
+            }
         }
     };
 

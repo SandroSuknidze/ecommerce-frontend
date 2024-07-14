@@ -10,7 +10,7 @@ import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
 
 interface CollectionCardProps {
-    id: string,
+    id: number,
     imageSrc: string,
     title: string,
     sale?: number,

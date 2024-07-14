@@ -25,9 +25,6 @@ function Index() {
             const response = await axiosInstance('/categories')
             const data = await response.data
             setCategories(data)
-
-            console.log(data);
-
         } catch (error) {
             console.error('Error fetching categories:', error)
         }
