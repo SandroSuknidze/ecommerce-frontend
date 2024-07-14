@@ -2,6 +2,7 @@ import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
 import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 function Index() {
 
@@ -58,18 +59,36 @@ function Index() {
                     </p>
                 </div>
                 <div className="grid grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 justify-center mt-[50px]">
-                    {saleProducts.map((saleProduct: any) => (
-                        <CollectionCard
-                            key={saleProduct.id}
-                            id={saleProduct.id}
-                            title={saleProduct.title}
-                            imageSrc={saleProduct.image_path[0]}
-                            price={saleProduct.price}
-                            rating={saleProduct.rating}
-                            sale={saleProduct.sale_price}
-                        />
-                    ))}
+                    {saleProducts.length > 0 ? (
+                        saleProducts.map((saleProduct: any) => (
+                            <CollectionCard
+                                key={saleProduct.id}
+                                id={saleProduct.id}
+                                title={saleProduct.title}
+                                imageSrc={saleProduct.image_path[0]}
+                                price={saleProduct.price}
+                                rating={saleProduct.rating}
+                                sale={saleProduct.sale_price}
+                                size_id={saleProduct.sizes[0].id}
+                                size_name={saleProduct.sizes[0].name}
+                                color_id={saleProduct.colors[0].id}
+                                color_name={saleProduct.colors[0].name}
+                                colors={saleProduct.colors}
+                            />
+                        ))
+                    ) : (
+                        Array(6).fill(null).map((_, index) => (
+                            <div key={index} className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
+                                <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
+                                <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                            </div>
+                        ))
+                    )}
                 </div>
+
             </div>
 
         </div>

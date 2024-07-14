@@ -4,6 +4,8 @@ import firstImage from '@/public/assets/collections/collection16.webp'
 import useResponsiveCols from '@/hooks/useResponsiveCols'
 import axiosInstance from '@/utils/axiosInstance'
 import { useEffect, useState } from 'react'
+import { SwiperSlide } from 'swiper/swiper-react'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 export const categories = [
     { id: 1, name: "Woman's a Shirts" },
@@ -54,15 +56,22 @@ function Index() {
                 <div className="mx-auto grid max-w-[1500px] px-[30px] xl:px-[15px] md:!px-0"
                      style={{ gridTemplateColumns: `repeat(${numCols}, minmax(0, 1fr))` }}
                 >
-                    {categories.map((category: any) => (
-                        <Collection
-                            key={category.id}
-                            id={category.id}
-                            imageSrc={category.image_path}
-                            title={category.name}
-                            totalProducts={category.products_count}
-                        />
-                    ))}
+                    {categories.length > 0 ?
+                        (categories.map((category: any) => (
+                            <Collection
+                                key={category.id}
+                                id={category.id}
+                                imageSrc={category.image_path}
+                                title={category.name}
+                                totalProducts={category.products_count}
+                            />
+                        ))) : (
+                            Array(8).fill(null).map((_, index) => (
+                                <div key={index} className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                    <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                </div>
+                            ))
+                        )}
                 </div>
             </div>
         </div>

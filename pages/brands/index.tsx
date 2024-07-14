@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import BrandListLetter from '@/components/BrandListLetter'
 import axiosInstance from '@/utils/axiosInstance'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 interface Brand {
     id: number;
@@ -110,7 +111,8 @@ export default function Index() {
                 </nav>
             </div>
             <div className="px-[30px]">
-                <div className="flex flex-wrap text-[12px] gap-[10px] scrollbar xl:flex-nowrap xl:overflow-x-scroll xl:pb-3">
+                <div
+                    className="flex flex-wrap text-[12px] gap-[10px] scrollbar xl:flex-nowrap xl:overflow-x-scroll xl:pb-3">
                     {alphabet.map((letter) => {
                         return (
                             <BrandListLetter
@@ -124,28 +126,40 @@ export default function Index() {
                     })}
                 </div>
                 <div className="mt-[50px]">
-                    {Object.keys(groupedBrands).map((letter) => (
-                        <div key={letter} className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
-                            <div className="px-[30px] w-[6.5%] xs:flex xs:justify-center xs:m-auto ">
-                                <h3 className="text-11black text-[32px] font-medium uppercase md:text-[24px]">
-                                    {letter}
-                                </h3>
+                    {brands.length > 0 ? (
+                        Object.keys(groupedBrands).map((letter) => (
+                            <div key={letter}
+                                 className="flex justify-between border-t-[1px] py-[50px] border-[#ebebeb]">
+                                <div className="px-[30px] w-[6.5%] xs:flex xs:justify-center xs:m-auto ">
+                                    <h3 className="text-11black text-[32px] font-medium uppercase md:text-[24px]">
+                                        {letter}
+                                    </h3>
+                                </div>
+                                <div className="w-[85%] xs:pl-[20px]">
+                                    <ul className="flex flex-wrap flex-1">
+                                        {groupedBrands[letter].map((brand) => (
+                                            <li
+                                                key={brand.id}
+                                                className="leading-[34px] mr-[30px] text-55black w-[calc(20%-30px)] md:w-[calc(33.3%-30px)] xs:!w-full"
+                                            >
+                                                {brand.name}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
                             </div>
-                            <div className="w-[85%] xs:pl-[20px]">
-                                <ul className="flex flex-wrap flex-1">
-                                    {groupedBrands[letter].map((brand) => (
-                                        <li
-                                            key={brand.id}
-                                            className="leading-[34px] mr-[30px] text-55black w-[calc(20%-30px)] md:w-[calc(33.3%-30px)] xs:!w-full"
-                                        >
-                                            {brand.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                        ))
+                    ) : (
+                        <div className="flex flex-wrap gap-[10px]">
+                            {[...Array(6)].map((_, index) => (
+                                <div key={index} className="w-full">
+                                    <SkeletonLoader key={index} className="h-[104px] w-[calc(100%-30px)] rounded-md mb-[20px]" />
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )}
                 </div>
+
             </div>
         </div>
     );

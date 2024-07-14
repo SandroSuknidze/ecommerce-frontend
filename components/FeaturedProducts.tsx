@@ -6,6 +6,7 @@ import CollectionCard from '@/components/CollectionCard'
 import { collections } from '@/pages'
 import axiosInstance from '@/utils/axiosInstance'
 import { useEffect, useState } from 'react'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 function FeaturedProducts() {
 
@@ -60,6 +61,7 @@ function FeaturedProducts() {
                     </button>
                 </div>
                 <div className="mx-auto max-w-[1470px] mt-[50px] px-[15px] md:px-0">
+                    {featuredProducts.length > 0 ? (
                     <Swiper
                         navigation={{
                             nextEl: '.arrow-right5',
@@ -98,7 +100,41 @@ function FeaturedProducts() {
                                 />
                             </SwiperSlide>
                         ))}
-                    </Swiper>
+                    </Swiper>) : (
+                            <Swiper
+                                navigation={{
+                                    nextEl: '.arrow-right5',
+                                    prevEl: '.arrow-left5',
+                                }}
+                                breakpoints={{
+                                    320: {
+                                        slidesPerView: 2,
+                                    },
+                                    768: {
+                                        slidesPerView: 3,
+                                    },
+                                    1024: {
+                                        slidesPerView: 4,
+                                    },
+                                }}
+                                loop={true}
+                                modules={[Navigation]}
+                                className="mySwiper5"
+                            >
+                                {[...Array(6)].map((_, index) => (
+                                    <SwiperSlide key={index}>
+                                        <div key={index}
+                                             className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                            <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                            <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
+                                            <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
+                                            <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                            <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                        </div>
+                                    </SwiperSlide>
+                                ))}
+                            </Swiper>
+                        )}
                 </div>
             </section>
 

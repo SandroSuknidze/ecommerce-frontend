@@ -283,13 +283,41 @@ function Index() {
                             ))}
                         </Swiper>
                     ) : (
-                        <div className="flex gap-[15px] flex-wrap justify-center">
-                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
-                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
-                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
-                            <SkeletonLoader className="h-[428px] w-[318px] rounded-xl" />
-                        </div>
+                        <Swiper
+                            navigation={{
+                                nextEl: '.arrow-right6',
+                                prevEl: '.arrow-left6',
+                            }}
+                            breakpoints={{
+                                320: {
+                                    slidesPerView: 2,
+                                },
+                                768: {
+                                    slidesPerView: 3,
+                                },
+                                1024: {
+                                    slidesPerView: 4,
+                                },
+                            }}
+                            loop={true}
+                            modules={[Navigation]}
+                            className="mySwiper5"
+                        >
+                            {[...Array(6)].map((_, index) => (
+                                <SwiperSlide key={index}>
+                                    <div key={index}
+                                         className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                        <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                        <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     )}
+
                 </div>
 
             </section>
