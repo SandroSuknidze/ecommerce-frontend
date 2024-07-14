@@ -6,7 +6,6 @@ import HeartIcon from '@/public/assets/HeartIcon'
 import { XmarkIcon } from '@/public/assets/XmarkIcon'
 import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
-import { auto } from '@popperjs/core'
 import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
 

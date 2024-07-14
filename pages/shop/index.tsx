@@ -58,7 +58,7 @@ function Index() {
                         <Collection
                             key={category.id}
                             id={category.id}
-                            imageSrc={firstImage}
+                            imageSrc={category.image_path}
                             title={category.name}
                             totalProducts={category.products_count}
                         />

@@ -76,7 +76,7 @@ function Index() {
                         </ol>
                     </nav>
                 </div>
-                {items.length > 0 ? (
+                {items?.length > 0 ? (
                     <div className="flex lg:flex-col">
                     <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
                         <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
