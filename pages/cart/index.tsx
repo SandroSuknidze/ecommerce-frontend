@@ -31,7 +31,7 @@ function Index() {
         formState: { errors },
     } = useForm<FormData>({ mode: 'onSubmit' });
 
-    const { items, totalItems, removeItem, addItem, totalPrice } = useCart();
+    const { items, totalItems, removeItem, addItem, totalPrice, cartLoading } = useCart();
     const { isAuthenticated, loading } = useAuth();
     const [itemsBackend, setItemsBackend] = useState<any[]>([]);
     const [currentLoading, setCurrentLoading] = useState(true);
@@ -92,7 +92,7 @@ function Index() {
         }
     }, [isAuthenticated]);
 
-    if (loading || currentLoading) return <div>Loading...</div>;
+    if (cartLoading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     return (

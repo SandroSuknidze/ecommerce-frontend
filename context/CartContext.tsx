@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, useEffect, ReactNode, useState } from 'react'
 import { toast } from 'react-toastify';
 import { useAuth } from '@/context/authContext';
 import axiosInstance from '@/utils/axiosInstance';
@@ -37,6 +37,7 @@ const CartContext = createContext<CartState & {
     clearCart: () => void;
     totalItems: () => number;
     totalPrice: () => number;
+    cartLoading: boolean;
 } | undefined>(undefined);
 
 const initialState: CartState = {
@@ -135,6 +136,8 @@ const transformBackendData = (backendItems: any[]): CartItem[] => {
 
 export const CartProvider = ({ children }: CartProviderProps) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
+    const [cartLoading, setCartLoading] = useState(true);
+
     console.log(state);
     const { isAuthenticated, loading } = useAuth();
 
@@ -164,6 +167,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
                 console.log("wamovidaa localstoragedan");
                 dispatch({ type: 'SET_CART', payload: storedCart.items });
             }
+            setCartLoading(false);
         };
         initializeCart();
     }, [isAuthenticated, loading]);
@@ -238,7 +242,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     const totalPrice = () => state.items.reduce((acc, item) => acc + (item.quantity * ((item.sale_price || item.price) || 0)), 0);
 
     return (
-        <CartContext.Provider value={{ ...state, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice }}>
+        <CartContext.Provider value={{ ...state, addItem, removeItem, updateQuantity, clearCart, totalItems, totalPrice, cartLoading }}>
             {children}
         </CartContext.Provider>
     );
