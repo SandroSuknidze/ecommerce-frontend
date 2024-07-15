@@ -64,7 +64,9 @@ const StyledRating = styled(Rating)({
 })
 
 
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 
 function ProductId() {
     const router = useRouter()

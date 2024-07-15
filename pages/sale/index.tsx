@@ -3,7 +3,9 @@ import CollectionCard from '@/components/CollectionCard'
 import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 function Index() {
 
     const [saleProducts, setSaleProducts] = useState([])

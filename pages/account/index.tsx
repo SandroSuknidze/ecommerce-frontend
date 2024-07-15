@@ -5,7 +5,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 const Index = () => {
     const { user, logout } = useAuth();
     const router = useRouter();

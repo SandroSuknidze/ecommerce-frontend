@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import collection2 from '@/public/assets/collections/collection2.webp'
-import CollectionCard from '@/components/CollectionCard'
 import { Empty } from '@/components/Empty'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 function Index() {
     return (
         <>

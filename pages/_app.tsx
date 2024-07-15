@@ -7,6 +7,7 @@ import { AppProps } from 'next/app';
 import { ComponentType } from 'react';
 import { AuthProvider } from '@/context/authContext';
 import { CartProvider } from '@/context/CartContext'
+import { appWithTranslation } from 'next-i18next'
 
 const jost = Jost({ subsets: ['latin'] });
 
@@ -30,4 +31,4 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

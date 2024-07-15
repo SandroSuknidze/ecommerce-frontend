@@ -6,7 +6,7 @@ import heartIcon from '@/public/assets/heart-icon.svg'
 import Image from "next/image"
 import AvatarIcon from '@/public/assets/AvatarIcon'
 import en from '@/public/assets/en.webp'
-import geo from '@/public/assets/geo.webp'
+import geo from '@/public/assets/ka.webp'
 import closeIcon from '@/public/assets/white-close.svg'
 import { useState } from 'react'
 import { useAuth } from '@/context/authContext'

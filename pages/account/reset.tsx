@@ -10,7 +10,9 @@ import axiosInstance from '@/utils/axiosInstance'
 import { useAuth } from '@/context/authContext'
 import { useRouter } from 'next/router'
 import RequireGuest from '@/utils/requireGuest'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 
 interface FormData {
     email: string

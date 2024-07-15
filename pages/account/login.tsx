@@ -13,7 +13,9 @@ import RequireGuest from '@/utils/requireGuest'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 function Login() {
     const {
         register,

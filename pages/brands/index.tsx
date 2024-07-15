@@ -3,7 +3,9 @@ import { useEffect, useState } from 'react'
 import BrandListLetter from '@/components/BrandListLetter'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 interface Brand {
     id: number;
     name: string;

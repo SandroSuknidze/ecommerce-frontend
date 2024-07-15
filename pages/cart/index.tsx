@@ -15,7 +15,9 @@ import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
 import { useRouter } from 'next/router'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 interface FormData {
     country: string;
     note: string;

@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react'
 import FilterMenu from '@/components/FilterMenu'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader';
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 
 function ProductCategoryId() {
     const router = useRouter()

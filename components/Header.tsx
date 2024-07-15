@@ -6,7 +6,7 @@ import AvatarIcon from '@/public/assets/AvatarIcon'
 import WishlistIcon from '@/public/assets/WishlistIcon'
 import CartIcon from '@/public/assets/CartIcon'
 import en from '@/public/assets/en.webp'
-import geo from '@/public/assets/geo.webp'
+import ka from '@/public/assets/ka.webp'
 import arrowDown from '@/public/assets/arrow-down-icon.svg'
 import arrowUp from '@/public/assets/arrow-up-icon.svg'
 import { useEffect, useState } from 'react'
@@ -16,14 +16,19 @@ import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
 import BurgerMenu from '@/components/BurgerMenu'
 import { useAuth } from '@/context/authContext'
 import { useCart } from '@/context/CartContext'
+import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
 
 export function Header() {
-    const { isAuthenticated } = useAuth()
-    const { totalItems} = useCart()
+    const router = useRouter();
+    const { t } = useTranslation('common')
 
-    type Language = 'en' | 'geo';
-    const [language, setLanguage] = useState<Language>('en')
+    const { isAuthenticated } = useAuth()
+    const { totalItems } = useCart()
+
+    type Language = 'en' | 'ka';
+    const [language, setLanguage] = useState<Language>(router.locale as Language);
     const [dropdown, setDropdown] = useState(false)
 
     const [isSearchOpen, setIsSearchOpen] = useState(false)
@@ -33,11 +38,10 @@ export function Header() {
         setDropdown(!dropdown)
     }
 
-    function selectLanguage(lang: string) {
-        if (lang === 'en' || lang === 'geo') {
-            setLanguage(lang as Language)
-            setDropdown(false)
-        }
+    function selectLanguage(lang: any) {
+        setLanguage(lang);
+        router.push(router.pathname, router.asPath, { locale: lang });
+        setDropdown(false);
     }
 
     function toggleSearch() {
@@ -86,7 +90,6 @@ export function Header() {
             <header
                 className={`relative z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white duration-500`}
             >
-                {/*${isVisible ? 'translate-y-0 fixed z-20 ' : ''}*/}
                 <div className="my-[11px] w-full px-[30px] py-[11px] lg:my-0 md:px-[15px]">
                     <div className="flex w-full flex-row justify-between lg:h-[28px]">
                         <div className="my-auto hidden w-1/3 lg:block cursor-pointer">
@@ -115,7 +118,7 @@ export function Header() {
                                             href="/shop"
                                             className="cursor-pointer px-[15px] py-[10px] transition duration-300 text-11black hover:text-red-600"
                                         >
-                                            Shop
+                                            {t('shop')}
                                         </Link>
                                     </li>
                                     <li className="inline">
@@ -183,7 +186,7 @@ export function Header() {
                                     onClick={toggleDropdown}
                                 >
                                     <Image
-                                        src={language === 'en' ? en : geo}
+                                        src={language === 'en' ? en : ka}
                                         alt="Flag Icon"
                                         width="20"
                                         height="11"
@@ -218,17 +221,17 @@ export function Header() {
                                         </div>
                                         <div
                                             onClick={() =>
-                                                selectLanguage('geo')
+                                                selectLanguage('ka')
                                             }
                                             className="flex cursor-pointer gap-2 px-[5px] py-[5px] hover:bg-blue-600"
                                         >
                                             <Image
-                                                src={geo}
+                                                src={ka}
                                                 alt=""
                                                 width="20"
                                                 className=""
                                             />
-                                            {language === 'geo' && (
+                                            {language === 'ka' && (
                                                 <Image
                                                     src={correctIcon}
                                                     alt=""

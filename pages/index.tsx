@@ -27,19 +27,14 @@ import FeaturedProducts from '@/components/FeaturedProducts'
 import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useTranslation } from 'next-i18next'
+import { withTranslations } from '@/utils/i18nHelper'
 
-export const collections = [
-    { id: 1, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 2, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 3, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 4, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 5, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 6, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-    { id: 7, title: "Square Textured Striped", imageSrc: collection2, price: 300, sale: 190 },
-]
+export const getStaticProps = withTranslations(['common']);
 
 
 function Index() {
+    const { t } = useTranslation('common')
     const [newArrivals, setNewArrivals] = useState([])
 
     async function fetchNewArrivals() {

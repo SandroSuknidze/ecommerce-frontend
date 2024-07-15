@@ -7,7 +7,9 @@ import axiosInstance from '@/utils/axiosInstance'
 import { toast } from 'react-toastify'
 import RequireGuest from '@/utils/requireGuest'
 import { useAuth } from '@/context/authContext'
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 
 interface FormData {
     email: string

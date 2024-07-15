@@ -7,13 +7,9 @@ import { useEffect, useState } from 'react'
 import { SwiperSlide } from 'swiper/swiper-react'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 
-export const categories = [
-    { id: 1, name: "Woman's a Shirts" },
-    { id: 2, name: "Woman's b Shirts" },
-    { id: 3, name: "Woman's c Shirts" },
-    { id: 4, name: "Woman's d Shirts" },
-    { id: 5, name: "Woman's e Shirts" },
-]
+import { withTranslations } from '@/utils/i18nHelper'
+
+export const getStaticProps = withTranslations(['common']);
 
 function Index() {
     const numCols = useResponsiveCols({ native: 4, xl: 4, lg: 3, md: 2, sm: 2, xs: 1});

@@ -5,6 +5,10 @@ const nextConfig = {
     },
     images: {
         domains: ['127.0.0.1'],
+    },
+    i18n: {
+        defaultLocale: 'en',
+        locales: ['en', 'ka'],
     }
 };
 

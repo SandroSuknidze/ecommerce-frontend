@@ -12,7 +12,9 @@ import { toast } from 'react-toastify'
 import { useAuth } from '@/context/authContext'
 import RequireGuest from '@/utils/requireGuest'
 
+import { withTranslations } from '@/utils/i18nHelper'
 
+export const getStaticProps = withTranslations(['common']);
 
 interface FormData {
     first_name: string
