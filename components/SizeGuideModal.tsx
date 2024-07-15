@@ -17,7 +17,7 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                 className="fixed inset-0 z-[60] cursor-close bg-black opacity-50"
                 onClick={() => toggleSizeGuideModal()}
             ></div>
-            <div className="fixed left-1/2 top-1/2 z-[61] max-h-[817px] max-w-[800px] w-[85%] h-[85%] -translate-x-1/2
+            <div className="fixed left-1/2 top-1/2 z-[61] max-h-[617px] max-w-[800px] w-[85%] -translate-x-1/2
                     -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
                 <div className="flex w-full justify-center border-b-[1px] border-[#ebebeb] p-[20px] leading-[20px]">
                     <h3 className="text-[20px] font-medium text-11black">
@@ -31,7 +31,7 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                     />
                 </div>
 
-                <div className="h-[85vw] overflow-y-auto px-[40px] py-[35px] lg:px-[30px] md:!px-[15px] scrollbar">
+                <div className="h-[540px] overflow-y-auto px-[40px] py-[35px] lg:px-[30px] md:!px-[15px] scrollbar">
                     <h2 className="mb-[10px] text-[18px] font-medium">
                         Sizes for this Product.
                     </h2>
@@ -131,6 +131,7 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                             <Image
                                 src={sizeImage}
                                 alt="size comparison image"
+                                className="m-auto"
                             />
                         </div>
                     </div>
