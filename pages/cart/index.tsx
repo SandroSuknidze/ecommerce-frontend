@@ -14,6 +14,7 @@ import axiosInstance from '@/utils/axiosInstance';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
+import { random } from 'nanoid'
 
 interface FormData {
     country: string;
@@ -34,6 +35,7 @@ function Index() {
     const { items, totalItems, removeItem, addItem, totalPrice, cartLoading } = useCart();
     const [itemsBackend, setItemsBackend] = useState<any[]>([]);
     const [currentLoading, setCurrentLoading] = useState(true);
+    const [randomProducts, setRandomProducts] = useState([])
     const [error, setError] = useState<string | null>(null);
 
     const onSubmit = (data: object) => {
@@ -65,6 +67,21 @@ function Index() {
             setCurrentLoading(false);
         }
     }
+
+    useEffect(() => {
+        async function getRandomProducts() {
+            try {
+                const response = await axiosInstance.get('/products/random');
+                console.log(response.data);
+                setRandomProducts(response.data);
+            } catch (err) {
+                console.error('Error fetching cart data:', err);
+                setError('Failed to fetch cart data');
+            }
+        }
+
+            getRandomProducts()
+    }, [])
 
 
     if (cartLoading) return <CartSkeletonLoader />;
@@ -117,7 +134,8 @@ function Index() {
                                 ))}
                                 </tbody>
                             </table>
-                            <div className="mt-[100px]">
+                            {randomProducts.length > 0 &&
+                                <div className="mt-[100px]">
                                 <h2 className="mb-[15px] font-medium text-[20px]">You may also like</h2>
                                 <Swiper
                                     pagination={{ clickable: true }}
@@ -128,12 +146,20 @@ function Index() {
                                         modules={[Pagination]}
                                         className="mySwiper4"
                                     >
-                                        <SwiperSlide><YouMayAlsoLikeItem price={125} sale={116} /></SwiperSlide>
-                                        <SwiperSlide><YouMayAlsoLikeItem price={125} sale={116} /></SwiperSlide>
-                                        <SwiperSlide><YouMayAlsoLikeItem price={125} sale={116} /></SwiperSlide>
-                                        <SwiperSlide><YouMayAlsoLikeItem price={125} sale={116} /></SwiperSlide>
+                                    {randomProducts.map((randomProduct: any) => (
+                                        <SwiperSlide key={randomProduct.id}>
+                                            <YouMayAlsoLikeItem
+                                                id={randomProduct.id}
+                                                title={randomProduct.title}
+                                                price={randomProduct.price}
+                                                sale={randomProduct.sale_price}
+                                                imageSrc={randomProduct?.image_path[0]}
+                                            />
+                                        </SwiperSlide>
+                                        ))}
                                     </Swiper>
                                 </div>
+                            }
                             </div>
                             <div className="w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px] lg:w-full">
                                 <form onSubmit={handleSubmit(onSubmit)} method="post">
@@ -204,7 +230,7 @@ function Index() {
                                             <p>${(totalPrice()).toFixed(2)}</p>
                                         </div>
                                         <div>
-                                            <p className="text-[14px] text-55black">Taxes and shipping calculated at
+                                            <p className="text-[14px] text-55black text-center">Taxes and shipping calculated at
                                                 checkout</p>
                                         </div>
                                     </div>

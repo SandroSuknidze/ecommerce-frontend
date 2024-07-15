@@ -19,11 +19,11 @@ export function CartSkeletonLoader() {
                                 <SkeletonLoader className="h-[30px] w-[30px] rounded-full" />
                             </div>
                         </div>
-                        <div className="mt-[100px]">
+                        <div className="mt-[70px]">
                             <SkeletonLoader className="h-[20px] w-[200px] mb-[15px] rounded-full" />
                             <div className="flex space-x-4">
-                                <SkeletonLoader className="h-[150px] w-1/2 rounded-lg md:w-full" />
-                                <SkeletonLoader className="h-[150px] w-1/2 rounded-lg md:hidden" />
+                                <SkeletonLoader className="h-[120px] w-1/2 rounded-lg md:w-full" />
+                                <SkeletonLoader className="h-[120px] w-1/2 rounded-lg md:hidden" />
                             </div>
                         </div>
                     </div>
