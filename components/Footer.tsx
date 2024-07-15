@@ -9,8 +9,11 @@ import InputForm from '@/components/InputForm'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { useTranslation } from 'next-i18next'
 
 function Footer() {
+    const { t } = useTranslation('common')
+
     const {
         register,
         handleSubmit,
@@ -45,8 +48,7 @@ function Footer() {
                                 <div className="mb-[24px] text-[#555555]">
                                     <p className="leading-[28px]">
                                         <a href="" target="_blank">
-                                            268 St, South New York/NY 98944, United
-                                            States.
+                                            {t('address')}
                                         </a>
                                     </p>
                                     <p className="leading-[32px]">
@@ -76,22 +78,22 @@ function Footer() {
                             </div>
                             <div className="w-1/3 px-[15px] xl:w-full xl:px-0 xl:h-[200px] sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
-                                    Company
+                                    {t('company')}
                                 </h3>
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
-                                        <li className="leading-[28px]">About Us</li>
+                                        <li className="leading-[28px]">{t('aboutUs')}</li>
                                         <li className="leading-[28px]">
-                                            Our Stores
+                                            {t('ourStores')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Contact Us
+                                            {t('contactUs')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Size Guide
+                                            {t('sizeGuide')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            My Account
+                                            {t('myAccount')}
                                         </li>
                                     </ul>
                                 </div>
@@ -100,43 +102,41 @@ function Footer() {
                         <div className="flex w-3/6 xl:flex-col xl:w-1/2 sm:!w-full sm:!h-auto sm:gap-[30px]">
                             <div className="w-1/3 px-[15px] xl:w-full xl:h-[350px] xl:pr-0 sm:px-0 sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
-                                    Customer Service
+                                    {t('customerService')}
                                 </h3>
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
                                         <li className="leading-[28px]">
-                                            Privacy Policy
+                                            {t('privacyPolicy')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Refund Policy
+                                            {t('refundPolicy')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Shipping & Return
+                                            {t('shippingReturn')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Term & Conditions
+                                            {t('termsConditions')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Advanced Search
+                                            {t('advancedSearch')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Theme FAQs
+                                            {t('themeFAQs')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            Store Locations
+                                            {t('storeLocations')}
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div className="w-2/3 pl-[15px] xl:w-full xl:h-[200px] xl:pr-0 sm:px-0 sm:!w-full sm:!h-auto">
                                 <h3 className="pb-[10px] text-[18px] font-medium leading-[23px]">
-                                    Sign Up to Newsletter
+                                    {t('newsletterSignup')}
                                 </h3>
                                 <div className="pt-[15px] text-[#555555]">
                                     <p className="leading-[28px]">
-                                        Enter your email address to get $10 off your
-                                        first order and free shipping.Updates
-                                        information on Sales and Offers.
+                                        {t('newsletterText')}
                                     </p>
                                     <div className="mt-[30px]">
                                         <form onSubmit={handleSubmit(onSubmit)} method="post" className="flex">
@@ -146,15 +146,15 @@ function Footer() {
                                                     type="email"
                                                     label={false}
                                                     register={register('email', {
-                                                        required: 'Email is required',
-                                                        validate: (value) => value.trim() !== '' || 'Email cannot be empty',
+                                                        required: t('emailRequired'),
+                                                        validate: (value) => value.trim() !== '' || t('emailNotEmpty'),
                                                         pattern: {
                                                             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                                            message: 'Please enter a valid email address',
+                                                            message: t('emailInvalid'),
                                                         },
                                                         maxLength: {
                                                             value: 320,
-                                                            message: 'Maximum number of characters reached',
+                                                            message: t('emailMaxLength'),
                                                         },
                                                     })}
                                                     errorMessage={errors.email?.message}

@@ -8,6 +8,7 @@ import FilterMenu from '@/components/FilterMenu'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { withTranslations } from '@/utils/i18nHelper'
+import { GetStaticPaths } from 'next'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -159,3 +160,10 @@ function ProductCategoryId() {
 }
 
 export default ProductCategoryId
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking' //indicates the type of fallback
+    }
+}

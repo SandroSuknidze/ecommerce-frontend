@@ -65,6 +65,7 @@ const StyledRating = styled(Rating)({
 
 
 import { withTranslations } from '@/utils/i18nHelper'
+import { GetStaticPaths } from 'next'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -985,3 +986,10 @@ function ProductId() {
 }
 
 export default ProductId
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking' //indicates the type of fallback
+    }
+}

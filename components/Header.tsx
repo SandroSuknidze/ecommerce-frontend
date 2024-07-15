@@ -110,7 +110,7 @@ export function Header() {
                                             href="/"
                                             className="cursor-pointer px-[15px] py-[10px] transition duration-300 hover:text-red-600"
                                         >
-                                            Home
+                                            {t('home')}
                                         </Link>
                                     </li>
                                     <li className="inline">
@@ -126,7 +126,7 @@ export function Header() {
                                             href="/brands"
                                             className="cursor-pointer px-[15px] py-[10px] transition duration-300 text-11black hover:text-red-600"
                                         >
-                                            Brands
+                                            {t('brands')}
                                         </Link>
                                     </li>
                                     <li className="relative inline cursor-pointer transition duration-300 hover:text-red-600">
@@ -134,11 +134,11 @@ export function Header() {
                                             href="/sale"
                                             className="px-[15px] py-[10px]"
                                         >
-                                            Sale
+                                            {t('sale')}
                                         </Link>
                                         <div
                                             className="absolute bottom-[94%] right-[-4px] rounded-sm border-red-600 border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] font-bold uppercase leading-[9px] text-white">
-                                            hot
+                                            {t('hot')}
                                         </div>
                                         <div
                                             className="border-l-solid border-r-solid border-b-solid absolute bottom-[81%] right-[15px] h-0 w-0 rotate-180 border-b-[3px] border-l-[3px] border-r-[3px] border-b-red-600 border-l-transparent border-r-transparent"></div>

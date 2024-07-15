@@ -120,22 +120,22 @@ const Index = () => {
     );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { req } = context;
-    const token = req.cookies.access_token;
-
-    if (!token) {
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            },
-        };
-    }
-
-    return {
-        props: {},
-    };
-};
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//     const { req } = context;
+//     const token = req.cookies.access_token;
+//
+//     if (!token) {
+//         return {
+//             redirect: {
+//                 destination: '/',
+//                 permanent: false,
+//             },
+//         };
+//     }
+//
+//     return {
+//         props: {},
+//     };
+// };
 
 export default withAuth(Index);
