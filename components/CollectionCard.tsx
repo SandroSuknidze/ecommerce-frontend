@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image, { StaticImageData } from 'next/image'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import HeartIcon from '@/public/assets/HeartIcon'

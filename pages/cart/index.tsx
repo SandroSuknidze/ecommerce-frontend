@@ -11,9 +11,9 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem';
 import axiosInstance from '@/utils/axiosInstance';
-import { useAuth } from '@/context/authContext';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
+import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
 
 interface FormData {
     country: string;
@@ -32,7 +32,6 @@ function Index() {
     } = useForm<FormData>({ mode: 'onSubmit' });
 
     const { items, totalItems, removeItem, addItem, totalPrice, cartLoading } = useCart();
-    const { isAuthenticated, loading } = useAuth();
     const [itemsBackend, setItemsBackend] = useState<any[]>([]);
     const [currentLoading, setCurrentLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -67,33 +66,9 @@ function Index() {
         }
     }
 
-    // useEffect(() => {
-    //     const getCart = async () => {
-    //         setCurrentLoading(true);
-    //         try {
-    //             // const response = await axiosInstance.get('/cart');
-    //             // setItemsBackend(response.data);
-    //             console.log("data is here");
-    //             console.log(isAuthenticated);
-    //             // setTimeout(() => {
-    //                 setCurrentLoading(false);
-    //
-    //             // }, 1000)
-    //
-    //         } catch (error) {
-    //             console.error('Error fetching cart data:', error);
-    //             setError('Failed to fetch cart data');
-    //         } finally {
-    //             console.log("false");
-    //         }
-    //     };
-    //     if (isAuthenticated) {
-    //         getCart();
-    //     }
-    // }, [isAuthenticated]);
 
-    if (cartLoading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+    if (cartLoading) return <CartSkeletonLoader />;
+    if (error) return <div>{error}</div>
 
     return (
         <>
@@ -109,46 +84,46 @@ function Index() {
                         </ol>
                     </nav>
                 </div>
-                {/*{isAuthenticated ? (*/}
-
-                    {items.length > 0 ? (
-                        <div className="flex lg:flex-col">
-                            <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
-                                <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
-                                    <thead className="md:hidden">
-                                    <tr>
-                                        <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium" colSpan={2}>Product</th>
-                                        <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">Quantity</th>
-                                        <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">Total</th>
-                                        <th className="border border-[#ebebeb] p-4 w-1/12"></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {items.map((item, index) => (
-                                        <CartItem
-                                            key={`${item.id}-${item.size_id}-${item.color_id}-${index}`}
-                                            id={item.id}
-                                            title={item.title}
-                                            price={item.price}
-                                            sale_price={item.sale_price}
-                                            image_path={item.image_path}
-                                            quantity={item.quantity}
-                                            size_name={item.size_name}
-                                            color_name={item.color_name}
-                                            size_id={item.size_id}
-                                            color_id={item.color_id}
-                                            onRemove={removeCartItem}
-                                        />
-                                    ))}
-                                    </tbody>
-                                </table>
-                                <div className="mt-[100px]">
-                                    <h2 className="mb-[15px] font-medium text-[20px]">You may also like</h2>
-                                    <Swiper
-                                        pagination={{ clickable: true }}
-                                        breakpoints={{
-                                            320: { slidesPerView: 1 },
-                                            768: { slidesPerView: 2, spaceBetween: 20 },
+                {items.length > 0 ? (
+                    <div className="flex lg:flex-col">
+                        <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
+                            <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
+                                <thead className="md:hidden">
+                                <tr>
+                                    <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
+                                        colSpan={2}>Product
+                                    </th>
+                                    <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">Quantity</th>
+                                    <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">Total</th>
+                                    <th className="border border-[#ebebeb] p-4 w-1/12"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {items.map((item, index) => (
+                                    <CartItem
+                                        key={`${item.id}-${item.size_id}-${item.color_id}-${index}`}
+                                        id={item.id}
+                                        title={item.title}
+                                        price={item.price}
+                                        sale_price={item.sale_price}
+                                        image_path={item.image_path}
+                                        quantity={item.quantity}
+                                        size_name={item.size_name}
+                                        color_name={item.color_name}
+                                        size_id={item.size_id}
+                                        color_id={item.color_id}
+                                        onRemove={removeCartItem}
+                                    />
+                                ))}
+                                </tbody>
+                            </table>
+                            <div className="mt-[100px]">
+                                <h2 className="mb-[15px] font-medium text-[20px]">You may also like</h2>
+                                <Swiper
+                                    pagination={{ clickable: true }}
+                                    breakpoints={{
+                                        320: { slidesPerView: 1 },
+                                        768: { slidesPerView: 2, spaceBetween: 20 },
                                         }}
                                         modules={[Pagination]}
                                         className="mySwiper4"

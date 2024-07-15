@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import collection1 from '@/public/assets/collections/fashion.webp'
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons/faTrashCan'

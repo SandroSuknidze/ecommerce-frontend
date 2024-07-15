@@ -47,7 +47,6 @@ const initialState: CartState = {
 const cartReducer = (state: CartState, action: CartAction): CartState => {
     switch (action.type) {
         case 'ADD_ITEM':
-            console.log("add item");
             const existingItemIndex = state.items.findIndex(item =>
                 item.id === action.payload.id &&
                 item.size_id === action.payload.size_id &&
@@ -87,7 +86,6 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
                     item.size_id === action.size_id &&
                     item.color_id === action.color_id)
             );
-            console.log("remove item");
             const newStateRemove = { ...state, items: filteredItems };
             saveCartToLocalStorage(newStateRemove);
             return newStateRemove;
@@ -138,7 +136,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     const [state, dispatch] = useReducer(cartReducer, initialState);
     const [cartLoading, setCartLoading] = useState(true);
 
-    console.log(state);
     const { isAuthenticated, loading } = useAuth();
 
     useEffect(() => {
@@ -151,20 +148,16 @@ export const CartProvider = ({ children }: CartProviderProps) => {
             if (isAuthenticated) {
                 try {
                     if (storedCart.length > 0) {
-                        console.log("sinking daiwyo auth");
                         await syncCartWithBackend(storedCart);
                     }
                     const { data } = await axiosInstance.get('/cart');
                     const transformedCartItems = transformBackendData(data);
-                    console.log(transformedCartItems);
                     dispatch({ type: 'SET_CART', payload: transformedCartItems });
 
-                    console.log(state.items);
                 } catch (error) {
                     console.error('Error fetching cart from backend:', error);
                 }
             } else {
-                console.log("wamovidaa localstoragedan");
                 dispatch({ type: 'SET_CART', payload: storedCart.items });
             }
             setCartLoading(false);
@@ -180,11 +173,8 @@ export const CartProvider = ({ children }: CartProviderProps) => {
                 localStorage.removeItem('cart');
                 const { data } = await axiosInstance.get('/cart');
                 const transformedCartItems = transformBackendData(data);
-                console.log(transformedCartItems);
                 dispatch({ type: 'CLEAR_CART' });
-
                 dispatch({ type: 'SET_CART', payload: transformedCartItems });
-                console.log("state_items", state.items);
             } catch (error) {
                 console.error('Error syncing cart with backend:', error);
                 toast.error('Error syncing cart with backend');
@@ -219,8 +209,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     const updateQuantity = (id: number, quantity: number, size_id?: number, color_id?: number) => {
         dispatch({ type: 'UPDATE_QUANTITY', itemId: id, quantity, size_id, color_id });
         if (isAuthenticated && loadCartFromLocalStorage().items.length > 0) {
-        console.log('sinkingi daiwyo');
-        console.log();
             syncCartWithBackend({ ...state, items: state.items.map(item => {
                     if (item.id === id && item.size_id === size_id && item.color_id === color_id) {
                         return { ...item, quantity };
@@ -233,7 +221,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
     const clearCart = () => {
         dispatch({ type: 'CLEAR_CART' });
-        console.log('sinkingi daiwyo');
         syncCartWithBackend(initialState);
     };
 
