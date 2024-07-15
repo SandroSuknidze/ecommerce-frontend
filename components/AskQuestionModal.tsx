@@ -6,12 +6,18 @@ import { TextareaInputForm } from './TextareaInputForm'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useLockBodyScroll } from 'react-use'
+import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
+export const getStaticProps = withTranslations(['common']);
 interface AskQuestionModalProps {
     toggleAskQuestionModal: () => void,
 }
 
+
 export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalProps) {
+    const { t } = useTranslation('common')
+
     const {
         register,
         handleSubmit,
@@ -39,7 +45,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                 -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
                 <div className="flex w-full justify-center border-b-[1px] border-[#ebebeb] p-[20px] leading-[20px]">
                     <h3 className="text-[20px] font-medium text-11black">
-                        Ask A Question
+                        {t('askQuestion')}
                     </h3>
                     <Image
                         src={closeIcon}
@@ -61,10 +67,10 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                     name="Name"
                                     type="text"
                                     register={register('name', {
-                                        required: 'Name is required',
+                                        required: t('nameRequired'),
                                         maxLength: {
                                             value: 30,
-                                            message: 'Maximum number of characters reached',
+                                            message: t('nameMaxLength'),
                                         },
                                     })}
                                     label={false}
@@ -76,14 +82,14 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                     name="Email"
                                     type="email"
                                     register={register('email', {
-                                        required: 'Email is required',
+                                        required: t('emailRequired'),
                                         pattern: {
                                             value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                            message: 'Please enter a valid email address',
+                                            message: t('emailInvalid'),
                                         },
                                         maxLength: {
                                             value: 320,
-                                            message: 'Maximum number of characters reached',
+                                            message: t('emailMaxLength'),
                                         },
                                     })}
                                     label={false}
@@ -96,14 +102,14 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                 name="Phone number"
                                 type="tel"
                                 register={register('phone', {
-                                    required: 'Phone number is required',
+                                    required: t('phoneRequired'),
                                     maxLength: {
                                         value: 30,
-                                        message: 'Maximum number of characters reached',
+                                        message: t('phoneMaxLength'),
                                     },
                                     minLength: {
                                         value: 8,
-                                        message: 'Phone number must be at least 8 characters long'
+                                        message: t('phoneMinLength'),
                                     }
                                 })}
                                 label={false}
@@ -114,10 +120,10 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                             <TextareaInputForm
                                 name="Comment"
                                 register={register('comment', {
-                                    required: 'Comment is required',
+                                    required: t('commentRequired'),
                                     maxLength: {
                                         value: 300,
-                                        message: 'Maximum number of characters reached',
+                                        message: t('commentMaxLength'),
                                     },
                                 })}
                                 label={false}
@@ -128,7 +134,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                             type="submit"
                             className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
                         >
-                            Submit Now
+                            {t('submitNow')}
                         </button>
                     </form>
                 </div>

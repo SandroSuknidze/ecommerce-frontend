@@ -27,5 +27,15 @@
     "emailInvalid": "Please enter a valid email address",
     "emailMaxLength": "Maximum number of characters reached",
     "subscribe": "Subscribe",
-    "copyright": "© 2024 Umino Store. All Rights Reserved"
+    "copyright": "© 2024 Umino Store. All Rights Reserved",
+
+    "askQuestion": "Ask A Question",
+    "nameRequired": "Name is required",
+    "nameMaxLength": "Maximum number of characters reached",
+    "phoneRequired": "Phone number is required",
+    "phoneMaxLength": "Maximum number of characters reached",
+    "phoneMinLength": "Phone number must be at least 8 characters long",
+    "commentRequired": "Comment is required",
+    "commentMaxLength": "Maximum number of characters reached",
+    "submitNow": "Submit Now"
 }

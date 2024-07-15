@@ -164,7 +164,7 @@ function Footer() {
                                             <button type="submit"
                                                     className="w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white
                                                     md:px-[10px] md:text-[10px]">
-                                                Subscribe
+                                                {t('subscribe')}
                                             </button>
                                         </form>
                                     </div>
@@ -176,7 +176,7 @@ function Footer() {
                 <div className="max-w-[1410px] border-t-[1px] border-[#ebebeb] py-[30px] text-center">
                     <div>
                         <p className="leading-[38px] text-[#555555]">
-                            © 2024 Umino Store. All Rights Reserved
+                            {t('copyright')}
                         </p>
                     </div>
                 </div>
