@@ -1,4 +1,5 @@
 import '../app/globals.css';
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import { Jost } from 'next/font/google';
 import { Header } from "@/components/Header";
 import Footer from "@/components/Footer";
