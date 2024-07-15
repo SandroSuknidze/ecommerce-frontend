@@ -50,7 +50,6 @@ function ProductCategoryId() {
 
             const response = await axiosInstance.get(`/products/${productCategoryId}`, { params });
             setProducts(response.data);
-            console.log(response.data);
         } catch (error) {
             console.error('Error fetching products:', error);
         } finally {

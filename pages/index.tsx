@@ -47,8 +47,6 @@ function Index() {
             const response = await axiosInstance('/products/new-arrivals')
             const data = await response.data
 
-            console.log(data);
-
             setNewArrivals(data)
         } catch (err) {
             console.error(err)

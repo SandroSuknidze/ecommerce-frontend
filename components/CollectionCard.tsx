@@ -107,7 +107,6 @@ function CollectionCard({
             color_name: color_name,
         }
         addItem(item);
-        console.log(items);
     };
 
     return (

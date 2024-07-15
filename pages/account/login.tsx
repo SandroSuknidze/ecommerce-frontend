@@ -48,8 +48,6 @@ function Login() {
 
                 const savedCart:any = localStorage.getItem('cart');
                 const jsonSavedCart = JSON.parse(savedCart);
-                console.log(jsonSavedCart.length);
-                console.log(savedCart);
                 if(jsonSavedCart.items.length > 0) {
                     await axiosInstance.post('/cart/sync', { cart: jsonSavedCart.items });
 

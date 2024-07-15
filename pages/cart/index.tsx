@@ -72,7 +72,6 @@ function Index() {
         async function getRandomProducts() {
             try {
                 const response = await axiosInstance.get('/products/random');
-                console.log(response.data);
                 setRandomProducts(response.data);
             } catch (err) {
                 console.error('Error fetching cart data:', err);
@@ -200,7 +199,12 @@ function Index() {
                                             id="city"
                                             type="text"
                                             placeholder="Enter city"
-                                            {...register('city', { required: 'City is required' })}
+                                            {...register('city', {
+                                                required: 'City is required',
+                                                pattern: {
+                                                    value: /^[a-zA-Z ]*$/,
+                                                    message: "Only letters allowed",
+                                                },})}
                                             className="px-[20px] py-[10px] text-[14px] border-[1px] border-[#ebebeb] rounded-[30px]
                                             focus:border-[#131313] focus:transition focus:duration-300 transition duration-300 outline-0"
                                         />

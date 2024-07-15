@@ -141,7 +141,6 @@ function ProductId() {
             if (data.colors.length > 0) {
                 setSelectedColor({ id: data.colors[0].id, name: data.colors[0].name });
             }
-            console.log(data)
         } catch (error) {
             console.log(error)
         }
@@ -169,7 +168,6 @@ function ProductId() {
             color_name: selectedColor?.name,
         }
         addItem(item);
-        console.log(items);
     };
 
 
