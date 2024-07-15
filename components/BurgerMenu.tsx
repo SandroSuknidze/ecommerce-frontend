@@ -6,10 +6,12 @@ import heartIcon from '@/public/assets/heart-icon.svg'
 import Image from "next/image"
 import AvatarIcon from '@/public/assets/AvatarIcon'
 import en from '@/public/assets/en.webp'
-import geo from '@/public/assets/ka.webp'
+import ka from '@/public/assets/ka.webp'
 import closeIcon from '@/public/assets/white-close.svg'
 import { useState } from 'react'
 import { useAuth } from '@/context/authContext'
+import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 interface BurgerMenuProps {
     toggleBurgerMenu: () => void,
@@ -17,11 +19,19 @@ interface BurgerMenuProps {
 }
 
 const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
+    const router = useRouter();
+    const { t } = useTranslation('common')
+    const [language, setLanguage] = useState<Language>(router.locale as Language);
 
     const { isAuthenticated, user } = useAuth();
 
-    type Language = 'en' | 'geo';
-    const [language, setLanguage] = useState<Language>('en')
+    type Language = 'en' | 'ka';
+
+    async function selectLanguage(lang: any) {
+        toggleBurgerMenu();
+        await router.push(router.pathname, router.asPath, { locale: lang });
+        setLanguage(lang);
+    }
 
     return (
         <div className="absolute z-[70]">
@@ -38,7 +48,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
 
                     <div className="px-[15px] bg-d7red uppercase text-[14px] text-white font-medium flex justify-between">
                         <div className="flex">
-                            <div className="p-[15px] cursor-default">Menu</div>
+                            <div className="p-[15px] cursor-default">{t('menu')}</div>
                         </div>
 
                         <div className="flex mb-[1px]">
@@ -55,7 +65,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     className="cursor-pointer block py-[15px] w-[100%]"
                                     onClick={toggleBurgerMenu}
                                 >
-                                    Home
+                                    {t('home')}
                                 </Link>
                             </li>
                             <li className="border-b-[1px] border-b-[#ebebeb]">
@@ -64,7 +74,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     className="cursor-pointer block py-[15px] w-[100%]"
                                     onClick={toggleBurgerMenu}
                                 >
-                                    Shop
+                                    {t('shop')}
                                 </Link>
                             </li>
                             <li className="border-b-[1px] border-b-[#ebebeb]">
@@ -73,7 +83,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     className="cursor-pointer block py-[15px] w-[100%]"
                                     onClick={toggleBurgerMenu}
                                 >
-                                    Brands
+                                    {t('brands')}
                                 </Link>
                             </li>
                             <li className="relative cursor-pointer border-b-[1px] border-b-[#ebebeb]">
@@ -82,24 +92,26 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     className="cursor-pointer block py-[15px] w-[100%]"
                                     onClick={toggleBurgerMenu}
                                 >
-                                    Sale
+                                    {t('sale')}
                                 </Link>
                                 <div
-                                    className="absolute bottom-[39%] left-[44px] rounded-sm border-red-600
-                                    border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] font-bold uppercase leading-[9px] text-white">
-                                    hot
+                                    className={`${language === 'en' ? 'left-[44px]': 'left-[104px]'} absolute bottom-[39%] 
+                                    rounded-sm border-red-600 border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] 
+                                    font-bold uppercase leading-[9px] text-white`}>
+                                    {t('hot')}
                                 </div>
                                 <div
-                                    className="border-l-solid border-r-solid border-b-solid absolute bottom-[51%]
-                                    left-[40px] h-0 w-0 -rotate-90 border-b-[3px] border-l-[3px] border-r-[3px]
-                                    border-b-red-600 border-l-transparent border-r-transparent"></div>
+                                    className={`${language === 'en' ? 'left-[40px]': 'left-[100px]'} border-l-solid 
+                                    border-r-solid border-b-solid absolute bottom-[51%] h-0 w-0 -rotate-90 border-b-[3px] 
+                                    border-l-[3px] border-r-[3px] border-b-red-600 border-l-transparent 
+                                    border-r-transparent`}></div>
                             </li>
                             <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] w-[100%]">
                                 <Link href="/wishlist" className="flex gap-[15px] py-[15px]" onClick={toggleBurgerMenu} >
                                     <div className="w-[20px] flex items-center">
                                         <Image src={heartIcon} alt="Heart Icon" />
                                     </div>
-                                    <div>Wishlist</div>
+                                    <div>{t('wishlist')}</div>
                                 </Link>
                             </li>
                             <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] w-[100%] flex gap-[15px]">
@@ -108,25 +120,27 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     <div className="w-[20px] flex items-center">
                                         <AvatarIcon />
                                     </div>
-                                    <p className="line-clamp ">{isAuthenticated ? user?.first_name : 'Login / Register'}</p>
+                                    <p className="line-clamp ">{isAuthenticated ? user?.first_name : `${t('login/register')}`}</p>
                                 </Link>
                             </li>
                             <li className="border-b-[1px] border-b-[#ebebeb] py-[15px] w-[100%] flex gap-[15px] flex-col">
-                                <div>Language</div>
+                                <div>{t('language')}</div>
                                 <div className="flex gap-[15px]">
                                     <Image
                                         src={en}
                                         alt=""
                                         width="30"
-                                        className="cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red"
-                                        onClick={toggleBurgerMenu}
+                                        className={`${language === 'en' && 'bg-d7red'} 
+                                        cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red`}
+                                        onClick={() => selectLanguage('en')}
                                     />
                                     <Image
-                                        src={geo}
+                                        src={ka}
                                         alt=""
                                         width="30"
-                                        className="cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red"
-                                        onClick={toggleBurgerMenu}
+                                        className={`${language === 'ka' && 'bg-d7red'} 
+                                        cursor-pointer rounded-[3px] border-[1px] p-[5px] hover:bg-d7red`}
+                                        onClick={() => selectLanguage('ka')}
                                     />
                                 </div>
                             </li>
