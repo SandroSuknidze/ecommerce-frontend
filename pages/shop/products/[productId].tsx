@@ -66,10 +66,13 @@ const StyledRating = styled(Rating)({
 
 import { withTranslations } from '@/utils/i18nHelper'
 import { GetStaticPaths } from 'next'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 
 function ProductId() {
+    const { t } = useTranslation('common')
+
     const router = useRouter()
     const { productId } = router.query
 
@@ -191,7 +194,7 @@ function ProductId() {
                 <nav className="py-[25px]">
                     {product.image_path?.length > 0 ? (
                         <ol className="text-[14px]">
-                            <li className="inline text-11black"><Link href="/">Home</Link>&nbsp;/&nbsp;</li>
+                            <li className="inline text-11black"><Link href="/">{t('home')}</Link>&nbsp;/&nbsp;</li>
                             <li className="inline text-11black"><Link href={`/shop/${product.category?.id}`}>
                                 {product.category?.name}</Link>&nbsp;/&nbsp;
                             </li>
@@ -313,7 +316,7 @@ function ProductId() {
                                             <StyledRating name="read-only" value={product.rating ?? 0} readOnly />
                                         </div>
                                         <div className="ml-[10px] text-[14px] text-55black">
-                                            2 reviews
+                                            2 {t('reviews')}
                                         </div>
                                     </div>
                                     <div className="m-auto mt-[3px] flex py-[20px] font-medium">
@@ -335,7 +338,7 @@ function ProductId() {
                                         <fieldset>
                                             <legend>
                                                 <span className="text-55black">
-                                                    Size:{' '}
+                                                    {t('size')}:{' '}
                                                 </span>
                                                 <span className="font-medium text-11black">
                                                     {selectedSize?.name}
@@ -359,7 +362,7 @@ function ProductId() {
                                         <fieldset>
                                             <legend>
                                                 <span className="text-55black">
-                                                    Color:{' '}
+                                                    {t('color')}:{' '}
                                                 </span>
                                                 <span className="font-medium text-11black">
                                                     {selectedColor?.name}
@@ -390,18 +393,18 @@ function ProductId() {
                                             <div className="flex cursor-pointer gap-[10px]"
                                                  onClick={toggleSizeGuideModal}>
                                                 <Image src={sizeIcon} alt="Size Icon" />
-                                                <div>Size Guide</div>
+                                                <div>{t('sizeGuide')}</div>
                                             </div>
                                             <div className="flex gap-[30px]">
                                                 <div className="flex cursor-pointer gap-[10px]"
                                                      onClick={toggleAskQuestionModal}>
                                                     <Image src={askIcon} alt="Ask Icon" />
-                                                    <div>Ask a Question</div>
+                                                    <div>{t('askQuestion')}</div>
                                                 </div>
                                                 <div className="flex cursor-pointer gap-[10px]"
                                                      onClick={toggleShareModal}>
                                                     <Image src={shareIcon} alt="Share Icon" />
-                                                    <div>Share</div>
+                                                    <div>{t('share')}</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -431,7 +434,7 @@ function ProductId() {
                                                 type="submit"
                                                 className="w-[300px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white xl:w-full xl:px-[45px] sm:!px-[30px] sm:w-full"
                                             >
-                                                Add To Cart
+                                                {t('addToCart')}
                                             </button>
                                             <div
                                                 className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
@@ -445,28 +448,28 @@ function ProductId() {
                                         <div className="mb-[10px] flex gap-[15px] leading-[28px]">
                                             <Image src={estIcon} alt="Estimate Delivery Icon" />
                                             <p>
-                                                Estimate delivery times:{' '}
+                                                {t('estimateDeliveryTimes')}:{' '}
                                                 <strong className="font-medium text-11black">
-                                                    3-6 days
+                                                    3-6 {t('days')}
                                                 </strong>{' '}
-                                                (International)
+                                                ({t('international')})
                                             </p>
                                         </div>
                                         <div className="flex gap-[15px] leading-[28px]">
                                             <Image src={returnIcon} alt="Return Icon" />
                                             <p>
-                                                Return within{' '}
+                                                {t('returnWithin')}{' '}
                                                 <strong className="font-medium text-11black">
-                                                    45 days
+                                                    45 {t('days')}
                                                 </strong>{' '}
-                                                of purchase. Duties & taxes are non-refundable.
+                                                {t('ofPurchase')}
                                             </p>
                                         </div>
                                     </div>
                                     <div
                                         className="relative mt-[30px] flex justify-center rounded-[5px] border-[1px] border-[#ebebeb] py-[25px]">
                                         <label className="absolute top-[-13px] bg-white px-[20px] font-medium">
-                                            Guarantee safe checkout
+                                            {t('guaranteeSafeCheckout')}
                                         </label>
                                         <div>
                                             <Image src={paymentPicture} alt="Payment Methods" />
@@ -541,19 +544,19 @@ function ProductId() {
                             onClick={() => setSection(1)}
                             className={`${section === 1 ? 'bg-11black text-white' : 'bg-[#f5f5f5] text-11black'} inline-block cursor-pointer rounded-[30px] px-[30px] py-[10px] font-semibold transition duration-300 focus:bg-11black focus:text-white`}
                         >
-                            Description
+                            {t('description')}
                         </li>
                         <li
                             onClick={() => setSection(2)}
                             className={`${section === 2 ? 'bg-11black text-white' : 'bg-[#f5f5f5] text-11black'} inline-block cursor-pointer rounded-[30px] px-[30px] py-[10px] font-semibold transition duration-300 focus:bg-11black focus:text-white`}
                         >
-                            Shipping & Returns
+                            {t('shipping&Returns')}
                         </li>
                         <li
                             onClick={() => setSection(3)}
                             className={`${section === 3 ? 'bg-11black text-white' : 'bg-[#f5f5f5] text-11black'} inline-block cursor-pointer rounded-[30px] px-[30px] py-[10px] font-semibold transition duration-300 focus:bg-11black focus:text-white`}
                         >
-                            Return Policies
+                            {t('returnsPolicy')}
                         </li>
                     </ul>
 
@@ -564,97 +567,73 @@ function ProductId() {
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.7, ease: 'easeOut' }}
                         >
-                            <div>
-                                <div className="flex w-full gap-[30px]">
-                                    <div className="w-1/2">
-                                        <h2 className="mb-[10px] text-[20px] font-medium">
-                                            Outstanding Features
-                                        </h2>
+                            <div className="flex w-full gap-[30px]">
+                                <div className="w-1/2">
+                                    <h2 className="mb-[10px] text-[20px] font-medium">
+                                        {t('outstandingFeatures')}
+                                    </h2>
+                                    <p className="leading-[28px] text-55black">
+                                        {t('descriptionPart1')}
+                                    </p>
+                                    <br />
+                                    <p className="leading-[28px] text-55black">
+                                        {t('descriptionPart2')}
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        {t('descriptionPart3')}
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        {t('descriptionPart4')}
+                                    </p>
+                                    <p className="leading-[28px] text-55black">
+                                        {t('descriptionPart5')}
+                                    </p>
+                                </div>
+                                <div className="w-1/2">
+                                    <h2 className="mb-[10px] text-[20px] font-medium">
+                                        {t('outstandingFeatures')}
+                                    </h2>
+                                    <div className="mb-[15px] flex gap-[10px]">
+                                        <Image src={washIcon} alt="Wash" />
                                         <p className="leading-[28px] text-55black">
-                                            The garments labelled as committed
-                                            are products that have been produced
-                                            using sustainable fibres or
-                                            processes, reducing their
-                                            environmental impact. Umino’s goal
-                                            is to support the implementation of
-                                            practices more committed to the
-                                            environment.
-                                        </p>
-                                        <br />
-                                        <p className="leading-[28px] text-55black">
-                                            – Tonal stitching: 98% cotton, 2%
-                                            elastane.
-                                        </p>
-                                        <p className="leading-[28px] text-55black">
-                                            – Supple and stretch knit with a
-                                            rich touch of wool.
-                                        </p>
-                                        <p className="leading-[28px] text-55black">
-                                            – Model: Model is 6′1″, wearing a
-                                            size M.
-                                        </p>
-                                        <p className="leading-[28px] text-55black">
-                                            – Caring for your clothes is caring
-                                            for the environment.
+                                            {t('washInstruction')}
                                         </p>
                                     </div>
-                                    <div className="w-1/2">
-                                        <h2 className="mb-[10px] text-[20px] font-medium">
-                                            Outstanding Features
-                                        </h2>
-                                        <div className="mb-[15px] flex gap-[10px]">
-                                            <Image src={washIcon} alt="Wash" />
-                                            <p className="leading-[28px] text-55black">
-                                                Machine wash max. 30ºC. Short
-                                                spin.
-                                            </p>
-                                        </div>
-                                        <div className="mb-[15px] flex gap-[10px]">
-                                            <Image src={ironIcon} alt="Iron" />
-                                            <p className="leading-[28px] text-55black">
-                                                Iron maximum 110ºC.
-                                            </p>
-                                        </div>
-                                        <div className="mb-[15px] flex gap-[10px]">
-                                            <Image
-                                                src={bleachIcon}
-                                                alt="Bleach"
-                                            />
-                                            <p className="leading-[28px] text-55black">
-                                                Do not bleach/bleach.
-                                            </p>
-                                        </div>
-                                        <div className="mb-[15px] flex gap-[10px]">
-                                            <Image src={dryIcon} alt="Dry" />
-                                            <p className="leading-[28px] text-55black">
-                                                Do not dry clean.
-                                            </p>
-                                        </div>
-                                        <div className="mb-[15px] flex gap-[10px]">
-                                            <Image
-                                                src={tumbleIcon}
-                                                alt="Tumble"
-                                            />
-                                            <p className="leading-[28px] text-55black">
-                                                Tumble dry, medium hear.
-                                            </p>
-                                        </div>
+                                    <div className="mb-[15px] flex gap-[10px]">
+                                        <Image src={ironIcon} alt="Iron" />
+                                        <p className="leading-[28px] text-55black">
+                                            {t('ironInstruction')}
+                                        </p>
+                                    </div>
+                                    <div className="mb-[15px] flex gap-[10px]">
+                                        <Image
+                                            src={bleachIcon}
+                                            alt="Bleach"
+                                        />
+                                        <p className="leading-[28px] text-55black">
+                                            {t('bleachInstruction')}
+                                        </p>
+                                    </div>
+                                    <div className="mb-[15px] flex gap-[10px]">
+                                        <Image src={dryIcon} alt="Dry" />
+                                        <p className="leading-[28px] text-55black">
+                                            {t('dryInstruction')}
+                                        </p>
+                                    </div>
+                                    <div className="mb-[15px] flex gap-[10px]">
+                                        <Image
+                                            src={tumbleIcon}
+                                            alt="Tumble"
+                                        />
+                                        <p className="leading-[28px] text-55black">
+                                            {t('tumbleInstruction')}
+                                        </p>
                                     </div>
                                 </div>
-                                <br />
-                                <div className="leading-[28px] text-55black">
-                                    We work with monitoring programmes to ensure
-                                    compliance with our social, environmental
-                                    and health and safety standards for our
-                                    garments. To assess compliance, we have
-                                    developed a programme of audits and
-                                    continuous improvement plans. Made of
-                                    super-soft cotton, the Organic Cotton
-                                    Cutaway Tank features a high neck and back,
-                                    and a slight curve at the shoulders, which
-                                    makes it extra flattering. If there’s one
-                                    thing the ’90s got right, it’s the basics.
-                                </div>
+                            </div>
+                            <br />
+                            <div className="leading-[28px] text-55black">
+                                {t('finalDescription')}
                             </div>
                         </motion.div>
                     )}
@@ -668,24 +647,18 @@ function ProductId() {
                         >
                             <div>
                                 <p className="mb-[15px] leading-[28px] text-55black">
-                                    For all orders exceeding a value of 100USD
-                                    shipping is offered for free.
+                                    {t('shippingInfo')}
                                 </p>
                                 <p className="mb-[15px] leading-[28px] text-55black">
-                                    Returns will be accepted for up to 10 days
-                                    of Customer’s receipt or tracking number on
-                                    unworn items. You, as a Customer, are
-                                    obliged to inform us via email before you
-                                    return the item.
+                                    {t('returnsInfo')}
                                 </p>
                                 <p className="mb-[15px] leading-[28px] text-55black">
-                                    Otherwise, standard shipping charges apply.
-                                    Check out our delivery
+                                    {t('standardShipping')}{' '}
                                     <Link href="/" className="text-11black">
                                         {' '}
-                                        Terms & Conditions
+                                        {t('termsAndConditions')}
                                     </Link>{' '}
-                                    for more details.
+                                    {t('details')}
                                 </p>
                             </div>
                         </motion.div>
@@ -699,39 +672,20 @@ function ProductId() {
                         >
                             <div>
                                 <p className="mb-[15px] leading-[28px] text-55black">
-                                    Returns will be accepted for up to 10 days
-                                    of Customer’s receipt or tracking number on
-                                    unworn items. You, as a Customer, are
-                                    obliged to inform us via email before you
-                                    return the item, only in the case of:
+                                    {t('returnsPolicy2')}
                                 </p>
+                                <ul>
+                                    <li className="leading-[28px] text-55black">{t('wrongItem')}</li>
+                                    <li className="leading-[28px] text-55black">{t('unexpectedArrival')}</li>
+                                    <li className="leading-[28px] text-55black">{t('defects')}</li>
+                                    <li className="leading-[28px] text-55black">{t('deliveryDelay')}</li>
+                                    <li className="mb-[15px] leading-[28px] text-55black">{t('goodsInspection')}</li>
+                                </ul>
                                 <p className="leading-[28px] text-55black">
-                                    – Received the wrong item.
-                                </p>
-                                <p className="leading-[28px] text-55black">
-                                    – Item arrived not as expected (ie. damaged
-                                    packaging).
-                                </p>
-                                <p className="leading-[28px] text-55black">
-                                    – Item had defects.
-                                </p>
-                                <p className="leading-[28px] text-55black">
-                                    – Over delivery time.
-                                </p>
-                                <p className="mb-[15px] leading-[28px] text-55black">
-                                    – The shipper does not allow the goods to be
-                                    inspected before payment.
-                                </p>
-                                <p className="leading-[28px] text-55black">
-                                    The returned product(s) must be in the
-                                    original packaging, safety wrapped,
-                                    undamaged and unworn. This means that the
-                                    item(s) must be safely packed in a carton
-                                    box for protection during transport,
-                                    possibly the same carton used to ship to you
-                                    as a customer.
+                                    {t('returnRequirements')}
                                 </p>
                             </div>
+
                         </motion.div>
                     )}
                 </div>
@@ -742,7 +696,7 @@ function ProductId() {
                         onClick={() => toggleDescription()}
                         className="mb-[10px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
                     >
-                        <h4 className="font-medium text-11black">Description</h4>
+                        <h4 className="font-medium text-11black">{t('description')}</h4>
                         <div className="relative">
                             <FontAwesomeIcon
                                 icon={faMinus}
@@ -766,94 +720,61 @@ function ProductId() {
                                     <div className="flex w-full gap-[30px] flex-col">
                                         <div className="w-full">
                                             <h2 className="mb-[10px] text-[20px] font-medium">
-                                                Outstanding Features
+                                                {t('outstandingFeatures')}
                                             </h2>
                                             <p className="leading-[28px] text-55black">
-                                                The garments labelled as committed
-                                                are products that have been produced
-                                                using sustainable fibres or
-                                                processes, reducing their
-                                                environmental impact. Umino’s goal
-                                                is to support the implementation of
-                                                practices more committed to the
-                                                environment.
+                                                {t('committedGarments')}
                                             </p>
                                             <br />
-                                            <p className="leading-[28px] text-55black">
-                                                – Tonal stitching: 98% cotton, 2%
-                                                elastane.
-                                            </p>
-                                            <p className="leading-[28px] text-55black">
-                                                – Supple and stretch knit with a
-                                                rich touch of wool.
-                                            </p>
-                                            <p className="leading-[28px] text-55black">
-                                                – Model: Model is 6′1″, wearing a
-                                                size M.
-                                            </p>
-                                            <p className="leading-[28px] text-55black">
-                                                – Caring for your clothes is caring
-                                                for the environment.
-                                            </p>
+                                            <ul>
+                                                <li className="leading-[28px] text-55black">{t('tonalStitching')}</li>
+                                                <li className="leading-[28px] text-55black">{t('suppleKnit')}</li>
+                                                <li className="leading-[28px] text-55black">{t('modelInfo')}</li>
+                                                <li className="leading-[28px] text-55black">{t('careForClothes')}</li>
+                                            </ul>
                                         </div>
                                         <div className="w-full">
                                             <h2 className="mb-[10px] text-[20px] font-medium">
-                                                Outstanding Features
+                                                {t('outstandingFeatures')}
                                             </h2>
                                             <div className="mb-[15px] flex gap-[10px]">
                                                 <Image src={washIcon} alt="Wash" />
                                                 <p className="leading-[28px] text-55black">
-                                                    Machine wash max. 30ºC. Short
-                                                    spin.
+                                                    {t('machineWash')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
                                                 <Image src={ironIcon} alt="Iron" />
                                                 <p className="leading-[28px] text-55black">
-                                                    Iron maximum 110ºC.
+                                                    {t('ironing')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image
-                                                    src={bleachIcon}
-                                                    alt="Bleach"
-                                                />
+                                                <Image src={bleachIcon} alt="Bleach" />
                                                 <p className="leading-[28px] text-55black">
-                                                    Do not bleach/bleach.
+                                                    {t('bleachInstructions')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
                                                 <Image src={dryIcon} alt="Dry" />
                                                 <p className="leading-[28px] text-55black">
-                                                    Do not dry clean.
+                                                    {t('dryCleaning')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image
-                                                    src={tumbleIcon}
-                                                    alt="Tumble"
-                                                />
+                                                <Image src={tumbleIcon} alt="Tumble" />
                                                 <p className="leading-[28px] text-55black">
-                                                    Tumble dry, medium hear.
+                                                    {t('tumbleDry')}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
                                     <br />
                                     <div className="leading-[28px] text-55black">
-                                        We work with monitoring programmes to ensure
-                                        compliance with our social, environmental
-                                        and health and safety standards for our
-                                        garments. To assess compliance, we have
-                                        developed a programme of audits and
-                                        continuous improvement plans. Made of
-                                        super-soft cotton, the Organic Cotton
-                                        Cutaway Tank features a high neck and back,
-                                        and a slight curve at the shoulders, which
-                                        makes it extra flattering. If there’s one
-                                        thing the ’90s got right, it’s the basics.
+                                        {t('compliancePrograms')}
                                     </div>
                                 </div>
+
 
                             </motion.section>
                         )}
@@ -866,7 +787,7 @@ function ProductId() {
                         onClick={() => toggleShipping()}
                         className="mb-[10px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
                     >
-                        <h4 className="font-medium text-11black">Shipping & Returns</h4>
+                        <h4 className="font-medium text-11black">{t('shipping&Returns')}</h4>
                         <div className="relative">
                             <FontAwesomeIcon
                                 icon={faMinus}
@@ -888,26 +809,21 @@ function ProductId() {
                             >
                                 <div className="pb-[20px] px-[15px]">
                                     <p className="mb-[15px] leading-[28px] text-55black">
-                                        For all orders exceeding a value of 100USD
-                                        shipping is offered for free.
+                                        {t('freeShipping')}
                                     </p>
                                     <p className="mb-[15px] leading-[28px] text-55black">
-                                        Returns will be accepted for up to 10 days
-                                        of Customer’s receipt or tracking number on
-                                        unworn items. You, as a Customer, are
-                                        obliged to inform us via email before you
-                                        return the item.
+                                        {t('returnsPolicy2')}
                                     </p>
                                     <p className="mb-[15px] leading-[28px] text-55black">
-                                        Otherwise, standard shipping charges apply.
-                                        Check out our delivery
+                                        {t('standardShipping')}{' '}
                                         <Link href="/" className="text-11black">
                                             {' '}
-                                            Terms & Conditions
+                                            {t('termsAndConditions')}
                                         </Link>{' '}
-                                        for more details.
+                                        {t('shippingDetails')}
                                     </p>
                                 </div>
+
 
                             </motion.section>
                         )}
@@ -920,7 +836,7 @@ function ProductId() {
                         onClick={() => toggleReturn()}
                         className="mb-[20px] flex cursor-pointer justify-between px-[15px] py-[15px] bg-[#f5f5f5] rounded-[5px]"
                     >
-                        <h4 className="font-medium text-11black">Return Policies</h4>
+                        <h4 className="font-medium text-11black">{t('returnsPolicy')}</h4>
                         <div className="relative">
                             <FontAwesomeIcon
                                 icon={faMinus}
@@ -942,39 +858,28 @@ function ProductId() {
                             >
                                 <div className="pb-[20px] px-[15px]">
                                     <p className="mb-[15px] leading-[28px] text-55black">
-                                        Returns will be accepted for up to 10 days
-                                        of Customer’s receipt or tracking number on
-                                        unworn items. You, as a Customer, are
-                                        obliged to inform us via email before you
-                                        return the item, only in the case of:
+                                        {t('returnPolicy')}
                                     </p>
                                     <p className="leading-[28px] text-55black">
-                                        – Received the wrong item.
+                                        {t('wrongItem')}
                                     </p>
                                     <p className="leading-[28px] text-55black">
-                                        – Item arrived not as expected (ie. damaged
-                                        packaging).
+                                        {t('unexpectedItem')}
                                     </p>
                                     <p className="leading-[28px] text-55black">
-                                        – Item had defects.
+                                        {t('defectiveItem')}
                                     </p>
                                     <p className="leading-[28px] text-55black">
-                                        – Over delivery time.
+                                        {t('deliveryDelay')}
                                     </p>
                                     <p className="mb-[15px] leading-[28px] text-55black">
-                                        – The shipper does not allow the goods to be
-                                        inspected before payment.
+                                        {t('paymentInspection')}
                                     </p>
                                     <p className="leading-[28px] text-55black">
-                                        The returned product(s) must be in the
-                                        original packaging, safety wrapped,
-                                        undamaged and unworn. This means that the
-                                        item(s) must be safely packed in a carton
-                                        box for protection during transport,
-                                        possibly the same carton used to ship to you
-                                        as a customer.
+                                        {t('returnConditions')}
                                     </p>
                                 </div>
+
                             </motion.section>
                         )}
                     </AnimatePresence>

@@ -9,8 +9,11 @@ import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem'
 import { parseAsArrayOf, parseAsInteger, useQueryState } from 'nuqs';
 import axiosInstance from '@/utils/axiosInstance';
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useTranslation } from 'next-i18next'
 
 const FilterComponent = () => {
+    const { t } = useTranslation('common')
+
     const [isBrandOpen, setIsBrandOpen] = useState(true);
     const [isColorOpen, setIsColorOpen] = useState(true);
     const [isPriceOpen, setIsPriceOpen] = useState(true);
@@ -149,7 +152,7 @@ const FilterComponent = () => {
                     onClick={toggleBrand}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-11black">Brand</h4>
+                    <h4 className="text-[18px] font-medium text-11black">{t('brand')}</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -196,7 +199,7 @@ const FilterComponent = () => {
                     onClick={toggleColor}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-11black">Color</h4>
+                    <h4 className="text-[18px] font-medium text-11black">{t('color')}</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -243,7 +246,7 @@ const FilterComponent = () => {
                     onClick={togglePrice}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-11black">Price</h4>
+                    <h4 className="text-[18px] font-medium text-11black">{t('price')}</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}
@@ -302,7 +305,7 @@ const FilterComponent = () => {
                     onClick={toggleSize}
                     className="mb-[20px] flex cursor-pointer justify-between"
                 >
-                    <h4 className="text-[18px] font-medium text-11black">Size</h4>
+                    <h4 className="text-[18px] font-medium text-11black">{t('size')}</h4>
                     <div className="relative">
                         <FontAwesomeIcon
                             icon={faMinus}

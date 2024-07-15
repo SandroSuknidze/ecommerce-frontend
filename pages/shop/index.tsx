@@ -8,10 +8,13 @@ import { SwiperSlide } from 'swiper/swiper-react'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 
 function Index() {
+    const { t } = useTranslation('common')
+
     const numCols = useResponsiveCols({ native: 4, xl: 4, lg: 3, md: 2, sm: 2, xs: 1});
 
     const [categories, setCategories] = useState([])
@@ -35,12 +38,10 @@ function Index() {
         <div>
             <div className="py-[60px]">
                 <div className="mx-[9.5px] px-[30px] text-center">
-                    <h1 className="mb-[7px] text-[45px]">All Collections</h1>
+                    <h1 className="mb-[7px] text-[45px]">{t('allCollections')}</h1>
                     <div className="m-auto max-w-[600px] text-[#555555]">
                         <p>
-                            Posuere in netus a eu varius adipiscing suspendisse
-                            elementum vitae tempor suspendisse ullamcorper
-                            aenean taciti morbi potenti.
+                            {t('posuereInNetus')}
                         </p>
                     </div>
                 </div>

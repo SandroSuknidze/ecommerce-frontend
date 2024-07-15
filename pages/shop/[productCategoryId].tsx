@@ -9,11 +9,14 @@ import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { withTranslations } from '@/utils/i18nHelper'
 import { GetStaticPaths } from 'next'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 
 function ProductCategoryId() {
     const router = useRouter()
+    const { t } = useTranslation('common')
+
     const { productCategoryId, colors, brands, price, sizes } = router.query;
 
     const [isHovered, setIsHovered] = useState(false)
@@ -90,7 +93,7 @@ function ProductCategoryId() {
                 ) : (
                     <>
                         <h1 className="mx-auto text-[45px]">{categoryName}</h1>
-                        <nav className="text-[14px]">Home / {categoryName}</nav>
+                        <nav className="text-[14px]">{t('home')} / {categoryName}</nav>
                     </>
                 )}
             </div>
@@ -103,7 +106,7 @@ function ProductCategoryId() {
                     <div className="flex justify-between mb-[30px] px-[15px]">
                         <div className="text-55black xs:text-[14px]">
                             {isProductsLoading ? (<SkeletonLoader className="h-[20px] w-[200px] rounded-xl" />)
-                                : `There are ${products.length} ${products.length > 0 ? 'results' : 'result'} in total`
+                                : `${t('thereAre')} ${products.length} ${products.length > 0 ? `${t('results')}` : `${('result')}`} ${t('inTotal')}`
                             }
                         </div>
                         <button
@@ -118,7 +121,7 @@ function ProductCategoryId() {
                             <FontAwesomeIcon icon={faFilter} className={`${isHovered && 'text-11black'} m-auto`} />
                             <div
                                 className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
-                                Filter
+                                {t('filter')}
                             </div>
                         </button>
                     </div>

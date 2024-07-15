@@ -6,8 +6,10 @@ import CollectionCard from '@/components/CollectionCard'
 import axiosInstance from '@/utils/axiosInstance'
 import { useEffect, useState } from 'react'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useTranslation } from 'next-i18next'
 
 function FeaturedProducts() {
+    const { t } = useTranslation('common')
 
     const [featuredProducts, setFeaturedProducts] = useState([])
 
@@ -31,11 +33,10 @@ function FeaturedProducts() {
                 <div className="m-auto max-w-[1290px] md:px-[15px]">
                     <div className="mb-[15px]">
                         <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
-                            Featured Products
+                            {t('featuredProducts')}
                         </h2>
                         <p className="text-center text-55black">
-                            Don&apos;t forget! The products that you viewed. Add
-                            it to cart now.
+                            {t('dontForgetTheProductsThatYouViewedAddItToCartNow')}
                         </p>
                     </div>
                 </div>
