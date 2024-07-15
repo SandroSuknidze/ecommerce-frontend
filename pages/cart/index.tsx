@@ -14,7 +14,7 @@ import axiosInstance from '@/utils/axiosInstance';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/context/CartContext';
 import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
-import { random } from 'nanoid'
+import { useRouter } from 'next/router'
 
 interface FormData {
     country: string;
@@ -32,16 +32,26 @@ function Index() {
         formState: { errors },
     } = useForm<FormData>({ mode: 'onSubmit' });
 
-    const { items, totalItems, removeItem, addItem, totalPrice, cartLoading } = useCart();
+    const { items, totalItems, removeItem, clearCart, totalPrice, cartLoading } = useCart();
     const [itemsBackend, setItemsBackend] = useState<any[]>([]);
     const [currentLoading, setCurrentLoading] = useState(true);
     const [randomProducts, setRandomProducts] = useState([])
     const [error, setError] = useState<string | null>(null);
 
-    const onSubmit = (data: object) => {
+    const router = useRouter();
+
+    const onSubmit = async (data: object) => {
         console.log(data);
-        toast.success('Order placed successfully!', { position: 'top-center' });
-        reset();
+        try {
+            await axiosInstance.post(`/place-order`, {data})
+            toast.success('Order placed successfully!', { position: 'top-center' });
+            clearCart();
+            reset();
+            await router.push('/')
+        } catch (error) {
+            console.error('Error placing order:', error)
+            toast.error('Failed to place order, please try again later.');
+        }
     };
 
     const selectedCountry = watch('country');

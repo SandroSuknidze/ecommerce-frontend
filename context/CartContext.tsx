@@ -176,8 +176,6 @@ export const CartProvider = ({ children }: CartProviderProps) => {
                 dispatch({ type: 'CLEAR_CART' });
                 dispatch({ type: 'SET_CART', payload: transformedCartItems });
             } catch (error) {
-                console.error('Error syncing cart with backend:', error);
-                toast.error('Error syncing cart with backend');
             }
         }
     };
