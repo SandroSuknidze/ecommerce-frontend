@@ -4,6 +4,7 @@ import BrandListLetter from '@/components/BrandListLetter'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 interface Brand {
@@ -49,6 +50,8 @@ const alphabetData: Alphabet[] = [
 ];
 
 export default function Index() {
+    const { t } = useTranslation('common')
+
     const [brands, setBrands] = useState<Brand[]>([]);
     const [alphabet, setAlphabet] = useState<Alphabet[]>(alphabetData);
     const [selected, setSelected] = useState<string>('Show All');
@@ -102,13 +105,13 @@ export default function Index() {
     return (
         <div className="max-w-[1440px] m-auto">
             <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                <h1 className="leading-[59px] mb-[5px] text-[45px]">Brands</h1>
+                <h1 className="leading-[59px] mb-[5px] text-[45px]">{t('brands')}</h1>
                 <nav>
                     <ol className="text-[14px] text-55black">
                         <li className="inline">
-                            <Link href="/">Home / </Link>
+                            <Link href="/">{t('home')} / </Link>
                         </li>
-                        <li className="inline">Brands</li>
+                        <li className="inline">{t('brands')}</li>
                     </ol>
                 </nav>
             </div>

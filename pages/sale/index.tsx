@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 function Index() {
+    const { t } = useTranslation('common')
 
     const [saleProducts, setSaleProducts] = useState([])
 
@@ -31,11 +33,10 @@ function Index() {
             <div className="bg-sale-banner bg-center bg-cover h-[800px] w-full justify-center flex lg:h-[500px]">
                 <div className="flex m-auto justify-center text-center ">
                     <div className="flex flex-col justify-center m-auto mx-[20%] md:mx-[10%]">
-                        <div className="text-[14px] font-semibold mt-[15px]">SALE 50% OFF ALL DRESSES</div>
-                        <div className="text-[60px] mb-[15px] lg:text-[35px]">Special Offers</div>
-                        <div className="text-55black">Get these deals before they’re gone! Save big on end-of-season and
-                            limited-edition colors
-                            in our most popular products.
+                        <div className="text-[14px] font-semibold mt-[15px]">{t('saleDresses')}</div>
+                        <div className="text-[60px] mb-[15px] lg:text-[35px]">{t('specialOffers')}</div>
+                        <div className="text-55black">
+                            {t('getDeals')}
                         </div>
                         <div>
                             <Link href="/shop">
@@ -43,7 +44,7 @@ function Index() {
                                     className="rounded-[30px] border-[1px] border-black bg-black px-[66px] py-[14.5px]
                                     text-[12px] font-semibold uppercase text-white mt-[40px] lg:px-[40px] lg:py-[11px]"
                                 >
-                                    Shop Now
+                                    {t('shopNow')}
                                 </button>
                             </Link>
                         </div>
@@ -54,10 +55,10 @@ function Index() {
             <div className="m-auto max-w-[1290px] px-[15px] md:px-0 mt-[50px]">
                 <div className="mb-[15px] md:px-[15px]">
                     <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
-                        Top Offers
+                        {t('topOffers')}
                     </h2>
                     <p className="text-center text-55black">
-                        Our products are designed for everyone, environmentally friendly.
+                        {t('ourProducts')}
                     </p>
                 </div>
                 <div className="grid grid-cols-4 lg:grid-cols-3 md:!grid-cols-2 justify-center mt-[50px]">

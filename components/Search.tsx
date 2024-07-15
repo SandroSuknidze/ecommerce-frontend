@@ -7,6 +7,7 @@ import useResponsiveCols from '@/hooks/useResponsiveCols';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { useState, useRef } from 'react';
 import axiosInstance from '@/utils/axiosInstance';
+import { useTranslation } from 'next-i18next'
 
 interface SearchProps {
     toggleSearch: () => void;
@@ -14,6 +15,8 @@ interface SearchProps {
 
 function Search({ toggleSearch }: SearchProps) {
     useLockBodyScroll(true);
+    const { t } = useTranslation('common')
+
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -58,7 +61,7 @@ function Search({ toggleSearch }: SearchProps) {
             <div className="absolute top-0 !z-50 h-[90vh] w-full overflow-y-scroll bg-white px-[30px] py-[60px] xl:px-[15px]">
                 <div className="m-auto max-w-[1410px]">
                     <h4 className="mb-[20px] text-center text-[32px] font-medium text-[#111111] md:text-[24px]">
-                        Search Our Site
+                        {t('searchOurSite')}
                     </h4>
                     <div className="flex cursor-pointer justify-end">
                         <FontAwesomeIcon
@@ -82,7 +85,7 @@ function Search({ toggleSearch }: SearchProps) {
                         </div>
                     </form>
                     <div className="mt-[10px] flex justify-center">
-                        <p className="text-[#555555]">Please type at least 3 letters</p>
+                        <p className="text-[#555555]">{t('type3Letters')}</p>
                         {/*<ul className="pl-[10px]">*/}
                         {/*    <li className="mr-[5px] inline text-[#111111]">Shirt,</li>*/}
                         {/*    <li className="mr-[5px] inline text-[#111111]">Dress,</li>*/}
@@ -119,7 +122,7 @@ function Search({ toggleSearch }: SearchProps) {
                             ))
                         ) : hasSearched ? (
                             <div className="text-center col-span-full">
-                                <p className="text-[#555555]">No results found</p>
+                                <p className="text-[#555555]">{t('noResultsFound')}</p>
                             </div>
                         ) : null}
                     </div>

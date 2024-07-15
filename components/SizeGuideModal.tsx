@@ -3,12 +3,15 @@ import Image from 'next/image'
 import closeIcon from '@/public/assets/close.svg'
 import sizeImage from '@/public/size.webp'
 import { useLockBodyScroll } from 'react-use'
+import { useTranslation } from 'next-i18next'
 
 interface SizeGuideModalProps {
     toggleSizeGuideModal: () => void,
 }
 
 function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
+    const { t } = useTranslation('common')
+
     useLockBodyScroll(true)
 
     return (
@@ -21,7 +24,7 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                     -translate-y-1/2 transform overflow-hidden rounded-[5px] border border-gray-300 bg-white shadow-lg">
                 <div className="flex w-full justify-center border-b-[1px] border-[#ebebeb] p-[20px] leading-[20px]">
                     <h3 className="text-[20px] font-medium text-11black">
-                        Size Guide
+                        {t('sizeGuide')}
                     </h3>
                     <Image
                         src={closeIcon}
@@ -33,24 +36,21 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
 
                 <div className="h-[540px] overflow-y-auto px-[40px] py-[35px] lg:px-[30px] md:!px-[15px] scrollbar">
                     <h2 className="mb-[10px] text-[18px] font-medium">
-                        Sizes for this Product.
+                        {t('sizesForProduct')}
                     </h2>
                     <p className="mb-5 leading-7 text-55black">
-                        This is an approximate conversion table to help you find
-                        your size. Measure around the fullest part, place the
-                        tape close under the arms and make sure the tape is flat
-                        across the back (Unit: centimeter).
+                        {t('approximateConversion')}
                     </p>
                     <div className="overflow-x-auto scrollbar">
                         <table
                             className="mb-[20px] w-full table-auto border-collapse border border-gray-200 min-w-full">
                             <thead>
                             <tr className="bg-gray-100">
-                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">Size</th>
-                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">US</th>
-                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">Bust</th>
-                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">Body Waist</th>
-                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">Fullest Hip</th>
+                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">{t('size')}</th>
+                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">{t('us')}</th>
+                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">{t('bust')}</th>
+                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">{t('bodyWaist')}</th>
+                                <th className="border border-gray-300 px-4 py-2 whitespace-nowrap">{t('fullestHip')}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -102,29 +102,25 @@ function SizeGuideModal({ toggleSizeGuideModal }: SizeGuideModalProps) {
                     <div className="flex gap-[30px] md:flex-col md:mt-[20px]">
                         <div className="w-[58%] md:w-full">
                             <h4 className="mb-[10px] text-[18px] font-medium text-11black">
-                                How to Measure.
+                                {t('howToMeasure')}
                             </h4>
                             <h5 className="mb-[5px] font-medium text-11black">
-                                1. Bust
+                                1. {t('bust')}
                             </h5>
                             <p className="mb-[15px] leading-7 text-55black">
-                                Measure at the fullest part of your chest,
-                                keeping the tape parallel to the floor.
+                                {t('measureChest')}
                             </p>
                             <h5 className="mb-[5px] font-medium text-11black">
-                                2. Body Waist
+                                2. {t('bodyWaist')}
                             </h5>
                             <p className="mb-[15px] leading-7 text-55black">
-                                Measure at the smallest part of your waist. This
-                                is usually below the rib cage and above the hip
-                                bone.
+                                {t('measureWaist')}
                             </p>
                             <h5 className="mb-[5px] font-medium text-11black">
-                                3. Fullest Hip
+                                3. {t('fullestHip')}
                             </h5>
                             <p className="mb-[15px] leading-7 text-55black">
-                                Measure at the fullest part of your seat,
-                                keeping the tape parallel to the floor.
+                                {t('measureSeat')}
                             </p>
                         </div>
                         <div className="m-auto w-[42%] md:w-full">

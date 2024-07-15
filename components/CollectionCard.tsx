@@ -8,6 +8,7 @@ import Rating from '@mui/material/Rating'
 import { styled } from '@mui/system'
 import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
+import { useTranslation } from 'next-i18next'
 
 interface CollectionCardProps {
     id: number,
@@ -49,6 +50,7 @@ function CollectionCard({
                             isRemovable = false,
                         }: CollectionCardProps) {
     let discount: number | undefined
+    const { t } = useTranslation('common')
 
     const { addItem, items } = useCart();
 
@@ -147,7 +149,7 @@ function CollectionCard({
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
                                     text-11black transition duration-500 hover:border-black hover:bg-black hover:text-white
                                     lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
-                        Add To Cart
+                        {t('addToCart')}
                     </button>
                 </div>
             </div>

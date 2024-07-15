@@ -16,6 +16,7 @@ import { useCart } from '@/context/CartContext';
 import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
 import { useRouter } from 'next/router'
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 interface FormData {
@@ -26,6 +27,7 @@ interface FormData {
 }
 
 function Index() {
+    const { t } = useTranslation('common')
     const {
         register,
         handleSubmit,
@@ -39,11 +41,12 @@ function Index() {
     const [currentLoading, setCurrentLoading] = useState(true);
     const [randomProducts, setRandomProducts] = useState([])
     const [error, setError] = useState<string | null>(null);
+    const [isSubmitEnabled, setIsSubmitEnabled] = useState(true);
 
     const router = useRouter();
 
     const onSubmit = async (data: object) => {
-        console.log(data);
+        setIsSubmitEnabled(false);
         try {
             await axiosInstance.post(`/place-order`, {data})
             toast.success('Order placed successfully!', { position: 'top-center' });
@@ -54,6 +57,7 @@ function Index() {
             console.error('Error placing order:', error)
             toast.error('Failed to place order, please try again later.');
         }
+        setIsSubmitEnabled(true);
     };
 
     const selectedCountry = watch('country');
@@ -102,13 +106,13 @@ function Index() {
         <>
             <div className="max-w-[1290px] m-auto px-[30px] lg:px-[15px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[59px] mb-[5px] text-[45px]">Your Cart</h1>
+                    <h1 className="leading-[59px] mb-[5px] text-[45px]">{t('yourCart')}</h1>
                     <nav>
                         <ol className="text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/">{t('home')} / </Link>
                             </li>
-                            <li className="inline">Your Shopping Cart</li>
+                            <li className="inline">{t('yourShoppingCart')}</li>
                         </ol>
                     </nav>
                 </div>
@@ -117,14 +121,14 @@ function Index() {
                         <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
                             <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
                                 <thead className="md:hidden">
-                                <tr>
-                                    <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
-                                        colSpan={2}>Product
-                                    </th>
-                                    <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">Quantity</th>
-                                    <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">Total</th>
-                                    <th className="border border-[#ebebeb] p-4 w-1/12"></th>
-                                </tr>
+                                    <tr>
+                                        <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
+                                            colSpan={2}>{t('product')}
+                                        </th>
+                                        <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">{t('quantity')}</th>
+                                        <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">{t('total')}</th>
+                                        <th className="border border-[#ebebeb] p-4 w-1/12"></th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                 {items.map((item, index) => (
@@ -147,7 +151,7 @@ function Index() {
                             </table>
                             {randomProducts.length > 0 &&
                                 <div className="mt-[100px]">
-                                <h2 className="mb-[15px] font-medium text-[20px]">You may also like</h2>
+                                <h2 className="mb-[15px] font-medium text-[20px]">{t('youMayAlsoLike')}</h2>
                                 <Swiper
                                     pagination={{ clickable: true }}
                                     breakpoints={{
@@ -175,8 +179,9 @@ function Index() {
                             <div className="w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px] lg:w-full">
                                 <form onSubmit={handleSubmit(onSubmit)} method="post">
                                     <div className="mb-[10px] flex flex-col">
-                                        <label htmlFor="" className="font-medium text-11black mb-[15px]">Add Order
-                                            Note</label>
+                                        <label htmlFor="" className="font-medium text-11black mb-[15px]">
+                                            {t('addOrderNote')}
+                                        </label>
                                         <textarea placeholder="Add Order Note" {...register('note')}
                                                   className={`h-[130px] overflow-hidden resize-none px-[20px] py-[10px] text-[14px] placeholder:text-[#555555] leading-[28px]
                                             focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300
@@ -186,17 +191,17 @@ function Index() {
                                             {errors.note?.message || '\u00A0'}
                                         </p>
                                     </div>
-                                    <h2 className="text-11black mb-[10px] font-medium">Shipping</h2>
+                                    <h2 className="text-11black mb-[10px] font-medium">{t('shipping')}</h2>
                                     <div className="mb-[10px] flex flex-col">
                                         <label htmlFor="country"
-                                               className="mb-[5px] text-[14px] text-55black">Country/region</label>
+                                               className="mb-[5px] text-[14px] text-55black">{t('country/region')}</label>
                                         <select
                                             id="country"
-                                            {...register('country', { required: 'Country is required' })}
+                                            {...register('country', { required: `${t('countryRequired')}` })}
                                             className="px-[20px] py-[10px] w-full text-55black text-[14px] border-[1px] border-[#ebebeb] rounded-[30px]
                                             focus:border-[#131313] focus:transition focus:duration-300 transition duration-300 outline-0 classic"
                                         >
-                                            <option value="">Select a country</option>
+                                            <option value="">{t('selectCountry')}</option>
                                             {countries.map((country, index) => (
                                                 <option key={index} value={country}>{country}</option>
                                             ))}
@@ -206,16 +211,16 @@ function Index() {
                                         </p>
                                     </div>
                                     <div className="mb-[10px] flex flex-col">
-                                        <label htmlFor="city" className="mb-[5px] text-[14px] text-55black">City</label>
+                                        <label htmlFor="city" className="mb-[5px] text-[14px] text-55black">{t('city')}</label>
                                         <input
                                             id="city"
                                             type="text"
                                             placeholder="Enter city"
                                             {...register('city', {
-                                                required: 'City is required',
+                                                required: `${t('cityRequired')}`,
                                                 pattern: {
                                                     value: /^[a-zA-Z ]*$/,
-                                                    message: "Only letters allowed",
+                                                    message: `${t('cityLetters')}`,
                                                 },})}
                                             className="px-[20px] py-[10px] text-[14px] border-[1px] border-[#ebebeb] rounded-[30px]
                                             focus:border-[#131313] focus:transition focus:duration-300 transition duration-300 outline-0"
@@ -225,8 +230,9 @@ function Index() {
                                         </p>
                                     </div>
                                     <div className="mb-[10px] flex flex-col">
-                                        <label htmlFor="zipCode" className="mb-[5px] text-[14px] text-55black">Postal
-                                            code</label>
+                                        <label htmlFor="zipCode" className="mb-[5px] text-[14px] text-55black">
+                                            {t('postalCode')}
+                                        </label>
                                         <input
                                             id="zipCode"
                                             type="text"
@@ -242,18 +248,21 @@ function Index() {
                                     <div className="border-t-[1px] border-[#DEDEDE]">
                                         <div
                                             className="flex justify-between text-[20px] font-medium mb-[5px] mt-[30px]">
-                                            <p>Subtotal</p>
+                                            <p>{t('subtotal')}</p>
                                             <p>${(totalPrice()).toFixed(2)}</p>
                                         </div>
                                         <div>
-                                            <p className="text-[14px] text-55black text-center">Taxes and shipping calculated at
-                                                checkout</p>
+                                            <p className="text-[14px] text-55black text-center">
+                                                {t('taxesCalculated')}
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <button type="submit"
-                                            className="mt-[5px] w-full py-[14px] bg-[#131313] text-white font-medium text-[14px] rounded-[30px]">
-                                        Place order
+                                    <button
+                                        disabled={!isSubmitEnabled}
+                                        type="submit"
+                                        className="mt-[5px] w-full py-[14px] bg-[#131313] text-white font-medium text-[14px] rounded-[30px]">
+                                        {t('placeOrder')}
                                     </button>
                                 </form>
                             </div>

@@ -1,20 +1,23 @@
 import Link from 'next/link'
 import { Empty } from '@/components/Empty'
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 function Index() {
+    const { t } = useTranslation('common')
+
     return (
         <>
             <div className="max-w-[1290px] m-auto px-[15px] md:px-0">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[59px] mb-[5px] text-[45px]">Wishlist</h1>
+                    <h1 className="leading-[59px] mb-[5px] text-[45px]">{t('wishlist')}</h1>
                     <nav>
                         <ol className="text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/">{t('home')} / </Link>
                             </li>
-                            <li className="inline">Wishlist</li>
+                            <li className="inline">{t('wishlist')}</li>
                         </ol>
                     </nav>
                 </div>

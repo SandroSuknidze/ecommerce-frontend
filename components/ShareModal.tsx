@@ -8,12 +8,14 @@ import YoutubeIcon from '@/public/assets/footer/YoutubeIcon'
 import TwitterIcon from '@/public/assets/footer/TwitterIcon'
 import FacebookIcon from '@/public/assets/footer/FacebookIcon'
 import { useState } from 'react'
+import { useTranslation } from 'next-i18next'
 
 interface ShareModalProps {
     toggleShareModal: () => void,
 }
 
 export function ShareModal({ toggleShareModal }: ShareModalProps) {
+    const { t } = useTranslation('common')
     const [copied, setCopied] = useState(false)
 
     const currentUrl = window.location.href
@@ -47,7 +49,7 @@ export function ShareModal({ toggleShareModal }: ShareModalProps) {
 
                 <div className="flex flex-col">
                     <label className="mb-[7px] text-[18px] font-medium leading-[32px] text-11black">
-                        Copy Link
+                        {t('copyLink')}
                     </label>
                     <div className="mb-[20px] flex gap-[10px]">
                         <input
@@ -69,7 +71,7 @@ export function ShareModal({ toggleShareModal }: ShareModalProps) {
                         </button>
                     </div>
                     <label className="mb-[7px] font-medium leading-[32px] text-11black">
-                        Share
+                        {t('share')}
                     </label>
                     <div>
                         <ul className="flex flex-row gap-[12px]">

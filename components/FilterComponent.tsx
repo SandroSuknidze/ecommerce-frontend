@@ -290,7 +290,7 @@ const FilterComponent = () => {
                                     />
                                 </div>
 
-                                <div className="text-55black mt-[10px]">Price:&nbsp;
+                                <div className="text-55black mt-[10px]">{t('price')}:&nbsp;
                                     <span className="text-11black font-medium">
                                 ${value1[0]?.toFixed(2)} - ${value1[1]?.toFixed(2)}
                             </span>

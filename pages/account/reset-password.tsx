@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import RequireGuest from '@/utils/requireGuest'
 import { useAuth } from '@/context/authContext'
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -18,6 +19,8 @@ interface FormData {
 }
 
 function ResetPassword() {
+    const { t } = useTranslation('common')
+
     const {
         register,
         handleSubmit,
@@ -98,14 +101,14 @@ function ResetPassword() {
             <div className="max-w-[1320px] w-full">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[47px] mb-[5px] text-4xl">
-                        Reset account password
+                        {t('resetAccountPassword')}
                     </h1>
                     <nav>
                         <ol className="text-[14px] text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/">{t('home')} / </Link>
                             </li>
-                            <li className="inline">Reset Account</li>
+                            <li className="inline">{t('resetAccount')}</li>
                         </ol>
                     </nav>
                 </div>
@@ -121,15 +124,15 @@ function ResetPassword() {
                                 name="Password"
                                 type={isPasswordVisible ? 'text' : 'password'}
                                 register={register('password', {
-                                    required: 'Password is required',
-                                    validate: (value) => value.trim() !== '' || 'Password cannot be empty',
+                                    required: `${t('passwordRequired')}`,
+                                    validate: (value) => value.trim() !== "" || `${t('passwordNotEmpty')}`,
                                     minLength: {
                                         value: 8,
-                                        message: 'Password must be at least 8 characters long',
+                                        message: `${t('passwordMinLength')}`,
                                     },
                                     maxLength: {
                                         value: 320,
-                                        message: 'Maximum number of characters reached',
+                                        message: `${t('emailMaxLength')}`,
                                     },
                                 })}
                                 errorMessage={errors.password?.message}
@@ -141,18 +144,18 @@ function ResetPassword() {
                                 name="Repeat Password"
                                 type={isRepeatPasswordVisible ? 'text' : 'password'}
                                 register={register('repeat_password', {
-                                    required: 'Repeat Password is required',
+                                    required: `${t('passwordRequired')}`,
                                     validate: {
-                                        notEmpty: (value) => value.trim() !== '' || 'Password cannot be empty',
-                                        matchesPassword: (value) => value === watch('password') || 'Passwords do not match',
+                                        notEmpty: (value) => value.trim() !== '' || `${t('passwordNotEmpty')}`,
+                                        matchesPassword: (value) => value === watch('password') || `${t('passwordDontMatch')}`,
                                     },
                                     minLength: {
                                         value: 8,
-                                        message: 'Repeat Password must be at least 8 characters long',
+                                        message: `${t('passwordMinLength')}`,
                                     },
                                     maxLength: {
                                         value: 320,
-                                        message: 'Maximum number of characters reached',
+                                        message: `${t('emailMaxLength')}`,
                                     },
                                 })}
                                 errorMessage={errors.repeat_password?.message}
@@ -167,7 +170,7 @@ function ResetPassword() {
                                     border-[#ebebeb] bg-11black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white`}
                                     disabled={loading}
                                 >
-                                    Reset Password
+                                    {t('resetPassword')}
                                 </button>
                             </div>
                         </div>

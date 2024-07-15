@@ -13,6 +13,7 @@ import { useAuth } from '@/context/authContext'
 import RequireGuest from '@/utils/requireGuest'
 
 import { withTranslations } from '@/utils/i18nHelper'
+import { useTranslation } from 'next-i18next'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -24,6 +25,7 @@ interface FormData {
 }
 
 function Register() {
+    const { t } = useTranslation('common')
     const {
         register,
         handleSubmit,
@@ -100,14 +102,14 @@ function Register() {
             <div className="max-w-[1320px]">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
                     <h1 className="leading-[47px] mb-[5px] text-4xl">
-                        Create account
+                        {t('createAccount')}
                     </h1>
                     <nav>
                         <ol className="text-[14px] text-55black">
                             <li className="inline">
-                                <Link href="/">Home / </Link>
+                                <Link href="/">{t('home')} / </Link>
                             </li>
-                            <li className="inline">Create Account</li>
+                            <li className="inline">{t('createAccount')}</li>
                         </ol>
                     </nav>
                 </div>
@@ -122,11 +124,9 @@ function Register() {
                                 className="mb-[10px] mt-[16px] flex gap-4 rounded-[5px] border-[1px] border-[#eabdbd] bg-[#fadfdf] px-[20px] py-[11px] text-[#9d666a]">
                                 <Image src={sadEmojiIcon} alt="Sad Emoji" />
                                 <p>
-                                    This email address is already associated
-                                    with an account. If this account is yours,
-                                    you can{' '}
+                                    {t('emailExists')}{' '}
                                     <Link href="/account/reset" className="cursor-pointer text-11black inline">
-                                        reset your password
+                                        {t('resetPassword')}
                                     </Link>
                                 </p>
                             </div>
@@ -135,11 +135,11 @@ function Register() {
                             name="First name"
                             type="text"
                             register={register('first_name', {
-                                required: 'First name is required',
-                                validate: (value) => value.trim() !== "" || "First name cannot be empty",
+                                required: `${t('firstNameRequired')}`,
+                                validate: (value) => value.trim() !== "" || `${t('firstNameEmpty')}`,
                                 maxLength: {
                                     value: 30,
-                                    message: 'Maximum number of characters reached',
+                                    message: `${t('emailMaxLength')}`,
                                 },
                             })}
                             errorMessage={errors.first_name?.message}
@@ -148,11 +148,11 @@ function Register() {
                             name="Last name"
                             type="text"
                             register={register('last_name', {
-                                required: 'Last name is required',
-                                validate: (value) => value.trim() !== "" || "Last name cannot be empty",
+                                required: `${t('lastNameRequired')}`,
+                                validate: (value) => value.trim() !== "" || `${t('lastNameEmpty')}`,
                                 maxLength: {
                                     value: 30,
-                                    message: 'Maximum number of characters reached',
+                                    message: `${t('emailMaxLength')}`,
                                 },
                             })}
                             errorMessage={errors.last_name?.message}
@@ -161,15 +161,15 @@ function Register() {
                             name="Email"
                             type="email"
                             register={register('email', {
-                                required: 'Email is required',
-                                validate: (value) => value.trim() !== "" || "Email cannot be empty",
+                                required: `${t('emailRequired')}`,
+                                validate: (value) => value.trim() !== "" || `${t('emailNotEmpty')}`,
                                 pattern: {
                                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                                    message: 'Please enter a valid email address',
+                                    message: `${t('emailInvalid')}`,
                                 },
                                 maxLength: {
                                     value: 320,
-                                    message: 'Maximum number of characters reached',
+                                    message: `${t('emailMaxLength')}`,
                                 },
                             })}
                             errorMessage={errors.email?.message}
@@ -178,15 +178,15 @@ function Register() {
                             name="Password"
                             type={isPasswordVisible ? 'text' : 'password'}
                             register={register('password', {
-                                required: 'Password is required',
-                                validate: (value) => value.trim() !== "" || "Password cannot be empty",
+                                required: `${t('passwordRequired')}`,
+                                validate: (value) => value.trim() !== "" || `${t('passwordNotEmpty')}`,
                                 minLength: {
                                     value: 8,
-                                    message: 'Password must be at least 8 characters long'
+                                    message: `${t('passwordMinLength')}`,
                                 },
                                 maxLength: {
                                     value: 320,
-                                    message: 'Maximum number of characters reached',
+                                    message: `${t('emailMaxLength')}`,
                                 }
                             })}
                             errorMessage={errors.password?.message}
@@ -194,10 +194,7 @@ function Register() {
                             isPasswordVisible={isPasswordVisible}
                         />
                         <p className="text-55black">
-                            Your personal data will be used to support your
-                            experience throughout this website, to manage access
-                            to your account and for other purposes described in
-                            our privacy policy.
+                            {t('personalInformation')}
                         </p>
                         <div className="mt-[30px]">
                             <button
@@ -205,7 +202,7 @@ function Register() {
                                 className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
                                 disabled={!isSubmittable}
                             >
-                                Create Account
+                                {t('createAccount')}
                             </button>
                         </div>
                         <div className="mt-[20px]">
@@ -215,7 +212,7 @@ function Register() {
                                     className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-white px-[55px]
                                     py-[14px] text-[12px] font-semibold uppercase text-11black transition duration-500 hover:bg-black hover:text-white"
                                 >
-                                    Log In
+                                    {t('login')}
                                 </button>
                             </Link>
                         </div>

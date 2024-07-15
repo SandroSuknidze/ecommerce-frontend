@@ -1,5 +1,6 @@
 import Image, { StaticImageData } from 'next/image'
 import Link from 'next/link'
+import { useTranslation } from 'next-i18next'
 
 interface CollectionProps {
     imageSrc: string;
@@ -9,6 +10,8 @@ interface CollectionProps {
 }
 
 function Collection({ imageSrc, title, id, totalProducts }: CollectionProps) {
+    const { t } = useTranslation('common')
+
     return (
         <div className="mx-[15px] mb-[30px] max-w-[320px] max-h-[406px] relative overflow-hidden rounded-xl sm:max-h-full sm:max-w-full">
             <Link href={`/shop/${id}`}>
@@ -23,7 +26,7 @@ function Collection({ imageSrc, title, id, totalProducts }: CollectionProps) {
                         <p className="hover:text-red-600 transition duration-300">{title}</p>
                     </div>
                     <div className="">
-                        ({totalProducts} Products)
+                        ({totalProducts} {t('products')})
                     </div>
                 </div>
             </Link>

@@ -3,6 +3,7 @@ import FilterComponent from '@/components/FilterComponent'
 import { useLockBodyScroll } from 'react-use'
 import Image from 'next/image'
 import closeIcon from '@/public/assets/gray-close.svg'
+import { useTranslation } from 'next-i18next'
 
 interface FilterMenuProps {
     toggleFilterMenu: () => void,
@@ -11,6 +12,8 @@ interface FilterMenuProps {
 
 function FilterMenu({ toggleFilterMenu, isOpen }: FilterMenuProps) {
     useLockBodyScroll(isOpen && true)
+    const { t } = useTranslation('common')
+
     return (
         <div className="absolute z-[70]">
             <Transition
@@ -25,7 +28,7 @@ function FilterMenu({ toggleFilterMenu, isOpen }: FilterMenuProps) {
                 <div className="fixed top-0 left-0 h-full max-w-[400px] bg-white shadow-lg z-[100] overflow-y-scroll scrollbar lg:w-[100%]">
                     <div className="px-[30px] bg-white text-[14px] text-white font-medium flex justify-between border-b-[1px] border-[#ebebeb]">
                         <div className="flex">
-                            <div className="py-[15px] cursor-default text-11black text-[18px]">Filter</div>
+                            <div className="py-[15px] cursor-default text-11black text-[18px]">{t('filter')}</div>
                         </div>
 
                         <div className="flex mb-[1px]">
