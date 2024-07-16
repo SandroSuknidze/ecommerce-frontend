@@ -9,6 +9,7 @@ import { ComponentType } from 'react';
 import { AuthProvider } from '@/context/authContext';
 import { CartProvider } from '@/context/CartContext'
 import { appWithTranslation } from 'next-i18next'
+import { WishlistProvider } from '@/context/WishlistContext'
 
 const jost = Jost({ subsets: ['latin'] });
 
@@ -21,12 +22,14 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     return (
         <AuthProvider>
             <CartProvider>
-                <div className={jost.className}>
-                    <ToastContainer />
-                    <Header />
-                    <Component {...pageProps} />
-                    <Footer />
-                </div>
+                <WishlistProvider>
+                    <div className={jost.className}>
+                        <ToastContainer />
+                        <Header />
+                        <Component {...pageProps} />
+                        <Footer />
+                    </div>
+                </WishlistProvider>
             </CartProvider>
         </AuthProvider>
     );

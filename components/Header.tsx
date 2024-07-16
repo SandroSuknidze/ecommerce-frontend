@@ -18,6 +18,7 @@ import { useAuth } from '@/context/authContext'
 import { useCart } from '@/context/CartContext'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import { useWishlist } from '@/context/WishlistContext'
 
 
 export function Header() {
@@ -26,6 +27,7 @@ export function Header() {
 
     const { isAuthenticated } = useAuth()
     const { totalItems } = useCart()
+    const { totalWishlistItems } = useWishlist()
 
     type Language = 'en' | 'ka';
     const [language, setLanguage] = useState<Language>(router.locale as Language);
@@ -164,7 +166,7 @@ export function Header() {
                                         <WishlistIcon className="hover-child cursor-pointer" />
                                         <div
                                             className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
-                                            0
+                                            {totalWishlistItems()}
                                         </div>
                                     </div>
                                 </Link>

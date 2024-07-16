@@ -9,6 +9,7 @@ import { styled } from '@mui/system'
 import { toast } from 'react-toastify'
 import { useCart } from '@/context/CartContext'
 import { useTranslation } from 'next-i18next'
+import { useWishlist } from '@/context/WishlistContext'
 
 interface CollectionCardProps {
     id: number,
@@ -17,7 +18,7 @@ interface CollectionCardProps {
     sale?: number,
     price: number,
     isRemovable?: boolean,
-    rating?: number
+    rating: number
     size_id: number | undefined
     size_name: string
     color_id: number | undefined
@@ -52,7 +53,8 @@ function CollectionCard({
     let discount: number | undefined
     const { t } = useTranslation('common')
 
-    const { addItem, items } = useCart();
+    const { addItem } = useCart();
+    const { addWishlistItem, removeWishlistItem } = useWishlist();
 
 
     if (sale) {
@@ -87,11 +89,6 @@ function CollectionCard({
         }
     }
 
-    function func() {
-        console.log('hi')
-    }
-
-
     const addToCart = () => {
         toast.success(`${t('itemAdded')}`, {
             position: 'top-center'
@@ -110,6 +107,27 @@ function CollectionCard({
         }
         addItem(item);
     };
+
+    const addToWishlist = () => {
+
+        const item = {
+            id: id,
+            title: title,
+            price: price,
+            sale_price: sale,
+            image_path: imageSrc,
+            rating: rating,
+            colors: colors,
+            color_id: color_id,
+            size_id: size_id,
+        }
+        addWishlistItem(item);
+    }
+
+    const removeFromWishlist = () => {
+        removeWishlistItem(id);
+    }
+
 
     return (
         <div className="mb-[40px] overflow-hidden rounded-xl px-[15px]">
@@ -132,7 +150,7 @@ function CollectionCard({
                     -{discount}%
                 </div>}
                 <div>
-                    <div onClick={func} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
+                    <div onClick={isRemovable ? () => removeFromWishlist() : () => addToWishlist()} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
                     h-[45px] w-[45px] m-auto flex
                     top-0 right-5 absolute hover-parent-heart mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black
                     lg:opacity-100 xs:h-[35px] xs:w-[35px] xs:p-[11px] xs:right-[10px]`}>

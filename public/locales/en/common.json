@@ -232,6 +232,7 @@
     "itemRemoved": "Item removed successfully!",
     "itemRemovedFailed": "Item removal failed!",
     "itemAdded": "Item added successfully!",
+    "itemExists": "Item is already in your wishlist!",
 
     "wishlistEmpty": "Your wishlist is empty",
     "cartEmpty": "Your cart is empty",
