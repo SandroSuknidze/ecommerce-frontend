@@ -233,6 +233,11 @@
     "itemRemovedFailed": "Item removal failed!",
     "itemAdded": "Item added successfully!",
 
+    "wishlistEmpty": "Your wishlist is empty",
+    "cartEmpty": "Your cart is empty",
+
+    "imLookingFor": "I'm looking for...",
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",

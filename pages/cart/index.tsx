@@ -268,7 +268,7 @@ function Index() {
                             </div>
                         </div>
                     ) : (
-                        <Empty title="Your Cart is Empty" />
+                        <Empty title={t('cartEmpty')} />
                     )}
             </div>
         </>

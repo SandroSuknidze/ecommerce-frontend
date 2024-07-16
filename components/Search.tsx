@@ -75,7 +75,7 @@ function Search({ toggleSearch }: SearchProps) {
                             value={query}
                             onChange={handleChange}
                             type="text"
-                            placeholder="I'm looking for..."
+                            placeholder={t('imLookingFor')}
                             className="mx-auto w-full rounded-[30px] border-[1px] border-[#ebebeb] py-[10px] pl-[20px]
                             pr-[50px] text-[14px] leading-[28px] outline-0 transition duration-300 placeholder:text-[#555555]
                             focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300"

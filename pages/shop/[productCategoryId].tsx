@@ -105,8 +105,8 @@ function ProductCategoryId() {
                 <div className="w-3/4 lg:w-full">
                     <div className="flex justify-between mb-[30px] px-[15px]">
                         <div className="text-55black xs:text-[14px]">
-                            {isProductsLoading ? (<SkeletonLoader className="h-[20px] w-[200px] rounded-xl" />)
-                                : `${t('thereAre')} ${products.length} ${products.length > 0 ? `${t('results')}` : `${('result')}`} ${t('inTotal')}`
+                            {isProductsLoading ? (<SkeletonLoader className="h-[20px] w-[200px] rounded-xl md:w-[150px]" />)
+                                : `${t('thereAre')} ${products.length} ${products.length > 0 ? `${t('results')}` : `${t('result')}`} ${t('inTotal')}`
                             }
                         </div>
                         <button

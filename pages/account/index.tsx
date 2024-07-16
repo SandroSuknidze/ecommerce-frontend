@@ -3,10 +3,12 @@ import { GetServerSideProps } from 'next';
 import withAuth from '@/utils/withAuth';
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { withTranslations } from '@/utils/i18nHelper'
 import { useTranslation } from 'next-i18next'
+import axiosInstance from '@/utils/axiosInstance'
+import { CartItem } from '@/components/CartItem'
 
 export const getStaticProps = withTranslations(['common']);
 const Index = () => {
@@ -16,7 +18,8 @@ const Index = () => {
     const router = useRouter();
 
     const [section, setSection] = useState(1)
-
+    const [orders, setOrders] = useState([]);
+    
     async function Logout() {
         await router.push('/')
         logout()
@@ -24,6 +27,20 @@ const Index = () => {
             position: 'top-center',
         })
     }
+
+    useEffect(() => {
+        function getOrders() {
+            axiosInstance.get('/orders')
+                .then((response) => {
+                    console.log(response.data.orders)
+                    setOrders(response.data.orders);
+                })
+                .catch((error) => {
+                    console.error(error)
+                })
+        }
+        getOrders();
+    }, [])
 
     return (
         <div>
@@ -74,18 +91,18 @@ const Index = () => {
                                         <div className="flex w-full">
                                             <div
                                                 className="min-w-[138px] px-[20px] py-[13px] border-b-[1px] border-r-[1px] border-[#ebebeb]
-                                                    sm:min-w-[65px] sm:px-[10px] sm:leading-[35px] sm:m-auto sm:py-0">{t('name')}
+                                                    sm:min-w-[65px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('name')}
                                             </div>
                                             <div
                                                 className="w-full px-[20px] py-[13px] border-b-[1px] border-[#ebebeb] line-clamp
-                                                    sm:px-[10px] sm:leading-[35px] sm:m-auto sm:py-0">{user?.first_name + ' ' + user?.last_name}</div>
+                                                    sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{user?.first_name + ' ' + user?.last_name}</div>
                                         </div>
                                         <div className="flex w-full">
                                             <div
                                                 className="min-w-[138px] px-[20px] py-[13px] border-r-[1px] border-[#ebebeb]
-                                                    sm:min-w-[65px] sm:px-[10px] sm:leading-[35px] sm:m-auto sm:py-0">{t('email')}
+                                                    sm:min-w-[65px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('email')}
                                             </div>
-                                            <div className="w-full px-[20px] py-[13px] line-clamp sm:px-[10px] sm:leading-[35px]
+                                            <div className="w-full px-[20px] py-[13px] line-clamp sm:px-0 sm:leading-[35px]
                                             sm:m-auto sm:py-0">{user?.email}</div>
                                         </div>
                                     </div>
@@ -108,7 +125,20 @@ const Index = () => {
                                         </tr>
                                         </thead>
                                         <tbody>
-                                            {/*<CartItem dynamicCount={false}/>*/}
+                                        {orders.map((order:any) => (
+                                            <CartItem
+                                                key={order.id}
+                                                id={order.id}
+                                                image_path={order.product.image_path[0]}
+                                                title={order.product.title}
+                                                purchased_at={order.purchased_at}
+                                                quantity={order.quantity}
+                                                price={order.product.price}
+                                                sale_price={order.product.sale_price}
+                                                size_name={order.size.name}
+                                                color_name={order.color.name}
+                                                dynamicCount={false}/>
+                                        ))}
                                             {/*<CartItem dynamicCount={false}/>*/}
                                             {/*<CartItem dynamicCount={false}/>*/}
                                         </tbody>

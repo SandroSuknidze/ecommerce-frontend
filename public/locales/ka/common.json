@@ -230,6 +230,11 @@
     "itemRemovedFailed": "ნივთი არ წაიშალა!",
     "itemAdded": "ნივთი დამატებულია!",
 
+    "wishlistEmpty": "ვიშლისტი ცარიელია.",
+    "cartEmpty": "კალათა ცარიელია.",
+
+    "imLookingFor": "მე ვეძებ...",
+
     "askQuestion": "დასვით კითხვა",
     "nameRequired": "სახელი სავალდებულოა",
     "nameMaxLength": "მაქსიმუმი ასოების რაოდენობა მიღწეულია",

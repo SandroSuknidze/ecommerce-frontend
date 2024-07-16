@@ -21,7 +21,8 @@ interface CartItemProps {
     size_name?: string;
     color_id?: number;
     color_name?: string;
-    onRemove: (id: number, color_id: number | undefined, size_id: number | undefined) => void;
+    purchased_at?: string;
+    onRemove?: (id: number, color_id: number | undefined, size_id: number | undefined) => void;
 
 }
 
@@ -36,6 +37,7 @@ export function CartItem({
                              size_name,
                              color_id,
                              color_name,
+                             purchased_at,
                              onRemove,
                              dynamicCount = true,
                          }: CartItemProps) {
@@ -83,7 +85,7 @@ export function CartItem({
             <tr className="md:border-[#ebebeb] md:border-b-[1px]">
                 <td className="border border-[#ebebeb] border-r-0 p-4 pr-0 w-1/12 md:border-0 md:p-0 md:py-8">
                     <div className="flex items-left">
-                        <div className="w-[79px] h-[106px] mr-[20px] md:h-[133px] md:min-w-[100px]">
+                        <div className="w-[79px] h-[106px] mr-[20px] md:h-[133px] md:min-w-[100px] sm:mr-0">
                             <Image
                                 src={process.env.imageUrl + '' + image_path}
                                 width={79}
@@ -96,11 +98,11 @@ export function CartItem({
                 </td>
                 <td className="border border-[#ebebeb] border-l-0 p-4 pl-0 md:border-0 md:flex md:justify-start md:p-0 md:pt-8">
                     <div className="flex flex-col justify-center">
-                        <div className="text-11black font-medium">
-                            <Link href="/shop">{title}</Link>
+                        <div className="text-11black font-medium sm:text-[12px]">
+                            <Link href={`/shop/products/${id}`}>{title}</Link>
                         </div>
-                        <div className="text-55black text-[14px]">{size_name} / {color_name}</div>
-                        <div className="text-55black text-[14px]">${(sale_price || price).toFixed(2)}</div>
+                        <div className="text-55black text-[14px] sm:text-[12px]">{size_name} / {color_name}</div>
+                        <div className="text-55black text-[14px] sm:text-[12px]">${(sale_price || price)?.toFixed(2)}</div>
                     </div>
                 </td>
                 <td className="border border-[#ebebeb] p-4 md:border-0 md:w-full md:flex md:justify-start md:p-0 md:pt-2">
@@ -110,27 +112,27 @@ export function CartItem({
                                 <div className={`${itemQuantity === 1 ? 'cursor-not-allowed' : 'cursor-pointer'} flex w-1/3 justify-center`} onClick={decrementCount}>
                                     <Image src={minusIcon} alt="Minus Icon" />
                                 </div>
-                                <div className="m-auto flex w-1/3 justify-center">{itemQuantity}</div>
+                                <div className="m-auto flex w-1/3 justify-center sm:text-[12px]">{itemQuantity}</div>
                                 <div className="flex w-1/3 cursor-pointer justify-center" onClick={incrementCount}>
                                     <Image src={plusIcon} alt="Plus Icon" />
                                 </div>
                             </div>
                         ) : (
-                            <div>{quantity}</div>
+                            <div className="sm:text-[12px]">{quantity}</div>
                         )}
                 </td>
-                <td className="border border-[#ebebeb] p-4 md:border-0 md:flex md:justify-start md:p-0 md:text-[14px] md:font-medium md:pt-1">
-                    ${((sale_price || price) * quantity).toFixed(2)}
+                <td className="border border-[#ebebeb] p-4 md:border-0 md:flex md:justify-start md:p-0 md:text-[14px] md:font-medium md:pt-1 sm:!text-[12px]">
+                    ${((sale_price || price) * quantity)?.toFixed(2)}
                 </td>
                 {dynamicCount ? (
                     <td className="border border-[#ebebeb] p-4 text-center md:border-0">
-                        <button onClick={() => onRemove(id, color_id, size_id)} className="text-gray-500 hover:text-gray-800">
+                        <button onClick={() => onRemove && onRemove(id, color_id, size_id)} className="text-gray-500 hover:text-gray-800">
                             <FontAwesomeIcon icon={faTrashCan} />
                         </button>
                     </td>
                 ) : (
-                    <td className="border border-[#ebebeb] p-4 text-left md:border-0 md:text-right md:w-auto sm:text-[14px]">
-                        <div>2024/07/06</div>
+                    <td className="border border-[#ebebeb] p-4 text-left md:border-0 md:text-right md:w-auto sm:text-[8px] sm:px-0">
+                        <div>{purchased_at}</div>
                     </td>
                 )}
 

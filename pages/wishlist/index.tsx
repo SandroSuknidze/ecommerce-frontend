@@ -38,7 +38,7 @@ function Index() {
                     {/*/>*/}
                 </div>
                 <div className="md:px-[15px] text-center">
-                    <Empty title={"No products were added to the wishlist page."}/>
+                    <Empty title={t('wishlistEmpty')}/>
                 </div>
             </div>
         </>

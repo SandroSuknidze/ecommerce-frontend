@@ -154,7 +154,7 @@ function CollectionCard({
                 </div>
             </div>
             <div className="bg-white pt-[15px]  text-left">
-                <div className="leading-[21px] h-[21px] xs:block xs:text-[16px]">
+                <div className="leading-[21px] min-h-[21px] xs:block xs:text-[16px]">
                     <Link href={`/shop/products/${id}`}>{title}</Link>
                 </div>
                 <div className="flex items-center h-[28px] text-[10px]">
