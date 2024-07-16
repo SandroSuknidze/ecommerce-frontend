@@ -251,8 +251,8 @@ function ProductId() {
                                     {product.image_path?.map((image: any, index: number) => (
                                         <SwiperSlide key={'small-' + index}>
                                             <Image
-                                                width={50}
-                                                height={69}
+                                                width={150}
+                                                height={269}
                                                 src={process.env.imageUrl + '' + image}
                                                 alt="Product Image"
                                             />
@@ -283,20 +283,25 @@ function ProductId() {
                                                 height={783}
                                                 src={process.env.imageUrl + '' + image}
                                                 alt="Product Image"
-                                                loading={'lazy'}
                                             />
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
                                 <button
-                                    className="arrow-left7 absolute z-10 top-1/2 -translate-y-1/2 left-5 arrow flex h-[60px] w-[60px] items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white xl:h-[40px] xl:w-[40px]"
+                                    className="arrow-left7 absolute z-10 top-1/2 -translate-y-1/2 left-5 arrow flex
+                                    h-[60px] w-[60px] items-center justify-center rounded-full border-[1px] border-[#ebebeb]
+                                    bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white
+                                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]"
                                 >
                                     <div>
                                         <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
                                     </div>
                                 </button>
                                 <button
-                                    className="arrow-right7 absolute z-10 top-1/2 -translate-y-1/2 right-5 arrow h-[60px] w-[60px] rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 hover:border-black hover:bg-black hover:text-white ml-[20px] xl:h-[40px] xl:w-[40px]"
+                                    className="arrow-right7 absolute z-10 top-1/2 -translate-y-1/2 right-5 arrow
+                                    h-[60px] w-[60px] rounded-full border-[1px] border-[#ebebeb] bg-white transition
+                                    duration-500 hover:border-black hover:bg-black hover:text-white ml-[20px]
+                                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]"
                                 >
                                     <div>
                                         <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
@@ -452,9 +457,9 @@ function ProductId() {
                                             </button>
                                             <div
                                                 onClick={() => addToWishlist(product)}
-                                                className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
+                                                className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black lg:hover:bg-white">
                                                 <HeartIcon
-                                                    className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
+                                                    className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black lg:hover:border-white" />
                                             </div>
                                         </div>
                                     </div>

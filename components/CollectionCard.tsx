@@ -153,12 +153,12 @@ function CollectionCard({
                     <div onClick={isRemovable ? () => removeFromWishlist() : () => addToWishlist()} className={`${hovered || isRemovable ? 'opacity-100' : 'opacity-0'} 
                     h-[45px] w-[45px] m-auto flex
                     top-0 right-5 absolute hover-parent-heart mt-[5%] cursor-pointer rounded-full bg-white p-4 transition duration-500 hover:bg-black
-                    lg:opacity-100 xs:h-[35px] xs:w-[35px] xs:p-[11px] xs:right-[10px]`}>
+                    lg:hover:bg-white lg:opacity-100 xs:h-[35px] xs:w-[35px] xs:p-[11px] xs:right-[10px]`}>
                         {isRemovable ? (
                             <XmarkIcon className="transition duration-300 hover-child-heart" />
                         ) : (
                             <HeartIcon
-                                className="hover-child-heart border-[#ebebeb] uppercase transition duration-300" />
+                                className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 lg:hover:border-white" />
                         )}
                     </div>
 
@@ -166,7 +166,7 @@ function CollectionCard({
                                     bottom-2 left-1/2 -translate-x-1/2 absolute mb-[7%] mt-auto w-[88%] rounded-[30px] 
                                     border-[1px] border-[#ebebeb] bg-white p-[10px] text-[12px] font-semibold uppercase 
                                     text-11black transition duration-500 hover:border-black hover:bg-black hover:text-white
-                                    lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
+                                    lg:hover:bg-white lg:hover:text-11black lg:hover:border-[#ebebeb] lg:opacity-100 xs:text-[11px] xs:p-[5px]`}>
                         {t('addToCart')}
                     </button>
                 </div>

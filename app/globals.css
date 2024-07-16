@@ -231,6 +231,19 @@ select.classic {
   .mySwiper2 {
     height: 100%;
   }
+
+  .hover-parent-heart:hover .hover-child-heart {
+    transition: none;
+    fill: black;
+
+    svg {
+      fill: black;
+    }
+  }
+
+  .hover-child-heart {
+    transition: none;
+  }
 }
 
 

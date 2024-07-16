@@ -135,6 +135,10 @@ function Register() {
                                     value: 30,
                                     message: `${t('emailMaxLength')}`,
                                 },
+                                pattern: {
+                                    value: /^[a-zA-Z ]*$/,
+                                    message: `${t('onlyLetters')}`,
+                                },
                             })}
                             errorMessage={errors.first_name?.message}
                         />
@@ -149,6 +153,10 @@ function Register() {
                                 maxLength: {
                                     value: 30,
                                     message: `${t('emailMaxLength')}`,
+                                },
+                                pattern: {
+                                    value: /^[a-zA-Z ]*$/,
+                                    message: `${t('onlyLetters')}`,
                                 },
                             })}
                             errorMessage={errors.last_name?.message}

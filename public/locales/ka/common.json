@@ -209,7 +209,7 @@
     "countryRequired": "ქვეყანა აუცილებელია",
     "city": "ქალაქი",
     "cityRequired": "ქალაქი აუცილებელია",
-    "cityLetters": "მხოლოდ ასოებია დასაშვები",
+    "onlyLetters": "მხოლოდ ასოებია დასაშვები",
     "postalCode": "საფოსტო კოდი",
     "subtotal": "ჯამი",
     "taxesCalculated": "დამატებითი გადასახადების ჩათვლით",

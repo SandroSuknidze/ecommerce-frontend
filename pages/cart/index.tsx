@@ -220,8 +220,9 @@ function Index() {
                                                 required: `${t('cityRequired')}`,
                                                 pattern: {
                                                     value: /^[a-zA-Z ]*$/,
-                                                    message: `${t('cityLetters')}`,
-                                                },})}
+                                                    message: `${t('onlyLetters')}`,
+                                                },
+                                            })}
                                             className="px-[20px] py-[10px] text-[14px] border-[1px] border-[#ebebeb] rounded-[30px]
                                             focus:border-[#131313] focus:transition focus:duration-300 transition duration-300 outline-0"
                                         />

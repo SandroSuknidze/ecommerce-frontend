@@ -212,7 +212,7 @@
     "countryRequired": "Country is required",
     "city": "City",
     "cityRequired": "City is required",
-    "cityLetters": "Only letters allowed",
+    "onlyLetters": "Only letters allowed",
     "postalCode": "Postal Code",
     "subtotal": "Subtotal",
     "taxesCalculated": "Taxes and shipping are calculated",
