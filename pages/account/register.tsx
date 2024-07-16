@@ -62,7 +62,7 @@ function Register() {
                 Cookies.set('access_token', access_token, { expires: 1 });
                 Cookies.set('user', JSON.stringify(user), { expires: 1 });
                 login(user)
-                toast.success('Registration successful!', {
+                toast.success(`${t('registerSuccessful')}`, {
                     position: 'top-center',
                 })
 
@@ -134,6 +134,8 @@ function Register() {
                         <InputForm
                             name="First name"
                             type="text"
+                            labelText={t('firstName')}
+                            placeHolder={t('firstName')}
                             register={register('first_name', {
                                 required: `${t('firstNameRequired')}`,
                                 validate: (value) => value.trim() !== "" || `${t('firstNameEmpty')}`,
@@ -147,6 +149,8 @@ function Register() {
                         <InputForm
                             name="Last name"
                             type="text"
+                            labelText={t('lastName')}
+                            placeHolder={t('lastName')}
                             register={register('last_name', {
                                 required: `${t('lastNameRequired')}`,
                                 validate: (value) => value.trim() !== "" || `${t('lastNameEmpty')}`,
@@ -160,6 +164,8 @@ function Register() {
                         <InputForm
                             name="Email"
                             type="email"
+                            labelText={t('email')}
+                            placeHolder={t('email')}
                             register={register('email', {
                                 required: `${t('emailRequired')}`,
                                 validate: (value) => value.trim() !== "" || `${t('emailNotEmpty')}`,
@@ -176,7 +182,9 @@ function Register() {
                         />
                         <InputForm
                             name="Password"
+                            labelText={t('password')}
                             type={isPasswordVisible ? 'text' : 'password'}
+                            placeHolder={t('password')}
                             register={register('password', {
                                 required: `${t('passwordRequired')}`,
                                 validate: (value) => value.trim() !== "" || `${t('passwordNotEmpty')}`,

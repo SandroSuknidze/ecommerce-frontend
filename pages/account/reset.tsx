@@ -102,6 +102,8 @@ function Reset() {
                             <InputForm
                                 name="Email"
                                 type="email"
+                                labelText={t('email')}
+                                placeHolder={t('email')}
                                 register={register('email', {
                                     required: `${t('emailRequired')}`,
                                     validate: (value) => value.trim() !== "" || `${t('emailNotEmpty')}`,

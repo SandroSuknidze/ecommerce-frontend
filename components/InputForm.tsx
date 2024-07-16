@@ -11,15 +11,17 @@ interface InputFormProps {
     disabled?: boolean,
     togglePassword?: () => void,
     isPasswordVisible?: boolean,
+    placeHolder?: string,
+    labelText?: string,
 }
 
-function InputForm({ name, type, register, errorMessage, label=true, disabled=false, isPasswordVisible=false, togglePassword }: InputFormProps) {
+function InputForm({ name, type, register, errorMessage, placeHolder, labelText, label=true, disabled=false, isPasswordVisible=false, togglePassword }: InputFormProps) {
     return (
         <div className="mb-[10px] flex flex-col relative">
             {label && <label htmlFor="" className="pb-[5px] text-11black">
-                {name} <span className="text-red-600">*</span>
+                {labelText} <span className="text-red-600">*</span>
             </label>}
-            <input type={type} placeholder={name} {...register}
+            <input type={type} placeholder={placeHolder} {...register}
                    disabled={disabled}
                    className="px-[20px] py-[10px] text-[14px] placeholder:text-[#555555] leading-[28px]
                                focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300

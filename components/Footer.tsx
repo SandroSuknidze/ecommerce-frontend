@@ -26,7 +26,10 @@ function Footer() {
     const onSubmit = (data: object) => {
         console.log(data)
 
-        toast.error('You have already subscribed to our newsletter.', {
+        // toast.error(`${t('youHaveAlreadySubscribed')}`, {
+        //     position: 'top-center',
+        // })
+        toast.success(`${t('youHaveSuccessfullySubscribed')}`, {
             position: 'top-center',
         })
         reset();
@@ -144,6 +147,7 @@ function Footer() {
                                                 <InputForm
                                                     name="Email"
                                                     type="email"
+                                                    placeHolder={t('email')}
                                                     label={false}
                                                     register={register('email', {
                                                         required: t('emailRequired'),

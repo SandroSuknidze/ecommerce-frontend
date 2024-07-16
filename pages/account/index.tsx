@@ -20,7 +20,7 @@ const Index = () => {
     async function Logout() {
         await router.push('/')
         logout()
-        toast.success('Logout successful!', {
+        toast.success(`${t('logoutSuccessful')}`, {
             position: 'top-center',
         })
     }
@@ -61,7 +61,7 @@ const Index = () => {
                                     <div className="text-55black">{t('welcome')}&nbsp;
                                         <span
                                             className="font-medium text-11black">{user?.first_name + ' ' + user?.last_name}!&nbsp;</span>
-                                        (Not? <span
+                                        ({t('not')}? <span
                                             className="font-medium text-11black">{user?.first_name + ' ' + user?.last_name}&nbsp;</span>
                                         <span onClick={Logout}
                                               className="underline cursor-pointer text-11black">{t('logOut')}</span>)

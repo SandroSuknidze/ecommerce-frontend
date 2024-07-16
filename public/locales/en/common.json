@@ -37,6 +37,8 @@
     "emailNotEmpty": "Email cannot be empty",
     "emailInvalid": "Please enter a valid email address",
     "emailMaxLength": "Maximum number of characters reached",
+    "repeatPassword": "Repeat Password",
+    "password": "Password",
     "passwordRequired": "Password is required",
     "passwordNotEmpty": "Password cannot be empty",
     "passwordMinLength": "Password must be at least 8 characters long",
@@ -49,6 +51,8 @@
 
     "emailExists": "This email address is already associated with an account. If this account is yours, you can",
     "resetPassword": "reset your password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
     "firstNameRequired": "First name is required",
     "firstNameEmpty": "First name cannot be empty",
     "lastNameRequired": "Last name is required",
@@ -214,16 +218,32 @@
     "taxesCalculated": "Taxes and shipping are calculated",
     "placeOrder": "Place Order",
 
+    "not": "Not",
 
+    "youHaveAlreadySubscribed": "You have already subscribed to our newsletter.",
+    "youHaveSuccessfullySubscribed": "You have successfully subscribed to our newsletter.",
+    "formSubmitted": "Form submitted successfully!",
+    "loginSuccessful": "Login successful!",
+    "registerSuccessful": "Register successful!",
+    "logoutSuccessful": "Logout successful!",
+    "passwordReset": "Password reset successful!",
+    "orderPlaced": "Order placed successfully!",
+    "orderFailed": "Order failed!",
+    "itemRemoved": "Item removed successfully!",
+    "itemRemovedFailed": "Item removal failed!",
+    "itemAdded": "Item added successfully!",
 
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",
+    "phone": "Phone",
     "phoneRequired": "Phone number is required",
     "phoneMaxLength": "Maximum number of characters reached",
     "phoneMinLength": "Phone number must be at least 8 characters long",
+    "comment": "Comment",
     "commentRequired": "Comment is required",
     "commentMaxLength": "Maximum number of characters reached",
-    "submitNow": "Submit Now"
+    "submitNow": "Submit Now",
+    "submit": "Submit"
 
 }

@@ -29,7 +29,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
     const onSubmit = (data: any) => {
         console.log(data)
 
-        toast.success('Form submitted successfully!', {
+        toast.success(`${t('formSubmitted')}`, {
             position: 'top-center',
         })
 
@@ -66,6 +66,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                 <InputForm
                                     name="Name"
                                     type="text"
+                                    placeHolder={t('name')}
                                     register={register('name', {
                                         required: t('nameRequired'),
                                         maxLength: {
@@ -81,6 +82,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                 <InputForm
                                     name="Email"
                                     type="email"
+                                    placeHolder={t('email')}
                                     register={register('email', {
                                         required: t('emailRequired'),
                                         pattern: {
@@ -101,6 +103,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                             <InputForm
                                 name="Phone number"
                                 type="tel"
+                                placeHolder={t('phone')}
                                 register={register('phone', {
                                     required: t('phoneRequired'),
                                     maxLength: {
@@ -119,6 +122,7 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                         <div>
                             <TextareaInputForm
                                 name="Comment"
+                                placeHolder={t('comment')}
                                 register={register('comment', {
                                     required: t('commentRequired'),
                                     maxLength: {

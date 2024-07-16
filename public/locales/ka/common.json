@@ -37,6 +37,8 @@
     "emailNotEmpty": "ელ-ფოსტა არ უნდა იყოს ცარიელი",
     "emailInvalid": "გთხოვთ, შეიყვანოთ ვალიდური ელ-ფოსტის მისამართი",
     "emailMaxLength": "მაქსიმალური სიმბოლოების რაოდენობა მიღწეულია",
+    "repeatPassword": "გაიმეორე პაროლი",
+    "password": "პაროლი",
     "passwordRequired": "პაროლი სავალდებულოა",
     "passwordNotEmpty": "პაროლი არ უნდა იყოს ცარიელი",
     "passwordMinLength": "პაროლი უნდა იყოს 8 სიმბოლო მაინც",
@@ -49,6 +51,8 @@
 
     "emailExists": "ეს მეილი უკვე არსებობს. თუ ეს მეილი შენ გეკუთვნის",
     "resetPassword": "აღადგინე პაროლი",
+    "firstName": "სახელი",
+    "lastName": "გვარი",
     "firstNameRequired": "სახელი აუცილებელია",
     "firstNameEmpty": "სახელი არ შეიძლება იყოს ცარიელი",
     "lastNameRequired": "გვარი აუცილებელია",
@@ -211,14 +215,31 @@
     "taxesCalculated": "დამატებითი გადასახადების ჩათვლით",
     "placeOrder": "შეკვეთა",
 
+    "not": "არა",
+
+    "youHaveAlreadySubscribed": "თქვენ უკვე გამოწერილი გაქვთ.",
+    "youHaveSuccessfullySubscribed": "თქვენ წარმატებით გამოიწერეთ.",
+    "formSubmitted": "ფორმა გაგზავნილია!",
+    "loginSuccessful": "შესვლა წარმატებით შესრულდა!",
+    "registerSuccessful": "რეგისტრაცია წარმატებით შესრულდა!",
+    "logoutSuccessful": "გასვლა წარმატებით შესრულდა!",
+    "passwordReset": "პაროლი შეიცვალა!",
+    "orderPlaced": "შეკვეთა მიღებულია!",
+    "orderFailed": "შეკვეთა არ მიღებულა!",
+    "itemRemoved": "ნივთი წაიშალა!",
+    "itemRemovedFailed": "ნივთი არ წაიშალა!",
+    "itemAdded": "ნივთი დამატებულია!",
 
     "askQuestion": "დასვით კითხვა",
     "nameRequired": "სახელი სავალდებულოა",
     "nameMaxLength": "მაქსიმუმი ასოების რაოდენობა მიღწეულია",
+    "phone": "ტელეფონი",
     "phoneRequired": "ტელფონის ნომერი სავალდებულოა",
     "phoneMaxLength": "მაქსიმუმი რაოდენობა მიღწეულია",
     "phoneMinLength": "მინიმუმ 8 ციფრი სავალდებულოა",
+    "comment": "კომენტარი",
     "commentRequired": "კომენტარი სავალდებულოა",
     "commentMaxLength": "მაქსიმუმი რაოდენობა მიღწეულია",
-    "submitNow": "გაგზავნა"
+    "submitNow": "გაგზავნა",
+    "submit": "გაგზავნა"
 }

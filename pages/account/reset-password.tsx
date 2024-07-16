@@ -74,7 +74,7 @@ function ResetPassword() {
             })
 
             if (response.status === 200) {
-                toast.success('Your password has been successfully reset.', {
+                toast.success(`${t('passwordReset')}`, {
                     position: 'top-center',
                 })
                 await router.push('/account/login')
@@ -122,7 +122,9 @@ function ResetPassword() {
                         <div className={`${loading && 'animate-pulse'}`}>
                             <InputForm
                                 name="Password"
+                                labelText={t('password')}
                                 type={isPasswordVisible ? 'text' : 'password'}
+                                placeHolder={t('password')}
                                 register={register('password', {
                                     required: `${t('passwordRequired')}`,
                                     validate: (value) => value.trim() !== "" || `${t('passwordNotEmpty')}`,
@@ -142,6 +144,8 @@ function ResetPassword() {
                             />
                             <InputForm
                                 name="Repeat Password"
+                                labelText={t('repeatPassword')}
+                                placeHolder={t('repeatPassword')}
                                 type={isRepeatPasswordVisible ? 'text' : 'password'}
                                 register={register('repeat_password', {
                                     required: `${t('passwordRequired')}`,

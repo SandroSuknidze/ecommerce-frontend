@@ -154,7 +154,7 @@ function ProductId() {
 
 
     const addToCart = (product: any) => {
-        toast.success('Item added to your cart!', {
+        toast.success(`${t('itemAdded')}`, {
             position: 'top-center'
         })
         const item = {

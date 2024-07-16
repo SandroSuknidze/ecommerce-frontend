@@ -49,13 +49,13 @@ function Index() {
         setIsSubmitEnabled(false);
         try {
             await axiosInstance.post(`/place-order`, {data})
-            toast.success('Order placed successfully!', { position: 'top-center' });
+            toast.success(`${t('orderPlaced')}`, { position: 'top-center' });
             clearCart();
             reset();
             await router.push('/')
         } catch (error) {
             console.error('Error placing order:', error)
-            toast.error('Failed to place order, please try again later.');
+            toast.error(`${t('orderFailed')}`, { position: 'top-center' });
         }
         setIsSubmitEnabled(true);
     };
@@ -70,7 +70,7 @@ function Index() {
     };
 
     async function removeCartItem(id: number, color_id: number | undefined, size_id: number | undefined) {
-        toast.success('Item removed from your cart!', { position: 'top-center' });
+        toast.success(`${t('itemRemoved')}`, { position: 'top-center' });
         removeItem(id, color_id, size_id);
         setCurrentLoading(true);
         try {

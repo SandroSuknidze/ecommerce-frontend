@@ -45,7 +45,7 @@ function Login() {
                 Cookies.set('access_token', access_token, { expires: 1 });
                 Cookies.set('user', JSON.stringify(user), { expires: 1 });
                 login(user)
-                toast.success('Login successful!', {
+                toast.success(`${t('loginSuccessful')}`, {
                     position: 'top-center',
                 })
 
@@ -111,6 +111,8 @@ function Login() {
                             <InputForm
                                 name="Email"
                                 type="email"
+                                labelText={t('email')}
+                                placeHolder={t('email')}
                                 register={register('email', {
                                     required: `${t('emailRequired')}`,
                                     validate: (value) => value.trim() !== "" || `${t('emailNotEmpty')}`,
@@ -127,6 +129,8 @@ function Login() {
                             />
                             <InputForm
                                 name="Password"
+                                labelText={t('password')}
+                                placeHolder={t('password')}
                                 type={isPasswordVisible ? 'text' : 'password'}
                                 register={register('password', {
                                     required: `${t('passwordRequired')}`,
