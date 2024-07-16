@@ -270,3 +270,36 @@ select.classic {
   overflow: hidden;
   word-break: break-word;
 }
+
+.custom-class {
+  /*font-style: normal;*/
+  /*font-weight: 400;*/
+  /*line-height: 28px;*/
+  all: revert;
+  font-family: 'Jost', sans-serif;
+
+  strong {
+    font-size: 24px;
+    font-weight: 500;
+    color: #111111;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    all: revert;
+  }
+  p {
+    all: revert;
+    color: #555555;
+  }
+  ul {
+    all: revert;
+  }
+  ul > li {
+    all: revert;
+    color: #555555;
+  }
+}

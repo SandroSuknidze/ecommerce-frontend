@@ -13,6 +13,7 @@ import { useTranslation } from 'next-i18next'
 import { useAuth } from '@/context/authContext'
 import axiosInstance from '@/utils/axiosInstance'
 import { useState } from 'react'
+import Link from 'next/link'
 
 function Footer() {
     const { t } = useTranslation('common')
@@ -141,7 +142,9 @@ function Footer() {
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
                                         <li className="leading-[28px]">
-                                            {t('privacyPolicy')}
+                                            <Link href="/privacy-policy">
+                                                {t('privacyPolicy')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px]">
                                             {t('refundPolicy')}
