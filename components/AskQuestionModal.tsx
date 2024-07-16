@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useLockBodyScroll } from 'react-use'
 import { withTranslations } from '@/utils/i18nHelper'
 import { useTranslation } from 'next-i18next'
+import axiosInstance from '@/utils/axiosInstance'
 
 export const getStaticProps = withTranslations(['common']);
 interface AskQuestionModalProps {
@@ -27,13 +28,16 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
     useLockBodyScroll(true)
 
     const onSubmit = (data: any) => {
-        console.log(data)
+        toggleAskQuestionModal()
+        axiosInstance.post('/ask-question', data)
+            .catch((error) => {
+                console.log(error)
+            })
 
         toast.success(`${t('formSubmitted')}`, {
             position: 'top-center',
         })
 
-        toggleAskQuestionModal()
     }
     return (
         <>
@@ -113,6 +117,10 @@ export function AskQuestionModal({ toggleAskQuestionModal }: AskQuestionModalPro
                                     minLength: {
                                         value: 8,
                                         message: t('phoneMinLength'),
+                                    },
+                                    pattern: {
+                                        value: /^[0-9]*$/,
+                                        message: `${t('numbersOnly')}`,
                                     }
                                 })}
                                 label={false}

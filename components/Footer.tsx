@@ -10,9 +10,16 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useTranslation } from 'next-i18next'
+import { useAuth } from '@/context/authContext'
+import axiosInstance from '@/utils/axiosInstance'
+import { useState } from 'react'
 
 function Footer() {
     const { t } = useTranslation('common')
+    const { isAuthenticated } = useAuth();
+
+    const [isSubmitAvailable, setIsSubmitAvailable] = useState(true);
+
 
     const {
         register,
@@ -23,17 +30,41 @@ function Footer() {
         mode: 'onSubmit',
     })
 
-    const onSubmit = (data: object) => {
-        console.log(data)
+    const onSubmit = async (data: object) => {
+        if (!isSubmitAvailable) return;
 
-        // toast.error(`${t('youHaveAlreadySubscribed')}`, {
-        //     position: 'top-center',
-        // })
-        toast.success(`${t('youHaveSuccessfullySubscribed')}`, {
-            position: 'top-center',
-        })
-        reset();
-    }
+        setIsSubmitAvailable(false);
+
+        if (isAuthenticated) {
+            try {
+                const response = await axiosInstance.post('/subscribe', data);
+                if (response.data.message === 'You are already subscribed') {
+                    toast.info(`${t('youAreAlreadySubscribed')}`, {
+                        position: 'top-center',
+                    });
+                } else if (response.data.message === 'Subscription successful') {
+                    toast.success(`${t('youHaveSuccessfullySubscribed')}`, {
+                        position: 'top-center',
+                    });
+                }
+                reset();
+            } catch (error) {
+                console.error(error);
+                toast.error(`${t('subscriptionFailed')}`, {
+                    position: 'top-center',
+                });
+            } finally {
+                setIsSubmitAvailable(true);
+            }
+        } else {
+            toast.error(`${t('authRequired')}`, {
+                position: 'top-center',
+            });
+            setIsSubmitAvailable(true);
+        }
+    };
+
+
 
     return (
         <footer className="mt-[50px] border-t-[1px] border-[#ebebeb]">
@@ -165,8 +196,10 @@ function Footer() {
                                                 />
                                             </div>
 
-                                            <button type="submit"
-                                                    className="w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white
+                                            <button
+                                                disabled={!isSubmitAvailable}
+                                                type="submit"
+                                                className="w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white
                                                     md:px-[10px] md:text-[10px]">
                                                 {t('subscribe')}
                                             </button>
