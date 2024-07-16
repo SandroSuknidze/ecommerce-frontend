@@ -147,7 +147,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
             const storedCart: any = loadCartFromLocalStorage();
             if (isAuthenticated) {
                 try {
-                    if (storedCart.length > 0) {
+                    if (storedCart.items.length > 0) {
                         await syncCartWithBackend(storedCart);
                     }
                     const { data } = await axiosInstance.get('/cart');

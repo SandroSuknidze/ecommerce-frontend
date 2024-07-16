@@ -62,9 +62,7 @@ const wishlistReducer = (state: WishlistState, action: WishlistAction): Wishlist
 
         case 'REMOVE_ITEM':
             const filteredItems = state.items.filter(item =>
-                !(item.id === action.itemId &&
-                    item.color_id === action.color_id &&
-                    item.size_id === action.size_id)
+                !(item.id === action.itemId)
             );
             const newStateRemove = { ...state, items: filteredItems };
             saveWishlistToLocalStorage(newStateRemove);
@@ -126,7 +124,7 @@ export const WishlistProvider = ({ children }: WishlistProviderProps) => {
             const storedWishlist: any = loadWishlistFromLocalStorage();
             if (isAuthenticated) {
                 try {
-                    if (storedWishlist.length > 0) {
+                    if (storedWishlist.items.length > 0) {
                         await syncWishlistWithBackend(storedWishlist);
                     }
                     const { data } = await axiosInstance.get('/wishlist');
@@ -187,11 +185,11 @@ export const WishlistProvider = ({ children }: WishlistProviderProps) => {
         }
     };
 
-    const removeWishlistItem = async (id: number, color_id?: number, size_id?: number) => {
+    const removeWishlistItem = async (id: number) => {
         try {
-            dispatch({ type: 'REMOVE_ITEM', itemId: id, color_id: color_id, size_id: size_id });
+            dispatch({ type: 'REMOVE_ITEM', itemId: id });
             if (isAuthenticated) {
-                await axiosInstance.post('/wishlist/remove', { id, color_id, size_id });
+                await axiosInstance.post('/wishlist/remove', { id });
             }
         } catch (error) {
             console.error('Error removing item from wishlist:', error);

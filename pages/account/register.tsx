@@ -65,14 +65,6 @@ function Register() {
                 toast.success(`${t('registerSuccessful')}`, {
                     position: 'top-center',
                 })
-
-                const savedCart:any = localStorage.getItem('cart');
-                const jsonSavedCart = JSON.parse(savedCart);
-                if(jsonSavedCart.items.length > 0) {
-                    await axiosInstance.post('/cart/sync', { cart: jsonSavedCart.items });
-
-                }
-                localStorage.removeItem('cart');
             }
         } catch (error: any) {
             setIsSubmittable(true)

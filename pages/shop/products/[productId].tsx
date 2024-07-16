@@ -63,6 +63,7 @@ const StyledRating = styled(Rating)({
 import { withTranslations } from '@/utils/i18nHelper'
 import { GetStaticPaths } from 'next'
 import { useTranslation } from 'next-i18next'
+import { useWishlist } from '@/context/WishlistContext'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -72,7 +73,9 @@ function ProductId() {
     const router = useRouter()
     const { productId } = router.query
 
-    const { addItem, items } = useCart();
+    const { addItem } = useCart();
+    const { addWishlistItem } = useWishlist();
+
 
 
     const [product, setProduct] = useState<any>({})
@@ -171,6 +174,21 @@ function ProductId() {
         }
         addItem(item);
     };
+
+    const addToWishlist = (product: any) => {
+        const item = {
+            id: product.id,
+            title: product.title,
+            price: product.price,
+            sale_price: product.sale_price,
+            image_path: product.image_path[0],
+            rating: product.rating,
+            colors: product.colors,
+            color_id: product.colors[0].id,
+            size_id: product.sizes[0].id,
+        }
+        addWishlistItem(item);
+    }
 
 
     return (
@@ -433,6 +451,7 @@ function ProductId() {
                                                 {t('addToCart')}
                                             </button>
                                             <div
+                                                onClick={() => addToWishlist(product)}
                                                 className="hover-parent-heart cursor-pointer rounded-full border-[1px] border-[#ebebeb] bg-white p-[18px] transition duration-300 hover:bg-black">
                                                 <HeartIcon
                                                     className="hover-child-heart border-[#ebebeb] uppercase transition duration-300 hover:border-black" />
