@@ -190,14 +190,15 @@ export function Header() {
                                     <Image
                                         src={language === 'en' ? en : ka}
                                         alt="Flag Icon"
-                                        width="20"
-                                        height="11"
+                                        width={20}
+                                        height={11}
                                         className="mr-2"
                                     />
                                     <Image
                                         src={dropdown ? arrowUp : arrowDown}
                                         alt="Arrow Icon"
-                                        width="10"
+                                        width={10}
+                                        height={11}
                                     />
                                 </div>
                                 {dropdown && (
@@ -209,14 +210,14 @@ export function Header() {
                                         >
                                             <Image
                                                 src={en}
-                                                alt=""
-                                                width="20"
-                                                className=""
+                                                alt="en"
+                                                width={20}
+                                                height={11}
                                             />
                                             {language === 'en' && (
                                                 <Image
                                                     src={correctIcon}
-                                                    alt=""
+                                                    alt="icon"
                                                     className="w-[10px]"
                                                 />
                                             )}
@@ -229,14 +230,14 @@ export function Header() {
                                         >
                                             <Image
                                                 src={ka}
-                                                alt=""
-                                                width="20"
-                                                className=""
+                                                alt="ka"
+                                                width={20}
+                                                height={11}
                                             />
                                             {language === 'ka' && (
                                                 <Image
                                                     src={correctIcon}
-                                                    alt=""
+                                                    alt="icon"
                                                     className="w-[10px]"
                                                 />
                                             )}

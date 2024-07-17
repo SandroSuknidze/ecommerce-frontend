@@ -17,6 +17,8 @@ interface WishlistItem {
     rating: number;
     colors: any;
     color_id?: number;
+    color_name: string;
+    size_name: string;
     size_id?: number;
 }
 
@@ -105,6 +107,8 @@ const transformBackendData = (backendItems: any[]): WishlistItem[] => {
         colors: item.colors,
         color_id: item.color_id,
         size_id: item.size_id,
+        color_name: item.color_name,
+        size_name: item.size_name,
         rating: item.product.rating,
     }));
 };
@@ -163,7 +167,8 @@ export const WishlistProvider = ({ children }: WishlistProviderProps) => {
         const existingItemIndex = state.items.findIndex(existingItem =>
             existingItem.id === item.id &&
             existingItem.color_id === item.color_id &&
-            existingItem.size_id === item.size_id
+            existingItem.size_id === item.size_id &&
+            existingItem.colors === item.colors
         );
 
         if (existingItemIndex !== -1) {
@@ -180,6 +185,7 @@ export const WishlistProvider = ({ children }: WishlistProviderProps) => {
                     id: item.id,
                     color_id: item.color_id,
                     size_id: item.size_id,
+                    colors: item.colors,
                 });
             }
         }

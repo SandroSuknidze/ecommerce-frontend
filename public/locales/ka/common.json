@@ -236,6 +236,11 @@
 
     "imLookingFor": "მე ვეძებ...",
 
+    "insufficientStockError": "საწყობში არასაკმარისი რაოდენობაა:",
+
+    "enterCity": "შეიყვანეთ ქალაქი",
+    "enterPostalCode": "შეიყვანეთ საფოსტო კოდი",
+
     "askQuestion": "დასვით კითხვა",
     "nameRequired": "სახელი სავალდებულოა",
     "nameMaxLength": "მაქსიმუმი ასოების რაოდენობა მიღწეულია",

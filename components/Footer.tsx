@@ -153,7 +153,9 @@ function Footer() {
                                             {t('shippingReturn')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            {t('termsConditions')}
+                                            <Link href="/term-condition">
+                                                {t('termsConditions')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px]">
                                             {t('advancedSearch')}

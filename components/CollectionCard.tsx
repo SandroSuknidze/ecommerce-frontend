@@ -120,6 +120,8 @@ function CollectionCard({
             colors: colors,
             color_id: color_id,
             size_id: size_id,
+            color_name: color_name,
+            size_name: size_name,
         }
         addWishlistItem(item);
     }

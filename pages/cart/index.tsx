@@ -37,8 +37,6 @@ function Index() {
     } = useForm<FormData>({ mode: 'onSubmit' });
 
     const { items, totalItems, removeItem, clearCart, totalPrice, cartLoading } = useCart();
-    const [itemsBackend, setItemsBackend] = useState<any[]>([]);
-    const [currentLoading, setCurrentLoading] = useState(true);
     const [randomProducts, setRandomProducts] = useState([])
     const [error, setError] = useState<string | null>(null);
     const [isSubmitEnabled, setIsSubmitEnabled] = useState(true);
@@ -53,9 +51,13 @@ function Index() {
             clearCart();
             reset();
             await router.push('/')
-        } catch (error) {
-            console.error('Error placing order:', error)
-            toast.error(`${t('orderFailed')}`, { position: 'top-center' });
+        } catch (error: any) {
+            let errorMessage = t('orderFailed');
+            if (error.response?.data?.message.includes('Insufficient stock for product:')) {
+                const productName = error.response.data.message.split(':')[1].trim();
+                errorMessage = `${t('insufficientStockError')} ${productName}`;
+            }
+            toast.error(errorMessage, { position: 'top-center' });
         }
         setIsSubmitEnabled(true);
     };
@@ -72,16 +74,6 @@ function Index() {
     async function removeCartItem(id: number, color_id: number | undefined, size_id: number | undefined) {
         toast.success(`${t('itemRemoved')}`, { position: 'top-center' });
         removeItem(id, color_id, size_id);
-        setCurrentLoading(true);
-        try {
-            const response = await axiosInstance.get('/cart');
-            setItemsBackend(response.data);
-        } catch (error) {
-            console.error('Error fetching cart data:', error);
-            setError('Failed to fetch cart data');
-        } finally {
-            setCurrentLoading(false);
-        }
     }
 
     useEffect(() => {
@@ -182,7 +174,7 @@ function Index() {
                                         <label htmlFor="" className="font-medium text-11black mb-[15px]">
                                             {t('addOrderNote')}
                                         </label>
-                                        <textarea placeholder="Add Order Note" {...register('note')}
+                                        <textarea placeholder={t('addOrderNote')} {...register('note')}
                                                   className={`h-[130px] overflow-hidden resize-none px-[20px] py-[10px] text-[14px] placeholder:text-[#555555] leading-[28px]
                                             focus:border-[1px] focus:border-[#131313] focus:transition focus:duration-300
                                             transition duration-300 outline-0 border-[1px] border-[#ebebeb] rounded-[20px]`}
@@ -215,7 +207,7 @@ function Index() {
                                         <input
                                             id="city"
                                             type="text"
-                                            placeholder="Enter city"
+                                            placeholder={t('enterCity')}
                                             {...register('city', {
                                                 required: `${t('cityRequired')}`,
                                                 pattern: {
@@ -237,7 +229,7 @@ function Index() {
                                         <input
                                             id="zipCode"
                                             type="text"
-                                            placeholder="Enter postal code"
+                                            placeholder={t('enterPostalCode')}
                                             {...register('zipCode', { validate: validateZipCode })}
                                             className="px-[20px] py-[10px] text-[14px] border-[1px] border-[#ebebeb] rounded-[30px]
                                             focus:border-[#131313] focus:transition focus:duration-300 transition duration-300 outline-0"

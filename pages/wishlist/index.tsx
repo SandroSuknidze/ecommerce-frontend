@@ -54,9 +54,7 @@ function Index() {
                                 size_id={item.size_id}
                                 rating={item.rating}
                                 colors={item.colors}
-                                //@ts-ignore
                                 color_name={item.color_name}
-                                //@ts-ignore
                                 size_name={item.size_name}
                             />
                         ))}

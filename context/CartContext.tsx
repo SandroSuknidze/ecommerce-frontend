@@ -219,7 +219,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
 
     const clearCart = () => {
         dispatch({ type: 'CLEAR_CART' });
-        syncCartWithBackend(initialState);
+        // syncCartWithBackend(initialState);
     };
 
     const totalItems = () => state.items.reduce((acc, item) => acc + (item.quantity || 1), 0);

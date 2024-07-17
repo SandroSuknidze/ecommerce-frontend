@@ -239,6 +239,11 @@
 
     "imLookingFor": "I'm looking for...",
 
+    "insufficientStockError": "Insufficient stock:",
+
+    "enterCity": "Enter city",
+    "enterPostalCode": "Enter postal code",
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",
