@@ -1,24 +1,26 @@
-import Link from "next/link";
-import { CartItem } from "@/components/CartItem";
-import { useForm } from 'react-hook-form';
-import { countries } from '@/data/countries';
-import { zipCodeFormats } from '@/data/zipCodeFormats';
-import { toast } from 'react-toastify';
-import { Empty } from '@/components/Empty';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { Pagination } from 'swiper/modules';
-import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem';
-import axiosInstance from '@/utils/axiosInstance';
-import { useState, useEffect } from 'react';
-import { useCart } from '@/context/CartContext';
+import Link from 'next/link'
+import { CartItem } from '@/components/CartItem'
+import { useForm } from 'react-hook-form'
+import { countries } from '@/data/countries'
+import { zipCodeFormats } from '@/data/zipCodeFormats'
+import { toast } from 'react-toastify'
+import { Empty } from '@/components/Empty'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/pagination'
+import { Pagination } from 'swiper/modules'
+import { YouMayAlsoLikeItem } from '@/components/YouMayAlsoLikeItem'
+import axiosInstance from '@/utils/axiosInstance'
+import { useEffect, useState } from 'react'
+import { useCart } from '@/context/CartContext'
 import { CartSkeletonLoader } from '@/components/CartSkeletonLoader'
 import { useRouter } from 'next/router'
 import { withTranslations } from '@/utils/i18nHelper'
 import { useTranslation } from 'next-i18next'
+import { useAuth } from '@/context/authContext'
 
-export const getStaticProps = withTranslations(['common']);
+export const getStaticProps = withTranslations(['common'])
+
 interface FormData {
     country: string;
     note: string;
@@ -34,64 +36,64 @@ function Index() {
         watch,
         reset,
         formState: { errors },
-    } = useForm<FormData>({ mode: 'onSubmit' });
+    } = useForm<FormData>({ mode: 'onSubmit' })
 
-    const { items, totalItems, removeItem, clearCart, totalPrice, cartLoading } = useCart();
+    const { items, totalItems, removeItem, clearCart, totalPrice, cartLoading } = useCart()
     const [randomProducts, setRandomProducts] = useState([])
-    const [error, setError] = useState<string | null>(null);
-    const [isSubmitEnabled, setIsSubmitEnabled] = useState(true);
+    const [error, setError] = useState<string | null>(null)
+    const [isSubmitEnabled, setIsSubmitEnabled] = useState(true)
 
-    const router = useRouter();
+    const { isAuthenticated } = useAuth()
+    const router = useRouter()
 
     const onSubmit = async (data: object) => {
-        setIsSubmitEnabled(false);
+        setIsSubmitEnabled(false)
         try {
-            await axiosInstance.post(`/place-order`, {data})
-            toast.success(`${t('orderPlaced')}`, { position: 'top-center' });
-            clearCart();
-            reset();
+            await axiosInstance.post(`/place-order`, { data })
+            toast.success(`${t('orderPlaced')}`, { position: 'top-center' })
+            clearCart()
+            reset()
             await router.push('/')
         } catch (error: any) {
-            let errorMessage = t('orderFailed');
+            let errorMessage = t('orderFailed')
             if (error.response?.data?.message.includes('Insufficient stock for product:')) {
-                const productName = error.response.data.message.split(':')[1].trim();
-                errorMessage = `${t('insufficientStockError')} ${productName}`;
+                const productName = error.response.data.message.split(':')[1].trim()
+                errorMessage = `${t('insufficientStockError')} ${productName}`
             }
-            toast.error(errorMessage, { position: 'top-center' });
+            toast.error(errorMessage, { position: 'top-center' })
         }
-        setIsSubmitEnabled(true);
-    };
+        setIsSubmitEnabled(true)
+    }
 
-    const selectedCountry = watch('country');
+    const selectedCountry = watch('country')
 
     const validateZipCode = (zipCode: string) => {
-        if (!selectedCountry) return true; // No validation if no country is selected
-        const format = zipCodeFormats[selectedCountry];
-        if (!format) return true; // No validation if no format is defined for the selected country
-        return format.test(zipCode) || `Invalid ZIP code for ${selectedCountry}`;
-    };
+        if (!selectedCountry) return true // No validation if no country is selected
+        const format = zipCodeFormats[selectedCountry]
+        if (!format) return true // No validation if no format is defined for the selected country
+        return format.test(zipCode) || `Invalid ZIP code for ${selectedCountry}`
+    }
 
     async function removeCartItem(id: number, color_id: number | undefined, size_id: number | undefined) {
-        toast.success(`${t('itemRemoved')}`, { position: 'top-center' });
-        removeItem(id, color_id, size_id);
+        toast.success(`${t('itemRemoved')}`, { position: 'top-center' })
+        removeItem(id, color_id, size_id)
     }
 
     useEffect(() => {
         async function getRandomProducts() {
             try {
-                const response = await axiosInstance.get('/products/random');
-                setRandomProducts(response.data);
+                const response = await axiosInstance.get('/products/random')
+                setRandomProducts(response.data)
             } catch (err) {
-                console.error('Error fetching cart data:', err);
-                setError('Failed to fetch cart data');
+                setError('Failed to fetch cart data')
             }
         }
 
-            getRandomProducts()
+        getRandomProducts()
     }, [])
 
 
-    if (cartLoading) return <CartSkeletonLoader />;
+    if (cartLoading) return <CartSkeletonLoader />
     if (error) return <div>{error}</div>
 
     return (
@@ -113,14 +115,14 @@ function Index() {
                         <div className="w-3/4 pr-[30px] lg:w-full lg:p-0">
                             <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
                                 <thead className="md:hidden">
-                                    <tr>
-                                        <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
-                                            colSpan={2}>{t('product')}
-                                        </th>
-                                        <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">{t('quantity')}</th>
-                                        <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">{t('total')}</th>
-                                        <th className="border border-[#ebebeb] p-4 w-1/12"></th>
-                                    </tr>
+                                <tr>
+                                    <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
+                                        colSpan={2}>{t('product')}
+                                    </th>
+                                    <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">{t('quantity')}</th>
+                                    <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">{t('total')}</th>
+                                    <th className="border border-[#ebebeb] p-4 w-1/12"></th>
+                                </tr>
                                 </thead>
                                 <tbody>
                                 {items.map((item, index) => (
@@ -143,32 +145,45 @@ function Index() {
                             </table>
                             {randomProducts.length > 0 &&
                                 <div className="mt-[100px]">
-                                <h2 className="mb-[15px] font-medium text-[20px]">{t('youMayAlsoLike')}</h2>
-                                <Swiper
-                                    pagination={{ clickable: true }}
-                                    breakpoints={{
-                                        320: { slidesPerView: 1 },
-                                        768: { slidesPerView: 2, spaceBetween: 20 },
+                                    <h2 className="mb-[15px] font-medium text-[20px]">{t('youMayAlsoLike')}</h2>
+                                    <Swiper
+                                        pagination={{ clickable: true }}
+                                        breakpoints={{
+                                            320: { slidesPerView: 1 },
+                                            768: { slidesPerView: 2, spaceBetween: 20 },
                                         }}
                                         modules={[Pagination]}
                                         className="mySwiper4"
                                     >
-                                    {randomProducts.map((randomProduct: any) => (
-                                        <SwiperSlide key={randomProduct.id}>
-                                            <YouMayAlsoLikeItem
-                                                id={randomProduct.id}
-                                                title={randomProduct.title}
-                                                price={randomProduct.price}
-                                                sale={randomProduct.sale_price}
-                                                imageSrc={randomProduct?.image_path[0]}
-                                            />
-                                        </SwiperSlide>
+                                        {randomProducts.map((randomProduct: any) => (
+                                            <SwiperSlide key={randomProduct.id}>
+                                                <YouMayAlsoLikeItem
+                                                    id={randomProduct.id}
+                                                    title={randomProduct.title}
+                                                    price={randomProduct.price}
+                                                    sale={randomProduct.sale_price}
+                                                    imageSrc={randomProduct?.image_path[0]}
+                                                />
+                                            </SwiperSlide>
                                         ))}
                                     </Swiper>
                                 </div>
                             }
-                            </div>
-                            <div className="w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px] lg:w-full">
+                        </div>
+                        <div className="relative w-1/4 py-[40px] px-[30px] bg-[#f5f5f5] rounded-[5px] lg:w-full">
+                            {!isAuthenticated && (
+                                <div className="absolute inset-0 flex items-center justify-center z-10">
+                                    <Link href="/account/login">
+                                        <button
+                                            className="rounded-[30px] border-[1px] border-black
+                                                bg-black px-[66px] py-[14.5px] text-[12px] font-semibold uppercase text-white
+                                                lg:px-[40px] lg:py-[11px]">
+                                            {t('login')}
+                                        </button>
+                                    </Link>
+                                </div>
+                            )}
+                            <div className={`${!isAuthenticated ? 'blur-sm' : ''} relative z-0`}>
                                 <form onSubmit={handleSubmit(onSubmit)} method="post">
                                     <div className="mb-[10px] flex flex-col">
                                         <label htmlFor="" className="font-medium text-11black mb-[15px]">
@@ -203,7 +218,8 @@ function Index() {
                                         </p>
                                     </div>
                                     <div className="mb-[10px] flex flex-col">
-                                        <label htmlFor="city" className="mb-[5px] text-[14px] text-55black">{t('city')}</label>
+                                        <label htmlFor="city"
+                                               className="mb-[5px] text-[14px] text-55black">{t('city')}</label>
                                         <input
                                             id="city"
                                             type="text"
@@ -252,7 +268,7 @@ function Index() {
                                     </div>
 
                                     <button
-                                        disabled={!isSubmitEnabled}
+                                        disabled={!isSubmitEnabled || !isAuthenticated}
                                         type="submit"
                                         className="mt-[5px] w-full py-[14px] bg-[#131313] text-white font-medium text-[14px] rounded-[30px]">
                                         {t('placeOrder')}
@@ -260,12 +276,13 @@ function Index() {
                                 </form>
                             </div>
                         </div>
-                    ) : (
-                        <Empty title={t('cartEmpty')} />
-                    )}
+                    </div>
+                ) : (
+                    <Empty title={t('cartEmpty')} />
+                )}
             </div>
         </>
-    );
+    )
 }
 
-export default Index;
+export default Index
