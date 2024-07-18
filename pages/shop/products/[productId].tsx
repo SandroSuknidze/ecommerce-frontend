@@ -186,6 +186,8 @@ function ProductId() {
             colors: product.colors,
             color_id: product.colors[0].id,
             size_id: product.sizes[0].id,
+            color_name: product.colors[0].name,
+            size_name: product.sizes[0].name,
         }
         addWishlistItem(item);
     }
