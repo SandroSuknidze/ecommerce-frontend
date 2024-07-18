@@ -1,45 +1,43 @@
-import { useRouter } from 'next/router'
-import CollectionCard from '@/components/CollectionCard'
-import FilterComponent from '@/components/FilterComponent'
-import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState } from 'react'
-import FilterMenu from '@/components/FilterMenu'
-import axiosInstance from '@/utils/axiosInstance'
+import { useRouter } from 'next/router';
+import CollectionCard from '@/components/CollectionCard';
+import FilterComponent from '@/components/FilterComponent';
+import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
+import FilterMenu from '@/components/FilterMenu';
+import axiosInstance from '@/utils/axiosInstance';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
-import { withTranslations } from '@/utils/i18nHelper'
-import { GetStaticPaths } from 'next'
-import { useTranslation } from 'next-i18next'
+import { withTranslations } from '@/utils/i18nHelper';
+import { GetStaticPaths } from 'next';
+import { useTranslation } from 'next-i18next';
 
 export const getStaticProps = withTranslations(['common']);
 
 function ProductCategoryId() {
-    const router = useRouter()
-    const { t } = useTranslation('common')
+    const router = useRouter();
+    const { t } = useTranslation('common');
 
     const { productCategoryId, colors, brands, price, sizes } = router.query;
 
-    const [isHovered, setIsHovered] = useState(false)
-    const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false)
+    const [isHovered, setIsHovered] = useState(false);
+    const [isFilterMenuOpen, setIsFilterMenuOpen] = useState(false);
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([]);
     const [isProductsLoading, setIsProductsLoading] = useState(true);
 
     const [categoryName, setCategoryName] = useState('');
 
-
-
     function toggleFilterMenu() {
-        setIsFilterMenuOpen(!isFilterMenuOpen)
+        setIsFilterMenuOpen(!isFilterMenuOpen);
     }
 
     async function getCategoryName() {
         try {
-            const response = await axiosInstance.get(`/category/${productCategoryId}`)
-            const data = response.data
-            setCategoryName(data[0].name)
+            const response = await axiosInstance.get(`/category/${productCategoryId}`);
+            const data = response.data;
+            setCategoryName(data[0].name);
         } catch (err) {
-            console.error(err)
+            console.error(err);
             return 'Category not found';
         }
     }
@@ -63,7 +61,6 @@ function ProductCategoryId() {
         }
     }
 
-
     function formatQueryParam(param: string | any[] | undefined) {
         if (Array.isArray(param)) {
             return param.join(',');
@@ -71,15 +68,12 @@ function ProductCategoryId() {
         return param || '';
     }
 
-
     useEffect(() => {
         if (productCategoryId) {
             getCategoryName();
             fetchProducts();
         }
     }, [productCategoryId, colors, brands, price, sizes]);
-
-
 
     return (
         <div>
@@ -93,7 +87,9 @@ function ProductCategoryId() {
                 ) : (
                     <>
                         <h1 className="mx-auto text-[45px]">{categoryName}</h1>
-                        <nav className="text-[14px]">{t('home')} / {categoryName}</nav>
+                        <nav className="text-[14px]">
+                            {t('home')} / {categoryName}
+                        </nav>
                     </>
                 )}
             </div>
@@ -105,9 +101,13 @@ function ProductCategoryId() {
                 <div className="w-3/4 lg:w-full">
                     <div className="flex justify-between mb-[30px] px-[15px]">
                         <div className="text-55black xs:text-[14px]">
-                            {isProductsLoading ? (<SkeletonLoader className="h-[20px] w-[200px] rounded-xl md:w-[150px]" />)
-                                : `${t('thereAre')} ${products.length} ${products.length > 0 ? `${t('results')}` : `${t('result')}`} ${t('inTotal')}`
-                            }
+                            {isProductsLoading ? (
+                                <SkeletonLoader className="h-[20px] w-[200px] rounded-xl md:w-[150px]" />
+                            ) : (
+                                `${t('thereAre')} ${products.length} ${
+                                    products.length > 0 ? `${t('results')}` : `${t('result')}`
+                                } ${t('inTotal')}`
+                            )}
                         </div>
                         <button
                             className="hidden py-[3px] px-[18px] rounded-[3px] bg-11black text-white upper text-[12px]
@@ -119,23 +119,29 @@ function ProductCategoryId() {
                             onClick={() => toggleFilterMenu()}
                         >
                             <FontAwesomeIcon icon={faFilter} className={`${isHovered && 'text-11black'} m-auto`} />
-                            <div
-                                className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
+                            <div className={`${isHovered && 'text-11black'} uppercase h-[25px] m-auto flex items-center`}>
                                 {t('filter')}
                             </div>
                         </button>
                     </div>
                     <div className="grid grid-cols-3 pr-[15px] md:grid-cols-2 lg:pr-0">
                         {isProductsLoading ? (
-                            Array(6).fill(null).map((_, index) => (
-                                <div key={index} className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
-                                    <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
-                                    <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
-                                    <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
-                                    <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
-                                    <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
-                                </div>
-                            ))
+                            Array(6)
+                                .fill(null)
+                                .map((_, index) => (
+                                    <div key={index} className="flex flex-col flex-wrap justify-center mx-[15px] mb-[20px]">
+                                        <SkeletonLoader className="h-[380px] w-[100%] rounded-xl" />
+                                        <SkeletonLoader className="h-[20px] w-[100%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[40%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                        <SkeletonLoader className="h-[20px] w-[30%] rounded-xl mt-[10px]" />
+                                    </div>
+                                ))
+                        ) : products.length === 0 ? (
+                            <div className="col-span-full text-center">
+                                <h2 className="text-[30px] font-bold text-55black">{t('noItemsAfterFiltering')}</h2>
+                                <p className="text-[18px] text-gray-500">{t('tryAdjustingFilters')}</p>
+                            </div>
                         ) : (
                             products.map((product: any) => (
                                 <CollectionCard
@@ -155,18 +161,16 @@ function ProductCategoryId() {
                             ))
                         )}
                     </div>
-
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default ProductCategoryId
+export default ProductCategoryId;
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-
     return {
         paths: [], //indicates that no page needs be created at build time
-        fallback: 'blocking' //indicates the type of fallback
-    }
-}
+        fallback: 'blocking', //indicates the type of fallback
+    };
+};

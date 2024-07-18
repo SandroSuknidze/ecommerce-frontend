@@ -244,6 +244,9 @@
     "enterCity": "Enter city",
     "enterPostalCode": "Enter postal code",
 
+    "noItemsAfterFiltering": "No items found after filtering",
+    "tryAdjustingFilters": "Try adjusting your filters",
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",

@@ -241,6 +241,9 @@
     "enterCity": "შეიყვანეთ ქალაქი",
     "enterPostalCode": "შეიყვანეთ საფოსტო კოდი",
 
+    "noItemsAfterFiltering": "პროდუქტები არ მოიძებნა ფილტრების შედეგების შესახებ.",
+    "tryAdjustingFilters": "სცადეთ ფილტრების შეცვლა",
+
     "askQuestion": "დასვით კითხვა",
     "nameRequired": "სახელი სავალდებულოა",
     "nameMaxLength": "მაქსიმუმი ასოების რაოდენობა მიღწეულია",

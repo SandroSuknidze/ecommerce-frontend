@@ -120,7 +120,7 @@ function Search({ toggleSearch }: SearchProps) {
                                     toggleSearch={toggleSearch}
                                 />
                             ))
-                        ) : hasSearched ? (
+                        ) : hasSearched && query.trim() !== '' ? (
                             <div className="text-center col-span-full">
                                 <p className="text-[#555555]">{t('noResultsFound')}</p>
                             </div>
