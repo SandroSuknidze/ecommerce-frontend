@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus } from '@fortawesome/free-solid-svg-icons/faMinus';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Slider } from '@mui/material';
-import { Fragment, useCallback, useEffect, useState } from 'react';
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { MemoizedBrandListItem as BrandListItem } from '@/components/BrandListItem';
 import { MemoizedColorListItem as ColorListItem } from '@/components/ColorListItem';
 import { MemoizedSizeListItem as SizeListItem } from '@/components/SizeListItem';
@@ -32,6 +32,8 @@ const FilterComponent = () => {
     const [isBrandsLoading, setIsBrandsLoading] = useState(true);
     const [isColorsLoading, setIsColorsLoading] = useState(true);
     const [isSizesLoading, setIsSizesLoading] = useState(true);
+
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
 
     useEffect(() => {
@@ -82,6 +84,10 @@ const FilterComponent = () => {
         return `$${value}`;
     }
 
+    const handleDebouncedChangePrice = (newValue: number[]) => {
+        setSelectedPrices(newValue);
+    };
+
     // @ts-ignore
     const handleChangePrice = useCallback((event, newValue, activeThumb) => {
         if (!Array.isArray(newValue)) {
@@ -103,11 +109,15 @@ const FilterComponent = () => {
             ]);
 
         }
-        setSelectedPrices([newValue[0], newValue[1]]);
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
+        }
 
+        debounceTimeout.current = setTimeout(() => {
+            handleDebouncedChangePrice([newValue[0], newValue[1]]);
+        }, 500);
     }, [setSelectedPrices, value1]);
 
-    // Initialize value1 based on selectedPrices from URL
     useEffect(() => {
         if (selectedPrices.length > 0) {
             setValue1(selectedPrices);
