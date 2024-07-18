@@ -23,7 +23,7 @@ const FilterComponent = () => {
     const [selectedColors, setSelectedColors] = useQueryState<number[]>('colors', parseAsArrayOf(parseAsInteger).withDefault([]));
     const [selectedPrices, setSelectedPrices] = useQueryState<number[]>('price', parseAsArrayOf(parseAsInteger).withDefault([]));
     const [value1, setValue1] = useState<number[]>([0, 200]);
-    const [selectedSizes, setSelectedSizes] = useQueryState<number[]>('size', parseAsArrayOf(parseAsInteger).withDefault([]));
+    const [selectedSizes, setSelectedSizes] = useQueryState<number[]>('sizes', parseAsArrayOf(parseAsInteger).withDefault([]));
 
     const [brands, setBrands] = useState([]);
     const [colors, setColors] = useState([]);

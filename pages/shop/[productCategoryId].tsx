@@ -26,6 +26,7 @@ function ProductCategoryId() {
     const [isProductsLoading, setIsProductsLoading] = useState(true);
 
     const [categoryName, setCategoryName] = useState('');
+    const [queryLoaded, setQueryLoaded] = useState(false);
 
     function toggleFilterMenu() {
         setIsFilterMenuOpen(!isFilterMenuOpen);
@@ -61,7 +62,7 @@ function ProductCategoryId() {
         }
     }
 
-    function formatQueryParam(param: string | any[] | undefined) {
+    function formatQueryParam(param: any) {
         if (Array.isArray(param)) {
             return param.join(',');
         }
@@ -71,9 +72,20 @@ function ProductCategoryId() {
     useEffect(() => {
         if (productCategoryId) {
             getCategoryName();
+        }
+    }, [productCategoryId]);
+
+    useEffect(() => {
+        if (router.isReady) {
+            setQueryLoaded(true);
+        }
+    }, [router.isReady]);
+
+    useEffect(() => {
+        if (queryLoaded && productCategoryId) {
             fetchProducts();
         }
-    }, [productCategoryId, colors, brands, price, sizes]);
+    }, [queryLoaded, productCategoryId, colors, brands, price, sizes]);
 
     return (
         <div>
@@ -143,7 +155,7 @@ function ProductCategoryId() {
                                 <p className="text-[18px] text-gray-500">{t('tryAdjustingFilters')}</p>
                             </div>
                         ) : (
-                            products.map((product: any) => (
+                            products.map((product:any) => (
                                 <CollectionCard
                                     key={product.id}
                                     id={product.id}
