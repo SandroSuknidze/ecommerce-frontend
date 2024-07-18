@@ -20,6 +20,8 @@ function Footer() {
 
     const [isSubmitAvailable, setIsSubmitAvailable] = useState(true);
 
+    const { isAuthenticated } = useAuth();
+
 
     const {
         register,
@@ -88,19 +90,29 @@ function Footer() {
                                 </div>
                                 <ul className="flex flex-row gap-[12px]">
                                     <li className="cursor-pointer">
-                                        <InstagramIcon />
+                                        <Link href="https://www.youtube.com" target="_blank">
+                                            <YoutubeIcon />
+                                        </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <TiktokIcon />
+                                        <Link href="https://www.tiktok.com" target="_blank">
+                                            <TiktokIcon />
+                                        </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <YoutubeIcon />
+                                        <Link href="https://www.instagram.com" target="_blank">
+                                            <InstagramIcon />
+                                        </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <TwitterIcon />
+                                        <Link href="https://www.twitter.com" target="_blank">
+                                            <TwitterIcon />
+                                        </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <FacebookIcon />
+                                        <Link href="https://www.facebook.com" target="_blank">
+                                            <FacebookIcon />
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -121,7 +133,9 @@ function Footer() {
                                             {t('sizeGuide')}
                                         </li>
                                         <li className="leading-[28px]">
-                                            {t('myAccount')}
+                                            <Link href={isAuthenticated ? '/account' : '/account/login'}>
+                                                {t('myAccount')}
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
@@ -140,10 +154,14 @@ function Footer() {
                                             </Link>
                                         </li>
                                         <li className="leading-[28px]">
-                                            {t('refundPolicy')}
+                                            <Link href="/privacy-policy">
+                                                {t('refundPolicy')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px]">
-                                            {t('shippingReturn')}
+                                            <Link href="/privacy-policy">
+                                                {t('shippingReturn')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px]">
                                             <Link href="/term-condition">
