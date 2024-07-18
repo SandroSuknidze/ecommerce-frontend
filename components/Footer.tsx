@@ -17,7 +17,6 @@ import Link from 'next/link'
 
 function Footer() {
     const { t } = useTranslation('common')
-    const { isAuthenticated } = useAuth();
 
     const [isSubmitAvailable, setIsSubmitAvailable] = useState(true);
 
@@ -36,33 +35,27 @@ function Footer() {
 
         setIsSubmitAvailable(false);
 
-        if (isAuthenticated) {
-            try {
-                const response = await axiosInstance.post('/subscribe', data);
-                if (response.data.message === 'You are already subscribed') {
-                    toast.info(`${t('youAreAlreadySubscribed')}`, {
-                        position: 'top-center',
-                    });
-                } else if (response.data.message === 'Subscription successful') {
-                    toast.success(`${t('youHaveSuccessfullySubscribed')}`, {
-                        position: 'top-center',
-                    });
-                }
-                reset();
-            } catch (error) {
-                console.error(error);
-                toast.error(`${t('subscriptionFailed')}`, {
+        try {
+            const response = await axiosInstance.post('/subscribe', data);
+            if (response.data.message === 'You are already subscribed') {
+                toast.info(`${t('youAreAlreadySubscribed')}`, {
                     position: 'top-center',
                 });
-            } finally {
-                setIsSubmitAvailable(true);
+            } else if (response.data.message === 'Subscription successful') {
+                toast.success(`${t('youHaveSuccessfullySubscribed')}`, {
+                    position: 'top-center',
+                });
             }
-        } else {
-            toast.error(`${t('authRequired')}`, {
+            reset();
+        } catch (error) {
+            console.error(error);
+            toast.error(`${t('subscriptionFailed')}`, {
                 position: 'top-center',
             });
+        } finally {
             setIsSubmitAvailable(true);
         }
+
     };
 
 
