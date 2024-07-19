@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import FilterMenu from '@/components/FilterMenu';
 import axiosInstance from '@/utils/axiosInstance';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -178,14 +178,7 @@ const ProductCategoryId = () => {
     );
 };
 
-export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
-    return {
-        paths: [], //indicates that no page needs be created at build time
-        fallback: 'blocking', //indicates the type of fallback
-    };
-};
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
     return {
         props: {
             ...(await serverSideTranslations(locale as string, ['common'])),
