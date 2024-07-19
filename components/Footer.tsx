@@ -77,7 +77,8 @@ function Footer() {
                                 />
                                 <div className="mb-[24px] text-[#555555]">
                                     <p className="leading-[28px]">
-                                        <a href="" target="_blank">
+                                        <a href="https://www.google.com/maps/search/268+St,+South+New+York%2FNY+98944,+United+States./@40.6976312,-74.1444874,11z/data=!3m1!4b1?entry=ttu"
+                                           target="_blank">
                                             {t('address')}
                                         </a>
                                     </p>
