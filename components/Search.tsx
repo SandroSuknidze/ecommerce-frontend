@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard';
 import { useLockBodyScroll } from 'react-use';
 import useResponsiveCols from '@/hooks/useResponsiveCols';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
-import { useState, useRef } from 'react';
+import { useState, useRef, FormEvent } from 'react'
 import axiosInstance from '@/utils/axiosInstance';
 import { useTranslation } from 'next-i18next'
 
@@ -55,6 +55,11 @@ function Search({ toggleSearch }: SearchProps) {
         }, 500);
     };
 
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        // handleSearch(query);
+    }
+
     return (
         <div className="fixed inset-0 !z-[70] flex items-center justify-center">
             <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -70,7 +75,7 @@ function Search({ toggleSearch }: SearchProps) {
                             onClick={() => toggleSearch()}
                         />
                     </div>
-                    <form className="relative m-auto w-[66%] text-center md:w-full">
+                    <form onSubmit={handleSubmit} className="relative m-auto w-[66%] text-center md:w-full">
                         <input
                             value={query}
                             onChange={handleChange}
