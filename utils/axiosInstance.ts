@@ -3,7 +3,8 @@ import Cookies from 'js-cookie'
 
 const axiosInstance = axios.create({
     // baseURL: 'http://localhost:8000/api/v1',
-    baseURL: 'http://178.128.206.171/api/v1',
+    // baseURL: 'http://178.128.206.171/api/v1',
+    baseURL: 'https://www.umino.me/api/v1',
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',

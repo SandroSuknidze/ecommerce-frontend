@@ -10,11 +10,13 @@ const nextConfig = {
         return config;
     },
     env: {
-        imageUrl: 'http://178.128.206.171/storage/'
+        imageUrl: 'https://www.umino.me/storage/'
+        // imageUrl: 'http://178.128.206.171/storage/'
         // imageUrl: 'http://127.0.0.1:8000/storage/'
     },
     images: {
-        domains: ['178.128.206.171'],
+        domains: ['www.umino.me'],
+        // domains: ['178.128.206.171'],
         // domains: ['127.0.0.1'],
     },
     i18n: {
