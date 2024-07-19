@@ -10,6 +10,7 @@ import { SkeletonLoader } from '@/components/SkeletonLoader';
 import { withTranslations } from '@/utils/i18nHelper';
 import { GetStaticPaths } from 'next';
 import { useTranslation } from 'next-i18next';
+import Link from 'next/link'
 
 export const getStaticProps = withTranslations(['common']);
 
@@ -100,7 +101,7 @@ function ProductCategoryId() {
                     <>
                         <h1 className="mx-auto text-[45px]">{categoryName}</h1>
                         <nav className="text-[14px]">
-                            {t('home')} / {categoryName}
+                            <Link href="/">{t('home')}</Link> / {categoryName}
                         </nav>
                     </>
                 )}
