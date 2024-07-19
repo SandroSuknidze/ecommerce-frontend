@@ -340,7 +340,7 @@ function ProductId() {
                                             2 {t('reviews')}
                                         </div>
                                     </div>
-                                    <div className="m-auto mt-[3px] flex py-[20px] font-medium">
+                                    <div className="m-auto mt-[3px] text-[30px] flex py-[20px] font-medium">
                                         {product.sale_price && (
                                             <div className="text-[30px] text-red-600">
                                                 ${(product.sale_price).toFixed(2)}
