@@ -34,6 +34,14 @@ const nextConfig = {
             },
         ];
     },
+    async rewrites() {
+        return [
+            {
+                source: '/api/:path*',
+                destination: 'http://178.128.206.171/api/v1/:path*',
+            },
+        ];
+    },
 };
 
 export default nextConfig;
