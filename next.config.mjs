@@ -1,3 +1,5 @@
+const path = require('path')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     webpack: (config, { isServer }) => {
@@ -23,6 +25,7 @@ const nextConfig = {
         defaultLocale: 'en',
         locales: ['en', 'ka'],
         fallbackLng: 'en',
+        localePath: path.resolve('./public/locales')
     }
 };
 
