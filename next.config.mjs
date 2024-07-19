@@ -20,7 +20,20 @@ const nextConfig = {
     i18n: {
         defaultLocale: 'en',
         locales: ['en', 'ka'],
-    }
+    },
+    async headers() {
+        return [
+            {
+                source: '/(.*)',
+                headers: [
+                    {
+                        key: 'Content-Security-Policy',
+                        value: "upgrade-insecure-requests",
+                    },
+                ],
+            },
+        ];
+    },
 };
 
 export default nextConfig;
