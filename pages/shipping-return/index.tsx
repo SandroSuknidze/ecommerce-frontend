@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react'
-import axiosInstance from '@/utils/axiosInstance'
-import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useTranslation } from 'next-i18next'
 import { withTranslations } from '@/utils/i18nHelper'
 import Link from 'next/link'
-import { useTranslation } from 'next-i18next'
+import { SkeletonLoader } from '@/components/SkeletonLoader'
+import { useEffect, useState } from 'react'
+import axiosInstance from '@/utils/axiosInstance'
 
 export const getStaticProps = withTranslations(['common']);
 function Index() {
     const { t } = useTranslation('common')
 
-    const [privacyText, setPrivacyText] = useState('')
+    const [shippingText, setPrivacyText] = useState('')
 
     useEffect(() => {
-        axiosInstance.get('/privacy-policy')
+        axiosInstance.get('/shipping-return')
             .then((response) => {
                 setPrivacyText(response.data.text)
             })
@@ -20,22 +20,23 @@ function Index() {
                 console.log(error)
             })
     }, [])
+
     return (
-        <div>
+        <>
             <div className="max-w-[1260px] px-[30px] md:px-[15px] m-auto">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[47px] mb-[5px] text-[45px]">{t('privacyPolicy')}</h1>
+                    <h1 className="leading-[47px] mb-[5px] text-[45px]">{t('shippingReturn')}</h1>
                     <nav>
                         <ol className="text-[14px] text-55black mt-[10px]">
                             <li className="inline">
                                 <Link href="/">{t('home')} / </Link>
                             </li>
-                            <li className="inline">{t('privacyPolicy')}</li>
+                            <li className="inline">{t('shippingReturn')}</li>
                         </ol>
                     </nav>
                 </div>
-                {privacyText ? (
-                    <div dangerouslySetInnerHTML={{ __html: privacyText }} className=" m-auto custom-class" />
+                {shippingText ? (
+                    <div dangerouslySetInnerHTML={{ __html: shippingText }} className=" m-auto custom-class" />
                 ) : (
                     <div>
                         <SkeletonLoader className="h-6 w-3/4 mb-4" />
@@ -56,7 +57,7 @@ function Index() {
                     </div>
                 )}
             </div>
-        </div>
+        </>
     )
 }
 

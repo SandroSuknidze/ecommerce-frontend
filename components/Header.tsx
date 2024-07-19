@@ -9,7 +9,7 @@ import en from '@/public/assets/en.webp'
 import ka from '@/public/assets/ka.webp'
 import arrowDown from '@/public/assets/arrow-down-icon.svg'
 import arrowUp from '@/public/assets/arrow-up-icon.svg'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
@@ -19,6 +19,7 @@ import { useCart } from '@/context/CartContext'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import { useWishlist } from '@/context/WishlistContext'
+import { useClickAway } from 'react-use'
 
 
 export function Header() {
@@ -35,6 +36,12 @@ export function Header() {
 
     const [isSearchOpen, setIsSearchOpen] = useState(false)
     const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false)
+
+
+    const dropdownRef = useRef(null);
+    useClickAway(dropdownRef, () => {
+        setDropdown(false);
+    });
 
     function toggleDropdown() {
         setDropdown(!dropdown)
@@ -182,7 +189,7 @@ export function Header() {
                                     </div>
                                 </Link>
                             </div>
-                            <div className="my-auto ml-[20px] select-none lg:hidden">
+                            <div className="my-auto ml-[20px] select-none lg:hidden" ref={dropdownRef}>
                                 <div
                                     className="flex cursor-pointer flex-row rounded-[3px] border-[1px] p-[5px]"
                                     onClick={toggleDropdown}

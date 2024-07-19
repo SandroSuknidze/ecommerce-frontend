@@ -123,17 +123,23 @@ function Footer() {
                                 </h3>
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
-                                        <li className="leading-[28px]">{t('aboutUs')}</li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
+                                            {t('aboutUs')}
+                                        </li>
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             {t('ourStores')}
                                         </li>
-                                        <li className="leading-[28px]">
-                                            {t('contactUs')}
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
+                                            <Link href="/contact">
+                                                {t('contactUs')}
+                                            </Link>
                                         </li>
-                                        <li className="leading-[28px]">
-                                            {t('sizeGuide')}
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
+                                            <Link href="/size-guide">
+                                                {t('sizeGuide')}
+                                            </Link>
                                         </li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             <Link href={isAuthenticated ? '/account' : '/account/login'}>
                                                 {t('myAccount')}
                                             </Link>
@@ -149,33 +155,33 @@ function Footer() {
                                 </h3>
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             <Link href="/privacy-policy">
                                                 {t('privacyPolicy')}
                                             </Link>
                                         </li>
-                                        <li className="leading-[28px]">
-                                            <Link href="/privacy-policy">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
+                                            <Link href="/refund-policy">
                                                 {t('refundPolicy')}
                                             </Link>
                                         </li>
-                                        <li className="leading-[28px]">
-                                            <Link href="/privacy-policy">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
+                                            <Link href="/shipping-return">
                                                 {t('shippingReturn')}
                                             </Link>
                                         </li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             <Link href="/term-condition">
                                                 {t('termsConditions')}
                                             </Link>
                                         </li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             {t('advancedSearch')}
                                         </li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             {t('themeFAQs')}
                                         </li>
-                                        <li className="leading-[28px]">
+                                        <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             {t('storeLocations')}
                                         </li>
                                     </ul>

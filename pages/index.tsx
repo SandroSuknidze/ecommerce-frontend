@@ -39,7 +39,6 @@ function Index() {
         try {
             const response = await axiosInstance('/products/new-arrivals')
             const data = await response.data
-
             setNewArrivals(data)
         } catch (err) {
             console.error(err)
@@ -144,7 +143,7 @@ function Index() {
                 <div
                     className="grid grid-cols-3 gap-[3%] max-w-[1470px] px-[30px] mt-[40px] md:grid-cols-2 md:grid-rows-3 md:px-[15px] ">
                     <div className="row-span-2 text-white rounded-xl overflow-hidden relative ">
-                        <Link href="/">
+                        <Link href="/shop">
                             <Image src={grid1} alt="Clothing"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
@@ -155,7 +154,7 @@ function Index() {
                         </Link>
                     </div>
                     <div className="rounded-xl overflow-hidden relative">
-                        <Link href="/">
+                        <Link href="/shop">
                             <Image src={grid2} alt="Sunglasses"
                                    className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
@@ -166,7 +165,7 @@ function Index() {
                         </Link>
                     </div>
                     <div className="row-span-2 text-white rounded-xl overflow-hidden relative ">
-                        <Link href="/">
+                        <Link href="/shop">
                             <Image src={grid4} alt="Sneaker"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
                             <div
@@ -177,7 +176,7 @@ function Index() {
                         </Link>
                     </div>
                     <div className="text-white rounded-xl overflow-hidden relative ">
-                        <Link href="/">
+                        <Link href="/shop">
                             <Image src={grid3} alt="Bags"
                                    className="rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div

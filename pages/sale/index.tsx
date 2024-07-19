@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import CollectionCard from '@/components/CollectionCard'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import axiosInstance from '@/utils/axiosInstance'
 import { SkeletonLoader } from '@/components/SkeletonLoader'
 import { withTranslations } from '@/utils/i18nHelper'
@@ -9,6 +9,8 @@ import { useTranslation } from 'next-i18next'
 export const getStaticProps = withTranslations(['common']);
 function Index() {
     const { t } = useTranslation('common')
+    const targetRef = useRef<any>(null);
+
 
     const [saleProducts, setSaleProducts] = useState([])
 
@@ -17,13 +19,17 @@ function Index() {
             const response = await axiosInstance('/products/sale')
             const data = await response.data
 
-            console.log(data);
-
             setSaleProducts(data)
         } catch (err) {
             console.error(err)
         }
     }
+
+    const handleClick = () => {
+        if (targetRef.current) {
+            targetRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     useEffect(() => {
         fetchSaleProducts()
@@ -39,20 +45,20 @@ function Index() {
                             {t('getDeals')}
                         </div>
                         <div>
-                            <Link href="/shop">
+                            <div className="cursor-pointer" onClick={handleClick}>
                                 <button
                                     className="rounded-[30px] border-[1px] border-black bg-black px-[66px] py-[14.5px]
                                     text-[12px] font-semibold uppercase text-white mt-[40px] lg:px-[40px] lg:py-[11px]"
                                 >
                                     {t('shopNow')}
                                 </button>
-                            </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="m-auto max-w-[1290px] px-[15px] md:px-0 mt-[50px]">
+            <div className="m-auto max-w-[1290px] px-[15px] md:px-0 mt-[50px]" ref={targetRef}>
                 <div className="mb-[15px] md:px-[15px]">
                     <h2 className="mb-[5px] text-center text-[40px] md:text-[30px]">
                         {t('topOffers')}

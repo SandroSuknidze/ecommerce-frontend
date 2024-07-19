@@ -676,7 +676,7 @@ function ProductId() {
                                 </p>
                                 <p className="mb-[15px] leading-[28px] text-55black">
                                     {t('standardShipping')}{' '}
-                                    <Link href="/" className="text-11black">
+                                    <Link href="/term-condition" className="text-11black">
                                         {' '}
                                         {t('termsAndConditions')}
                                     </Link>{' '}
