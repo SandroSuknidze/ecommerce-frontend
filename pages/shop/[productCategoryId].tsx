@@ -7,12 +7,14 @@ import { useEffect, useState } from 'react';
 import FilterMenu from '@/components/FilterMenu';
 import axiosInstance from '@/utils/axiosInstance';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next'
+import { withTranslations } from '@/utils/i18nHelper';
+import { GetStaticPaths } from 'next';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const ProductCategoryId = () => {
+export const getStaticProps = withTranslations(['common']);
+
+function ProductCategoryId() {
     const router = useRouter();
     const { t } = useTranslation('common');
 
@@ -154,7 +156,7 @@ const ProductCategoryId = () => {
                                 <p className="text-[18px] text-gray-500">{t('tryAdjustingFilters')}</p>
                             </div>
                         ) : (
-                            products.map((product: any) => (
+                            products.map((product:any) => (
                                 <CollectionCard
                                     key={product.id}
                                     id={product.id}
@@ -176,14 +178,12 @@ const ProductCategoryId = () => {
             </div>
         </div>
     );
-};
-
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
-    return {
-        props: {
-            ...(await serverSideTranslations(locale as string, ['common'])),
-        },
-    };
-};
+}
 
 export default ProductCategoryId;
+export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
+    return {
+        paths: [], //indicates that no page needs be created at build time
+        fallback: 'blocking', //indicates the type of fallback
+    };
+};
