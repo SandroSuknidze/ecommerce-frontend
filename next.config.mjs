@@ -22,9 +22,9 @@ const nextConfig = {
         // domains: ['127.0.0.1'],
     },
     i18n: {
+        defaultNs: 'shared',
         defaultLocale: 'en',
         locales: ['en', 'ka'],
-        fallbackLng: 'en',
         localePath: path.resolve('./public/locales')
     }
 };
