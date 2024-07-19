@@ -95,13 +95,13 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     {t('sale')}
                                 </Link>
                                 <div
-                                    className={`${language === 'en' ? 'left-[44px]': 'left-[104px]'} absolute bottom-[39%] 
+                                    className={`${language === 'en' ? 'left-[44px]': 'left-[124px]'} absolute bottom-[39%] 
                                     rounded-sm border-red-600 border-transparent bg-red-600 px-[6px] py-[3px] text-[9px] 
                                     font-bold uppercase leading-[9px] text-white`}>
                                     {t('hot')}
                                 </div>
                                 <div
-                                    className={`${language === 'en' ? 'left-[40px]': 'left-[100px]'} border-l-solid 
+                                    className={`${language === 'en' ? 'left-[40px]': 'left-[120px]'} border-l-solid 
                                     border-r-solid border-b-solid absolute bottom-[51%] h-0 w-0 -rotate-90 border-b-[3px] 
                                     border-l-[3px] border-r-[3px] border-b-red-600 border-l-transparent 
                                     border-r-transparent`}></div>
