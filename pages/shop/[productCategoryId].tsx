@@ -7,15 +7,12 @@ import { useEffect, useState } from 'react';
 import FilterMenu from '@/components/FilterMenu';
 import axiosInstance from '@/utils/axiosInstance';
 import { SkeletonLoader } from '@/components/SkeletonLoader';
-import { withTranslations } from '@/utils/i18nHelper';
-import { GetStaticPaths } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-// export const getStaticProps = withTranslations(['common']);
-
-function ProductCategoryId() {
+const ProductCategoryId = () => {
     const router = useRouter();
     const { t } = useTranslation('common');
 
@@ -157,7 +154,7 @@ function ProductCategoryId() {
                                 <p className="text-[18px] text-gray-500">{t('tryAdjustingFilters')}</p>
                             </div>
                         ) : (
-                            products.map((product:any) => (
+                            products.map((product: any) => (
                                 <CollectionCard
                                     key={product.id}
                                     id={product.id}
@@ -179,9 +176,8 @@ function ProductCategoryId() {
             </div>
         </div>
     );
-}
+};
 
-export default ProductCategoryId;
 export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
     return {
         paths: [], //indicates that no page needs be created at build time
@@ -189,11 +185,12 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
     };
 };
 
-// @ts-ignore
-export const getStaticProps = async ({ locale }) => {
+export const getStaticProps: GetStaticProps = async ({ locale }) => {
     return {
         props: {
-            ...(await serverSideTranslations(locale, ['common'])),
+            ...(await serverSideTranslations(locale as string, ['common'])),
         },
     };
 };
+
+export default ProductCategoryId;
