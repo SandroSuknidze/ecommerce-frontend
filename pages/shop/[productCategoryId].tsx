@@ -11,8 +11,9 @@ import { withTranslations } from '@/utils/i18nHelper';
 import { GetStaticPaths } from 'next';
 import { useTranslation } from 'next-i18next';
 import Link from 'next/link'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export const getStaticProps = withTranslations(['common']);
+// export const getStaticProps = withTranslations(['common']);
 
 function ProductCategoryId() {
     const router = useRouter();
@@ -185,5 +186,14 @@ export const getStaticPaths: GetStaticPaths<{ slug: string }> = async () => {
     return {
         paths: [], //indicates that no page needs be created at build time
         fallback: 'blocking', //indicates the type of fallback
+    };
+};
+
+// @ts-ignore
+export const getStaticProps = async ({ locale }) => {
+    return {
+        props: {
+            ...(await serverSideTranslations(locale, ['common'])),
+        },
     };
 };
