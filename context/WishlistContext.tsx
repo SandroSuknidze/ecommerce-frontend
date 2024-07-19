@@ -50,9 +50,7 @@ const wishlistReducer = (state: WishlistState, action: WishlistAction): Wishlist
     switch (action.type) {
         case 'ADD_ITEM':
             const existingItemIndex = state.items.findIndex(item =>
-                item.id === action.payload.id &&
-                item.color_id === action.payload.color_id &&
-                item.size_id === action.payload.size_id
+                item.id === action.payload.id
             );
             if (existingItemIndex !== -1) {
                 return state;
@@ -165,10 +163,7 @@ export const WishlistProvider = ({ children }: WishlistProviderProps) => {
 
     const addWishlistItem = async (item: WishlistItem) => {
         const existingItemIndex = state.items.findIndex(existingItem =>
-            existingItem.id === item.id &&
-            existingItem.color_id === item.color_id &&
-            existingItem.size_id === item.size_id &&
-            existingItem.colors === item.colors
+            existingItem.id === item.id
         );
 
         if (existingItemIndex !== -1) {
