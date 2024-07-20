@@ -158,7 +158,7 @@ function Index() {
                     <div className="rounded-xl overflow-hidden relative">
                         <Link href="/shop">
                             <Image src={grid2} alt="Sunglasses"
-                                   className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer" />
+                                   className="w-full rounded-xl hover:scale-110 transition duration-500 cursor-pointer h-[100%]" />
                             <div
                                 className="rounded-full px-[10px] py-[13px] w-[200px] text-center font-medium bg-white text-11black h-min absolute bottom-8 left-1/2 -translate-x-1/2 z-10
                         lg:bottom-4 lg:py-[5px] lg:px-[30px] lg:w-auto xs:px-[20px]">
