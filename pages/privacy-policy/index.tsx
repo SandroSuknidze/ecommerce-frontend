@@ -4,12 +4,17 @@ import { SkeletonLoader } from '@/components/SkeletonLoader'
 import { withTranslations } from '@/utils/i18nHelper'
 import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 export const getStaticProps = withTranslations(['common']);
 function Index() {
     const { t } = useTranslation('common')
 
     const [privacyText, setPrivacyText] = useState('')
+
+    const router = useRouter();
+
+    const language = router.locale;
 
     useEffect(() => {
         axiosInstance.get('/privacy-policy')
@@ -24,7 +29,9 @@ function Index() {
         <div>
             <div className="max-w-[1260px] px-[30px] md:px-[15px] m-auto">
                 <div className="mx-auto flex flex-col justify-center py-[60px] text-center">
-                    <h1 className="leading-[47px] mb-[5px] text-[45px]">{t('privacyPolicy')}</h1>
+                    <h1 className={`leading-[47px] mb-[5px] text-[45px] ${language === 'ka' && 'sm:text-[23px] sm:leading-[31px]'}`}>
+                        {t('privacyPolicy')}
+                    </h1>
                     <nav>
                         <ol className="text-[14px] text-55black mt-[10px]">
                             <li className="inline">

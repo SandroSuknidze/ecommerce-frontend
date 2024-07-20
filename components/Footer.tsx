@@ -14,6 +14,7 @@ import { useAuth } from '@/context/authContext'
 import axiosInstance from '@/utils/axiosInstance'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function Footer() {
     const { t } = useTranslation('common')
@@ -22,7 +23,9 @@ function Footer() {
 
     const { isAuthenticated } = useAuth();
 
+    const router = useRouter();
 
+    const language = router.locale;
     const {
         register,
         handleSubmit,
@@ -222,8 +225,9 @@ function Footer() {
                                             <button
                                                 disabled={!isSubmitAvailable}
                                                 type="submit"
-                                                className="w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white
-                                                    md:px-[10px] md:text-[10px]">
+                                                className={`w-1/3 h-[50px] rounded-[30px] border-[1px] border-[#ebebeb]
+                                                bg-black px-[20px] py-[10px] text-[12px] font-semibold uppercase text-white
+                                                    md:px-[10px] ${language === 'en' ? 'md:text-[10px]' : 'md:text-[12px]'}`}>
                                                 {t('subscribe')}
                                             </button>
                                         </form>

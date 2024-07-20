@@ -32,7 +32,6 @@ const Index = () => {
         function getOrders() {
             axiosInstance.get('/orders')
                 .then((response) => {
-                    console.log(response.data.orders)
                     setOrders(response.data.orders);
                 })
                 .catch((error) => {
@@ -91,7 +90,7 @@ const Index = () => {
                                         <div className="flex w-full">
                                             <div
                                                 className="min-w-[138px] px-[20px] py-[13px] border-b-[1px] border-r-[1px] border-[#ebebeb]
-                                                    sm:min-w-[65px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('name')}
+                                                    sm:min-w-[72px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('name')}
                                             </div>
                                             <div
                                                 className="w-full px-[20px] py-[13px] border-b-[1px] border-[#ebebeb] line-clamp
@@ -100,7 +99,7 @@ const Index = () => {
                                         <div className="flex w-full">
                                             <div
                                                 className="min-w-[138px] px-[20px] py-[13px] border-r-[1px] border-[#ebebeb]
-                                                    sm:min-w-[65px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('email')}
+                                                    sm:min-w-[72px] sm:px-0 sm:leading-[35px] sm:m-auto sm:py-0">{t('email')}
                                             </div>
                                             <div className="w-full px-[20px] py-[13px] line-clamp sm:px-0 sm:leading-[35px]
                                             sm:m-auto sm:py-0">{user?.email}</div>
