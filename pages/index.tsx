@@ -105,7 +105,8 @@ function Index() {
                     className="arrow-left arrow absolute left-10 top-1/2 z-10 flex h-[60px] w-[60px] -translate-y-1/2
             transform items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition
             duration-500 text-11black hover:border-black hover:bg-black hover:text-white xl:hover:bg-white
-            xl:hover:border-[#ebebeb] xl:hover:text-11black xl:h-[40px] xl:w-[40px] md:hidden">
+            xl:hover:border-[#ebebeb] xl:hover:text-11black xl:h-[40px] xl:w-[40px] md:hidden"
+                aria-label="Arrow left">
                     <div>
                         <FontAwesomeIcon icon={faChevronLeft} className="text-[15px]" />
                     </div>
@@ -115,7 +116,8 @@ function Index() {
             transform rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500 text-11black
             hover:border-black hover:bg-black hover:text-white xl:hover:bg-white
             xl:hover:border-[#ebebeb] xl:hover:text-11black xl:h-[40px] xl:w-[40px]
-            md:hidden">
+            md:hidden"
+                    aria-label="Arrow right">
                     <div>
                         <FontAwesomeIcon icon={faChevronRight} className="text-[15px]" />
                     </div>
@@ -207,7 +209,8 @@ function Index() {
             items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
             hover:border-black hover:bg-black hover:text-white xl:hover:bg-white
             xl:hover:border-[#ebebeb] xl:hover:text-11black
-            xl:h-[40px] xl:w-[40px]">
+            xl:h-[40px] xl:w-[40px]"
+                        aria-label="Arrow left">
                         <div>
                             <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
                         </div>
@@ -217,7 +220,8 @@ function Index() {
             rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
             hover:border-black hover:bg-black hover:text-white ml-[20px] xl:hover:bg-white
             xl:hover:border-[#ebebeb] xl:hover:text-11black
-            xl:h-[40px] xl:w-[40px]">
+            xl:h-[40px] xl:w-[40px]"
+                        aria-label="Arrow right">
                         <div>
                             <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
                         </div>

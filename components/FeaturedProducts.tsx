@@ -45,7 +45,8 @@ function FeaturedProducts() {
                         className="arrow-left5 arrow flex h-[60px] w-[60px]
                     items-center justify-center rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white
-                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]">
+                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]"
+                        aria-label="Arrow left">
                         <div>
                             <FontAwesomeIcon icon={faChevronLeft} className="md:text-[15px]" />
                         </div>
@@ -54,7 +55,8 @@ function FeaturedProducts() {
                         className="arrow-right5 arrow h-[60px] w-[60px]
                     rounded-full border-[1px] border-[#ebebeb] bg-white transition duration-500
                     hover:border-black hover:bg-black hover:text-white ml-[20px]
-                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]">
+                    xl:hover:bg-white xl:hover:text-black xl:hover:border-[#ebebeb] xl:h-[40px] xl:w-[40px]"
+                        aria-label="Arrow right">
                         <div>
                             <FontAwesomeIcon icon={faChevronRight} className="md:text-[15px]" />
                         </div>
