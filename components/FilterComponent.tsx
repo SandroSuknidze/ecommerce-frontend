@@ -155,6 +155,10 @@ const FilterComponent = () => {
 
     }, [selectedSizes, setSelectedSizes]);
 
+    const iOSBoxShadow =
+        '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
+
+
     return (
         <div>
             <div className="mb-[20px] border-b-[1px] pb-[20px] border-[#ebebeb]">
@@ -277,7 +281,7 @@ const FilterComponent = () => {
                                 exit={{ height: 0 }}
                                 transition={{ type: 'spring', duration: 1, bounce: 0 }}
                             >
-                                <div className="text-center">
+                                <div className="text-center xl:w-[97%] xl:m-auto lg:!w-[100%]">
                                     <Slider
                                         getAriaLabel={() => 'Minimum distance'}
                                         value={value1}
@@ -285,6 +289,7 @@ const FilterComponent = () => {
                                         valueLabelDisplay="auto"
                                         getAriaValueText={valuetext}
                                         max={200}
+                                        color="primary"
                                         sx={{
                                             color: 'black',
                                             width: '91%',
@@ -295,6 +300,19 @@ const FilterComponent = () => {
                                             '& .MuiSlider-thumb.Mui-focusVisible': {
                                                 boxShadow:
                                                     '0 0 0 0px transparent !important',
+                                            },
+                                            '& .MuiSlider-valueLabel': {
+                                                display: 'none',
+                                            },
+                                            '& .MuiSlider-thumb': {
+                                                boxShadow: '0 0 2px 0px rgba(0, 0, 0, 0.1)',
+                                                '&:focus, &:hover, &.Mui-active': {
+                                                    boxShadow: '0px 0px 3px 1px rgba(0, 0, 0, 0.1)',
+                                                    // Reset on touch devices, it doesn't add specificity
+                                                    '@media (hover: none)': {
+                                                        boxShadow: iOSBoxShadow,
+                                                    },
+                                                },
                                             },
                                         }}
                                     />
