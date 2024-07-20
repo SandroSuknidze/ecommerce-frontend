@@ -94,27 +94,27 @@ function Footer() {
                                 </div>
                                 <ul className="flex flex-row gap-[12px]">
                                     <li className="cursor-pointer">
-                                        <Link href="https://www.youtube.com" target="_blank">
+                                        <Link href="https://www.youtube.com" target="_blank" aria-label="youtube">
                                             <YoutubeIcon />
                                         </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <Link href="https://www.tiktok.com" target="_blank">
+                                        <Link href="https://www.tiktok.com" target="_blank" aria-label="tiktok">
                                             <TiktokIcon />
                                         </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <Link href="https://www.instagram.com" target="_blank">
+                                        <Link href="https://www.instagram.com" target="_blank" aria-label="instagram">
                                             <InstagramIcon />
                                         </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <Link href="https://www.twitter.com" target="_blank">
+                                        <Link href="https://www.twitter.com" target="_blank" aria-label="twitter">
                                             <TwitterIcon />
                                         </Link>
                                     </li>
                                     <li className="cursor-pointer">
-                                        <Link href="https://www.facebook.com" target="_blank">
+                                        <Link href="https://www.facebook.com" target="_blank" aria-label="facebook">
                                             <FacebookIcon />
                                         </Link>
                                     </li>

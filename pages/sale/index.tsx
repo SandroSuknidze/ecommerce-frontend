@@ -36,7 +36,7 @@ function Index() {
     }, [])
     return (
         <div>
-            <div className="bg-sale-banner bg-center bg-cover h-[800px] w-full justify-center flex lg:h-[500px]">
+            <div className="bg-sale-banner bg-center bg-cover h-[800px] w-full justify-center flex xl:h-[600px] lg:!h-[500px]">
                 <div className="flex m-auto justify-center text-center ">
                     <div className="flex flex-col justify-center m-auto mx-[20%] md:mx-[10%]">
                         <div className="text-[14px] font-semibold mt-[15px]">{t('saleDresses')}</div>
