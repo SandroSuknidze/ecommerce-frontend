@@ -25,9 +25,9 @@ function Index() {
                 </nav>
             </div>
             <div className="flex gap-[30px] md:flex-col">
-                <StoreComponent title="South Fulon" imageSrc={st1} />
-                <StoreComponent title="Place Ste-Foy" imageSrc={st2} />
-                <StoreComponent title="Martin Place" imageSrc={st3} />
+                <StoreComponent title={t('southFulon')} imageSrc={st1} />
+                <StoreComponent title={t('placeSteFoy')} imageSrc={st2} />
+                <StoreComponent title={t('martinPlace')} imageSrc={st3} />
             </div>
         </div>
     )
