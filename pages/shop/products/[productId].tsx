@@ -760,31 +760,31 @@ function ProductId() {
                                                 {t('outstandingFeatures')}
                                             </h2>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={washIcon} alt="Wash" className="max-h-[30px]"/>
+                                                <Image src={washIcon} alt="Wash" className="max-h-[30px] min-w-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('machineWash')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={ironIcon} alt="Iron" />
+                                                <Image src={ironIcon} alt="Iron" className="max-h-[30px] min-w-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('ironing')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={bleachIcon} alt="Bleach" />
+                                                <Image src={bleachIcon} alt="Bleach" className="max-h-[30px] min-w-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('bleachInstructions')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={dryIcon} alt="Dry" />
+                                                <Image src={dryIcon} alt="Dry" className="max-h-[30px] min-w-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('dryCleaning')}
                                                 </p>
                                             </div>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={tumbleIcon} alt="Tumble" />
+                                                <Image src={tumbleIcon} alt="Tumble" className="max-h-[30px] min-w-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('tumbleDry')}
                                                 </p>
