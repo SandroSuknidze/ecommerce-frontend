@@ -1,4 +1,3 @@
-
 import { useTranslation } from 'next-i18next'
 import { withTranslations } from '@/utils/i18nHelper'
 

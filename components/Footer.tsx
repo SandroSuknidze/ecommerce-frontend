@@ -127,7 +127,9 @@ function Footer() {
                                 <div className="pt-[15px]">
                                     <ul className="flex flex-col gap-[10px] text-[#555555]">
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
-                                            {t('aboutUs')}
+                                            <Link href="/about-us">
+                                                {t('aboutUs')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             {t('ourStores')}
