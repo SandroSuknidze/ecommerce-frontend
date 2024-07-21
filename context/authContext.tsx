@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }: any) => {
                 } else {
                     setIsAuthenticated(false); // Ensure to set isAuthenticated to false if token is invalid
                     setUser(null);
+                    Cookies.remove('access_token');
                 }
                 setLoading(false); // Update loading state after authentication check
             }).catch(() => {

@@ -31,7 +31,6 @@ function Index() {
 
     useEffect(() => {
         fetchCategories()
-
     }, [])
 
     return (
