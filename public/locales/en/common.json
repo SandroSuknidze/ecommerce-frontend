@@ -185,6 +185,7 @@
     "dashboard": "Dashboard",
     "orderHistory": "Order History",
     "logOut": "Log Out",
+    "burgerLogOut": "Log out",
     "welcome": "Welcome",
     "accountDetails": "Account Details",
     "name": "Name",

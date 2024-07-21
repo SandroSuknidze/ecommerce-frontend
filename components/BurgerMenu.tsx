@@ -12,6 +12,7 @@ import { useState } from 'react'
 import { useAuth } from '@/context/authContext'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 interface BurgerMenuProps {
     toggleBurgerMenu: () => void,
@@ -23,7 +24,7 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
     const { t } = useTranslation('common')
     const [language, setLanguage] = useState<Language>(router.locale as Language);
 
-    const { isAuthenticated, user } = useAuth();
+    const { isAuthenticated, user, logout } = useAuth();
 
     type Language = 'en' | 'ka';
 
@@ -31,6 +32,15 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
         toggleBurgerMenu();
         await router.push(router.pathname, router.asPath, { locale: lang });
         setLanguage(lang);
+    }
+
+    async function Logout() {
+        toggleBurgerMenu();
+        await router.push('/')
+        logout()
+        toast.success(`${t('logoutSuccessful')}`, {
+            position: 'top-center',
+        })
     }
 
     return (
@@ -123,6 +133,14 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
                                     <p className="line-clamp ">{isAuthenticated ? user?.first_name : `${t('login/register')}`}</p>
                                 </Link>
                             </li>
+                            {isAuthenticated && (
+                                <li className="cursor-pointer border-b-[1px] border-b-[#ebebeb] w-[100%]">
+                                    <div className="flex gap-[15px] py-[15px]"
+                                          onClick={Logout}>
+                                        <div>{t('burgerLogOut')}</div>
+                                    </div>
+                                </li>
+                            )}
                             <li className="border-b-[1px] border-b-[#ebebeb] py-[15px] w-[100%] flex gap-[15px] flex-col">
                                 <div>{t('language')}</div>
                                 <div className="flex gap-[15px]">
