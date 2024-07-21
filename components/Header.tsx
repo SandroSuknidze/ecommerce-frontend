@@ -9,7 +9,7 @@ import en from '@/public/assets/en.webp'
 import ka from '@/public/assets/ka.webp'
 import arrowDown from '@/public/assets/arrow-down-icon.svg'
 import arrowUp from '@/public/assets/arrow-up-icon.svg'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
@@ -82,6 +82,10 @@ export function Header() {
     //         window.removeEventListener('scroll', handleScroll)
     //     }
     // }, [])
+
+    useEffect(() => {
+        setLanguage(router.locale as Language);
+    }, [router.locale])
 
     return (
         <>
