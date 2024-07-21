@@ -132,7 +132,9 @@ function Footer() {
                                             </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
-                                            {t('ourStores')}
+                                            <Link href="/our-stores">
+                                                {t('ourStores')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             <Link href="/contact">
