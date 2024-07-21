@@ -247,6 +247,16 @@
     "noItemsAfterFiltering": "No items found after filtering",
     "tryAdjustingFilters": "Try adjusting your filters",
 
+    "hereToHelp": "Here to help",
+    "haveAQuestion": "Have a question? You may find an answer in our FAQs. But you can also contact us:",
+    "openingHours": "Opening Hours: Everyday 9:00 am - 6:00 pm",
+    "addressIndia": "15A, East Mada Street, Kolathur, India.",
+    "addressFrance": "3 Avenue, Aix-en-Provence, France.",
+    "uminoUsa": "Umino - United States",
+    "uminoIndia": "Umino - India",
+    "uminoFrance": "Umino - France",
+
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",
