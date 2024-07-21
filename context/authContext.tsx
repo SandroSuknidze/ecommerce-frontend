@@ -38,12 +38,15 @@ export const AuthProvider = ({ children }: any) => {
                     setIsAuthenticated(false); // Ensure to set isAuthenticated to false if token is invalid
                     setUser(null);
                     Cookies.remove('access_token');
+                    Cookies.remove('user');
                 }
                 setLoading(false); // Update loading state after authentication check
             }).catch(() => {
                 setIsAuthenticated(false);
                 setUser(null);
                 setLoading(false);
+                Cookies.remove('access_token');
+                Cookies.remove('user');
             });
         } else {
             setIsAuthenticated(false);
