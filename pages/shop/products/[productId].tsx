@@ -616,7 +616,7 @@ function ProductId() {
                                         {t('outstandingFeatures')}
                                     </h2>
                                     <div className="mb-[15px] flex gap-[10px]">
-                                        <Image src={washIcon} alt="Wash" />
+                                        <Image src={washIcon} alt="Wash" className="max-h-[30px]"/>
                                         <p className="leading-[28px] text-55black">
                                             {t('washInstruction')}
                                         </p>
@@ -760,7 +760,7 @@ function ProductId() {
                                                 {t('outstandingFeatures')}
                                             </h2>
                                             <div className="mb-[15px] flex gap-[10px]">
-                                                <Image src={washIcon} alt="Wash" />
+                                                <Image src={washIcon} alt="Wash" className="max-h-[30px]"/>
                                                 <p className="leading-[28px] text-55black">
                                                     {t('machineWash')}
                                                 </p>

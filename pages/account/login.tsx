@@ -146,7 +146,7 @@ function Login() {
                                     className="w-full rounded-[30px] border-[1px] border-[#ebebeb] bg-black px-[55px] py-[14px] text-[12px] font-semibold uppercase text-white"
                                     disabled={!isSubmittable}
                                 >
-                                    {t('submit')}
+                                    {t('submitLogin')}
                                 </button>
                             </div>
                         </form>
