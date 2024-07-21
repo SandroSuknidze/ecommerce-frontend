@@ -8,7 +8,7 @@ import AvatarIcon from '@/public/assets/AvatarIcon'
 import en from '@/public/assets/en.webp'
 import ka from '@/public/assets/ka.webp'
 import closeIcon from '@/public/assets/white-close.svg'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '@/context/authContext'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
@@ -42,6 +42,10 @@ const BurgerMenu = ({toggleBurgerMenu, isOpen}: BurgerMenuProps) => {
             position: 'top-center',
         })
     }
+
+    useEffect(() => {
+        setLanguage(router.locale as Language);
+    }, [router.locale])
 
     return (
         <div className="absolute z-[70]">
