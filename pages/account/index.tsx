@@ -112,36 +112,48 @@ const Index = () => {
                             <>
                                 <div className="flex flex-col md:mt-[30px]">
                                     <h3 className="mb-[15px] text-[24px] font-medium">{t('orderHistory')}</h3>
-                                    <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
-                                        <thead className="md:hidden">
-                                        <tr>
-                                            <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
-                                                colSpan={2}>{t('product')}
-                                            </th>
-                                            <th className="border border-[#ebebeb] p-4 w-1/12 text-left font-medium">{t('quantity')}</th>
-                                            <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">{t('total')}</th>
-                                            <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">{t('purchaseDate')}</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        {orders.map((order:any) => (
-                                            <CartItem
-                                                key={order.id}
-                                                id={order.id}
-                                                image_path={order.product.image_path[0]}
-                                                title={order.product.title}
-                                                purchased_at={order.purchased_at}
-                                                quantity={order.quantity}
-                                                price={order.product.price}
-                                                sale_price={order.product.sale_price}
-                                                size_name={order.size.name}
-                                                color_name={order.color.name}
-                                                dynamicCount={false}/>
-                                        ))}
-                                            {/*<CartItem dynamicCount={false}/>*/}
-                                            {/*<CartItem dynamicCount={false}/>*/}
-                                        </tbody>
-                                    </table>
+                                    {orders.length > 0 ? (
+                                        <table className="border-collapse border border-[#ebebeb] w-full md:border-0">
+                                            <thead className="md:hidden">
+                                                <tr>
+                                                    <th className="border border-[#ebebeb] p-4 w-6/12 text-left font-medium"
+                                                        colSpan={2}>{t('product')}
+                                                    </th>
+                                                    <th className="border border-[#ebebeb] p-4 w-1/12 text-left font-medium">{t('quantity')}</th>
+                                                    <th className="border border-[#ebebeb] p-4 w-2/12 text-left font-medium">{t('total')}</th>
+                                                    <th className="border border-[#ebebeb] p-4 w-3/12 text-left font-medium">{t('purchaseDate')}</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {orders.map((order:any) => (
+                                                <CartItem
+                                                    key={order.id}
+                                                    id={order.id}
+                                                    image_path={order.product.image_path[0]}
+                                                    title={order.product.title}
+                                                    purchased_at={order.purchased_at}
+                                                    quantity={order.quantity}
+                                                    price={order.product.price}
+                                                    sale_price={order.product.sale_price}
+                                                    size_name={order.size.name}
+                                                    color_name={order.color.name}
+                                                    dynamicCount={false}/>
+                                            ))}
+                                            </tbody>
+                                        </table>
+                                    ) : (
+                                        <div>
+                                            <div className="bg-green-100 text-green-700 px-4 py-3 rounded relative"
+                                                role="alert">
+                                                <span className="block sm:inline">
+                                                    <Link href="/shop" className="font-medium underline">
+                                                        {t('firstOrder')}
+                                                    </Link>
+                                                    {' '}{t('noOrder')}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             </>
                         )}

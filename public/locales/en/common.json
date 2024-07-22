@@ -296,6 +296,8 @@
     "paymentInfo": "Payment Information",
 
     "cookiePolicy": "Cookie Policy",
+    "firstOrder": "Make your first order.",
+    "noOrder": "You haven't placed any orders yet.",
 
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
