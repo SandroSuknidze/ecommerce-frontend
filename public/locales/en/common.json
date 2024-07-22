@@ -277,6 +277,24 @@
     "partnerBrands": "Partner Brands",
     "partnerWith": "Partner with brands that share our values, striving to protect our environment.",
 
+    "faqs": "FAQs",
+    "shoppingInfo": "Shopping Information",
+    "shippingMethods": "What shipping methods do you offer?",
+    "shippingMethodsDesc": "We offer standard shipping, express shipping, and sometimes freight options depending on the size and weight of the item.",
+    "howMuch": "How much is shipping and how long will it take?",
+    "howMuchDesc": "Shipping costs and delivery times are calculated at checkout. We aim to dispatch all orders within 48 hours.",
+    "howLong": "How long will it take to get my package?",
+    "howLongDesc": "Delivery times vary depending on the shipping method chosen. Standard shipping takes 3-5 business days, while express shipping takes 1-3 business days.",
+    "branding": "Branding is simply a more efficient way to sell things?",
+    "brandingDesc": "Branding is the process of creating a strong, positive perception of a company, its products or services in the customer’s mind by combining such elements as logo, design, mission statement, and a consistent theme throughout all marketing communications.",
+
+    "needHelp": "Need Help?",
+    "needDesc": "If you have an issue or question that requires immediate assistance, you can click the button below to chat live with a Customer Service representative.",
+    "needDesc2": "Please allow 06 - 12 business days from the time your package arrives back to us for a refund to be issued.",
+
+    "messageUs": "Message Us",
+    "paymentInfo": "Payment Information",
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",

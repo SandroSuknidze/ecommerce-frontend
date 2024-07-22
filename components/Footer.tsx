@@ -186,10 +186,14 @@ function Footer() {
                                             {t('advancedSearch')}
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
-                                            {t('themeFAQs')}
+                                            <Link href="/faqs">
+                                                {t('themeFAQs')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
-                                            {t('storeLocations')}
+                                            <Link href="/our-stores">
+                                                {t('storeLocations')}
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
