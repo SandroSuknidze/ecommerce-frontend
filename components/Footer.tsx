@@ -183,7 +183,9 @@ function Footer() {
                                             </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
-                                            {t('advancedSearch')}
+                                            <Link href="/cookie-policy">
+                                                {t('cookiePolicy')}
+                                            </Link>
                                         </li>
                                         <li className="leading-[28px] transition duration-500 hover:text-11black">
                                             <Link href="/faqs">

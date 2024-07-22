@@ -295,6 +295,8 @@
     "messageUs": "Message Us",
     "paymentInfo": "Payment Information",
 
+    "cookiePolicy": "Cookie Policy",
+
     "askQuestion": "Ask A Question",
     "nameRequired": "Name is required",
     "nameMaxLength": "Maximum number of characters reached",
