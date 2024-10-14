@@ -11,7 +11,7 @@ import { CartProvider } from '@/context/CartContext'
 import { appWithTranslation } from 'next-i18next'
 import { WishlistProvider } from '@/context/WishlistContext'
 
-const jost = Jost({ subsets: ['latin'] });
+const jost = Jost({ subsets: ['latin'], display: 'swap'});
 
 interface MyAppProps extends AppProps {
     Component: ComponentType<AppProps['Component']> & { authRequired?: boolean };
