@@ -9,26 +9,26 @@ import en from '@/public/assets/en.webp'
 import ka from '@/public/assets/ka.webp'
 import arrowDown from '@/public/assets/arrow-down-icon.svg'
 import arrowUp from '@/public/assets/arrow-up-icon.svg'
-import { useEffect, useRef, useState } from 'react'
+import {useEffect, useRef, useState} from 'react'
 import correctIcon from '@/public/assets/correctIcon.svg'
 import Search from '@/components/Search'
 import burgerMenuIcon from '@/public/assets/burger-menu-icon.svg'
 import BurgerMenu from '@/components/BurgerMenu'
-import { useAuth } from '@/context/authContext'
-import { useCart } from '@/context/CartContext'
-import { useRouter } from 'next/router'
-import { useTranslation } from 'next-i18next'
-import { useWishlist } from '@/context/WishlistContext'
-import { useClickAway } from 'react-use'
+import {useAuth} from '@/context/authContext'
+import {useCart} from '@/context/CartContext'
+import {useRouter} from 'next/router'
+import {useTranslation} from 'next-i18next'
+import {useWishlist} from '@/context/WishlistContext'
+import {useClickAway} from 'react-use'
 
 
 export function Header() {
     const router = useRouter();
-    const { t } = useTranslation('common')
+    const {t} = useTranslation('common')
 
-    const { isAuthenticated } = useAuth()
-    const { totalItems } = useCart()
-    const { totalWishlistItems } = useWishlist()
+    const {isAuthenticated} = useAuth()
+    const {totalItems} = useCart()
+    const {totalWishlistItems} = useWishlist()
 
     type Language = 'en' | 'ka';
     const [language, setLanguage] = useState<Language>(router.locale as Language);
@@ -49,7 +49,7 @@ export function Header() {
 
     function selectLanguage(lang: any) {
         setLanguage(lang);
-        router.push(router.pathname, router.asPath, { locale: lang });
+        router.push(router.pathname, router.asPath, {locale: lang});
         setDropdown(false);
     }
 
@@ -61,32 +61,44 @@ export function Header() {
         setIsBurgerMenuOpen(!isBurgerMenuOpen)
     }
 
-    // const [scrollPosition, setScrollPosition] = useState(0)
-    // const [isVisible, setIsVisible] = useState(false)
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const position = window.scrollY
-    //         setScrollPosition(position)
-    //
-    //         if (position > 80) {
-    //             setIsVisible(true)
-    //         } else {
-    //             setIsVisible(false)
-    //         }
-    //     }
-    //
-    //     window.addEventListener('scroll', handleScroll)
-    //
-    //     return () => {
-    //         window.removeEventListener('scroll', handleScroll)
-    //     }
-    // }, [])
-
     useEffect(() => {
         setLanguage(router.locale as Language);
     }, [router.locale])
 
+
+    const [translateY, setTranslateY] = useState(0);
+    const lastScrollYRef = useRef(0);
+
+    const getNavbarHeight = () => {
+        return window.innerWidth <= 992 ? 52 : 70;
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const scrollDifference = currentScrollY - lastScrollYRef.current;
+            console.log("currentScrollY: ", currentScrollY);
+            console.log("current: ", lastScrollYRef.current);
+            console.log("scrollDifference: ", scrollDifference);
+            const navbarHeight = getNavbarHeight();
+
+            if (scrollDifference > 0) {
+                // Scrolling down
+                setTranslateY(Math.max(-navbarHeight, translateY - scrollDifference));
+            } else if (scrollDifference < 0) {
+                // Scrolling up
+                setTranslateY(Math.min(0, translateY - scrollDifference));
+            }
+
+            lastScrollYRef.current = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [translateY]);
     return (
         <>
             {isSearchOpen && (
@@ -95,13 +107,14 @@ export function Header() {
                 />
             )}
 
-                <BurgerMenu
-                    isOpen={isBurgerMenuOpen} toggleBurgerMenu={toggleBurgerMenu}
-                />
+            <BurgerMenu
+                isOpen={isBurgerMenuOpen} toggleBurgerMenu={toggleBurgerMenu}
+            />
 
 
             <header
-                className={`relative z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white duration-500`}
+                className={`z-[60] flex w-full transform flex-row border-y-[1px] border-y-[#ebebeb] bg-white sticky top-0`}
+                style={{transform: `translateY(${translateY}px)`}}
             >
                 <div className="my-[11px] w-full px-[30px] py-[11px] lg:my-0 md:px-[15px]">
                     <div className="flex w-full flex-row justify-between lg:h-[28px]">
@@ -111,7 +124,7 @@ export function Header() {
                         <div className="my-auto w-1/4 lg:w-1/3 lg:flex lg:justify-center ">
                             <div className="w-[95px]">
                                 <Link href="/">
-                                    <Image src={logo} alt="logo" />
+                                    <Image src={logo} alt="logo"/>
                                 </Link>
                             </div>
                         </div>
@@ -165,17 +178,17 @@ export function Header() {
                                 className="my-auto ml-[20px]"
                                 onClick={toggleSearch}
                             >
-                                <SearchIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
+                                <SearchIcon className="cursor-pointer transition duration-300 hover:fill-red-600"/>
                             </div>
                             <div className="my-auto ml-[20px] lg:hidden">
                                 <Link href={isAuthenticated ? '/account' : '/account/login'}>
-                                    <AvatarIcon className="cursor-pointer transition duration-300 hover:fill-red-600" />
+                                    <AvatarIcon className="cursor-pointer transition duration-300 hover:fill-red-600"/>
                                 </Link>
                             </div>
                             <div className="relative my-auto ml-[20px] lg:hidden">
                                 <Link href="/wishlist">
                                     <div className="hover-parent">
-                                        <WishlistIcon className="hover-child cursor-pointer" />
+                                        <WishlistIcon className="hover-child cursor-pointer"/>
                                         <div
                                             className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
                                             {totalWishlistItems()}
@@ -186,7 +199,7 @@ export function Header() {
                             <div className="relative my-auto ml-[20px] lg:pr-[10px]">
                                 <Link href="/cart">
                                     <div className="hover-parent">
-                                        <CartIcon className="hover-child cursor-pointer" />
+                                        <CartIcon className="hover-child cursor-pointer"/>
                                         <div
                                             className="absolute left-[13px] top-[-9px] h-[18px] w-[18px] rounded-full border border-red-600 bg-red-600 text-center text-[10px] text-white">
                                             {totalItems()}
