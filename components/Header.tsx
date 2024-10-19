@@ -77,9 +77,6 @@ export function Header() {
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             const scrollDifference = currentScrollY - lastScrollYRef.current;
-            console.log("currentScrollY: ", currentScrollY);
-            console.log("current: ", lastScrollYRef.current);
-            console.log("scrollDifference: ", scrollDifference);
             const navbarHeight = getNavbarHeight();
 
             if (scrollDifference > 0) {
