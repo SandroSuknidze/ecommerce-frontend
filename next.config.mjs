@@ -17,7 +17,7 @@ const nextConfig = {
         // imageUrl: 'http://127.0.0.1:8000/storage/'
         // imageUrl: 'http://127.0.0.1:8080/'
         // imageUrl: 'http://64.226.117.75:8080/'
-        imageUrl: 'https://umino.me/'
+        imageUrl: 'https://back.umino.me/'
     },
     images: {
         // domains: ['www.umino.me'],
@@ -38,7 +38,12 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'umino.me',
                 pathname: '**',
-            }
+            },
+            {
+                protocol: 'https',
+                hostname: 'back.umino.me',
+                pathname: '**',
+            },
         ],
     },
     i18n: {

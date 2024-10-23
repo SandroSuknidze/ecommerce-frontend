@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie'
 
 const axiosInstance = axios.create({
-    baseURL: 'https://umino.me/api/v1',
+    baseURL: 'https://back.umino.me/api/v1',
     // baseURL: 'http://64.226.117.75:8080/api/v1',
     // baseURL: 'http://localhost:8080/api/v1',
     // baseURL: 'http://localhost:8000/api/v1',
